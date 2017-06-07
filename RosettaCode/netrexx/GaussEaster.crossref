@@ -1,0 +1,13 @@
+--- Variables for class GaussEaster ---
+a    int   v 26= 49
+b    int   v 33= 59
+c    int   v 40= 59
+CC   int   v 18= 49 59
+d    int   v 49= 59 61
+DD   int   v 61= 62 63 63 63= 65
+e    int   v 59= 61
+M    int[] v 16= 49
+MM   int   v 62= 65
+N    int[] v 17= 59
+year Rexx  v 7= 8
+year int   a 13 18 26 33 40 65

@@ -1,0 +1,27 @@
+/* NetRexx */
+/* default options */
+options -
+  nobinary nocomments nocompact console crossref decimal nodiag noexplicit -
+  noformat java logo noreplace nosavelog nosourcedir nostrictargs -
+  nostrictassign nostrictcase nostrictimport nostrictprops nostrictsignal -
+  nosymbols trace2 noutf8 verbose3
+/* local ovverides */
+options replace format comments java crossref symbols binary
+
+/* default numeric settings */
+numeric digits 9
+numeric form scientific
+
+/* default trace settings */
+trace -
+  /*off*/ -
+  all
+trace var arg
+
+runSample(arg)
+return
+
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+method runSample(arg) private static
+  return
+

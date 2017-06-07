@@ -1,0 +1,7 @@
+--- Variables for class RCLoopsNested ---
+dim2 int[,] v 8= 11 12 13= 18 20 21 22
+i1   Rexx   v 11= 12 13
+i2   Rexx   v 12= 13
+rnd  Random v 7= 13
+x1   Rexx   v 18= 19 20 21 22
+x2   Rexx   v 20= 21 22

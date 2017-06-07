@@ -1,0 +1,15 @@
+--- Variables for class RPrimalityByTrialDivision ---
+arg        Rexx    a 4= 4
+arg        Rexx    a 33 34
+bfalse     boolean v 10= 14 18 23
+btrue      boolean v 9= 10 16 20
+ip         Rexx    v 47= 48= 49
+kv         Rexx    v 21= 21 22 22
+lrv        Rexx    v 37= 45 45= 49
+lv         Rexx    v 39= 40 41 41 41= 42 43 44 46
+pair       Rexx    v 38= 39
+pt         Rexx    v 46= 47 48 49
+rv         Rexx    v 39= 40 40= 41 41 41= 42 43 44 44 44= 45 46
+samples    Rexx    v 34= 35 35= 36 38 38=
+val        Rexx    a 8 13 15 15 15 15 17 17 17 17 21 22 22
+valIsPrime boolean v 11 14= 16= 18= 20= 23= 30

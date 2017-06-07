@@ -1,0 +1,112 @@
+/* NetRexx */
+
+options replace format comments java crossref savelog symbols nobinary
+
+/**
+ * <h3>Caesar cipher</h3>
+ * <p>
+ * Implement a <a href="http://en.wikipedia.org/wiki/Caesar_cipher">Caesar</a> cipher, both encryption and decryption.
+ * The key is an integer from 1 to 25. This cipher rotates the letters of the alphabet (A to Z).
+ * The encryption replaces each letter with the 1st to 25th next letter in the alphabet (wrapping Z to A).
+ * So key 2 encrypts "HI" to "JK", but key 20 encrypts "HI" to "BC".
+ * This simple "monoalphabetic substitution cipher" provides almost no security, because an attacker who has the
+ * encrypted message can either use frequency analysis to guess the key, or just try all 25 keys.
+ * </p>
+ * <p>
+ * Caesar cipher is identical to <a href="http://rosettacode.org/wiki/Vigen%C3%A8re_cipher">Vigenère</a> cipher
+ * with key of length 1. Also, <a href="http://rosettacode.org/wiki/Rot-13">Rot-13</a> is identical to
+ * Caesar cipher with key 13.
+ *
+ * @author Alan Sampson
+ * @version 1.0
+ * @see <a href="http://rosettacode.org/wiki/Caesar_cipher">http://rosettacode.org/wiki/Caesar_cipher</a>
+ */
+
+messages = [ -
+  'The five boxing wizards jump quickly', -
+  'Attack at dawn!', -
+  'HI']
+keys = [1, 2, 20, 25, 13]
+loop m_ = 0 to messages.length - 1
+  in = messages[m_]
+  loop k_ = 0 to keys.length - 1
+    say 'Caesar cipher, key:' keys[k_].right(3)
+    ec = caesar_encipher(in, keys[k_])
+    dc = caesar_decipher(ec, keys[k_])
+    say in
+    say ec
+    say dc
+    say
+    end k_
+  say 'Rot-13:'
+  ec = rot13(in)
+  dc = rot13(ec)
+  say in
+  say ec
+  say dc
+  say
+  end m_
+
+return
+
+method rot13(input) public static signals IllegalArgumentException
+
+  return caesar(input, 13, isFalse)
+
+method caesar(input = Rexx, idx = int, caps = boolean) public static signals IllegalArgumentException
+
+  if idx < 1 | idx > 25 then signal IllegalArgumentException()
+
+  --      12345678901234567890123456
+  itab = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+  shift = itab.length - idx
+  parse itab tl +(shift) tr
+  otab = tr || tl
+
+  if caps then input = input.upper
+
+  cipher = input.translate(itab || itab.lower, otab || otab.lower)
+
+  return cipher
+
+method caesar_encipher(input = Rexx, idx = int, caps = boolean) public static signals IllegalArgumentException
+
+  return caesar(input, idx, caps)
+
+method caesar_decipher(input = Rexx, idx = int, caps = boolean) public static signals IllegalArgumentException
+
+  return caesar(input, int(26) - idx, isFalse)
+
+method caesar_encipher(input = Rexx, idx = int) public static signals IllegalArgumentException
+
+  return caesar(input, idx, isFalse)
+
+method caesar_decipher(input = Rexx, idx = int) public static signals IllegalArgumentException
+
+  return caesar(input, int(26) - idx, isFalse)
+
+method caesar_encipher(input = Rexx, idx = int, opt = Rexx) public static signals IllegalArgumentException
+
+  return caesar(input, idx, opt)
+
+method caesar_decipher(input = Rexx, idx = int, opt = Rexx) public static signals IllegalArgumentException
+
+  return caesar(input, int(26) - idx, opt)
+
+method caesar(input = Rexx, idx = int, opt = Rexx) public static signals IllegalArgumentException
+
+  if opt.upper.abbrev('U') >= 1 then caps = isTrue
+  else                               caps = isFalse
+
+  return caesar(input, idx, caps)
+
+method caesar(input = Rexx, idx = int) public static signals IllegalArgumentException
+
+  return caesar(input, idx, isFalse)
+
+method isTrue public static returns boolean
+  return (1 == 1)
+
+method isFalse public static returns boolean
+  return \isTrue
+

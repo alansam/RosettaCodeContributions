@@ -1,0 +1,115 @@
+/* NetRexx */
+options replace format comments java crossref symbols nobinary
+
+import java.text.SimpleDateFormat
+import java.text.ParseException
+
+runSample(arg)
+return
+
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+method manipulateDate(xDate, xDateFormat, dHours = 0, otherZones = '') public static
+
+  tz = getTimeZone(xDate, xDateFormat)
+  formatter = SimpleDateFormat(xDateFormat)
+  msHours = dHours * 60 * 60 * 1000 -- hours in milliseconds
+  day = formatter.parse(xDate)
+  --formatter.setTimeZone(tz)
+  day.setTime(day.getTime() + msHours)
+  dayFormatted = formatter.format(day)
+  loop tzx = 1 to otherZones.words()
+    tz = TimeZone.getTimeZone((otherZones.word(tzx)))
+    formatter.setTimeZone(tz)
+    dayFormatted = dayFormatted'\x00'formatter.format(day)
+    end tzx
+  return dayFormatted
+
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+method getTimeZone(xDate, xDateFormat) public static returns TimeZone
+  xDate = xDate.strip()
+  xDateFormat = xDateFormat.strip()
+  parse xDateFormat.strip() . 'z' z1 +1 . 0 'Z' z2 +1 . 0 'X' x1 +3 .
+  select
+    when z1 == 'z' then do
+      zoffset = xDate.word(xdate.words()) -- last word is zone offset
+      nop
+      end
+    when z2 == 'Z' then do
+      if xDate.words() > 1 then do
+        zoffset = xDate.word(xdate.words()) -- last word is zone offset
+        end
+      else do
+        parse xDate'*??ENDOFSTRING??*' -5 zoffset +5 .
+        zoffset = 'GMT'zoffset
+        end
+      nop
+      end
+    when x1 == 'XXX' then do
+      parse xDate'*??ENDOFSTRING??*' -6 zoffset +6 .
+      if zoffset.right(1) = 'z' then zoffset = '+00:00'
+      zoffset = 'GMT'zoffset
+      nop
+      end
+    when x1 == 'XX'  then do
+      parse xDate'*??ENDOFSTRING??*' -5 zoffset +5 .
+      if zoffset.right(1) = 'z' then zoffset = '+0000'
+      zoffset = 'GMT'zoffset
+      nop
+      end
+    when x1 == 'X'   then do
+      parse xDate'*??ENDOFSTRING??*' -3 zoffset +3 .
+      if zoffset.right(1) = 'z' then zoffset = '+00'
+      zoffset = 'GMT'zoffset
+      nop
+      end
+    otherwise do
+      nop
+      end
+    end
+    tz = TimeZone.getTimeZone(zoffset)
+    return tz
+
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+method runSample(arg) public static
+  -- {date}                              {date format}                delta
+  sampleDates = [ -
+    "{March 7 2009 7:30pm EST}           {MMMM d yyyy hh:mma z}          12", -
+    "{March 7 2009 7:30pm GMT-05:00}     {MMMM d yyyy hh:mma zzzz}       12", -
+    "{March 7 2009 7:30pm EST}           {MMMM d yyyy hh:mma z}        -8.5", -
+    "{March 7 2009 7:30pm GMT-05:00}     {MMMM d yyyy hh:mma zzzz}     -8.5", -
+    "{July 7 2009 7:30pm EST5EDT}        {MMMM d yyyy hh:mma z}           0", -
+    "{July 7 2009 7:30pm EST5EDT}        {MMMM d yyyy hh:mma zzzz}        0", -
+    "{2012-02-28T20:00:00.000-0800}      {yyyy-MM-dd'T'HH:mm:ss.SSSZ}     0", -
+    "{2012-02-28T20:00:00.000-0000}      {yyyy-MM-dd'T'HH:mm:ss.SSSZZ}    0", -
+    "{2012-02-28T20:00:00.000 GMT-05:00} {yyyy-MM-dd'T'HH:mm:ss.SSSZ}     0", -
+    "{2012-02-28T20:00:00.000-08:00}     {yyyy-MM-dd'T'HH:mm:ss.SSSXXX}   0", -
+    "{2012-02-28T20:00:00.000-0800}      {yyyy-MM-dd'T'HH:mm:ss.SSSXX}    0", -
+    "{2012-02-28T20:00:00.000-08}        {yyyy-MM-dd'T'HH:mm:ss.SSSX}     0", -
+    "{2012-02-28T20:00:00.000Z}          {yyyy-MM-dd'T'HH:mm:ss.SSSXXX}   0", -
+    "{2012-02-28T20:00:00.000+00}        {yyyy-MM-dd'T'HH:mm:ss.SSSX}     0"  -
+  ]
+
+  if arg.length > 0 then tzList = arg
+  else                   tzList = 'America/Los_Angeles CST6CDT GMT' -- 'America/Los_Angeles EST5EDT GMT Europe/London CET Asia/Kolkata Asia/Kathmandu BST'
+
+  loop sd over sampleDates
+    do
+    parse sd '{'sampleDate'}' . '{'sampleDateFormat'}' deltaHours .
+    if deltaHours >= 0 then mode = '+'
+    else                    mode = '-'
+    say 'Original date:'.right(20) sampleDate
+    prefix = ('Date' mode deltaHours.abs() 'hours:').right(20)
+    dates = manipulateDate(sampleDate, sampleDateFormat, deltaHours, tzList)
+    loop while dates \= ''
+      parse dates datex '\x00' dates
+      say prefix datex
+      prefix = ''.left(20)
+      end
+    say
+    catch ex = Exception
+      ex.printStackTrace()
+    end
+    end sd
+
+  return
+

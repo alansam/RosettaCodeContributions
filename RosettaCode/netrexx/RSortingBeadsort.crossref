@@ -1,0 +1,20 @@
+--- Variables for class RSortingBeadsort ---
+$           Rexx     v 43= 44
+$           Rexx     v 51= 80
+_           Rexx     s 13 53= 67 67= 74
+arg1        Rexx     a 85 89
+arg2        Rexx     a 85 86 88 89
+args        String[] a 15
+bernN       Rexx     v 30= 39
+grasshopper Rexx     v 20= 39
+greengrocer Rexx     v 26= 39
+high        Rexx     v 52= 69 69= 73
+j           Rexx     v 56= 60
+j           Rexx     v 88= 89 89
+list        Rexx     v 39= 42 43
+low         Rexx     v 52= 52 68 68= 73
+m           Rexx     v 73= 74
+psi         Rexx     v 35= 39
+widthH      Rexx     v 86= 89
+x           Rexx     v 57= 58 60 65 65= 67 67 68 69
+z           Rexx     a 50 56 57 57=

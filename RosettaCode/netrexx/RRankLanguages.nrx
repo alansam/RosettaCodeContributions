@@ -1,0 +1,36 @@
+/* NetRexx */
+options replace format comments java crossref symbols nobinary
+
+import java.util.Scanner
+import java.net.URL
+
+class RRankLanguages
+  properties constant
+    cats_url = "http://www.rosettacode.org/w/index.php?title=Special:Categories&limit=5000"
+    lang_url = "http://www.rosettacode.org/w/api.php?action=query&list=categorymembers&cmtitle=Category:Programming_Languages&cmlimit=500&format=json"
+
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+method main(args = String[]) public static
+  arg = Rexx(args)
+  runSample(arg)
+  return
+
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+method runSample(arg) private static
+  do
+    scCats = Scanner(URL(cats_url).openStream)
+    scLang = Scanner(URL(lang_url).openStream)
+    displayScan(scCats)
+    displayScan(scLang)
+  catch ex = Exception
+    ex.printStackTrace
+  end
+  return
+
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+method displayScan(sc = Scanner) private static
+  loop lc = 1 to 20 while sc.hasNext
+    say lc.right(5)':' sc.nextLine
+    end lc
+  return
+

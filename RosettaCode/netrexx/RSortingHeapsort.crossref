@@ -1,0 +1,27 @@
+--- Variables for class RSortingHeapsort ---
+a          String[]       a 33 33 36 37
+a          java.util.List a 42 42 61 61= 65 66 66 67 68 68= 72
+a          java.util.List a 74 93 93= 97
+a          java.util.List a 99 123 123 127 127 128 129 129 130 138
+al         java.util.List v 37= 38
+child      int            v 121= 122 123 123 124 124= 127 129 130 131
+cl         String[]       v 24= 25 26
+count      int            a 33= 37
+count      int            a 42= 61 63
+count      int            a 74 90 93
+ct         int            v 25= 26
+data       String[]       v 148= 212
+data       String[]       v 216= 268
+iend       int            v 63= 64 66 67 68 69 69=
+iend       int            a 99 120 122
+istart     int            a 99 118
+lists      String[,]      v 14= 23 24
+ln         int            v 23= 24
+placesList String[]       v 7= 15 16 16
+riverData  String[]       v 12= 17 18 18
+rl         String[]       v 36= 38 40
+root       int            v 118= 120 121 127 128 129 131=
+start      int            v 90= 92 93 94 94=
+stateData  String[]       v 13= 19 20 20
+swap       Object         v 65= 67
+swap       Object         v 128= 130

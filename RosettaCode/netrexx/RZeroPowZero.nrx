@@ -1,0 +1,17 @@
+/* NetRexx */
+options replace format comments java crossref symbols nobinary
+
+sampleRexx()
+sampleJava()
+return
+
+-- ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+method sampleRexx() public static
+  x = 0
+  Say '0**0=' || x ** x
+  return
+
+-- ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+method sampleJava() public static binary
+  say 'Math.pow(0,0)='Math.pow(0, 0)
+  return

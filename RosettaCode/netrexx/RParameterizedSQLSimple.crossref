@@ -1,0 +1,30 @@
+--- Variables for class RParameterizedSQLSimple ---
+active          boolean                 a 94 107
+args            String[]                a 114
+CLASSNAME       String                  c 13=
+cnfe            ClassNotFoundException  v 76= 79
+connexion       Connection              p 10
+DBMODE_CREATE   Rexx                    c 18= 34
+DBMODE_NOCREATE Rexx                    c 19=
+DBMODE_SHUTDOWN Rexx                    c 20= 45
+DBNAME          Rexx                    c 17= 34 45
+dbState         boolean                 v 44 49= 54= 58= 62= 67
+DBURL           Rexx                    c 16= 34 45
+DRIVER          Rexx                    c 15= 35
+ex              Exception               v 129= 130
+iae             IllegalAccessException  v 85= 87
+ie              InstantiationException  v 81= 83
+ix              int                     v 102= 105 105= 105 106 106= 106 107 107= 107 108 108= 108
+jerseyNum       int                     a 94 108
+name            String                  a 94 105
+props           Properties              v 30= 31 32 36
+ps              PreparedStatement       v 104= 105 106 107 108 109
+rowCt           int                     v 101 109= 111
+score           int                     a 94 106
+se              SQLException            v 51= 52 52 56 56 63
+tda             RParameterizedSQLSimple v 117= 118 120 121 126
+updated         int                     v 121= 122
+updateSQL       String                  v 96= 104
+xdriver         String                  a 70 73 77 82 86
+xURL            Rexx                    v 34= 36
+xURL            Rexx                    v 45= 48

@@ -1,0 +1,37 @@
+--- Variables for class RJson01 ---
+args        String[]          a 55
+di          Rexx              v 77= 78
+dwa         JSONArray         v 76= 77 78
+dwarfs      Rexx              a 62 64 67
+dwarves     ArrayList         v 71= 78 80
+ex          JSONException     v 83= 84
+ex          JSONException     v 97= 98
+jb          RJson01.DwarfBean v 80= 81
+jd          JSONObject        v 67= 68 72
+jd          JSONObject        v 93= 95
+jn          JSONObject        v 72= 73 74 75 76
+jo          JSONObject        v 94= 95 95= 96
+JSON_DWARFS Rexx              c 18= 56
+jsonBeans   ArrayList         v 65= 81 86
+jsonString  String            v 91 96= 100
+medium      String            v 75= 80
+name        String            v 69 72 80
+ns          String[]          v 68= 70
+SAMPLE_BEAN RJson01.DwarfBean c 47= 58
+sb          RJson01.DwarfBean a 88 90 93 95
+title       String            v 73= 80
+year        Long              v 74= 80
+
+--- Variables for class RJson01.DwarfBean ---
+dwarfs  java.util.List p 110
+dwarfs_ java.util.List a 112= 117
+key     String         p 105 121= 125
+key_    String         a 112= 113
+key_    String         a 120 121
+medium  String         p 109
+medium_ String         a 112= 116
+title   String         p 107
+title_  String         a 112= 114
+ts      StringBuilder  v 128= 129 130 131 132 133 134 135 136 137
+year    Long           p 108
+year_   Long           a 112= 115

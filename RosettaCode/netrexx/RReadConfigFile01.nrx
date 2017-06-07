@@ -1,0 +1,123 @@
+/* NetRexx */
+options replace format comments java crossref symbols nobinary
+
+class RReadConfigFile01 public
+
+  properties constant inheritable 
+    V_SCALAR  = 'S'
+    V_ARRAY   = 'A'
+    V_BOOL    = 'B'
+    isTrue    = 1 == 1
+    isFalse   = 1 == 0
+
+method main(args = String[]) public static
+
+  arg = Rexx(args)
+  parse arg configFile .
+
+  requiredVars = 'FULLNAME FAVOURITEFRUIT OTHERFAMILY NEEDSPEELING SEEDSREMOVED'
+
+  if configFile = '' | configFile = '.' then configFile = './data/rosetta.conf'
+  vars = readConfigFile(configFile)
+  vars = verifyRequiredVars(vars, requiredVars)
+  
+  say
+  loop vkey over vars.keySet()
+    varn = RReadConfigFile01.Variable vars.get(vkey)
+    key = varn.getName()
+    val = varn.getValue()
+    typ = varn.getType()
+    if typ = V_ARRAY then do
+      elmts = ''
+      loop eNr = 1 to val[0]
+        elmts = elmts || val[eNr]','
+        end eNr
+      val = '['elmts.strip('t', ',')']'
+      end
+    say key.right(30) '['typ']' '=' val
+    end vkey
+  say
+
+  return
+
+method verifyRequiredVars(vars = Map, requiredVars) public static returns Map
+
+  loop vi = 1 to requiredVars.words()
+    varName = requiredVars.word(vi)
+    if vars.get(varName) = null then do
+      varx = RReadConfigFile01.Variable()
+      varx.setName(varName)
+      varx.setType(V_BOOL)
+      varx.setValue(isFalse)
+      vars.put(varx.getName(), varx)
+      end
+    end vi
+
+  return vars
+
+method readConfigFile(configFile) public static returns Map
+
+  vars = Map
+  vars = HashMap()
+
+  configLines = scanFile(configFile)
+  loop lNr = 1 to configLines[0]
+    parse configLines[lNr].strip('b') pc +1 . 0 line
+    if pc = '#' | pc = ';' | line.length = 0 then iterate lNr
+    parse line varName varVal
+
+    varx = RReadConfigFile01.Variable()
+    varx.setName(varName)
+
+    select
+      when varVal.length() = 0 then do
+        varx.setType(V_BOOL)
+        varx.setValue(isTrue)
+        end
+      when varVal.pos(',') > 0 then do
+        elmts = ''
+        elmts[0] = 0
+        loop e_ = 1 while varVal.length() > 0
+          parse varVal elmt ',' rest
+          elmts[0]  = e_
+          elmts[e_] = elmt.strip()
+          varVal = rest.strip()
+          end e_
+        varx.setType(V_ARRAY)
+        varx.setValue(elmts)
+        end
+      otherwise do
+        varx.setType(V_SCALAR)
+        varx.setValue(varVal)
+        end
+      end
+    vars.put(varx.getName, varx)
+    end lNr
+
+  return vars
+
+-- Read a file and return contents as a Rexx indexed string
+method scanFile(inFileName) public static returns Rexx
+
+  fileLines = ''
+  do
+    inFile = File(inFileName)
+    inFileScanner = Scanner(inFile)
+    loop l_ = 1 while inFileScanner.hasNext()
+      fileLines[0] = l_
+      fileLines[l_] = inFileScanner.nextLine()
+      end l_
+    inFileScanner.close()
+
+  catch ex = FileNotFoundException
+    ex.printStackTrace
+  end
+
+  return fileLines
+
+class RReadConfigFile01.Variable public
+  properties indirect
+    name
+    value
+    type
+

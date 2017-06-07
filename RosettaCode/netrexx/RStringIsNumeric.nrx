@@ -1,0 +1,46 @@
+/* NetRexx */
+options replace format comments java crossref symbols nobinary
+
+parse source ss
+parse version vv
+say ss
+say vv
+
+numeric digits 200
+nv = 'Not numeric'
+nv[1] = 'Numeric'
+zzz = '?'
+i_ = 0
+i_ = i_ + 1; zzz[0] = i_; zzz[i_]=' -123.78 '
+i_ = i_ + 1; zzz[0] = i_; zzz[i_]='-123.78'
+i_ = i_ + 1; zzz[0] = i_; zzz[i_]='2'
+i_ = i_ + 1; zzz[0] = i_; zzz[i_]="2"
+i_ = i_ + 1; zzz[0] = i_; zzz[i_]=2
+i_ = i_ + 1; zzz[0] = i_; zzz[i_]='000000000004'
+i_ = i_ + 1; zzz[0] = i_; zzz[i_]='+5'
+i_ = i_ + 1; zzz[0] = i_; zzz[i_]=' +6 '
+i_ = i_ + 1; zzz[0] = i_; zzz[i_]=' + 7 '
+i_ = i_ + 1; zzz[0] = i_; zzz[i_]=' - 8 '
+i_ = i_ + 1; zzz[0] = i_; zzz[i_]=' - .9'
+i_ = i_ + 1; zzz[0] = i_; zzz[i_]='- 19.'
+i_ = i_ + 1; zzz[0] = i_; zzz[i_]='.7'
+i_ = i_ + 1; zzz[0] = i_; zzz[i_]='2e+3'
+i_ = i_ + 1; zzz[0] = i_; zzz[i_]=47e+567
+i_ = i_ + 1; zzz[0] = i_; zzz[i_]='2e-3'
+i_ = i_ + 1; zzz[0] = i_; zzz[i_]='1.2e+1'
+i_ = i_ + 1; zzz[0] = i_; zzz[i_]=' .2E+6'
+i_ = i_ + 1; zzz[0] = i_; zzz[i_]=' 2.e+5 '
+i_ = i_ + 1; zzz[0] = i_; zzz[i_]='       +1.2E+0002 '
+i_ = i_ + 1; zzz[0] = i_; zzz[i_]='       +1.2e+002 '
+i_ = i_ + 1; zzz[0] = i_; zzz[i_]=' +0000001.200e+002 '
+i_ = i_ + 1; zzz[0] = i_; zzz[i_]=' - 000001.200e+002 '
+i_ = i_ + 1; zzz[0] = i_; zzz[i_]=' - 000008.201e-00000000000000002 '
+i_ = i_ + 1; zzz[0] = i_; zzz[i_]=' - 000008.201e-000000002 '
+i_ = i_ + 1; zzz[0] = i_; zzz[i_]='NaN'
+i_ = i_ + 1; zzz[0] = i_; zzz[i_]="infinity"
+i_ = i_ + 1; zzz[0] = i_;
+
+loop i_ = 1 to zzz[0]
+  say zzz[i_].right(36) nv[zzz[i_].datatype('N')]
+  end i_
+

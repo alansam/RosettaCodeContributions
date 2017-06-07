@@ -1,0 +1,22 @@
+/* Generated from 'RCHostIntrospection.nrx' 13 Jul 2011 13:45:56 [v3.00] */
+/* Options: Comments Crossref Decimal Format Java Logo Replace Symbols Trace2 Verbose3 */
+
+/* NetRexx */
+
+
+
+public class RCHostIntrospection{
+ private static final java.lang.String $0="RCHostIntrospection.nrx";
+ 
+ public static void main(java.lang.String $0s[]){
+  java.lang.String wordSize;
+  java.lang.String endian;
+  wordSize=java.lang.System.getProperty("sun.arch.data.model");
+  endian=java.lang.System.getProperty("sun.cpu.endian");
+  
+  netrexx.lang.RexxIO.Say(netrexx.lang.Rexx.toRexx(" word size:").OpCcblank(null,netrexx.lang.Rexx.toRexx(wordSize)));
+  netrexx.lang.RexxIO.Say(netrexx.lang.Rexx.toRexx("endianness:").OpCcblank(null,netrexx.lang.Rexx.toRexx(endian)));
+  return;}
+ 
+ private RCHostIntrospection(){return;}
+ }

@@ -1,0 +1,16 @@
+--- Variables for class RCSortingSelectionsort ---
+a          String[]       a 26 28 29
+a          java.util.List a 34 36
+al         java.util.List v 29= 30
+cl         String[]       v 17= 18 19
+ct         int            v 18= 19
+i_         int            v 44= 45 46
+iMin       int            v 40 43= 45 46= 49 51 52
+iPos       int            v 39 42= 43 44 49 50 51
+lists      String[,]      v 11= 16 17
+ln         int            v 16= 17
+n          int            v 37= 42 44
+placesList String[]       v 6= 12 13 13
+ra         ArrayList      v 36= 37 45 45 50 51 51 52 56
+rl         String[]       v 28= 30 32
+swap       Object         v 50= 52

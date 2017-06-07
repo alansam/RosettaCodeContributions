@@ -1,0 +1,6 @@
+--- Variables for class R100d02 ---
+doors boolean[] v 7= 10= 14
+False boolean   v 5=
+i_    int       v 9= 10 10 13= 14 17
+state String    v 14= 15= 17
+True  boolean   v 4= 5 10

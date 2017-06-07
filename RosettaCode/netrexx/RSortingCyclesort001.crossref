@@ -1,0 +1,15 @@
+--- Variables for class RSortingCyclesort001 ---
+array      Rexx v 7= 9= 12 16
+array      Rexx a 21 26 31 40 43 44= 53 58 61 62=
+array_pos  Rexx v 43= 44 61= 62
+cycleStart Rexx v 25= 26 29 30 36 48 51 52
+i          Rexx v 8= 9 9 15= 16
+i          Rexx v 30= 31 52= 53
+item       Rexx v 26= 31 40 43 43= 53 58 61 61=
+list       Rexx v 5= 6 9 11
+n          Rexx v 6= 8 12 15
+n          Rexx a 21 25 30 52
+ol         Rexx v 14= 16 16= 18
+pos        Rexx v 29= 32 32= 36 40 41 41= 43 44 48 51= 54 54= 58 59 59= 61 62
+writes     Rexx v 12= 13
+writes     Rexx v 22= 45 45= 63 63= 66

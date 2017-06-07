@@ -1,0 +1,36 @@
+/* NetRexx */
+
+options replace format comments java crossref savelog symbols nobinary
+
+import java.math.BigDecimal
+
+numeric digits 30 -- needed to report the run-time
+
+nanoFactor = 10 ** 9
+
+t1 = System.nanoTime
+loop m_ = 0 to 4
+  loop n_ = 0 to 10
+    say 'A('m_.right(3, 0)','n_.right(3, 0)'):' A(BigDecimal.valueOf(m_.tolong), BigDecimal.valueOf(n_.tolong)).toString
+    end n_
+    say
+  end m_
+t2 = System.nanoTime
+td = t2 - t1
+say "Run time in seconds:" td / nanoFactor
+say
+
+return
+
+method A(m = BigDecimal, n = BigDecimal) public static returns BigDecimal
+
+  ar = BigDecimal
+  select
+    /* m = 0 */         when m.compareTo(BigDecimal.ZERO) = 0                                    then ar = n.add(BigDecimal.ONE)
+    /* m > = & n = 0 */ when m.compareTo(BigDecimal.ZERO) = 1 & n.compareTo(BigDecimal.ZERO) = 0 then ar = A(m.subtract(BigDecimal.ONE), BigDecimal.ONE)
+    /* m > = & n > 0 */ when m.compareTo(BigDecimal.ZERO) = 1 & n.compareTo(BigDecimal.ZERO) = 1 then ar = A(m.subtract(BigDecimal.ONE), A(m, n.subtract(BigDecimal.ONE)))
+    otherwise signal RuntimeException()
+    end
+
+  return ar
+

@@ -1,0 +1,10 @@
+--- Variables for class RGreatestSubsequentialSum01 ---
+i        Rexx v 11= 13 17 29= 30
+j        Rexx v 13= 14 18
+maxSum   Rexx v 8= 15 16= 34
+ol       Rexx v 28= 31 31= 33
+s        Rexx v 7= 11 13 14 23 30
+seqEnd   Rexx v 10= 18= 25 29
+seqStart Rexx v 9= 17= 25 28 29
+seqSum   Rexx v 12= 14 14= 15 16
+w        Rexx v 30= 31

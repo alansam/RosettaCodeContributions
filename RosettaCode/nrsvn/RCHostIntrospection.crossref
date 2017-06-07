@@ -1,0 +1,3 @@
+--- Variables for class RCHostIntrospection ---
+endian   String v 5= 8
+wordSize String v 4= 7

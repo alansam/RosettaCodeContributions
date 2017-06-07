@@ -1,0 +1,20 @@
+--- Variables for class RAvgArithGeom ---
+a0    Rexx   v 6= 7= 11 12 13
+a0    Rexx   a 18 19 21 22 23 24= 27
+a0    Rexx   a 30 31
+a0    double a 41 42
+a1    Rexx   v 19= 21 22= 24 25
+a1    Rexx   v 31= 33 34 35 36= 38
+a1    double v 42= 44 45 46 47= 49
+a_    Rexx   v 5= 6 6 7
+arg   Rexx   a 5= 5
+aTemp double v 45= 47
+g0    Rexx   v 8= 9= 11 12 13
+g0    Rexx   a 18 20 22 23 25=
+g0    Rexx   a 30 32
+g0    double a 41 43
+g1    Rexx   v 20= 23= 24 25
+g1    Rexx   v 32= 33 34 35 35=
+g1    double v 43= 44 45 46 46=
+g_    Rexx   v 5= 8 8 9
+temp  Rexx   v 34= 36

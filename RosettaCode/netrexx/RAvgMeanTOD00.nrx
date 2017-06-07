@@ -1,0 +1,42 @@
+/* NetRexx */
+options replace format comments java crossref symbols nobinary
+
+runSample(arg)
+return
+
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+method avgMTD(arg) public static
+
+  tk = 12 * 60 * 60
+  pi = Math.atan2(0.0, -1.0)
+  pi = Math.PI
+  c_ = pi / tk
+  x_ = 0.0
+  y_ = 0.0
+  loop w_ = 1 to arg.words
+    times = arg.word(w_)
+    parse times hh ':' mm ':' ss .
+    t_ = hh * 3600 + mm * 60 + ss
+    p_ = t_ * c_
+    say times p_.format(null, 6, 9)
+    x_ = x_ + Math.sin(p_)
+    y_ = y_ + Math.cos(p_)    
+    end w_
+  p_ = Math.atan2(x_, y_) / c_
+  if p_ < 0 then p_ = p_ + tk * 2
+  hh = (p_ % 3600).right(2, 0)
+  p_ = p_ // 3600
+  mm = (p_ % 60).right(2, 0)
+  p_ = p_ // 60
+  ss = (p_ % 1).right(2, 0)
+  
+  return hh':'mm':'ss
+
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+method runSample(arg) private static
+  if arg = '' then arg = '23:00:17 23:40:20 00:12:45 00:17:19'
+  avgTime = avgMTD(arg)
+  say 'Average time of day of:' arg.space(1, ',').changestr(',', ', ') '=' avgTime
+  say
+  return
+

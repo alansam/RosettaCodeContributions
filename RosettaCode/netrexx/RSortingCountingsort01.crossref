@@ -1,0 +1,15 @@
+--- Variables for class RSortingCountingsort01 ---
+amax    Rexx v 10= 17
+amax    long v 29= 32 32= 35
+amin    Rexx v 10= 17
+amin    long v 28= 31 31= 35
+arg     Rexx a 4= 4
+arg     Rexx a 38 39
+array   Rexx v 11= 14 14= 18 19
+icounts Rexx a 8 10 12 13
+icounts Rexx a 26 30 31 32
+icounts Rexx v 39= 40 41= 46 47
+iw      Rexx v 13= 14 14
+ix      Rexx v 12= 13 17= 18 19 20
+ocounts Rexx v 16= 20 20= 23
+x_      Rexx v 30= 31 32

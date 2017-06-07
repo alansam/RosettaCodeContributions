@@ -1,0 +1,14 @@
+/* NetRexx */
+
+options replace format comments java crossref savelog symbols binary
+
+/**
+ * Find the name of the host on which the routine is running.
+ *
+ * @author Alan Sampson
+ * @version 1.0
+ * @see <a href="http://rosettacode.org/wiki/Hostname">rosettacode.org/wiki/Hostname</a>
+ */
+
+say InetAddress.getLocalHost.getHostName
+

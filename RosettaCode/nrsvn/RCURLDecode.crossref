@@ -1,0 +1,10 @@
+--- Variables for class RCURLDecode ---
+arg     Rexx   a 18 20
+code    Rexx   v 25= 28 28 29 29= 30 32 34
+decoded Rexx   v 21= 26 26= 30 30= 33 33= 43
+encoded Rexx   v 20= 24 25 40=
+head    Rexx   v 25= 26
+PCT     Rexx   v 22= 25 33
+tail    Rexx   v 25= 34 34= 40
+u_      Rexx   v 10= 11 12
+url     Rexx[] v 4= 10 11 12

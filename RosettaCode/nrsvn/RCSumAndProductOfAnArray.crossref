@@ -1,0 +1,7 @@
+--- Variables for class RCSumAndProductOfAnArray ---
+entries Rexx   v 9= 13 13= 18 18= 20
+harry   long[] v 5= 11 12
+n_      int    v 11= 12
+nxt     long   v 12= 13 14 15
+product long   v 8= 15 15= 22
+sum     long   v 7= 14 14= 21

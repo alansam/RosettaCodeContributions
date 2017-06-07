@@ -1,0 +1,580 @@
+/* NetRexx */
+options replace format comments java crossref savelog symbols nobinary utf8
+
+/**
+ * <h3>Boxing the compass</h3>
+ * <p>
+ * Avast me hearties!
+ * </p>
+ * <p>
+ * There be many a <a href="http://www.talklikeapirate.com/howto.html">land lubber</a> that knows naught of
+ * the pirate ways and gives direction by degree! They know not how to
+ * <a href="http://en.wikipedia.org/wiki/Boxing_the_compass">box the compass</a>!
+ * </p>
+ * <h4>Task description</h4>
+ * <ol>
+ * <li>
+ * Create a function that takes a heading in degrees and returns the correct 32-point compass heading.
+ * </li>
+ * <li>
+ * Use the function to print and display a table of Index, Compass point, and Degree; rather like the corresponding
+ * columns from, the first table of the <a href="http://en.wikipedia.org/wiki/Boxing_the_compass">wikipedia article</a>,
+ * but use only the following 33 headings as input:
+ * <br />
+ * <code>[0.0, 16.87, 16.88, 33.75, 50.62, 50.63, 67.5, 84.37, 84.38, 101.25, 118.12, 118.13, 135.0, 151.87, 151.88,
+ * 168.75, 185.62, 185.63, 202.5, 219.37, 219.38, 236.25, 253.12, 253.13, 270.0, 286.87, 286.88, 303.75, 320.62, 320.63,
+ * 337.5, 354.37, 354.38]</code>.
+ * (They should give the same order of points but are spread throughout the ranges of acceptance)
+ * </li>
+ * </ol>
+ * <h4>Note</h4>
+ * <ul>
+ * The headings and indices can be calculated from this pseudocode:
+ * <pre>
+ * for i in 0..32 inclusive:
+ *     heading = i * 11.25
+ *     case i %3:
+ *       if 1: heading += 5.62; break
+ *       if 2: heading -= 5.62; break
+ *     end
+ *     index = ( i mod 32) + 1
+ * </pre>
+ * <li>
+ * </li>
+ * </ul>
+ *
+ * @author alansampson : <a href="mailto%3A%22Alan%20Sampson%22%20%3Calansamps%40gmail%2Ecom%3E">&quot;Alan Sampson&quot; &lt;alansamps@gmail.com&gt;</a>
+ * @version 1.0
+ * @see <a href="http://www.fileformat.info/info/unicode/">www.fileformat.info/info/unicode/</a>
+ * @see <a href="http://en.wikipedia.org/wiki/List_of_Unicode_characters">en.wikipedia.org/wiki/List_of_Unicode_characters</a>
+ */
+class RBoxTheCompass00
+
+properties constant
+  _DEG  = 'DEG'
+  _MIN  = 'MIN'
+  _SEC  = 'SEC'
+  _FULL = 'FULL'
+
+properties private static
+  sign = ''
+
+properties indirect
+  headings = ''
+  rosepoints = ''
+
+/**
+ * default construction
+ */
+method RBoxTheCompass00()
+
+  setHeadings(makeHeadings)
+  setRosepoints(makeRosepoints)
+
+  return
+
+/**
+ *
+ */
+method main(args = String[]) public static
+
+  -- sign[_DEG] = '°'
+  sign[_DEG] = '&deg;'   -- '\u00b0'          -- '\xc2\xb0'     --  degree sign  : &deg;   - &#xb0;   - &#176;  : U+00B0
+  sign[_MIN] = '&prime;' -- "'" -- '\u2032'   -- '\xe2\x80\xb2' --  prime        : &prime; - &#x2032; - &#8242; : U+2032
+  sign[_SEC] = '&Prime;' -- '"' -- '\u2033'   -- '\xe2\x80\xb3' --  double prime : &Prime; - &#x2033; - &#8243; : U+2033
+
+  box = RBoxTheCompass00()
+
+  html = ''
+  html = html || pushHtml(box.getHtmlHeader)
+  html = html || pushHtml(box.getHtmlHead('Box the Compass'))
+  html = html || pushHtml(box.getHtmlBodyHeader('Box the Compass'))
+  html = html || box.showTable1('Table of Compass Points')
+  html = html || box.showTable2('Verification Test Sample')
+  html = html || box.showTable3('RosettaCode &quot;Box the Compass&quot; Task Samples')
+  html = html || pushHtml(box.getHtmlBodyFooter)
+  html = html || pushHtml(box.getHtmlFooter)
+  say html
+  say
+
+  return
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/**
+ *
+ */
+method showTable1(caption) private
+
+  points = 32
+
+  table = ''
+  table = table || '<h2>' || caption || '</h2>\n'
+  table = table || '<table class="ct0">\n'
+  table = table || '<caption>' || caption || '</caption>\n'
+  table = table || '<thead>\n'
+  table = table || '<tr>\n'
+  table = table || '<th>Index</th><th>Compass Point</th><th>Abbr.</th><th>Lowest' sign[_DEG] '</th><th>' sign[_DEG] sign[_MIN] sign[_SEC] '</th><th>Middle' sign[_DEG] '</th><th>' sign[_DEG] sign[_MIN] sign[_SEC] '</th><th>Highest' sign[_DEG] '</th><th>' sign[_DEG] sign[_MIN] sign[_SEC] '</th>\n'
+  table = table || '</tr>\n'
+  table = table || '</thead>\n'
+  table = table || '<tbody>\n'
+
+  one_point = 360 / points
+  parse getDegreesMinutesSeconds(one_point / 2) ad am as .
+  loop h_ = 0 to points - 1
+    heading = h_ * one_point
+    hmin = heading - getDecimalAngle(ad, am, as)
+    hmax = heading + getDecimalAngle(ad, as, as)
+
+    if hmin < 0 then do
+      hmin = hmin + 360
+      end
+    if hmax >= 360 then do
+      hmax = hmax - 360
+      end
+
+    index = (h_ // points) + 1
+    parse getRosepoint(index) p_abbrev p_full
+
+    tv =index.right(3) -
+        p_abbrev.left(4) p_full.left(20) '|' -
+        hmin.format(6, 3)    || sign[_DEG] '('formatDegreesMinutesSeconds(hmin)')' -
+        heading.format(6, 3) || sign[_DEG] '('formatDegreesMinutesSeconds(heading)')' -
+        hmax.format(6, 3)    || sign[_DEG] '('formatDegreesMinutesSeconds(hmax)')'
+    parse tv c1 c2 c3 '|' c4 '(' c5 ')' c6 '(' c7 ')' c8 '(' c9 ')' .
+    table = table ||'<tr>\n<td>'c1.strip'</td><td>'c3.strip'</td><td>'c2.strip'</td><td class="c3">'c4.strip'</td><td class="c3">'c5.strip'</td><td class="c3">'c6.strip'</td><td class="c3">'c7.strip'</td><td class="c3">'c8.strip'</td><td class="c3">'c9.strip'</td>\n</tr>\n'
+    end h_
+  table = table || '</tbody>\n</table>\n'
+
+  return table
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/**
+ *
+ */
+method showTable2(caption) private
+
+  Q_ = 0
+  Queue = ''
+  Q_ = Q_ + 1; Queue[0] = Q_; Queue[Q_] = 360 + 0.0
+  Q_ = Q_ + 1; Queue[0] = Q_; Queue[Q_] = 360 + 11.25
+  Q_ = Q_ + 1; Queue[0] = Q_; Queue[Q_] = 360 + 22.5
+  Q_ = Q_ + 1; Queue[0] = Q_; Queue[Q_] = 360.0
+  Q_ = Q_ + 1; Queue[0] = Q_; Queue[Q_] = getDecimalAngle(5, 37, 30)
+  Q_ = Q_ + 1; Queue[0] = Q_; Queue[Q_] = 16.87
+  Q_ = Q_ + 1; Queue[0] = Q_; Queue[Q_] = 16.88
+
+  table = ''
+  table = table || '<h2>' || caption || '</h2>\n'
+  table = table || '<table class="ct0">\n'
+  table = table || '<caption>' || caption || '</caption>\n'
+  table = table || '<thead>\n'
+  table = table || '<tr>\n'
+  table = table || '<th>Index</th><th>Compass Point</th><th>Abbr.</th><th>Heading' sign[_DEG] '</th><th>Heading' sign[_DEG] sign[_MIN] sign[_SEC] '</th>\n'
+  table = table || '</tr>\n'
+  table = table || '</thead>\n'
+  table = table || '<tbody>\n'
+  loop q_ = 1 to Queue[0]
+    heading = Queue[q_]
+    index = getRosepointIndex(heading)
+    parse getRosepoint(index) p_abbrev p_full
+    tv =index.right(3) -
+        p_abbrev.left(4) p_full.left(20) '|' -
+        heading.format(6, 3) || sign[_DEG] '('formatDegreesMinutesSeconds(heading)')'
+    parse tv c1 c2 c3 '|' c4 '(' c5 ')' .
+    table = table ||'<tr>\n<td>'c1.strip'</td><td>'c3.strip'</td><td>'c2.strip'</td><td class="c3">'c4.strip'</td><td class="c3">'c5.strip'</td>\n</tr>\n'
+    end q_
+  table = table || '</tbody>\n</table>\n'
+
+  return table
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/**
+ *
+ */
+method showTable3(caption) private
+
+  table = ''
+  table = table || '<h2>' || caption || '</h2>\n'
+  table = table || '<table class="ct0">\n'
+  table = table || '<caption>' || caption || '</caption>\n'
+  table = table || '<thead>\n'
+  table = table || '<tr>\n'
+  table = table || '<th>Index</th><th>Compass Point</th><th>Abbr.</th><th>Heading' sign[_DEG] '</th><th>Heading' sign[_DEG] sign[_MIN] sign[_SEC] '</th>\n'
+  table = table || '</tr>\n'
+  table = table || '</thead>\n'
+  table = table || '<tbody>\n'
+  loop h_ = 1 to headings[0]
+    heading = headings[h_]
+    index = getRosepointIndex(heading)
+    parse getRosepoint(index) p_abbrev p_full
+    tv =index.right(3) -
+        p_abbrev.left(4) p_full.left(20) '|' -
+        heading.format(6, 3) || sign[_DEG] '('formatDegreesMinutesSeconds(heading)')'
+
+    parse tv c1 c2 c3 '|' c4 '(' c5 ')' .
+    table = table ||'<tr>\n<td>'c1.strip'</td><td>'c3.strip'</td><td>'c2.strip'</td><td class="c3">'c4.strip'</td><td class="c3">'c5.strip'</td>\n</tr>\n'
+    end h_
+  table = table || '</tbody>\n'
+  table = table || '</table>\n'
+
+  return table
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/**
+ *
+ */
+method makeHeadings() private
+
+  hdg = ''
+  hdg[0] = 0
+  points = 32
+  one_point = 360 / 32
+  loop i_ = 0 to points
+    heading = i_ * one_point
+
+    select case i_ // 3
+      when 1 then do
+        heading_h = heading + 5.62
+        end
+
+      when 2 then do
+        heading_h = heading - 5.62
+        end
+
+      otherwise do
+        heading_h = heading
+        end
+      end
+
+    ix = hdg[0] + 1; hdg[0] = ix; hdg[ix] = heading_h
+    end i_
+
+  return hdg
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/**
+ *
+ */
+method getRosepointIndex(heading) private
+
+  one_point = 360 / 32
+  hn = heading // 360
+  hi = hn % one_point
+
+  if hn > hi * one_point + one_point / 2 then do
+    hi = hi + 1 -- greater than max range for this point; bump to next point
+    end
+
+  idx = hi // 32 + 1 -- add one to get index into rosepoints. stem
+
+  return idx
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/**
+ *
+ */
+method getRosepoint(index) private
+
+  rp = getRosePoints
+  return rp[index] rp[index, _FULL]
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/**
+ *
+ */
+method makeRosepoints() private
+
+  rp = ''
+  p_ = 0
+  p_ = p_ + 1; rp[0] = p_; rp[p_] = 'N';    rp[p_, _FULL] = 'North'
+  p_ = p_ + 1; rp[0] = p_; rp[p_] = 'NbE';  rp[p_, _FULL] = 'North by East'
+  p_ = p_ + 1; rp[0] = p_; rp[p_] = 'NNE';  rp[p_, _FULL] = 'North-Northeast'
+  p_ = p_ + 1; rp[0] = p_; rp[p_] = 'NEbn'; rp[p_, _FULL] = 'Northeast by North'
+  p_ = p_ + 1; rp[0] = p_; rp[p_] = 'NE';   rp[p_, _FULL] = 'Northeast'
+  p_ = p_ + 1; rp[0] = p_; rp[p_] = 'NEbE'; rp[p_, _FULL] = 'Northeast by East'
+  p_ = p_ + 1; rp[0] = p_; rp[p_] = 'ENE';  rp[p_, _FULL] = 'East-Northeast'
+  p_ = p_ + 1; rp[0] = p_; rp[p_] = 'EbN';  rp[p_, _FULL] = 'East by North'
+  p_ = p_ + 1; rp[0] = p_; rp[p_] = 'E';    rp[p_, _FULL] = 'East'
+  p_ = p_ + 1; rp[0] = p_; rp[p_] = 'EbS';  rp[p_, _FULL] = 'East by South'
+  p_ = p_ + 1; rp[0] = p_; rp[p_] = 'ESE';  rp[p_, _FULL] = 'East-Southeast'
+  p_ = p_ + 1; rp[0] = p_; rp[p_] = 'SEbE'; rp[p_, _FULL] = 'Southeast by East'
+  p_ = p_ + 1; rp[0] = p_; rp[p_] = 'SE';   rp[p_, _FULL] = 'Southeast'
+  p_ = p_ + 1; rp[0] = p_; rp[p_] = 'SEbS'; rp[p_, _FULL] = 'Southeast by South'
+  p_ = p_ + 1; rp[0] = p_; rp[p_] = 'SSE';  rp[p_, _FULL] = 'South-Southeast'
+  p_ = p_ + 1; rp[0] = p_; rp[p_] = 'SbE';  rp[p_, _FULL] = 'South by East'
+  p_ = p_ + 1; rp[0] = p_; rp[p_] = 'S';    rp[p_, _FULL] = 'South'
+  p_ = p_ + 1; rp[0] = p_; rp[p_] = 'SbW';  rp[p_, _FULL] = 'South by West'
+  p_ = p_ + 1; rp[0] = p_; rp[p_] = 'SSW';  rp[p_, _FULL] = 'South-Southwest'
+  p_ = p_ + 1; rp[0] = p_; rp[p_] = 'SWbS'; rp[p_, _FULL] = 'Southwest by South'
+  p_ = p_ + 1; rp[0] = p_; rp[p_] = 'SW';   rp[p_, _FULL] = 'Southwest'
+  p_ = p_ + 1; rp[0] = p_; rp[p_] = 'SWbW'; rp[p_, _FULL] = 'Southwest by West'
+  p_ = p_ + 1; rp[0] = p_; rp[p_] = 'WSW';  rp[p_, _FULL] = 'Southwest'
+  p_ = p_ + 1; rp[0] = p_; rp[p_] = 'WbS';  rp[p_, _FULL] = 'West by South'
+  p_ = p_ + 1; rp[0] = p_; rp[p_] = 'W';    rp[p_, _FULL] = 'West'
+  p_ = p_ + 1; rp[0] = p_; rp[p_] = 'WbN';  rp[p_, _FULL] = 'West by North'
+  p_ = p_ + 1; rp[0] = p_; rp[p_] = 'WNW';  rp[p_, _FULL] = 'West-Northwest'
+  p_ = p_ + 1; rp[0] = p_; rp[p_] = 'NWbW'; rp[p_, _FULL] = 'Northwest by West'
+  p_ = p_ + 1; rp[0] = p_; rp[p_] = 'NW';   rp[p_, _FULL] = 'Northwest'
+  p_ = p_ + 1; rp[0] = p_; rp[p_] = 'NWbN'; rp[p_, _FULL] = 'Northwest by North'
+  p_ = p_ + 1; rp[0] = p_; rp[p_] = 'NNW';  rp[p_, _FULL] = 'North-Northwest'
+  p_ = p_ + 1; rp[0] = p_; rp[p_] = 'NbW';  rp[p_, _FULL] = 'North by West'
+
+  return rp
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/**
+ * Decimal degrees = whole number of degrees, plus minutes divided by 60, plus seconds divided by 3600
+ */
+method getDecimalAngle(degrees, minutes, seconds) public static returns Rexx
+
+  degrees = degrees * 10 % 10
+  minutes = minutes * 10 % 10
+  angle = degrees + (minutes / 60 + (seconds / 60 / 60))
+
+  return angle
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* http://en.wikipedia.org/wiki/Minute_of_arc                                 */
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/**
+ *
+ */
+method getDegreesMinutesSeconds(angle) public static returns Rexx
+
+  degrees = angle * 100 % 100
+  minutes = ((angle - degrees) * 60) * 100 % 100
+  seconds = ((((angle - degrees) * 60) - minutes) * 60) * 100 % 100
+
+  return degrees minutes seconds
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/**
+ *
+ */
+method formatDegreesMinutesSeconds(angle) private static
+
+  parse getDegreesMinutesSeconds(angle) degrees minutes seconds .
+
+  formatted = degrees.right(3) || sign[_DEG] || minutes.right(2, 0) || sign[_MIN] || seconds.right(2, 0) || sign[_SEC]
+
+  return formatted
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/**
+ *
+ */
+method pushHtml(html = Rexx[]) private static returns Rexx
+
+  htmlstring = ''
+  loop h_ = 0 to html.length - 1
+    htmlstring = htmlstring || html[h_] '\n'
+    end h_
+
+  return htmlstring
+  
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/**
+ *
+ */
+method getHtmlHeader() private returns Rexx[]
+
+  html = Rexx[]
+  html = [ -
+    '<?xml version="1.1" encoding="iso-8859-1"?>', -
+    '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"', -
+    '"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">', -
+    '<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">' -
+    ]
+
+  return html
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/**
+ *
+ */
+method getHtmlFooter() private returns Rexx[]
+
+  html = Rexx[]
+  html = ['</html>']
+
+  return html
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/**
+ *
+ */
+method getHtmlHead(title) private returns Rexx[]
+
+  html = Rexx[]
+  html = [ -
+    '  <head>', -
+    '    <title>' || title || '</title>', -
+    '    <meta name="author"    content="Alan Sampson - alansamps@gmail.com" />', -
+    '    <meta name="revised"   content="Alan Sampson - alansamps@gmail.com,2011-07-26" />', -
+    '    <meta name="copyright" content="Alan Sampson 2011" />', -
+    '    <meta name="generator" content="NetRexx" />', -
+    '    <meta name="keywords"  content="HTML, DHTML, XML, XHTML, CSS, JavaScript" />', -
+    '    <meta http-equiv="expires" content="Fri, 01 Jan 2011 00:00:01 GMT" />', -
+    '    <link rel="SHORTCUT ICON" href="./images/favicon.ico"/>', -
+    '    <link rel="stylesheet" type="text/css" href="./css/default.css" />', -
+    '		<script src="includes/createDate.js" type="text/javascript"></script>', -
+    '    <script language="javascript" type="text/javascript">', -
+    '      //<![CDATA[', -
+    '      if (document.all) {', -
+    '        document.createStyleSheet("./css/default.css");', -
+    '      }', -
+    '      //]]>', -
+    '    </script>', -
+    '', -
+    '    <style type="text/css">', -
+    '      /*<![CDATA[*/', -
+    '      body {', -
+    '        font-family:   "Geneva", "Verdana", "Helvetica Neue", "Helvetica", "DejaVu Sans", "Tahoma", "Trebuchet MS", "Arial", "FreeSans", sans-serif;', -
+    '        margin-top:    3.0em;', -
+    '        margin-bottom: 2.0em;', -
+    '        margin-left:   5.0em;', -
+    '        margin-right:  3.0em;', -
+    '        padding:       0.2em;', -
+    '      }', -
+    '', -
+    '      table.ct0 {', -
+    '        border-collapse: collapse;', -
+    '        border-width:    0.1em;', -
+    '        padding:         0.2em;', -
+    '        font-family:     "Monaco", "Menlo", "Lucida Console", "DejaVu Sans Mono", "Andale Mono", "Courier New", "Courier", "FreeMono", monospace;', -
+    '        font-size:       smaller;', -
+    '        color:           green;', -
+    '      }', -
+    '', -
+    '      .body {', -
+    '        font-family: "Geneva", "Verdana", "Helvetica Neue", "Helvetica", "DejaVu Sans", "Tahoma", "Tebuchet MS", "Arial", "FreeSans", sans-serif;', -
+    '      }', -
+    '', -
+    '      .code {', -
+    '        font-family: "Monaco", "Menlo", "Lucida Console", "DejaVu Sans Mono", "Andale Mono", "Courier New", "Courier", "FreeMono", monospace;', -
+    '        font-size:   smaller;', -
+    '        color:       green;', -
+    '      }', -
+    '', -
+    '      .print {', -
+    '        font-family: "Georgia", "Baskerville", "Hoefler Text", "Didot", "Palatino", "Garamond", "DejaVu Serif", "Times New Roman", "Times", "FreeSerif", serif;', -
+    '      }', -
+    '', -
+    '      .fancy {', -
+    '        font-family: "Papyrus", "Marker Felt", "Herculanum", "Capitals", "Copperplate", "Haettenschweiler", "Snap ITC", "Impact", fantasy;', -
+    '      }', -
+    '', -
+    '      .script {', -
+    '        font-family: "Apple Chancery", "Zapfino", "Apple Casual", "Casual", "Monotype Corsiva", "Brush Script MT", "Comic Sans MS", cursive;', -
+    '      }', -
+    '', -
+    '      body.c0 {', -
+    '        margin-top:    0.0em;', -
+    '				margin-bottom: 0.0em;', -
+    '				margin-left:   0.0em;', -
+    '				margin-right:  0.0em;', -
+    '        padding:       0.0em;', -
+    '      }', -
+    '', -
+    '      td, th {', -
+    '				padding-top:    inherit;', -
+    '				padding-left:   inherit;', -
+    '				badding-bottom: inherit;', -
+    '				padding-right:  2.0em !important;', -
+    '			}', -
+    '', -
+    '			th.thc0 {', -
+    '				text-align: left;', -
+    '				font-size:  120%;', -
+    '			}', -
+    '', -
+    '			th.thc1 {', -
+    '				text-align: left;', -
+    '			}', -
+    '', -
+    '			th.thc2 {', -
+    '				text-align: left;', -
+    '				font-size:  85%;', -
+    '			}', -
+    '', -
+    '      td.c1 {', -
+    '        background-color: #999999;', -
+    '      }', -
+    '', -
+    '      td.c2 {', -
+    '        font-size: 0.6em;', -
+    '      }', -
+    '', -
+    '      td.c3 {', -
+    '        text-align: right;', -
+    '      }', -
+    '', -
+    '      b.c3 {', -
+    '        font-size: 1.3em;', -
+    '      }', -
+    '', -
+    '      div.c4 {', -
+    '        margin:  2px;', -
+    '        padding: 2px;', -
+    '      }', -
+    '			h3.c5 {', -
+    '				font-style: italic;', -
+    '			}', -
+    '			div.c6 {', -
+    '				margin-top:    0.0em;', -
+    '				margin-bottom: 0.0em;', -
+    '				margin-left:   2.0em;', -
+    '				margin-right:  0.0em;', -
+    '				padding:       0.0em;', -
+    '			}', -
+    '', -
+    '      #body {', -
+    '        font-family: "Verdana", "Tahoma", "Helvetica", "Swiss", sans-serif;', -
+    '        font-size:   smaller;', -
+    '      }', -
+    '', -
+    '      #code {', -
+    '        font-family: "Lucida Console", "Courier New", "Courier";', -
+    '        font-size:   smaller;', -
+    '        color:       green;', -
+    '      }', -
+    '', -
+    '			a {', -
+    '				text-decoration: none;', -
+    '				font-size:       85%;', -
+    '			}', -
+    '			a:link    { color: #480082; /*indigo*/ }', -
+    '			a:visited { color: #6a5acd; /*SlateBlue*/ }', -
+    '			a:hover   { color: #dda520; /*goldenrod*/ }', -
+    '			a:acrive  { color: #ff0000; /*red*/ }', -
+    '', -
+    '      /*]]>*/', -
+    '    </style>', -
+    '  </head>']
+    
+    return html
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/**
+ *
+ */
+method getHtmlBodyHeader(title) private returns Rexx[]
+
+  html = Rexx[]
+  html = [ -
+    '  <body>', -
+    '    <h1>' || title || '</h1>']
+
+  return html
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/**
+ *
+ */
+method getHtmlBodyFooter() private returns Rexx[]
+
+  html = Rexx[]
+  html = ['  </body>']
+
+  return html
+

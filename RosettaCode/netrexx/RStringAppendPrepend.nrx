@@ -1,0 +1,11 @@
+/* NetRexx */
+options replace format comments java crossref symbols nobinary
+
+s_ = 'Hello'
+s_ = s_ 'world!'
+say s_
+
+s_ = 'world!'
+s_ = 'Hello' s_
+say s_
+

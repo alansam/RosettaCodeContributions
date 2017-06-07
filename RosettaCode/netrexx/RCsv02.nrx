@@ -1,0 +1,70 @@
+/* NetRexx */
+options replace format comments java crossref symbols nobinary
+
+runSample(arg)
+return
+
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+method csvTransform(csvInFile, csvToFile) public static
+  rows = getRows(csvInFile) -- slurp the file into the "rows" indexed string
+  loop r_ = 2 to rows[0] -- loop through the rows, skip row 1; treat it as the col header row
+    row = rows[r_]
+    cols = ''
+    loop c_ = 1 while row \= '' -- break this row into columns and save in "cols" indexed string 
+      parse row col ',' row
+      cols[0] = c_; cols[c_] = col
+      end c_
+     -- now do something to a random column within this row
+    rg = Random(27)
+    cx = rg.nextInt(cols[0] - 1) + 1
+    cols[cx] = cols[cx] * 1000
+    row = ''
+    -- rebuild the columns back into a row and put it back into "rows"
+    loop c_ = 1 to cols[0]
+      row = row','cols[c_]
+      end c_
+    row = row.strip('l', ',')
+    rows[r_] = row
+    end r_
+  putRows(csvToFile, rows) -- deliver the "rows" to an output file
+  return
+
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+method getRows(csvInFile) private static
+  rows = ''
+  do
+    csvIn = BufferedReader(FileReader(File(csvInFile)))
+    loop l_ = 1 -- implied forever loop
+      line = csvIn.readLine()
+      if line = null then leave l_
+      rows[0] = l_; rows[l_] = line
+      end l_
+    csvIn.close()
+  catch ex = IOException
+    ex.printStackTrace()
+  end
+  return rows
+
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+method putRows(csvToFile, rows) private static
+  do
+    csvTo = BufferedWriter(FileWriter(File(csvToFile)))
+    loop l_ = 1 to rows[0]
+      line = String rows[l_]
+      csvTo.write(line)
+      csvTo.newLine()
+      end l_
+    csvTo.close()
+  catch ex = IOException
+    ex.printStackTrace()
+  end
+  return
+
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+method runSample(arg) private static
+  parse arg csvInFile csvToFile .
+  if csvInFile = '' then csvInFile = './data/rosetta00.csv'
+  if csvToFile = '' then csvToFile = './data/rosetta01.csv'
+  csvTransform(csvInFile, csvToFile)
+  return
+

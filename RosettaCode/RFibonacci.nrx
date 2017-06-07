@@ -1,0 +1,76 @@
+/* NetRexx */
+
+options replace format comments java crossref savelog symbols
+
+/**
+ * The <strong>Fibonacci sequence</strong> is a sequence F<sub>n</sub> of natural numbers defined recursively:
+ * <p>
+ * <code>
+ * F<sub>0</sub> = 0
+ * <br />
+ * F<sub>1</sub> = 1
+ * <br />
+ * F<sub>n</sub> = F<sub>n-1</sub> + F<sub>n-2</sub>, if n>1
+ * </code>
+ * </p>
+ * <p>
+ * Write a function to generate the nth Fibonacci number. Solutions can be iterative or recursive
+ * (though recursive solutions are generally considered too slow and are mostly used as an exercise in recursion).
+ * </p>
+ * <p>
+ * The sequence is sometimes extended into negative numbers by using a straightforward inverse of the positive definition:
+ * </p>
+ * <p>
+ * <code>
+ * F<sub>n</sub> = F<sub>n+2</sub> - F<sub>n+1</sub>, if n<0
+ * </code>
+ * </p>
+ * <p>
+ * Support for negative n in the solution is optional.
+ * </p>
+ * <h4>References:</h4>
+ * <ul>
+ * <li><a href="http://en.wikipedia.org/wiki/Fibonacci_chain"></a>Wikipedia</li>
+ * <li><a href="http://mathworld.wolfram.com/FibonacciNumber.html"></a>Wolfram MathWorld</li>
+ * <li><a href="http://oeis.org/A000045"></a>OEIS Fibonacci sequence</li>
+ * </ul>
+ *
+ * @author Alan Sampson
+ * @version 1.0
+ * @see <a href="http://rosettacode.org/wiki/Fibonacci_sequence">rosettacode.org/wiki/Fibonacci_sequence</a> 
+ */
+
+numeric digits 210000                  /*prepare for some big 'uns.     */
+parse arg x y .                        /*allow a single number or range.*/
+if x == '' then do                     /*no input? Then assume -30-->+30*/
+  x = -30
+  y = -x
+  end
+
+if y == '' then y = x             /*if only one number, show fib(n)*/
+loop k = x to y                   /*process each Fibonacci request.*/
+  q = fib(k)
+  w = q.length                    /*if wider than 25 bytes, tell it*/
+  say 'Fibonacci' k"="q
+  if w > 25 then say 'Fibonacci' k "has a length of" w
+  end k
+exit
+
+/*-------------------------------------FIB subroutine (non-recursive)---*/
+method fib(arg) private static
+  parse arg n
+  na = n.abs
+
+  if na < 2 then return na             /*handle special cases.          */
+  a = 0
+  b = 1
+
+  loop j = 2 to na
+    s = a + b
+    a = b
+    b = s
+    end j
+
+  if n > 0 | na // 2 == 1 then return  s /*if positive or odd negative... */
+                          else return -s /*return a negative Fib number.  */
+

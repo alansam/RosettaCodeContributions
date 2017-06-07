@@ -1,0 +1,40 @@
+/* Generated from 'RCPalindrome.nrx' 11 Sep 2011 17:52:48 [v3.00] */
+/* Options: Binary Comments Crossref Decimal Format Java Logo Replace Symbols Trace2 Verbose3 */
+
+/* NetRexx */
+
+
+
+
+public class RCPalindrome{
+ private static final netrexx.lang.Rexx $01=new netrexx.lang.Rexx(0);
+ private static final java.lang.String $0="RCPalindrome.nrx";
+ 
+ public static void main(java.lang.String $0s[]){
+  java.lang.String y_;
+  netrexx.lang.Rexx pal;
+  y_="In girum imus nocte et consumimur igni";
+  
+  // translation: We walk around in the night and
+  // we are burnt by the fire (of love)
+  netrexx.lang.RexxIO.Say("");
+  netrexx.lang.RexxIO.Say("string = "+y_);
+  netrexx.lang.RexxIO.Say("");
+  
+  pal=isPal(netrexx.lang.Rexx.toRexx(y_));
+  
+  if (pal.OpEqS(null,$01)) 
+   netrexx.lang.RexxIO.Say("The string isn\'t palindromic.");
+  else 
+   netrexx.lang.RexxIO.Say("The string is palindromic.");
+  return;}
+
+ 
+ public static netrexx.lang.Rexx isPal(netrexx.lang.Rexx x_){
+  x_=x_.upper().space(new netrexx.lang.Rexx((byte)0));/* removes all blanks (spaces).         */
+  
+  return new netrexx.lang.Rexx(x_.OpEqS(null,x_.reverse()));/* returns  1  if exactly equal,        */
+  }
+ 
+ private RCPalindrome(){return;}
+ }

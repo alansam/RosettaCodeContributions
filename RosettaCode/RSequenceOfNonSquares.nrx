@@ -1,0 +1,41 @@
+/* NetRexx */
+
+options replace format comments java crossref savelog symbols nobinary
+
+-- n + floor(1/2 + sqrt(n))
+
+nonsqr = Rexx
+proof = isTrue
+
+n_ = long
+loop n_ = 1 to 22
+  nonsqr = nonSquare(n_)
+  say Rexx(n_).right(5)':' nonsqr.format(9, 2)
+  end n_
+
+loop n_ = 1 to 1000000
+  nonsqr = nonSquare(n_)
+  sq = long(Math.sqrt(nonsqr))
+  if sq * sq = nonsqr then do
+    say 'Square found at' n_
+    proof = isFalse
+    leave n_
+    end
+  end n_
+
+if proof then do
+  say
+  say 'No squares occur for n less than one million'
+  end
+
+return
+
+method nonSquare(n_ = long) public constant binary returns double
+  return n_ + Math.floor(double(1 / 2) + Math.sqrt(n_))
+
+method isTrue public constant binary returns boolean
+  return 1 == 1
+
+method isFalse public constant binary returns boolean
+  return \isTrue
+

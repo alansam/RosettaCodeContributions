@@ -1,0 +1,74 @@
+/* NetRexx ************************************************************
+* 30.08.2013 Walter Pachl  translated from Java/REXX/PL/I
+**********************************************************************/
+options replace format comments java crossref symbols nobinary
+
+runSample(arg)
+return
+
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+method monty_hall() public static
+doors = create_doors
+switchWins = 0
+stayWins = 0
+shown = 0
+--Loop plays = 1 To 1000000
+Loop label plays for 1000000
+  doors = 0
+  r = r3()
+  doors[r] = 1
+  choice = r3()
+  loop Until shown <> choice & doors[shown] = 0
+    shown  = r3()
+    End
+  If doors[choice] = 1 Then Do
+    stayWins = stayWins + 1
+    End
+  Else Do
+    switchWins = switchWins + 1
+    End
+  End plays
+  Return switchWins stayWins
+
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+method create_doors static returns Rexx
+  doors = ''
+  doors[0] = 0
+  doors[1] = 0
+  doors[2] = 0
+  return doors
+
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+method r3 static
+  rand = random()
+  return rand.nextInt(3) + 1
+
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+method runSample(arg) public static
+  parse arg runs .
+  if runs = '' then runs = 1
+  switchTotal = 0
+  stayTotal   = 0
+  runTotal    = 0
+  loop r_ = 1 for runs
+    parse monty_hall() switchWins stayWins .
+    countWins   = switchWins  + stayWins
+    switchTotal = switchTotal + switchWins
+    stayTotal   = stayTotal   + stayWins
+    runTotal    = runTotal    + countWins
+    switchPct   = (switchWins / countWins * 100).format(2, 3)
+    stayPct     =   (stayWins / countWins * 100).format(2, 3)
+    Say 'Run' r_':'
+    Say "  Switching wins" switchWins.format(8) "times." switchPct"%"
+    Say "  Staying wins  "   stayWins.format(8) "times."   stayPct"%"
+    Say
+    end r_
+  if runs > 1 then do
+    switchPct   = (switchTotal / runTotal * 100).format(2, 3)
+    stayPct     =   (stayTotal / runTotal * 100).format(2, 3)
+    Say 'Average switching wins count:' switchTotal.format(8) % runs ":" switchPct"%"
+    Say 'Average staying wins count:  '   stayTotal.format(8) % runs ":"   stayPct"%"
+    Say
+    end
+  return
+

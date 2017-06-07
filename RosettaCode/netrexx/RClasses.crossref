@@ -1,0 +1,12 @@
+--- Variables for class RClasses ---
+aap   int      v 76= 77
+args  String[] a 66
+bar   boolean  p 61 70= 72
+baz   String   p 64= 69= 73
+clsex RClasses v 67= 68 69 70 71 71 72 72 73 73
+foo   int      p 58 68= 71
+mies  int      v 84=
+noot  int      v 80= 81
+s     int      a 75 77
+s     String   a 79 81
+s     boolean  a 83

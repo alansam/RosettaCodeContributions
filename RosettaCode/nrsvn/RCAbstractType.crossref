@@ -1,0 +1,12 @@
+--- Variables for class RCAbstractType ---
+args String[]                a 7
+conk RCAbstractType.Concrete v 11= 12 13 14 15 16 17
+
+--- Variables for class RCAbstractType.Iface ---
+ifaceName String c 24=
+
+--- Variables for class RCAbstractType.Abstraction ---
+className String p 34 43 46=
+nm        String a 45 46
+
+--- No variables in class RCAbstractType.Concrete ---

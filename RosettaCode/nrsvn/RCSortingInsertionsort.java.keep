@@ -1,0 +1,88 @@
+/* Generated from 'RCSortingInsertionsort.nrx' 21 Sep 2011 16:07:35 [v3.00] */
+/* Options: Binary Comments Crossref Decimal Format Java Logo Replace Symbols Trace2 Verbose3 */
+
+/* NetRexx */
+
+
+
+
+
+public class RCSortingInsertionsort{
+ private static final java.lang.String $0="RCSortingInsertionsort.nrx";
+ 
+ public static void main(java.lang.String $0s[]){
+  java.lang.String placesList[];
+  java.lang.String lists[][];
+  int ln=0;
+  java.lang.String cl[]=null;
+  int ct=0;
+  placesList=new java.lang.String[]{"UK  London","US  New York","US  Boston","US  Washington","UK  Washington","US  Birmingham","UK  Birmingham","UK  Boston"};
+  
+  
+  
+  
+  lists=new java.lang.String[][]{placesList,insertionSort((java.lang.String[])(java.util.Arrays.copyOf((java.lang.Object[])placesList,placesList.length)))};
+  
+  
+  
+  
+  {int $1=lists.length-1;ln=0;ln:for(;ln<=$1;ln++){
+   cl=lists[ln];
+   {int $2=cl.length-1;ct=0;ct:for(;ct<=$2;ct++){
+    netrexx.lang.RexxIO.Say(cl[ct]);
+    }
+   }/*ct*/
+   netrexx.lang.RexxIO.Say("");
+   }
+  }/*ln*/
+  
+  return;
+  }
+
+ 
+ public static final java.lang.String[] insertionSort(java.lang.String A[]){
+  java.lang.String rl[];
+  java.util.List al;
+  
+  rl=new java.lang.String[A.length];
+  al=(java.util.List)(insertionSort(java.util.Arrays.asList((java.lang.Object[])A)));
+  al.toArray((java.lang.Object[])rl);
+  
+  return rl;
+  }
+
+ 
+ public static final java.util.ArrayList insertionSort(java.util.List A){
+  int i_=0;
+  java.lang.Object value=null;
+  int j_=0;
+  
+  {int $3=(A.size())-1;i_=1;i_:for(;i_<=$3;i_++){
+   value=A.get(i_);
+   j_=i_-1;
+   {j_:for(;;){if(!(j_>=0))break;
+    if ((((java.lang.Comparable)(A.get(j_))).compareTo((java.lang.Object)((java.lang.Comparable)value)))<=0) 
+     break j_;
+    A.set(j_+1,A.get(j_));
+    j_--;
+    }
+   }/*j_*/
+   A.set(j_+1,value);
+   }
+  }/*i_*/
+  
+  return new java.util.ArrayList((java.util.Collection)A);
+  }
+
+ 
+ public static final boolean isTrue(){
+  return 1==1;
+  }
+
+ 
+ public static final boolean isFalse(){
+  return (!(isTrue()));
+  }
+ 
+ private RCSortingInsertionsort(){return;}
+ }

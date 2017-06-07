@@ -1,0 +1,24 @@
+--- Variables for class RJumps01 ---
+arg       Rexx               v 8= 10
+arg1      Rexx               v 10= 11 11= 13 14 15 18
+arg1      Rexx               a 27
+arg1      Rexx               a 36 41
+arg1      Rexx               a 57 60 61 61 62 63 66
+arg1      Rexx               a 77
+arg2      Rexx               v 10= 12 12= 13 14 15 18
+arg2      Rexx               a 27
+arg2      Rexx               a 36 42 43
+arg2      Rexx               a 57 65 67 68
+arg2      Rexx               a 77
+args      String[]           a 6 8
+ex        RJumps01.CrashBang v 19= 20
+ex        RJumps01.CrashBang v 48= 49
+otherargs Rexx               v 10= 13 14 15 18
+otherargs Rexx               a 27 30 32
+otherargs Rexx               a 36 44 45
+otherargs Rexx               a 57
+otherargs Rexx               a 77
+outaHere  Rexx               v 80= 81 81 82 83
+
+--- Variables for class RJumps01.CrashBang ---
+message String a 91 92

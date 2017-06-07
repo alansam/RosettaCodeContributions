@@ -1,0 +1,27 @@
+--- Variables for class RSortIntArray ---
+a      Rexx   v 43= 44= 45= 46= 47= 48= 49= 50= 51= 52= 53= 54= 55= 56= 57= 58= 59= 60= 61= 62= 63= 64= 66 69 70= 71 72
+a      Rexx   a 78 80 84 87 87 88 89 89= 90=
+a      Rexx   a 101 106
+a      Rexx   v 122= 124= 128= 129 133
+arg    Rexx   a 101 104 106
+bell   Rexx   v 115= 118
+bern   Rexx   v 116= 118
+bList  Rexx   v 130= 133 133= 136 136= 137
+h      Rexx   v 80= 82 83 83= 84 86 91 92 93
+i      Rexx   v 84= 85 86
+ia     int[]  v 25= 27= 31 32 33
+ix     Rexx   v 32= 33
+j      Rexx   v 85= 87 88 89 91 92 92=
+j      Rexx   v 105= 106 106
+j      Rexx   v 123= 124 124 132= 133
+k      Rexx   v 86= 87 89 90 93 93=
+list   Rexx   v 118= 120 124 127
+perrin Rexx   v 117= 118
+ra     Rexx[] v 23 24= 25 26 27
+rx     Rexx   v 26= 27 27
+size   Rexx   v 68= 69 70 72
+size   Rexx   a 78
+size   Rexx   a 101 105 106
+size   Rexx   v 120= 123 128 129 132
+t      Rexx   v 88= 90
+text   Rexx   v 30= 33 33= 35

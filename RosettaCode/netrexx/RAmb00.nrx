@@ -1,0 +1,43 @@
+/* NetRexx */
+/* program demonstrates Amd operator (choosing 4 words from 4 sets).*/
+/*
+ * The example didn't say so, but an assumption made (for this program)
+ * that lowercase and uppercase letters are considered to be a match.
+ */
+options replace format comments java crossref symbols nobinary
+
+wordLists    = ''                      /*default value for any # of sets*/
+wordLists[1] = "the that a"
+wordLists[2] = "frog elephant thing"
+wordLists[3] = "walked treaded grows"
+wordLists[4] = "slowly quickly"
+
+loop j = 1 until wordLists[j] == ''
+  end j
+wordLists[0] = j - 1
+                                 /*find how many sets there are.  */
+                                 /*wordLists.0   contains number of sets. */
+Amb(wordLists, 1)                /*find combo of words that works.*/
+exit
+
+/* ------------------------------------ Amb procedure ------------------- */
+method Amb(wordLists, arg) public static
+  parse arg lWord theRest
+  theRestUpper = theRest.upper()
+  if lWord == '' then return
+  if lWord > wordLists[0] then do
+    if theRestUpper == '' then return
+    wL = theRestUpper.word(1)            /*(Below) use upper case version.*/
+    loop n_ = 2 to theRest.words()
+      wR = theRestUpper.word(n_)
+      if wR.left(1) \== wL.right(1) then return
+      wL = wR
+      end n_
+    say theRest.strip()            /*theRest has an extra leading blank.  */
+    end
+  loop j_ = 1 for wordLists[lWord].words()
+    /*generate the next combination. */
+    amb(wordLists, lWord + 1 theRest wordLists[lWord].word(j_))
+    end j_
+  return
+

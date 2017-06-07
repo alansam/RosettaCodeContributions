@@ -1,0 +1,16 @@
+/* Generated from 'RCHostName.nrx' 12 Jul 2011 20:51:40 [v3.00] */
+/* Options: Binary Comments Crossref Decimal Format Java Logo Replace Symbols Trace2 Verbose3 */
+
+/* NetRexx */
+
+
+
+public class RCHostName{
+ private static final java.lang.String $0="RCHostName.nrx";
+ 
+ public static void main(java.lang.String $0s[]) throws java.net.UnknownHostException{
+  netrexx.lang.RexxIO.Say(java.net.InetAddress.getLocalHost().getHostName());
+  return;}
+ 
+ private RCHostName(){return;}
+ }

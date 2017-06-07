@@ -1,0 +1,22 @@
+/* NetRexx */
+options replace format comments java crossref savelog symbols binary
+
+import java.security.
+
+providers = Arrays.asList(Security.getProviders())
+
+pv = Provider
+loop pv over providers
+  say pv.toString()
+  say pv.getName()
+  say pv.getVersion()
+  say pv.getInfo()
+  keys = pv.keySet()
+  loop key over keys
+    say '  'key
+    end
+  say
+  end
+
+return
+

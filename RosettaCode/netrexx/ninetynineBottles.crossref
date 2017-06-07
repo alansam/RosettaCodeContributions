@@ -1,0 +1,5 @@
+--- Variables for class ninetynineBottles ---
+beer      Rexx v 5= 7 8 11 13 14 16 23
+i         Rexx v 9= 11 13 14 18 20 21
+lastCall  Rexx v 16= 18 20 21
+removeOne Rexx v 6= 10 17 22

@@ -1,0 +1,22 @@
+/* Generated from 'RCStringCase.nrx' 22 Aug 2011 12:33:44 [v3.00] */
+/* Options: Comments Crossref Decimal Format Java Logo Replace Symbols Trace2 Verbose3 */
+
+/* NetRexx */
+
+
+
+
+public class RCStringCase{
+ private static final java.lang.String $0="RCStringCase.nrx";
+ 
+ public static void main(java.lang.String $0s[]){
+  netrexx.lang.Rexx abc;
+  abc=netrexx.lang.Rexx.toRexx("alphaBETA");
+  
+  netrexx.lang.RexxIO.Say(abc.upper());
+  netrexx.lang.RexxIO.Say(abc.lower());
+  netrexx.lang.RexxIO.Say(abc.upper(new netrexx.lang.Rexx((byte)1),new netrexx.lang.Rexx((byte)1))); // capitalize 1st character
+  return;}
+ 
+ private RCStringCase(){return;}
+ }

@@ -1,0 +1,57 @@
+/* Generated from 'RCArrays.nrx' 15 Jul 2011 13:08:58 [v3.00] */
+/* Options: Comments Crossref Decimal Format Java Logo Replace Symbols Trace2 Verbose3 */
+
+/* NetRexx */
+
+
+
+public class RCArrays{
+ private static final netrexx.lang.Rexx $01=new netrexx.lang.Rexx(1);
+ private static final netrexx.lang.Rexx $02=new netrexx.lang.Rexx((byte)1);
+ private static final netrexx.lang.Rexx $03=new netrexx.lang.Rexx(':');
+ private static final java.lang.String $0="RCArrays.nrx";
+ 
+ public static void main(java.lang.String $0s[]){
+  int array[];
+  netrexx.lang.Rexx words[];
+  java.util.ArrayList splk;
+  netrexx.lang.Rexx cymru;
+  netrexx.lang.Rexx x_=null;
+  array=new int[10];
+  array[0]=42;
+  
+  netrexx.lang.RexxIO.Say(new netrexx.lang.Rexx(array[0]).OpCcblank(null,new netrexx.lang.Rexx(array[3])));
+  netrexx.lang.RexxIO.Say("");
+  
+  words=new netrexx.lang.Rexx[]{netrexx.lang.Rexx.toRexx("Ogof"),netrexx.lang.Rexx.toRexx("Ffynnon"),netrexx.lang.Rexx.toRexx("Ddu")};
+  
+  netrexx.lang.RexxIO.Say((words[0].OpCcblank(null,words[1])).OpCcblank(null,words[2]));
+  netrexx.lang.RexxIO.Say("");
+  
+  // Dynamic arrays can be simulated via the Java Collections package
+  splk=new java.util.ArrayList();
+  splk.add((java.lang.Object)words[0]);
+  splk.add((java.lang.Object)words[1]);
+  splk.add((java.lang.Object)words[2]);
+  splk.add((java.lang.Object)"Draenen");
+  
+  netrexx.lang.RexxIO.Say(new netrexx.lang.Rexx(java.lang.String.valueOf(splk.get(0))).OpCcblank(null,new netrexx.lang.Rexx(java.lang.String.valueOf(splk.get(3)))));
+  netrexx.lang.RexxIO.Say((new netrexx.lang.Rexx(java.lang.String.valueOf(splk.get(0))).OpCcblank(null,new netrexx.lang.Rexx(java.lang.String.valueOf(splk.get(1))))).OpCcblank(null,new netrexx.lang.Rexx(java.lang.String.valueOf(splk.get(2)))));
+  netrexx.lang.RexxIO.Say("");
+  
+  // or by using NetRexx "indexed strings" (associative arrays)
+  cymru=netrexx.lang.Rexx.toRexx("");
+  cymru.getnode(new netrexx.lang.Rexx((byte)0)).leaf=new netrexx.lang.Rexx((byte)0);
+  cymru.getnode(new netrexx.lang.Rexx((byte)0)).leaf=(cymru.getnode(new netrexx.lang.Rexx((byte)0)).leaf).OpAdd(null,$01);
+  cymru.getnode(cymru.getnode(new netrexx.lang.Rexx((byte)0)).leaf).leaf=(new netrexx.lang.Rexx(java.lang.String.valueOf(splk.get(0))).OpCcblank(null,new netrexx.lang.Rexx(java.lang.String.valueOf(splk.get(1))))).OpCcblank(null,new netrexx.lang.Rexx(java.lang.String.valueOf(splk.get(2))));
+  cymru.getnode(new netrexx.lang.Rexx((byte)0)).leaf=(cymru.getnode(new netrexx.lang.Rexx((byte)0)).leaf).OpAdd(null,$01);
+  cymru.getnode(cymru.getnode(new netrexx.lang.Rexx((byte)0)).leaf).leaf=new netrexx.lang.Rexx(java.lang.String.valueOf(splk.get(0))).OpCcblank(null,new netrexx.lang.Rexx(java.lang.String.valueOf(splk.get(3))));
+  
+  {netrexx.lang.Rexx $1=cymru.getnode(new netrexx.lang.Rexx((byte)0)).leaf;x_=new netrexx.lang.Rexx((byte)1);x_:for(;x_.OpLtEq(null,$1);x_=x_.OpAdd(null,new netrexx.lang.Rexx(1))){
+   netrexx.lang.RexxIO.Say((x_.OpCc(null,$03)).OpCcblank(null,cymru.getnode(x_).leaf));
+   }
+  }/*x_*/
+  return;}
+ 
+ private RCArrays(){return;}
+ }

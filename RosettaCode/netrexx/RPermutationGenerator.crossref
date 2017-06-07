@@ -1,0 +1,26 @@
+--- Variables for class RPermutationGenerator ---
+arg        Rexx                  v 95= 96
+arg        Rexx                  a 100 101
+args       String[]              a 94 95
+array      int[]                 p 9 18= 23= 29 30= 38 39 39 49 50 53 53 58 58 63 64 64= 65= 68 72 73 73= 75= 79
+ary        int[]                 a 22 23
+display    Rexx                  v 85= 87 87= 89
+end_       boolean               v 37= 39 39= 41
+firstNum   Rexx                  a 28 30
+firstNum_  Rexx                  a 15= 17 17= 19
+firstReady boolean               p 12= 24= 32= 37 45 46=
+i_         Rexx                  v 29= 29 30 30
+i_         Rexx                  v 38= 38 39 39
+i_         Rexx                  v 86= 86 87
+isFalse    boolean               p 11= 12 24 32
+isTrue     boolean               p 10= 46
+j_         Rexx                  v 49= 53 53 54 54= 58 64 65 69
+k_         Rexx                  v 50= 58 59 59= 63 64
+n_         Rexx                  a 15= 16 16= 18
+num1       Rexx                  v 101= 103 103= 104
+pg         RPermutationGenerator v 104= 105 106= 107
+r_         Rexx                  v 68= 71 73 75 76 76=
+row        int[]                 v 84= 86 87
+rows       Rexx                  v 101= 102 102= 104
+s_         Rexx                  v 69= 71 72 73 74 74=
+temp       int                   v 63= 65 72= 75

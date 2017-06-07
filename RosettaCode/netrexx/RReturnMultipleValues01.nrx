@@ -1,0 +1,56 @@
+/* NetRexx */
+options replace format comments java crossref symbols nobinary
+
+import java.util.Queue
+
+term = getPair() -- return values as NetRexx string
+displayPair(term)
+
+vals = getPairFromRexx()
+term = vals[Rexx 'L'] vals[Rexx 'R'] -- put return values into a NetRexx string
+displayPair(term)
+
+vm = getPairFromMap()
+term = vm.get(Rexx 'L') vm.get(Rexx 'R') -- put return values into a NetRexx string
+displayPair(term)
+
+vq = getPairFromQueue()
+term = vq.poll() vq.poll() -- put return values into a NetRexx string
+displayPair(term)
+
+return
+
+-- At it's simplest NetRexx can exploit the typeless capability of the language to store results in a parseable string
+method getPair() public static
+  lval = 10
+  rval = 20
+  return lval rval
+
+-- NetRexx also allows data to be stored in indexed string variables which can then be accessed by name
+method getPairFromRexx() public static
+  rVal = ''
+  rVal[Rexx 'L'] = 10
+  rVal[Rexx 'R'] = 20
+  return rVal
+
+-- NetRexx also provides access to complex Java object types.  [This example uses a Map]
+method getPairFromMap() public static returns Map
+  rm = HashMap()
+  rm.put(Rexx 'L', Rexx 10)
+  rm.put(Rexx 'R', Rexx 20)
+  return rm
+
+-- NetRexx also provides access to complex Java object types.  [This example uses a Queue]
+method getPairFromQueue() public static returns Queue
+  rq = LinkedList()
+  rq.add(Rexx 10)
+  rq.add(Rexx 20)
+  return rq
+
+-- NetRexx parse will extract typeless values from a string
+method displayPair(term) public static
+  parse term lVal rVal .
+  say lVal',' rVal
+  say
+  return
+

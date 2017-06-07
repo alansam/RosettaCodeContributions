@@ -1,0 +1,12 @@
+--- Variables for class RWriteFloatArray ---
+ex         Exception      v 48= 49
+fw         BufferedWriter v 76= 81 82 84
+i_         Rexx           v 78= 79 79
+outFile    Rexx           v 44= 47
+outFile    Rexx           a 71 76
+pgmName    Rexx           v 43= 44
+row        Rexx           v 79= 80 81
+xf         Rexx[]         a 71 74 78 79
+xprecision Rexx           a 71= 79 79
+yf         Rexx[]         a 71 74 79
+yprecision Rexx           a 71= 79 79

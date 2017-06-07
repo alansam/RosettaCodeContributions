@@ -1,0 +1,13 @@
+--- Variables for class XMLParse ---
+attr2    String         v 40= 46
+doc      Document       v 43= 46 49 57
+ex       Exception      v 67= 68
+expr1    String         v 37= 46
+expr2    String         v 38= 49
+expr3    String         v 39= 57
+i_       int            v 50= 51 58= 59
+n_       int            v 62= 63
+nameList java.util.List v 55 56= 59 62 63
+nodes    NodeList       v 49= 50 51 57= 58 59
+xmlStr   String         v 9= 43
+xpath    XPath          v 44= 46 49 57

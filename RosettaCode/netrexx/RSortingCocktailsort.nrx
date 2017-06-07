@@ -1,0 +1,207 @@
+/* NetRexx */
+
+options replace format comments java crossref savelog symbols nobinary
+
+import java.util.List
+
+placesList = [String -
+    "UK  London",     "US  New York"   , "US  Boston",     "US  Washington" -
+  , "UK  Washington", "US  Birmingham" , "UK  Birmingham", "UK  Boston"     -
+]
+sortedList = cocktailSort(String[] Arrays.copyOf(placesList, placesList.length))
+
+lists = [placesList, sortedList]
+loop ln = 0 to lists.length - 1
+  cl = lists[ln]
+  loop ct = 0 to cl.length - 1
+    say cl[ct]
+    end ct
+    say
+  end ln
+
+rn = ArrayList()
+loop label n_ for 1000
+  rn.add(Integer(rrandom(-99, 999)))
+  end n_
+shownums(rn)
+say
+shownums(cocktailSort(ArrayList(rn)))
+say
+
+rn = ArrayList()
+loop x_ = 1 to 1099
+  rn.add(Integer(x_ - 100))
+  end x_
+rn = ArrayList shuffleFischerYates(rn)
+shownums(rn)
+say
+shownums(cocktailSort(ArrayList(rn)))
+say
+
+return
+
+method cocktailSort(A = String[]) public constant binary returns String[]
+
+  rl = String[A.length]
+  al = List cocktailSort(Arrays.asList(A))
+  al.toArray(rl)
+
+  return rl
+
+method cocktailSort(A = List) public constant binary returns ArrayList
+
+  /*
+   * The cocktail shaker sort is an improvement on the Bubble Sort. The improvement is basically that values
+   * "bubble" both directions through the array, because on each iteration the cocktail shaker sort bubble
+   * sorts once forwards and once backwards.
+   *
+   * Pseudocode for the algorithm (from wikipedia):
+   * <pre>
+   * function cocktailSort( A : list of sortable items )
+   *   do
+   *     swapped := false
+   *     for each i in 0 to length( A ) - 2 do
+   *       if A[ i ] > A[ i+1 ] then // test whether the two 
+   *                                 // elements are in the wrong 
+   *                                 // order
+   *         swap( A[ i ], A[ i+1 ] ) // let the two elements
+   *                                  // change places
+   *         swapped := true;
+   *     if swapped = false then
+   *       // we can exit the outer loop here if no swaps occurred.
+   *       break do-while loop;
+   *     swapped := false
+   *     for each i in length( A ) - 2 down to 0 do
+   *       if A[ i ] > A[ i+1 ] then
+   *         swap( A[ i ], A[ i+1 ] )
+   *         swapped := true;
+   *   while swapped; // if no elements have been swapped, 
+   *                  // then the list is sorted
+   * </pre>
+   */
+
+  Alength = A.size
+  swapped = isFalse
+  loop label swapped until \swapped
+    swapped = isFalse
+    loop i_ = 0 to Alength - 2
+      if (Comparable A.get(i_)).compareTo(Comparable A.get(i_ + 1)) > 0 then do
+        swap = A.get(i_ + 1)
+        A.set(i_ + 1, A.get(i_))
+        A.set(i_, swap)
+        swapped = isTrue
+        end
+      end i_
+    if \swapped then do
+      leave swapped
+      end
+    swapped = isFalse
+    loop i_ = Alength - 2 to 0 by -1
+      if (Comparable A.get(i_)).compareTo(Comparable A.get(i_ + 1)) > 0 then do
+        swap = A.get(i_ + 1)
+        A.set(i_ + 1, A.get(i_))
+        A.set(i_, swap)
+        swapped = isTrue
+        end
+      end i_
+    end swapped
+  
+  return ArrayList(A)
+
+method isTrue public constant binary returns boolean
+  return 1 == 1
+
+method isFalse public constant binary returns boolean
+  return \isTrue
+
+method shownums(rn = List) private constant
+
+  rk = -1
+  rl = ''
+  ln = 0
+  say "".right(3)':    1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17  18  19  20  21  22  23  24  25  26  27  28  29  30'
+  loop r_ = 0 to rn.size - 1
+    rk = rk + 1
+    if rk = 30 then do
+      ln = ln + 1
+      say ((ln -1) * 30).right(3)':' rl
+      rl = ''
+      rk = 0
+      end
+    rl = rl || (Rexx((Integer rn.get(r_)).intValue())).right(4)
+    end r_
+  ln = ln + 1
+  say ((ln -1) * 30).right(3)':' rl
+/*
+   1    2    3    4    5    6    7    8    9   10    1    2    3    4    5    6    7    8    9   20    1    2    3    4
+ 000  000  000  000  000  000  000  000  000  000  000  000  000  000  000  000  000  000  000  000  000  000  000  000
+*/
+  return
+
+method rrandom(amax) public static
+  return rrandom(0, amax)
+
+method rrandom(amin, amax, seed = long 0) public static
+  --trace results
+  --trace var rn rf amin amax seed
+  rs = Random()
+  rn = Rexx
+
+  if seed \= 0 then do
+    rs.setSeed(seed)
+    end
+
+  select
+    when amin = 0 & amax = 0 then do
+      rn = rs.nextInt()
+      end
+    when amin \= 0 then do
+      if amax > 0 then do
+        rf = amax - amin + 1
+        rn = rs.nextInt(rf) + amin
+        rn = rn - 1
+        end
+      else do
+        rn = 0
+        end
+      end
+    when amax = 0 then do
+      rn = rs.nextInt()
+      end
+    otherwise do
+      rn = rs.nextInt(amax)
+      end
+    end
+
+  return rn
+
+method shuffleFischerYates(arry = List) public static returns List
+  /* Fischer-Yates Shuffle */
+
+  alen = arry.size()
+  loop i_ = alen - 1 to 0 by -1
+    j_ = rrandom(1, i_)
+    if i_ == j_ then
+      iterate i_
+    tmp = arry.get(i_)
+    arry.set(i_, arry.get(j_)) 
+    arry.set(j_, tmp)
+    end i_
+  return arry
+
+method shuffleNaive(arry = List) public static returns List
+/* Naive Shuffle */
+
+  alen = arry.size()
+  loop for alen
+    p1 = rrandom(1, alen) - 1
+    p2 = rrandom(1, alen) - 1
+    loop while p2 == p1
+      p2 = rrandom(1, alen) - 1
+      end
+    tmp = arry.get(p1)
+    arry.set(p1, arry.get(p2))
+    arry.set(p2, tmp)
+    end
+  return arry
+

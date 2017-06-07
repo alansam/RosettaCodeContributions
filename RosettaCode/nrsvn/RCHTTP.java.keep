@@ -1,0 +1,34 @@
+/* Generated from 'RCHTTP.nrx' 12 Jul 2011 20:51:40 [v3.00] */
+/* Options: Binary Comments Crossref Decimal Format Java Logo Replace Symbols Trace2 Verbose3 */
+
+/* NetRexx */
+
+
+
+
+
+
+public class RCHTTP{
+ private static final java.lang.String $0="RCHTTP.nrx";
+ 
+ public static void main(java.lang.String $0s[]){
+  java.lang.String rosettaUrl=null;
+  java.util.Scanner sc=null;
+  java.lang.Exception ex=null;
+  {try{
+   rosettaUrl="http://www.rosettacode.org";
+   sc=new java.util.Scanner((new java.net.URL(rosettaUrl)).openStream());
+   {for(;;){if(!(sc.hasNext()))break;
+    netrexx.lang.RexxIO.Say(sc.nextLine());
+    }
+   }
+  }
+  catch (java.lang.Exception $1){ex=$1;
+   ex.printStackTrace();
+  }}
+  
+  return;
+  }
+ 
+ private RCHTTP(){return;}
+ }

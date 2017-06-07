@@ -1,0 +1,17 @@
+/* Generated from 'RCHelloWorld_stderr.nrx' 12 Jul 2011 20:51:40 [v3.00] */
+/* Options: Binary Comments Crossref Decimal Format Java Logo Replace Symbols Trace2 Verbose3 */
+
+/* NetRexx */
+
+
+
+
+public class RCHelloWorld_stderr{
+ private static final java.lang.String $0="RCHelloWorld_stderr.nrx";
+ 
+ public static void main(java.lang.String $0s[]){
+  java.lang.System.err.println("Goodbye, World!");
+  return;}
+ 
+ private RCHelloWorld_stderr(){return;}
+ }

@@ -1,0 +1,109 @@
+/* NetRexx */
+options replace format comments java crossref symbols nobinary
+
+-- =============================================================================
+class RPermutationGenerator public
+
+  -- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  properties private
+    array      = int[]
+    isTrue     = boolean (1 == 1)
+    isFalse    = boolean (1 \= 1)
+    firstReady = isFalse
+
+  -- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  method RPermutationGenerator(n_ = 3, firstNum_ = 1) public
+    if n_ < 0 then n_ = 3
+    if firstNum_ < 0 then firstNum_ = 1
+    array = int[n_]
+    reset(firstNum_)
+    return
+  -- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  method RPermutationGenerator(ary = int[]) public
+    array = ary
+    firstReady = isFalse
+    return
+
+  -- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  method reset(firstNum) private
+    loop i_ = 0 while i_ < array.length
+      array[i_] = i_ + firstNum
+      end i_
+    firstReady = isFalse
+    return
+
+  -- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  method hasNext() public returns boolean
+    end_ = firstReady
+    loop i_ = 1 while i_ < array.length
+      end_ = end_ & (array[i_] < array[i_ - 1])
+      end i_
+    return \end_
+
+  -- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  method next() public returns int[]
+    if \firstReady then do
+      firstReady = isTrue
+      end
+    else do
+      j_ = array.length - 2
+      k_ = array.length - 1
+  
+      -- Find largest index j_ with a[j_] < a[j_+1]
+      loop while array[j_] > array[j_ + 1]
+        j_ = j_ - 1
+        end
+  
+      -- Find index k_ such that a[k_] is smallest integer greater than a[j_] to the right of a[j_]
+      loop while array[j_] > array[k_]
+        k_ = k_ - 1
+        end
+  
+      -- Interchange a[j] and a[k]
+      temp      = array[k_]
+      array[k_] = array[j_]
+      array[j_] = temp
+  
+      -- Put tail end of permutation after jth position in increasing order
+      r_ = array.length - 1
+      s_ = j_ + 1
+  
+      loop while r_ > s_
+        temp      = array[s_]
+        array[s_] = array[r_]
+        s_        = s_ + 1
+        array[r_] = temp
+        r_        = r_ - 1
+        end
+      end
+    return array
+
+  -- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  method display() public
+    loop while hasNext()
+      row = next()
+      display = ''
+      loop i_ = 0 while i_ < row.length
+        display = display','row[i_]
+        end i_
+      say display.strip('l', ',')
+      end
+    return
+
+  -- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  method main(args = String[]) public static
+    arg = Rexx(args)
+    runSample(arg)
+    return
+
+  -- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  method runSample(arg) private static
+    parse arg rows num1 .
+    if rows = '' then rows = 3
+    if num1 = '' then num1 = 1
+    pg = RPermutationGenerator(rows, num1)
+    pg.display()
+    pg = RPermutationGenerator([int 3, 2, 1])
+    pg.display()
+    return
+

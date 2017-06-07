@@ -1,0 +1,91 @@
+/* Generated from 'RCSortingSelectionsort.nrx' 21 Sep 2011 18:36:14 [v3.00] */
+/* Options: Binary Comments Crossref Decimal Format Java Logo Replace Symbols Trace2 Verbose3 */
+
+/* NetRexx */
+
+
+
+
+
+public class RCSortingSelectionsort{
+ private static final java.lang.String $0="RCSortingSelectionsort.nrx";
+ 
+ public static void main(java.lang.String $0s[]){
+  java.lang.String placesList[];
+  java.lang.String lists[][];
+  int ln=0;
+  java.lang.String cl[]=null;
+  int ct=0;
+  placesList=new java.lang.String[]{"UK  London","US  New York","US  Boston","US  Washington","UK  Washington","US  Birmingham","UK  Birmingham","UK  Boston"};
+  
+  
+  
+  
+  lists=new java.lang.String[][]{placesList,selectionSort((java.lang.String[])(java.util.Arrays.copyOf((java.lang.Object[])placesList,placesList.length)))};
+  
+  
+  
+  
+  {int $1=lists.length-1;ln=0;ln:for(;ln<=$1;ln++){
+   cl=lists[ln];
+   {int $2=cl.length-1;ct=0;ct:for(;ct<=$2;ct++){
+    netrexx.lang.RexxIO.Say(cl[ct]);
+    }
+   }/*ct*/
+   netrexx.lang.RexxIO.Say("");
+   }
+  }/*ln*/
+  
+  return;
+  }
+
+ 
+ public static final java.lang.String[] selectionSort(java.lang.String a[]){
+  java.lang.String rl[];
+  java.util.List al;
+  
+  rl=new java.lang.String[a.length];
+  al=(java.util.List)(selectionSort(java.util.Arrays.asList((java.lang.Object[])a)));
+  al.toArray((java.lang.Object[])rl);
+  
+  return rl;
+  }
+
+ 
+ public static final java.util.ArrayList selectionSort(java.util.List a){
+  java.util.ArrayList ra;
+  int n;
+  int iPos=0;
+  int iMin=0;
+  int i_=0;
+  java.lang.Object swap=null;
+  
+  ra=new java.util.ArrayList((java.util.Collection)a);
+  n=ra.size();
+  
+  
+  
+  
+  {int $3=n-1;iPos=0;iPos:for(;iPos<=$3;iPos++){
+   iMin=iPos;
+   {int $4=n-1;i_=iPos+1;i_:for(;i_<=$4;i_++){
+    if ((((java.lang.Comparable)(ra.get(i_))).compareTo((java.lang.Object)((java.lang.Comparable)(ra.get(iMin)))))<0) 
+     {
+      iMin=i_;
+     }
+    }
+   }/*i_*/
+   if (iMin!=iPos) 
+    {
+     swap=ra.get(iPos);
+     ra.set(iPos,ra.get(iMin));
+     ra.set(iMin,swap);
+    }
+   }
+  }/*iPos*/
+  
+  return ra;
+  }
+ 
+ private RCSortingSelectionsort(){return;}
+ }

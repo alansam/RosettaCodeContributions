@@ -1,0 +1,88 @@
+/* NetRexx */
+options replace format comments java crossref symbols nobinary
+
+/*
+NetRexx doesn't have a <tt>GOTO</tt> instruction and unlike [[Rexx|#REXX]] the <tt>SIGNAL</tt>
+instruction is only used to throw exceptions.
+
+Like [[Rexx|#REXX]] however, NetRexx provides the <tt>LEAVE</tt> and <tt>ITERATE</tt> instructions.
+
+===LEAVE===
+The <tt>LEAVE</tt> instruction causes immediate exit from one or more <tt>DO</tt>, <tt>SELECT</tt> or <tt>LOOP</tt>
+constructs.
+ */
+
+loop xx = 1 to 10
+  if xx = 1 then leave -- loop terminated by leave
+  say 'unreachable'
+  end
+
+/*
+A ''<tt>name</tt>'' parameter can be provided to direct <tt>LEAVE</tt> to a specific end of block
+(as defined by a <tt>LABEL</tt> option or in the case of a controlled <tt>LOOP</tt> the
+control variable of the loop.
+ */
+
+loop xx = 1 to 10 -- xx is the control variable
+  say xx
+  loop yy = 1 to 10 -- yy is the control variable
+    if yy = 3 then leave xx -- xx loop terminated by leave
+    if yy = 4 then leave yy -- yy loop terminated by leave
+    say xx * 100 + yy
+    end
+  end xx
+
+loop label xlabel xx = 1 to 10 -- xx is still the control variable but LABEL takes precidence
+  say xx
+  loop yy = 1 to 10 -- yy is the control variable
+    if yy = 3 then leave xlabel -- xx loop terminated by leave
+    say xx * 100 + yy
+    end yy
+  end xlabel
+
+do label FINIS
+  say 'in do block'
+  if (1 == 1) then leave FINIS
+  say 'unreachable'
+  signal Exception("Will never happen")
+catch ex = Exception
+  ex.printStackTrace()
+finally
+  say 'out of do block'
+end FINIS
+
+loop vv over ['A', 'B']
+  select label selecting case vv
+    when 'A' then do; say 'A selected'; say '...'; end
+    when 'B' then do;
+      say 'B selected';
+      if (1 == 1) then leave selecting;
+      say '...';
+      end
+    otherwise do; say 'nl selection'; say '...'; end 
+    end selecting
+  end vv
+
+/*
+===ITERATE===
+The <tt>ITERATE</tt> instruction alters flow of control within a <tt>LOOP</tt> construct.
+On encountering an <tt>ITERATE</tt> instruction, execution of the loop body is terminated
+and control is passed directly back to the top of the loop just as though the last clause
+in the body of the loop had been executed.
+
+As with <tt>LEAVE</tt> an optional ''<tt>NAME</tt>'' can be supplied to direct the instruction
+to a loop level outside the current level.
+ */
+
+loop fff = 0 to 9
+  say
+  loop xx = 1 to 3
+    say fff' \-'
+    if fff > 2 then iterate fff
+    say (fff * 1000 + xx).right(4, 0)
+    end
+  end fff
+say
+
+return;
+

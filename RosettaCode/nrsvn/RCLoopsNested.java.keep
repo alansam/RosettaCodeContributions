@@ -1,0 +1,57 @@
+/* Generated from 'RCLoopsNested.nrx' 13 Jul 2011 13:34:42 [v3.00] */
+/* Options: Comments Crossref Decimal Format Java Logo Replace Symbols Trace2 Verbose3 */
+
+/* NetRexx */
+
+
+
+public class RCLoopsNested{
+ private static final netrexx.lang.Rexx $01=new netrexx.lang.Rexx(1);
+ private static final netrexx.lang.Rexx $02=netrexx.lang.Rexx.toRexx(": \000");
+ private static final netrexx.lang.Rexx $03=new netrexx.lang.Rexx('\000');
+ private static final netrexx.lang.Rexx $04=new netrexx.lang.Rexx(20);
+ private static final java.lang.String $0="RCLoopsNested.nrx";
+ 
+ public static void main(java.lang.String $0s[]){
+  java.util.Random rnd;
+  int dim2[][];
+  netrexx.lang.Rexx i1=null;
+  netrexx.lang.Rexx i2=null;
+  netrexx.lang.Rexx x1=null;
+  netrexx.lang.Rexx x2=null;
+  netrexx.lang.RexxIO.Say("");
+  netrexx.lang.RexxIO.Say("Loops/Nested");
+  
+  rnd=new java.util.Random();
+  dim2=new int[10][10];
+  
+  // build sample data
+  {int $1=new netrexx.lang.Rexx(dim2.length).OpPlus(null).toint();i1=new netrexx.lang.Rexx((byte)0);i1:for(;$1>0;$1--,i1=i1.OpAdd(null,new netrexx.lang.Rexx(1))){
+   {int $2=new netrexx.lang.Rexx(dim2[i1.toint()].length).OpPlus(null).toint();i2=new netrexx.lang.Rexx((byte)0);i2:for(;$2>0;$2--,i2=i2.OpAdd(null,new netrexx.lang.Rexx(1))){
+    dim2[i1.toint()][i2.toint()]=new netrexx.lang.Rexx(rnd.nextInt(20)).OpAdd(null,$01).toint();
+    }
+   }/*i2*/
+   }
+  }/*i1*/
+  
+  // run test
+  {try{int $3=new netrexx.lang.Rexx(dim2.length).OpPlus(null).toint();x1=new netrexx.lang.Rexx((byte)0);x1:for(;$3>0;$3--,x1=x1.OpAdd(null,new netrexx.lang.Rexx(1))){
+   netrexx.lang.RexxIO.Say(((new netrexx.lang.Rexx(x1.OpAdd(null,$01))).right(new netrexx.lang.Rexx((byte)4))).OpCc(null,$02));
+   {try{int $4=new netrexx.lang.Rexx(dim2[x1.toint()].length).OpPlus(null).toint();x2=new netrexx.lang.Rexx((byte)0);x2:for(;$4>0;$4--,x2=x2.OpAdd(null,new netrexx.lang.Rexx(1))){
+    netrexx.lang.RexxIO.Say(((new netrexx.lang.Rexx(dim2[x1.toint()][x2.toint()])).right(new netrexx.lang.Rexx((byte)3))).OpCc(null,$03));
+    if (new netrexx.lang.Rexx(dim2[x1.toint()][x2.toint()]).OpEq(null,$04)) 
+     break x1;
+    }
+   }
+   finally{
+    netrexx.lang.RexxIO.Say("");
+   }}/*x2*/
+   }
+  }
+  finally{
+   netrexx.lang.RexxIO.Say("");
+  }}/*x1*/
+  return;}
+ 
+ private RCLoopsNested(){return;}
+ }

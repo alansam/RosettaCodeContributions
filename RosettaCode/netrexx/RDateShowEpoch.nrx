@@ -1,0 +1,12 @@
+/* NetRexx */
+options replace format comments java crossref symbols nobinary
+
+import java.text.DateFormat
+
+date_ = Date(0)
+format = DateFormat.getDateTimeInstance()
+format.setTimeZone(TimeZone.getTimeZone("UTC"))
+say format.format(date_)
+
+return
+

@@ -1,0 +1,284 @@
+/* NetRexx */
+options replace format comments java crossref savelog symbols nobinary utf8
+
+/**
+ * <h3>Boxing the compass</h3>
+ * <p>
+ * Avast me hearties!
+ * </p>
+ * <p>
+ * There be many a <a href="http://www.talklikeapirate.com/howto.html">land lubber</a> that knows naught of
+ * the pirate ways and gives direction by degree! They know not how to
+ * <a href="http://en.wikipedia.org/wiki/Boxing_the_compass">box the compass</a>!
+ * </p>
+ * <h4>Task description</h4>
+ * <ol>
+ * <li>
+ * Create a function that takes a heading in degrees and returns the correct 32-point compass heading.
+ * </li>
+ * <li>
+ * Use the function to print and display a table of Index, Compass point, and Degree; rather like the corresponding
+ * columns from, the first table of the <a href="http://en.wikipedia.org/wiki/Boxing_the_compass">wikipedia article</a>,
+ * but use only the following 33 headings as input:
+ * <br />
+ * <code>[0.0, 16.87, 16.88, 33.75, 50.62, 50.63, 67.5, 84.37, 84.38, 101.25, 118.12, 118.13, 135.0, 151.87, 151.88,
+ * 168.75, 185.62, 185.63, 202.5, 219.37, 219.38, 236.25, 253.12, 253.13, 270.0, 286.87, 286.88, 303.75, 320.62, 320.63,
+ * 337.5, 354.37, 354.38]</code>.
+ * (They should give the same order of points but are spread throughout the ranges of acceptance)
+ * </li>
+ * </ol>
+ * <h4>Note</h4>
+ * <ul>
+ * The headings and indices can be calculated from this pseudocode:
+ * <pre>
+ * for i in 0..32 inclusive:
+ *     heading = i * 11.25
+ *     case i %3:
+ *       if 1: heading += 5.62; break
+ *       if 2: heading -= 5.62; break
+ *     end
+ *     index = ( i mod 32) + 1
+ * </pre>
+ * <li>
+ * </li>
+ * </ul>
+ *
+ * @author alansampson : <a href="mailto%3A%22Alan%20Sampson%22%20%3Calansamps%40gmail%2Ecom%3E">&quot;Alan Sampson&quot; &lt;alansamps@gmail.com&gt;</a>
+ * @version 1.0
+ * @see <a href="http://www.fileformat.info/info/unicode/">www.fileformat.info/info/unicode/</a>
+ * @see <a href="http://en.wikipedia.org/wiki/List_of_Unicode_characters">en.wikipedia.org/wiki/List_of_Unicode_characters</a>
+ */
+class RBoxTheCompass
+
+properties public constant
+  _FULL = '_FULL'
+
+properties indirect
+  headings = Rexx
+  rosepoints = Rexx
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/**
+ * Default construction
+ */
+method RBoxTheCompass() public
+
+  setHeadings(makeHeadings)
+  setRosepoints(makeRosepoints)
+
+  return
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/**
+ * @param args
+ */
+method main(args = String[]) public static
+
+  box = RBoxTheCompass()
+
+  cp = box.getCompassPoints
+  loop r_ = 1 to cp[0]
+    say cp[r_]
+    end r_
+  say
+
+  hx = box.getHeadingsReport(box.getHeadings)
+  loop r_ = 1 to hx[0]
+    say hx[r_]
+    end r_
+  say
+
+  return
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/**
+ * Decimal degrees = whole number of degrees, plus minutes divided by 60, plus seconds divided by 3600
+ */
+method getDecimalAngle(degrees, minutes, seconds) public static returns Rexx
+
+  degrees = degrees * 10 % 10
+  minutes = minutes * 10 % 10
+  angle = degrees + (minutes / 60 + (seconds / 60 / 60))
+
+  return angle
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* http://en.wikipedia.org/wiki/Minute_of_arc                                 */
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/**
+ *
+ */
+method getDegreesMinutesSeconds(angle) public static returns Rexx
+
+  degrees = angle * 100 % 100
+  minutes = ((angle - degrees) * 60) * 100 % 100
+  seconds = ((((angle - degrees) * 60) - minutes) * 60) * 100 % 100
+
+  return degrees minutes seconds
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/**
+ * @param headings as an indexed stirng
+ * @return table of headings as an indexed string
+ */
+method getHeadingsReport(bearings) public returns Rexx
+
+  r_ = 0
+  table = ''
+  r_ = r_ + 1; table[0] = r_; table[r_] = 'Idx' -
+                                          'Abbr' -
+                                          'Compass Point'.left(20) -
+                                          'Degrees'.right(10)
+
+  loop h_ = 1 to bearings[0]
+    heading = bearings[h_]
+    index = getRosepointIndex(heading)
+    parse getRosepoint(index) p_abbrev p_full
+
+    r_ = r_ + 1; table[0] = r_; table[r_] = index.right(3) -
+                                            p_abbrev.left(4) -
+                                            p_full.left(20) -
+                                            heading.format(6, 3).right(10)
+    end h_
+
+  return table
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/**
+ * @param heading
+ * @return index into compase rose array (1 - 32)
+ */
+method getRosepointIndex(heading) public returns Rexx
+
+  one_pt = 360 / 32
+  hn = heading // 360
+  hi = hn % one_pt
+
+  if hn > hi * one_pt + one_pt / 2 then do
+    hi = hi + 1 -- greater than max range for this point; bump to next point
+    end
+
+  idx = hi // 32 + 1 -- add one to get index into rosepoints indexed string
+
+  return idx
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/**
+ * @param index
+ * @return readable short and long names of compass points
+ */
+method getRosepoint(index) public returns Rexx
+
+  rp = getRosepoints
+  return rp[index] rp[index, _FULL]
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/**
+ * @return an indexed array of compass rose points
+ */
+method makeRosepoints() private returns Rexx
+
+  p_ = 0
+  rp = ''
+  p_ = p_ + 1; rp[0] = p_; rp[p_] = 'N';    rp[p_, _FULL] = 'North'
+  p_ = p_ + 1; rp[0] = p_; rp[p_] = 'NbE';  rp[p_, _FULL] = 'North by East'
+  p_ = p_ + 1; rp[0] = p_; rp[p_] = 'NNE';  rp[p_, _FULL] = 'North-Northeast'
+  p_ = p_ + 1; rp[0] = p_; rp[p_] = 'NEbn'; rp[p_, _FULL] = 'Northeast by North'
+  p_ = p_ + 1; rp[0] = p_; rp[p_] = 'NE';   rp[p_, _FULL] = 'Northeast'
+  p_ = p_ + 1; rp[0] = p_; rp[p_] = 'NEbE'; rp[p_, _FULL] = 'Northeast by East'
+  p_ = p_ + 1; rp[0] = p_; rp[p_] = 'ENE';  rp[p_, _FULL] = 'East-Northeast'
+  p_ = p_ + 1; rp[0] = p_; rp[p_] = 'EbN';  rp[p_, _FULL] = 'East by North'
+  p_ = p_ + 1; rp[0] = p_; rp[p_] = 'E';    rp[p_, _FULL] = 'East'
+  p_ = p_ + 1; rp[0] = p_; rp[p_] = 'EbS';  rp[p_, _FULL] = 'East by South'
+  p_ = p_ + 1; rp[0] = p_; rp[p_] = 'ESE';  rp[p_, _FULL] = 'East-Southeast'
+  p_ = p_ + 1; rp[0] = p_; rp[p_] = 'SEbE'; rp[p_, _FULL] = 'Southeast by East'
+  p_ = p_ + 1; rp[0] = p_; rp[p_] = 'SE';   rp[p_, _FULL] = 'Southeast'
+  p_ = p_ + 1; rp[0] = p_; rp[p_] = 'SEbS'; rp[p_, _FULL] = 'Southeast by South'
+  p_ = p_ + 1; rp[0] = p_; rp[p_] = 'SSE';  rp[p_, _FULL] = 'South-Southeast'
+  p_ = p_ + 1; rp[0] = p_; rp[p_] = 'SbE';  rp[p_, _FULL] = 'South by East'
+  p_ = p_ + 1; rp[0] = p_; rp[p_] = 'S';    rp[p_, _FULL] = 'South'
+  p_ = p_ + 1; rp[0] = p_; rp[p_] = 'SbW';  rp[p_, _FULL] = 'South by West'
+  p_ = p_ + 1; rp[0] = p_; rp[p_] = 'SSW';  rp[p_, _FULL] = 'South-Southwest'
+  p_ = p_ + 1; rp[0] = p_; rp[p_] = 'SWbS'; rp[p_, _FULL] = 'Southwest by South'
+  p_ = p_ + 1; rp[0] = p_; rp[p_] = 'SW';   rp[p_, _FULL] = 'Southwest'
+  p_ = p_ + 1; rp[0] = p_; rp[p_] = 'SWbW'; rp[p_, _FULL] = 'Southwest by West'
+  p_ = p_ + 1; rp[0] = p_; rp[p_] = 'WSW';  rp[p_, _FULL] = 'Southwest'
+  p_ = p_ + 1; rp[0] = p_; rp[p_] = 'WbS';  rp[p_, _FULL] = 'West by South'
+  p_ = p_ + 1; rp[0] = p_; rp[p_] = 'W';    rp[p_, _FULL] = 'West'
+  p_ = p_ + 1; rp[0] = p_; rp[p_] = 'WbN';  rp[p_, _FULL] = 'West by North'
+  p_ = p_ + 1; rp[0] = p_; rp[p_] = 'WNW';  rp[p_, _FULL] = 'West-Northwest'
+  p_ = p_ + 1; rp[0] = p_; rp[p_] = 'NWbW'; rp[p_, _FULL] = 'Northwest by West'
+  p_ = p_ + 1; rp[0] = p_; rp[p_] = 'NW';   rp[p_, _FULL] = 'Northwest'
+  p_ = p_ + 1; rp[0] = p_; rp[p_] = 'NWbN'; rp[p_, _FULL] = 'Northwest by North'
+  p_ = p_ + 1; rp[0] = p_; rp[p_] = 'NNW';  rp[p_, _FULL] = 'North-Northwest'
+  p_ = p_ + 1; rp[0] = p_; rp[p_] = 'NbW';  rp[p_, _FULL] = 'North by West'
+
+  return rp
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/**
+ * @return 
+ */
+method makeHeadings() private returns Rexx
+
+  hdg = ''
+  hdg[0] = 0
+  points = 32
+  loop i_ = 0 to points
+    heading = i_ * 360 / points
+
+    select case i_ // 3
+      when 1 then heading_h = heading + 5.62
+      when 2 then heading_h = heading - 5.62
+      otherwise   heading_h = heading
+      end
+
+    ix = hdg[0] + 1; hdg[0] = ix; hdg[ix] = heading_h
+    end i_
+
+  return hdg
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/**
+ * @return table of compass points as an indexed string
+ */
+method getCompassPoints() public returns Rexx
+
+  r_ = 0
+  table = ''
+  r_ = r_ + 1; table[0] = r_; table[r_] = 'Idx' -
+                                          'Abbr' -
+                                          'Compass Point'.left(20) -
+                                          'Low (Deg.)'.right(10) -
+                                          'Mid (Deg.)'.right(10) -
+                                          'Hi (Deg.)'.right(10)
+
+  -- one point of the compass is 360 / 32 (11.25) degrees
+  -- using functions to calculate this just for fun
+  one_pt = 360 / 32
+  parse getDegreesMinutesSeconds(one_pt / 2) ad am as .
+  points = 32
+  loop h_ = 0 to points - 1
+    heading = h_ * 360 / points
+    hmin = heading - getDecimalAngle(ad, am, as)
+    hmax = heading + getDecimalAngle(ad, am, as)
+
+    if hmin < 0 then do
+      hmin = hmin + 360
+      end
+    if hmax >= 360 then do
+      hmax = hmax - 360
+      end
+
+    index = getRosepointIndex(heading)
+    parse getRosepoint(index) p_abbrev p_full
+    r_ = r_ + 1; table[0] = r_; table[r_] = index.right(3) -
+                                            p_abbrev.left(4) -
+                                            p_full.left(20) -
+                                            hmin.format(6, 3).right(10) -
+                                            heading.format(6, 3).right(10) -
+                                            hmax.format(6, 3).right(10)
+    end h_
+
+  return table
+

@@ -1,0 +1,106 @@
+/* NetRexx */
+options replace format comments java crossref symbols nobinary
+
+runSample(arg)
+return
+
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+method brenfordDeveation(nlist = Rexx[]) public static
+  observed = 0
+  loop n_ over nlist
+    d1 = n_.left(1)
+    if d1 = 0 then iterate n_
+    observed[d1] = observed[d1] + 1
+    end n_
+  say ' '.right(4) 'Observed'.right(11) 'Expected'.right(11) 'Deviation'.right(11)
+  loop n_ = 1 to 9
+    actual = (observed[n_] / (nlist.length - 1))
+    expect = Rexx(Math.log10(1 + 1 / n_))
+    deviat = expect - actual
+    say n_.right(3)':' (actual * 100).format(3, 6)'%' (expect * 100).format(3, 6)'%' (deviat * 100).abs().format(3, 6)'%'
+    end n_
+  return
+
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+method fibonacciList(size = 1000) public static returns Rexx[]
+  fibs = Rexx[size + 1]
+  fibs[0] = 0
+  fibs[1] = 1
+  loop n_ = 2 to size
+    fibs[n_] = fibs[n_ - 1] + fibs[n_ - 2]
+    end n_
+  return fibs
+
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+method peaksOfTheBritishIsles(units = 'M') public static returns Rexx[]
+  units = units.upper()
+  select case units
+    when 'M' then ufactor = 1
+    when 'F' then ufactor = 1000.0 / 25.4 / 12
+    otherwise     ufactor = 1
+    end
+  BIPeaksFileName = 'ZBIPeaks.txt'
+  _HEIGHT = 'HEIGHT'
+  peaklist = ZBIPeaks.getPeaks(BIPeaksFileName)
+  peakheights = Rexx[peaklist[0]]
+  loop peak = 1 to peaklist[0]
+    height = peaklist[peak, _HEIGHT]
+    peakheights[peak - 1] = height * ufactor
+    end peak
+  return peakheights
+
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+method primeNumbers(size = 1000) public static returns Rexx[]
+  pn = Rexx[size]
+  ix = 0
+  loop iv = 2 until ix = size
+    if \isPrime(iv) then iterate iv
+    pn[ix] = iv
+    ix = ix + 1
+    end
+  loop n_ = 0 while n_ < pn.length
+    say (n_ + 1).right(5) pn[n_].right(8)
+    end n_
+  return pn
+
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+method isPrime(x) public static returns boolean
+  _true  = (1 == 1)
+  _false = \_true
+  select
+    when x == 0      then pv = _false
+    when x == 1      then pv = _false
+    when x == 2      then pv = _true
+    when x == 3      then pv = _true
+    when x == 5      then pv = _true
+    when x == 7      then pv = _true
+    when x // 2 == 0 then pv = _false
+    when x // 3 == 0 then pv = _false
+    otherwise loop j = 5 by 6 until j * j > x
+      select
+        when x // j == 0       then do; pv = _false; leave j; end
+        when x // (j + 2) == 0 then do; pv = _false; leave j; end
+        otherwise pv = _true
+        end
+      end j
+    end
+  return pv
+  
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+method runSample(arg) private static
+  parse arg n_ .
+  if n_ = '' then n_ = 1000
+  fibList = fibonacciList(n_)
+  say 'Fibonacci sequence to' n_
+  brenfordDeveation(fibList)
+  metres = peaksOfTheBritishIsles()
+  say 'Peak heights in metres'
+  brenfordDeveation(metres)
+  feet = peaksOfTheBritishIsles('f')
+  say 'Peak heights in feet'
+  brenfordDeveation(feet)
+  say 'Prime numbers'
+  primes = primeNumbers()
+  brenfordDeveation(primes)
+  return
+

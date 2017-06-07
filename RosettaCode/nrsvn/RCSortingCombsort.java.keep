@@ -1,0 +1,84 @@
+/* Generated from 'RCSortingCombsort.nrx' 19 Sep 2011 20:01:52 [v3.00] */
+/* Options: Binary Comments Crossref Decimal Format Java Logo Replace Symbols Trace2 Verbose3 */
+
+/* NetRexx */
+
+
+
+
+public class RCSortingCombsort{
+ private static final java.lang.String $0="RCSortingCombsort.nrx";
+ 
+ public static void main(java.lang.String $0s[]){
+  java.lang.String placesList[];
+  java.lang.String sortedList[];
+  java.lang.String lists[][];
+  int ln=0;
+  java.lang.String cl[]=null;
+  int ct=0;
+  placesList=new java.lang.String[]{"UK  London","US  New York","US  Boston","US  Washington","UK  Washington","US  Birmingham","UK  Birmingham","UK  Boston"};
+  
+  
+  
+  
+  
+  sortedList=combSort((java.lang.String[])(java.util.Arrays.copyOf((java.lang.Object[])placesList,placesList.length)));
+  
+  lists=new java.lang.String[][]{placesList,sortedList};
+  {int $1=lists.length-1;ln=0;ln:for(;ln<=$1;ln++){
+   cl=lists[ln];
+   {int $2=cl.length-1;ct=0;ct:for(;ct<=$2;ct++){
+    netrexx.lang.RexxIO.Say(cl[ct]);
+    }
+   }/*ct*/
+   netrexx.lang.RexxIO.Say("");
+   }
+  }/*ln*/
+  
+  return;
+  }
+
+ 
+ public static final java.lang.String[] combSort(java.lang.String input[]){
+  boolean swaps;
+  int gap;
+  int i_=0;
+  java.lang.String swap=null;
+  
+  swaps=isTrue();
+  gap=input.length;
+  {boolean $3=true;comb:for(;;){if($3){$3=false;}else{if((gap==1)&((!swaps)))break;}
+   gap=(int)(((float)gap)/1.25F);
+   if (gap<1) 
+    gap=1;
+   i_=0;
+   swaps=isFalse();
+   {boolean $4=true;swaps:for(;;){if($4){$4=false;}else{if((i_+gap)>=input.length)break;}
+    if ((input[i_].compareTo(input[i_+gap]))>0) 
+     {
+      swap=input[i_];
+      input[i_]=input[i_+gap];
+      input[i_+gap]=swap;
+      swaps=isTrue();
+     }
+    i_++;
+    }
+   }/*swaps*/
+   }
+  }/*comb*/
+  
+  return input;
+  }
+
+ 
+ public static final boolean isTrue(){
+  return 1==1;
+  }
+
+ 
+ public static final boolean isFalse(){
+  return (!(isTrue()));
+  }
+ 
+ private RCSortingCombsort(){return;}
+ }

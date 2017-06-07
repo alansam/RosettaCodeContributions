@@ -1,0 +1,17 @@
+--- Variables for class RNthRoot ---
+_       Rexx     v 78= 79 79 81 87= 88 88 90
+args    String[] a 16 17 22 23 24 24
+ax      Rexx     v 64= 65 78
+d       Rexx     v 67= 72 72 72= 73 73= 74 84
+digs    String   v 24= 27 27 27= 28 31 32
+digs    Rexx     a 34 62
+dm      Rexx     v 63= 73 73 84
+g       Rexx     v 65= 78 78 79 80 81= 87
+old     Rexx     v 75= 79 80=
+oldDigs Rexx     v 62= 63 89
+oldR    Rexx     v 39= 88
+r       Rexx     a 34 38 38= 39 40 48 48= 50 60 61 65 65 78 78
+Rm1     Rexx     v 61= 78 78
+root    String   v 23= 26 26= 30 32
+x       String   v 22= 29 32
+x       Rexx     a 34 50 60 60 64 87

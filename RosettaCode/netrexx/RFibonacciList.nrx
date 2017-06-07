@@ -1,0 +1,33 @@
+/* NetRexx */
+options replace format comments java crossref symbols
+numeric digits 5000
+
+runSample(arg)
+return
+
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+method fibonacciList(size) public static returns Rexx[]
+  fibs = Rexx[size + 1]
+  fibs[0] = 0
+  fibs[1] = 1
+  loop n_ = 2 to size
+    fibs[n_] = fibs[n_ - 1] + fibs[n_ - 2]
+    end n_
+  return fibs
+
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+method showList(fibList = Rexx[]) public static
+  as = ''
+  loop v_ over fibList
+    as = as v_
+    end v_
+  return '['(as.space(1, ',')).changestr(',', ', ')']'
+
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+method runSample(arg) public static
+  parse arg n_ .
+  if n_ = '' then n_ = 100
+  fibList = fibonacciList(n_)
+  say showList(fibList)
+  return
+

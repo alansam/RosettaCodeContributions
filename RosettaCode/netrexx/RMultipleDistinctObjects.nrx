@@ -1,0 +1,23 @@
+/* NetRexx */
+options replace format comments java crossref symbols nobinary
+
+runSample(arg)
+return
+
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+method runSample(arg) private static
+  parse arg nn .
+  if nn = '' then nn = 10
+  nList1 = ''
+  loop nr = 1 to nn
+    nList1[nr] = Rexx('')
+    end nr
+  nList1[1] = nList1[1] || 1
+  nList1[nn % 2] = nList1[nn % 2] || nn % 2
+  loop rv = 1 to nn
+    say rv.right(3) nList1[rv]
+    end rv
+  say
+
+  return
+

@@ -1,0 +1,17 @@
+--- Variables for class RCSortingStrandsort ---
+A          String[]       a 26 28 29
+A          ArrayList      v 36= 38 40 41 42 43 44 45
+al         java.util.List v 29= 30
+Alst       java.util.List a 34 36
+cl         String[]       v 17= 18 19
+ct         int            v 18= 19
+i_         int            v 42= 42 43 44 45
+left       java.util.List a 53 56 57 58 59 66 67
+lists      String[,]      v 11= 16 17
+ln         int            v 16= 17
+placesList String[]       v 6= 12 13 13
+result     ArrayList      v 37= 48 48= 51
+result     ArrayList      v 55= 58 62 67 70 73
+right      java.util.List a 53 56 57 62 63 69 70
+rl         String[]       v 28= 30 32
+sublist    ArrayList      v 39= 40 43 43 44 48

@@ -1,0 +1,15 @@
+--- Variables for class RRangeExtraction ---
+arg       Rexx a 5= 5
+arg       Rexx a 57 59
+dlm       Rexx v 51= 52= 53
+expanded  Rexx a 10 11
+FIRST     Rexx v 15= 18 26 26 31 33= 39 39 43
+i_        Rexx v 16= 17
+LOCAL     Rexx v 17= 18 33
+nums      Rexx v 11= 15 16 17
+r_        Rexx v 63= 63 67= 67 68= 68 69= 69 70= 70 72= 72 73= 73 74= 74 75= 75 76= 76 77= 77 80= 81 82
+range     Rexx a 50 51
+RANGE     Rexx v 14= 18 20 20= 24 26 26 27= 37 39 39
+rezult    Rexx v 12= 26 26= 31 31= 39 39= 43 43= 46
+td        Rexx v 60= 63 63= 63 63= 67 67= 67 67= 68 68= 68 68= 69 69= 69 69= 70 70= 70 70= 72 72= 72 72= 73 73= 73 73= 74 74= 74 74= 75 75= 75 75= 76 76= 76 76= 77 77= 77 77= 80 81 82
+userInput Rexx v 59= 61 63

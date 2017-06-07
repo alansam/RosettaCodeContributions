@@ -1,0 +1,20 @@
+--- Variables for class RInheritSingle ---
+animal  RInheritSingle_Animal   v 16= 17
+animals RInheritSingle_Animal[] v 6= 16
+args    String[]                a 5
+ct      Rexx                    v 17= 18
+oid     Rexx                    v 17= 18
+st      Rexx                    v 17= 18
+
+--- Variables for class RInheritSingle_Animal ---
+iAmText    Rexx   v 34= 35
+whatThatIs String p 24
+whatThisIs String p 25
+
+--- No variables in class RInheritSingle_Cat ---
+
+--- No variables in class RInheritSingle_Dog ---
+
+--- No variables in class RInheritSingle_Lab ---
+
+--- No variables in class RInheritSingle_Collie ---

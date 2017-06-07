@@ -1,0 +1,56 @@
+/* NetRexx */
+options replace format comments java crossref symbols nobinary
+numeric digits 5000
+
+class RFilter00 public
+  -- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  method main(args = String[]) public static
+    arg = Rexx(args)
+    runSample(arg)
+    return
+
+  -- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  method runSample(arg) public static
+
+    sd1 = Rexx[]
+    sd2 = Rexx[]
+  
+    say 'Test data:'
+    sd1 = makeSampleData(100)
+    display(sd1)
+    clist = ArrayList(Arrays.asList(sd1))
+    li = clist.listIterator()
+    loop while li.hasNext()
+      e_ = Rexx li.next
+      if e_ // 2 \= 0 then li.remove()
+      end
+    say 'Option 1 (copy to a new array):'
+    sd2 = Rexx[] clist.toArray(Rexx[clist.size()])
+    display(sd2)
+    say 'Option 2 (replace the original array):'
+    sd1 = Rexx[] clist.toArray(Rexx[clist.size()])
+    display(sd1)
+  
+    return
+
+  -- ---------------------------------------------------------------------------
+  method display(sd = Rexx[]) public static
+  
+    say '-'.copies(80)
+    loop i_ = 0 to sd.length - 1
+      say sd[i_] '\-'
+      end i_
+    say
+  
+    return
+  
+  -- ---------------------------------------------------------------------------
+  method makeSampleData(size) public static returns Rexx[]
+  
+    sd = Rexx[size]
+    loop e_ = 0 to size - 1
+      sd[e_] = e_ + 1
+      end e_
+  
+    return sd
+

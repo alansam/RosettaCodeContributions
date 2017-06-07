@@ -1,0 +1,50 @@
+/* NetRexx */
+options replace format comments java crossref symbols nobinary
+numeric digits 5000
+
+runSample(arg)
+return
+
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+method runSample(arg) private static
+  parse arg places .
+  if places = '' then places = -1
+
+  parse '1 0 1 1 3 3' q_ r_ t_ k_ n_ l_ -- init work vars
+
+  first = isTrue()
+  digitCt = 0
+  loop forever
+    if 4 * q_ + r_ - t_ < n_ * t_ then do
+      digitCt = digitCt + 1
+      if places > 0 & digitCt - 1 > places then leave
+      say n_'\-'
+      if first then do
+        say '.\-'
+        first = isFalse()
+        end
+      nr = 10 * (r_ - n_ * t_)
+      n_ = ((10 * (3 * q_ + r_)) % t_) - 10 * n_
+      q_ = q_ * 10
+      r_ = nr
+      end
+    else do
+      nr = (2 * q_ + r_) * l_
+      nn = (q_ * (7 * k_ + 2) + r_ * l_) % (t_ * l_)
+      q_ = q_ * k_
+      t_ = t_ * l_
+      l_ = l_ + 2
+      k_ = k_ + 1
+      n_ = nn
+      r_ = nr
+      end
+    end
+  say
+
+  return
+
+method isTrue() private static returns boolean
+  return (1 == 1)
+method isFalse() private static returns boolean
+  return \isTrue()
+

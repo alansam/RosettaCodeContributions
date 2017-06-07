@@ -1,0 +1,8 @@
+--- Variables for class zVersion ---
+arry Rexx[]         v 10= 25
+irry int[]          v 17= 35
+list java.util.List v 19 20= 21 22 23 40
+lmnt Rexx           v 25= 26 30= 31 36 41
+src  Rexx           v 5= 8
+stem Rexx           v 12= 13= 14= 15= 30 31
+ver  Rexx           v 4= 7

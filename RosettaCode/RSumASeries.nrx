@@ -1,0 +1,31 @@
+/* NetRexx */
+
+options replace format comments java crossref savelog symbols
+
+/**
+ * <h3>Sum of a series</h3>
+ *
+ * <p>
+ * Compute the nth partial sum of a series.
+ * </p>
+ * <p>
+ * For this task, use <code>S(x) = 1/x<sup>2</sup></code>, from 1 to 1000.
+ * (This approximates the Riemann zeta function. The Basel problem solved this: <code>ζ(2) = π<sup>2</sup>/6</code>.)
+ * </p>
+ */
+
+numeric digits 20
+
+sum = 0.0
+loop x_ = 1 to 1000
+  sum = sum + f(x_)
+  end x_
+
+say sum
+
+return
+
+method f(x) public static returns Rexx
+
+  return 1 / x ** 2
+

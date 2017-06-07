@@ -1,0 +1,12 @@
+--- Variables for class ClassExample ---
+aap   Rexx         v 23= 24
+args  String[]     a 13
+bar   boolean      p 8 17= 19
+baz   String       p 11= 16= 20
+clsex ClassExample v 14= 15 16 17 18 18 19 19 20 20
+foo   int          p 5 15= 18
+mies  Rexx         v 31= 32
+noot  Rexx         v 27= 28
+s     int          a 22 24
+s     String       a 26 28
+s     boolean      a 30 32

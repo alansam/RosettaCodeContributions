@@ -1,0 +1,6 @@
+--- Variables for class zArrays ---
+arry Rexx[] v 5= 9= 13 14
+i    Rexx   v 8= 9 9 10 10
+nums Rexx   v 4= 5 8 9 10 18
+stem Rexx   v 6= 10= 19
+x    Rexx   v 13= 14 14 18= 19 19

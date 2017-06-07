@@ -1,0 +1,22 @@
+/* NetRexx */
+
+options replace format comments java crossref savelog symbols
+
+/**
+ * In this task, the goal is to create an <a href="http://rosettacode.org/wiki/Associative_array">associative array</a>
+ * (also known as a dictionary, map, or hash).
+ *
+ * @author Alan Sampson
+ * @version 1.0
+ * @see <a href="http://rosettacode.org/wiki/Associative_arrays/Creation">rosettacode.org/wiki/Associative_arrays/Creation</a>
+ */
+
+key0 = '0'
+key1 = 'key0'
+
+hash = '.'            -- Initialize the associative array 'hash' to '.'
+hash[key1] = 'value0' -- Set a specific key/value pair
+
+say '<hash key="'key0'" value="'hash[key0]'" />' -- Display a value for a key that wasn't set
+say '<hash key="'key1'" value="'hash[key1]'" />' -- Display a value for a key that was set
+

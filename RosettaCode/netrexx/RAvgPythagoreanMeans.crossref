@@ -1,0 +1,11 @@
+--- Variables for class RAvgPythagoreanMeans ---
+a1      ArrayList      v 6= 7 7 7
+mean    Rexx           v 16= 19 19= 21
+mean    Rexx           v 28= 31 31= 33
+mean    Rexx           v 40= 44 44= 48
+number  Rexx           v 17 19
+number  Rexx           v 29 31
+number  Rexx           v 41 43 44
+numbers java.util.List a 12 14 18 21
+numbers java.util.List a 24 26 30 33
+numbers java.util.List a 36 38 42 48

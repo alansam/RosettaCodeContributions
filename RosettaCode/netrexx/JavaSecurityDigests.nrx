@@ -1,0 +1,44 @@
+/* NetRexx */
+options replace format comments java crossref savelog symbols binary
+
+import java.security.
+
+algorithms = Rexx 'MD2 MD5 SHA SHA1 SHA-1 SHA-256 SHA-384 SHA-512 MD4 RIPEMD-160'
+message = 'Rosetta Code'
+
+loop w_ = 1 to algorithms.words()
+  algorithm = algorithms.word(w_)
+  digest = getDigest(message, algorithm)
+  say algorithm
+  say '  'message
+  say '  'digest
+  say
+  end w_
+
+method getDigest(messageText = Rexx, algorithm = Rexx 'MD5', encoding = Rexx 'UTF-8', lowercase = boolean 1) public static returns Rexx
+
+  algorithm = algorithm.upper
+  encoding  = encoding.upper
+
+  message      = String(messageText)
+  messageBytes = byte[]
+  digestBytes  = byte[]
+  digestSum    = Rexx ''
+
+  do
+    messageBytes = message.getBytes(encoding)
+    md = MessageDigest.getInstance(algorithm)
+    md.update(messageBytes)
+    digestBytes = md.digest
+
+    loop b_ = 0 to digestBytes.length - 1
+      bb = Rexx(digestBytes[b_]).d2x(2)
+      if lowercase then digestSum = digestSum || bb.lower
+                   else digestSum = digestSum || bb.upper
+      end b_
+  catch ex = Exception
+    ex.printStackTrace
+  end
+  
+  return digestSum
+

@@ -1,0 +1,456 @@
+/* NetRexx */
+options replace format comments java crossref symbols nobinary
+
+import java.sql.
+import java.text.
+
+-- =============================================================================
+class RParameterizedSQL public
+
+  properties indirect
+    connexion = Connection
+
+  properties inheritable constant
+    CLASSNAME = RParameterizedSQL.class.getSimpleName()
+
+    DRIVER = "org.apache.derby.jdbc.EmbeddedDriver"
+    DBURL = "jdbc:derby:"
+    DBNAME = "/Users/alansampson/projects/eclipse/juno/workspace/DB.DerbySamples/DB/TEAMS01"
+    DBMODE_CREATE   = ";create=true"
+    DBMODE_NOCREATE = ";create=false"
+    DBMODE_SHUTDOWN = ";shutdown=true"
+    K_NL          = "\n";   K_HT          = "\t"
+    K_EMPTY       = "";     K_SPACE       = " "
+    K_COLON       = ":";    K_SEMICOLON   = ";"
+    K_COMMA       = ",";    K_DOT         = "."
+    K_DASH        = "-";    K_VBAR        = "|"
+    K_SLASH       = "/";    K_BACKSLASH   = "\\"; K_UNDERSCORE  = "_"
+    K_CARET       = "^";    K_TILDE       = "~"
+    K_QUESTION    = "?";    K_EXCLAMATION = "!";  K_PERCENT     = "%"; K_ASTERISK    = "*"; K_AMPERSAND   = "&"
+    K_AT          = "@";    K_HASH        = "#";  K_DOLLAR      = "$"
+    K_QUOTE       = "'";    K_DQUOTE      = "\""
+    K_GRAVE       = "`";    K_LT          = "<";  K_GT          = ">"; K_EQ          = "="; K_PLUS        = "+"
+    K_LBRACKET    = "[";    K_RBRACKET    = "]"
+    K_LBRACE      = "{";    K_RBRACE      = "}"
+    K_LPAREN      = "(";    K_RPAREN      = ")"
+    K_NUL_LC      = "null"; K_NUL_UC      = "NULL"
+
+
+-- =============================================================================
+method RParameterizedSQL()
+  setConnexion(null)
+  return
+
+-- =============================================================================
+method createConnexion() inheritable returns Connection
+  if getConnexion() = null then do
+    props = Properties()
+    props.put("user", "user1")
+    props.put("password", "user1")
+
+    xURL = String DBURL || DBNAME || DBMODE_CREATE
+    do
+      loadDriver(DRIVER)
+      setConnexion(DriverManager.getConnection(xURL, props))
+
+    catch ex = SQLException
+      printSQLException(ex)
+
+    catch cnfe = ClassNotFoundException
+      cnfe.printStackTrace()
+      setConnexion(null)
+
+    catch ie = InstantiationException
+      ie.printStackTrace()
+      setConnexion(null)
+
+    catch iae = IllegalAccessException
+      iae.printStackTrace()
+      setConnexion(null)
+    end
+    end
+
+  return getConnexion()
+
+-- =============================================================================
+method shutdownConnexion() inheritable returns boolean
+
+  dbState = boolean
+  xURL = String DBURL || DBNAME || DBMODE_SHUTDOWN
+
+  do
+    DriverManager.getConnection(xURL)
+    dbState = isTrue
+
+  catch se = SQLException
+    if (se.getErrorCode() = 50000) & ("XJ015".equals(se.getSQLState())) then do
+      say "Derby shut down normally"
+      dbState = isTrue
+      end
+    else if (se.getErrorCode() = 45000) & ("08006".equals(se.getSQLState())) then do
+      say "Derby database shut down normally"
+      dbState = isTrue
+      end
+    else do
+      say "Derby did not shut down normally"
+      printSQLException(se)
+      dbState = isFalse
+      end
+  end
+
+  return dbState
+
+-- =============================================================================
+method selectPlayers() inheritable returns java.util.List
+
+  selectSQL = "" -
+    || "SELECT * from TEAM.PLAYERS" -
+    || "  order by JERSEYNUM"
+
+  sresults = java.util.List
+  ps = PreparedStatement
+  rs = ResultSet
+
+  do
+    ps = getConnexion().prepareStatement(selectSQL)
+    rs = ps.executeQuery()
+
+    sresults = ArrayList()
+
+    loop while rs.next()
+      player = RParameterizedSQL.PlayersModel()
+      player.setFieldsFromResultSet(rs)
+      sresults.add(player)
+      end
+
+  catch se = SQLException
+    sresults = null
+    printSQLException(se)
+    
+  end
+
+  return sresults
+
+-- =============================================================================
+method insertPlayer(player = PlayersModel) inheritable returns int
+
+  insertSQL = "" -
+    || "INSERT INTO TEAM.PLAYERS" -
+    || "  (JERSEYNUM, NAME, POSITION, NATIONALITY, BIRTHPLACE, BIRTHDATE, STATUS, SCORE, ACTIVE)" -
+    || "  VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)"
+
+  rowCt = int
+
+  do
+    ix = int 0
+    ps = getConnexion().prepareStatement(insertSQL)
+    ix = ix + 1; ps.setInt(ix, player.getJerseyNum().intValue())
+    ix = ix + 1; ps.setString(ix, player.getName())
+    ix = ix + 1; ps.setString(ix, player.getPosition())
+    ix = ix + 1; ps.setString(ix, player.getNationality())
+    ix = ix + 1; ps.setString(ix, player.getBirthplace())
+    ix = ix + 1; ps.setDate(ix, player.getBirthdate())
+    ix = ix + 1; ps.setString(ix, player.getStatus())
+    ix = ix + 1; ps.setInt(ix, player.getScore().intValue())
+    ix = ix + 1; ps.setBoolean(ix, player.getActive().booleanValue())
+    rowCt = ps.executeUpdate()
+
+  catch ex = SQLException
+    rowCt = -1
+    printSQLException(ex)
+  end
+
+  return rowCt
+
+-- =============================================================================
+method deletePlayer(jerseyNum = Integer) inheritable returns int
+
+  deleteSQL = "" -
+    || "DELETE FROM TEAM.PLAYERS" -
+    || "  WHERE JERSEYNUM = ?"
+
+  rowCt = int
+  ix = 0
+
+  do
+    ps = getConnexion().prepareStatement(deleteSQL)
+    ix = ix + 1; ps.setInt(ix, jerseyNum.intValue())
+    rowCt = ps.executeUpdate()
+
+  catch ex = SQLException
+    rowCt = -1
+    printSQLException(ex)
+  end
+
+  return rowCt
+
+-- =============================================================================
+method updatePlayer(jerseyNum = Integer, name = String, score = Integer, active = Boolean) inheritable returns int
+
+  updateSQL = "" -
+    || "UPDATE TEAM.PLAYERS" -
+    || "  SET NAME = ?, SCORE = ?, ACTIVE = ?" -
+    || "  WHERE JERSEYNUM = ?"
+
+  rowCt = int
+  ix = int 0
+
+  do
+    ps = getConnexion().prepareStatement(updateSQL)
+    ix = ix + 1; ps.setString(ix, name)
+    ix = ix + 1; ps.setInt(ix, score.intValue())
+    ix = ix + 1; ps.setBoolean(ix, active.booleanValue())
+    ix = ix + 1; ps.setInt(ix, jerseyNum.intValue())
+    rowCt = ps.executeUpdate()
+
+  catch ex = SQLException
+    rowCt = -1
+    printSQLException(ex)
+  end
+
+  return rowCt
+
+-- =============================================================================
+method loadDriver(xdriver = String) inheritable static signals ClassNotFoundException, InstantiationException, IllegalAccessException
+
+  do
+    Class.forName(xdriver).newInstance()
+    say "Loaded the appropriate driver"
+
+  catch cnfe = ClassNotFoundException
+    say "Unable to load the JDBC driver" xdriver
+    say "Please check your CLASSPATH."
+    signal cnfe
+
+  catch ie = InstantiationException
+    say "Unable to instantiate the JDBC driver" xdriver
+    signal ie
+
+  catch iae = IllegalAccessException
+    say "Not allowed to access the JDBC driver" xdriver
+    signal iae
+
+  end
+
+  return
+
+-- =============================================================================
+method printSQLException(sex = SQLException) public static
+    loop while sex \= null
+      System.err.println("\n----- SQLException -----")
+      System.err.println("  SQL State: " sex.getSQLState())
+      System.err.println("  Error Code:" sex.getErrorCode())
+      System.err.println("  Message:   " sex.getMessage())
+      -- for stack traces uncomment this:
+      -- e.printStackTrace(System.err)
+      sex = sex.getNextException()
+      end
+    return
+
+-- =============================================================================
+method driver(args = String[]) public static
+
+  -- arg = Rexx(args)
+  tda = RParameterizedSQL()
+  tda.createConnexion()
+
+  if tda.getConnexion() \= null then do
+    do
+      players = tda.selectPlayers()
+      loop ix = 0 to players.size() - 1
+        player = players.get(ix)
+        say player.toString()
+        end ix
+      say
+
+      tda.deletePlayer(Integer(99))
+      players = tda.selectPlayers()
+      loop ix = 0 to players.size() - 1
+        player = players.get(ix)
+        say player.toString()
+        end ix
+      say
+
+      bday = java.sql.Date(SimpleDateFormat("yyyy-mm-dd").parse("2000-01-01").getTime())
+      updtPlayer = RParameterizedSQL.PlayersModel( -
+            null, -
+            Integer(99), -
+            "Rotten, Johnny", -
+            "FWD", -
+            "English", -
+            "London", -
+            bday, -
+            "Inactive", -
+            Integer(0), -
+            Boolean(isFalse))
+      tda.insertPlayer(updtPlayer)
+      players = tda.selectPlayers()
+      loop ix = 0 to players.size() - 1
+        player = players.get(ix)
+        say player.toString()
+        end ix
+      say
+
+      tda.updatePlayer(Integer(99), "Smith, Steve", Integer(42), Boolean(isTrue))
+      players = tda.selectPlayers()
+      loop ix = 0 to players.size() - 1
+        player = players.get(ix)
+        say player.toString()
+        end ix
+
+    finally
+      tda.shutdownConnexion()
+    end
+    end
+
+  return
+
+-- =============================================================================
+method main(args = String[]) public static
+
+  -- arg = Rexx(args)
+  driver(args)
+
+  return
+
+-- =============================================================================
+method toCSV(elmts = String[]) public static returns String
+  return toCSV(K_COMMA, K_DQUOTE, K_NUL_LC, elmts)
+
+-- =============================================================================
+method toCSV(dlm = Rexx, qwot = Rexx, elmts = String[]) public static returns String
+  return toCSV(dlm, qwot, K_NUL_LC, elmts)
+
+-- =============================================================================
+method toCSV(dlm = Rexx, qwot = Rexx, nulls = Rexx, elmts = String[]) public static returns String
+    if dlm = null then -
+      signal IllegalArgumentException("delimiter constant cannot be null")
+    if dlm.length() = 0 then -
+      signal IllegalArgumentException("delimiter constant cannot be empty")
+    if qwot == null then -
+      signal IllegalArgumentException("quote constant cannot be null")
+    if nulls == null then -
+      signal IllegalArgumentException("nulls constant cannot be null")
+    if elmts == null then -
+      signal IllegalArgumentException("elments array cannot be null")
+
+  sb = StringBuilder("")
+  loop elmt over elmts
+    sb.append(String dlm)
+    sb.append(String qwot)
+    sb.append(elmt.trim())
+    sb.append(String qwot)
+    end elmt
+  sb.deleteCharAt(int 0)
+
+  return sb.toString()
+
+-- =============================================================================
+method isTrue() public static returns boolean
+  return 1 == 1
+
+-- =============================================================================
+method isFalse() public static returns boolean
+  return \isTrue
+
+-- =============================================================================
+-- =============================================================================
+class RParameterizedSQL.PlayersModel --dependent
+
+  properties constant
+    CLASSNAME = PlayersModel.class.getSimpleName()
+
+  properties indirect
+    player_id   = Integer
+    jerseyNum   = Integer
+    name        = String
+    position    = String
+    nationality = String
+    birthplace  = String
+    birthdate   = java.sql.Date
+    status      = String
+    score       = Integer
+    active      = Boolean
+
+-- =============================================================================
+method PlayersModel( -
+    player_id_ = Integer, jerseyNum_ = Integer, name_ = String, position_ = String, nationality_ = String, -
+    birthplace_ = String, birthdate_ = java.sql.Date, status_ = String, score_ = Integer, active_ = Boolean -
+    ) public
+
+  setPlayer_id(player_id_)
+  setJerseyNum(jerseyNum_)
+  setName(name_)
+  setPosition(position_)
+  setNationality(nationality_)
+  setBirthplace(birthplace_)
+  setBirthdate(birthdate_)
+  setStatus(status_)
+  setScore(score_)
+  setActive(active_)
+
+  return
+
+-- =============================================================================
+method PlayersModel() public
+  this(null, null, null, null, null, null, null, null, null, null)
+  return
+
+-- =============================================================================
+method toString() public returns String
+
+  sb = StringBuilder()
+  sx = [ Object CLASSNAME, Integer(hashCode()) ]
+  classId = String.format("%s@%08x", sx)
+
+  sb.append(classId)
+  sb.append(String RParameterizedSQL.K_COLON)
+  sb.append(String RParameterizedSQL.K_SPACE)
+  sb.append(toCSV(RParameterizedSQL.K_COMMA, RParameterizedSQL.K_DQUOTE, RParameterizedSQL.K_EMPTY))
+
+  return sb.toString()
+
+-- =============================================================================
+method setFieldsFromResultSet(rs = ResultSet) signals SQLException
+
+  ix = int 0
+  ix = ix + 1; setPlayer_id(Integer(rs.getInt(ix)));
+  ix = ix + 1; setJerseyNum(Integer(rs.getInt(ix)));
+  ix = ix + 1; setName(rs.getString(ix));
+  ix = ix + 1; setPosition(rs.getString(ix));
+  ix = ix + 1; setNationality(rs.getString(ix));
+  ix = ix + 1; setBirthplace(rs.getString(ix));
+  ix = ix + 1; setBirthdate(rs.getDate(ix));
+  ix = ix + 1; setStatus(rs.getString(ix));
+  ix = ix + 1; setScore(Integer(rs.getInt(ix)));
+  ix = ix + 1; setActive(Boolean(rs.getBoolean(ix)));
+
+  return
+
+-- =============================================================================
+method toCSV(sep = Rexx, qwot = Rexx, nulls = Rexx) returns String
+
+  elmts = [ String                     -
+            getPlayer_id().toString(), -
+            getJerseyNum().toString(), -
+            getName(),                 -
+            getPosition(),             -
+            getNationality(),          -
+            getBirthplace(),           -
+            getBirthdate().toString(), -
+            getStatus(),               -
+            getScore().toString(),     -
+            getActive().toString()     -
+          ]
+  csv = RParameterizedSQL.toCSV(sep, qwot, nulls, elmts)
+
+  return csv
+
+-- =============================================================================
+method toCSV(sep = Rexx, qwot = Rexx) returns String
+  return toCSV(sep, qwot, RParameterizedSQL.K_NUL_LC)
+
+-- =============================================================================
+method toCSV() returns String
+  return toCSV(RParameterizedSQL.K_COMMA, RParameterizedSQL.K_DQUOTE, RParameterizedSQL.K_NUL_LC)
+

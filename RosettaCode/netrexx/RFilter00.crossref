@@ -1,0 +1,14 @@
+--- Variables for class RFilter00 ---
+arg   Rexx         v 8= 9
+arg   Rexx         a 13
+args  String[]     a 7 8
+clist ArrayList    v 21= 22 28 28 31 31
+e_    Rexx         v 24= 25
+e_    Rexx         v 51= 52 52
+i_    Rexx         v 40= 41
+li    ListIterator v 22= 23 24 25
+sd    Rexx[]       a 37 40 41
+sd    Rexx[]       v 50= 52= 55
+sd1   Rexx[]       v 15 19= 20 21 31= 32
+sd2   Rexx[]       v 16 28= 29
+size  Rexx         a 48 50 51

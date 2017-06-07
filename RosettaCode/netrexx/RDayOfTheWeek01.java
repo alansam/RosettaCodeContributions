@@ -1,0 +1,41 @@
+/* Generated from 'RDayOfTheWeek01.nrx' 15 Sep 2011 15:25:17 [v3.00] */
+/* Options: Comments Compact Crossref Decimal Format Java Replace Symbols Trace2 UTF8 Verbose3 */
+
+/* NetRexx */
+
+
+
+
+public class RDayOfTheWeek01{
+ private static final netrexx.lang.Rexx $01=netrexx.lang.Rexx.toRexx("Between");
+ private static final netrexx.lang.Rexx $02=netrexx.lang.Rexx.toRexx("and");
+ private static final netrexx.lang.Rexx $03=netrexx.lang.Rexx.toRexx("  ");
+ private static final java.lang.String $0="RDayOfTheWeek01.nrx";
+ 
+ public static void main(java.lang.String $0s[]){
+  int yearRanges[];
+  netrexx.lang.Rexx searchday;
+  java.util.Calendar cal=null;
+  netrexx.lang.Rexx year=null;
+  int dayIndex=0;
+  yearRanges=new int[]{new netrexx.lang.Rexx(2008).toint(),2121};
+  searchday=netrexx.lang.Rexx.toRexx("");
+  
+  
+  {netrexx.lang.Rexx $1=new netrexx.lang.Rexx(yearRanges[1]);year=new netrexx.lang.Rexx(yearRanges[0]).OpPlus(null);year:for(;year.OpLtEq(null,$1);year=year.OpAdd(null,new netrexx.lang.Rexx(1))){
+   cal=(java.util.Calendar)(new java.util.GregorianCalendar(year.toint(),java.util.Calendar.DECEMBER,25));
+   dayIndex=cal.get(java.util.Calendar.DAY_OF_WEEK);
+   if (new netrexx.lang.Rexx(dayIndex).OpEq(null,new netrexx.lang.Rexx(java.util.Calendar.SUNDAY))) 
+    searchday=searchday.OpCcblank(null,year);
+   }
+  }/*year*/
+  
+  netrexx.lang.RexxIO.Say(((($01.OpCcblank(null,new netrexx.lang.Rexx(yearRanges[0]))).OpCcblank(null,$02)).OpCcblank(null,new netrexx.lang.Rexx(yearRanges[1]))).OpCc(null,netrexx.lang.Rexx.toRexx(", Christmas day falls on a Sunday in the following years:")));
+  searchday=searchday.strip().changestr(new netrexx.lang.Rexx(' '),new netrexx.lang.Rexx(','));
+  netrexx.lang.RexxIO.Say($03.OpCc(null,searchday));
+  
+  return;
+  }
+ 
+ private RDayOfTheWeek01(){return;}
+ }

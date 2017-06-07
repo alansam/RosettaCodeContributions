@@ -1,0 +1,16 @@
+--- Variables for class RCCharacterMatching ---
+j_          Rexx    v 14= 15 16 17 19 20 21 31= 35 38
+k_          Rexx    v 33= 36 36= 38 38
+lipsum      Rexx    v 4= 6= 6= 7= 7 7= 14 15 16 17 19 20 21
+many        Rexx    v 24= 26= 26= 27= 27= 28= 28= 31 35 38
+o_          Rexx    v 32= 34 35 35= 36
+srch        Rexx    v 9= 10= 11= 12= 15 16 17 19 20 21 21 29= 35 38
+ss          Rexx    a 41 45
+state       boolean a 41 42
+testFailure Rexx    a 41 43
+testSuccess Rexx    a 41 42
+ts          Rexx    a 41 44
+x1          Rexx    v 15= 19
+x2          Rexx    v 16= 20 20
+x3          Rexx    v 17= 21
+x_          Rexx    v 5= 6 6= 6 6 7 7= 7 7 25= 26 26= 26 26 27 27= 27 27 28 28= 28 28

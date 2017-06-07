@@ -1,0 +1,3 @@
+--- Variables for class RDNSQuery ---
+addresses InetAddress[] v 18= 19
+ir        InetAddress   v 17 20 21 23 24

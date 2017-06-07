@@ -1,0 +1,20 @@
+--- Variables for class RSortingSelectionsort ---
+a          String[]       a 33 35 36
+a          java.util.List a 41 70
+al         java.util.List v 36= 37
+cl         String[]       v 24= 25 26
+ct         int            v 25= 26
+data       String[]       v 100= 164
+data       String[]       v 168= 220
+i_         int            v 78= 79 80
+iMin       int            v 74 77= 79 80= 83 85 86
+iPos       int            v 73 76= 77 78 83 84 85
+lists      String[,]      v 14= 23 24
+ln         int            v 23= 24
+n          int            v 71= 76 78
+placesList String[]       v 7= 15 16 16
+ra         ArrayList      v 70= 71 79 79 84 85 85 86 90
+riverData  String[]       v 12= 17 18 18
+rl         String[]       v 35= 37 39
+stateData  String[]       v 13= 19 20 20
+swap       Object         v 84= 86

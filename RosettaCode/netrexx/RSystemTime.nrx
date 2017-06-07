@@ -1,0 +1,23 @@
+/* NetRexx */
+
+options replace format comments java crossref savelog symbols binary
+
+/**
+ * Output the system time (any units will do as long as they are noted) either by a system command or one
+ * built into the language. The system time can be used for debugging, network information, random number
+ * seeds, or something as simple as program performance.
+ * <h5>See also</h5>
+ * <ul>
+ * <li><a href="http://rosettacode.org/wiki/Date_format">Date format</a></li>
+ * <li><a href="http://en.wikipedia.org/wiki/Time_(computing)#Retrieving_system_time">Retrieving system time (wiki)</a></li>
+ * </ul>
+ *
+ * @author Alan Sampson
+ * @version 1.0
+ * @see <a href="http://rosettacode.org/wiki/System_time">rosettacode.org/wiki/System_time</a>
+ */
+
+import java.text.SimpleDateFormat
+
+say SimpleDateFormat("yyyy-MM-dd-HH.mm.ss.SSS").format(Date())
+

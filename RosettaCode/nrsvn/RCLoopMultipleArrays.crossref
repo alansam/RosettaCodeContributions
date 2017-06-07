@@ -1,0 +1,14 @@
+--- Variables for class RCLoopMultipleArrays ---
+aa  Rexx[] v 5= 9 11
+ai  Rexx   v 30= 34 35
+arg Rexx   a 38 40 42
+ax  Rexx   v 11= 13= 26
+bb  Rexx[] v 6= 16
+bi  Rexx   v 31= 35
+bx  Rexx   v 16= 18= 26
+cc  Rexx[] v 7= 21
+ci  Rexx   v 32= 35
+cx  Rexx   v 21= 23= 26
+i_  Rexx   v 41= 42 42
+smp Rexx   v 39= 40= 41 42= 45
+x_  Rexx   v 9= 11 16 21 34= 35 35 35

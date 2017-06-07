@@ -1,0 +1,6 @@
+--- Variables for class RQueue ---
+a      Rexx       v 39= 41 44= 45
+line   Rexx       v 50= 51
+mqueue ArrayDeque v 35= 37 40 41 42 45 46 47 49 50 53
+mqueue Deque      a 57 59 63
+q_     Rexx       v 49= 51

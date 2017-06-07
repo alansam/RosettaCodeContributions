@@ -1,0 +1,43 @@
+/* NetRexx */
+options replace format comments java crossref symbols nobinary
+
+num = 0
+loop label running forever
+  say 'Provide an integer [or anything else to stop]:'
+  parse ask num .
+  if \num.datatype('w') then leave running
+  Loop j_ = 1 to num
+    say '   n = ' j_.right(6) "   divisors = " factors(j_)
+    End j_
+  end running
+
+return
+ 
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/*
+ * public static TreeSet<Long> factors(long n)
+ * {
+ *  TreeSet<Long> factors = new TreeSet<Long>();
+ *  factors.add(n);
+ *  factors.add(1L);
+ *  for(long test = n - 1; test >= Math.sqrt(n); test--)
+ *   if(n % test == 0)
+ *   {
+ *    factors.add(test);
+ *    factors.add(n / test);
+ *   }
+ *  return factors;
+ * }
+ */
+method factors(n) public static returns Set
+  factors = TreeSet()
+  factors.add(Long(n))
+  factors.add(Long(1))
+  loop test = n - 1 by -1 while test >= Math.sqrt(n)
+    if n // test = 0 then do
+      factors.add(Long(test))
+      factors.add(Long(n % test))
+      end
+    end test
+  return factors
+

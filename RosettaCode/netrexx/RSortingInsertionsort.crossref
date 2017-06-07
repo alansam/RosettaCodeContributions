@@ -1,0 +1,17 @@
+--- Variables for class RSortingInsertionsort ---
+A          String[]       a 34 36 37
+A          java.util.List a 42 59 60 63 64 64 67 70
+al         java.util.List v 37= 38
+cl         String[]       v 25= 26 27
+ct         int            v 26= 27
+data       String[]       v 80= 144
+data       String[]       v 148= 200
+i_         int            v 59= 60 61
+j_         int            v 61= 62 63 64 64 65 65= 67
+lists      String[,]      v 15= 24 25
+ln         int            v 24= 25
+placesList String[]       v 7= 16 17 17
+riverData  String[]       v 13= 18 19 19
+rl         String[]       v 36= 38 40
+stateData  String[]       v 14= 20 21 21
+value      Object         v 60= 63 67

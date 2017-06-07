@@ -1,0 +1,4 @@
+--- Variables for class RUserInputText ---
+checkVal Rexx v 4= 5 11 15
+inNumber Rexx v 7= 10 11 15
+inString Rexx v 6= 9

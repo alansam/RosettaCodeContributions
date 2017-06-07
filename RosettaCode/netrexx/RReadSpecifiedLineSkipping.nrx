@@ -1,0 +1,97 @@
+/* NetRexx */
+options replace format comments java crossref symbols nobinary
+
+parse arg inFileName lineNr .
+
+if inFileName = '' | inFileName = '.' then inFileName = '/Users/alansampson/apache/logging/apache-log4j/site/manual.html'
+if lineNr     = '' | lineNr     = '.' then lineNr     = 7
+
+do
+  lineTxt = readLine(inFileName, lineNr)
+  say '<textline number="'lineNr.right(5, 0)'">'lineTxt'</textline>'
+catch ex = Exception
+  ex.printStackTrace()
+end
+
+return
+
+-- =============================================================================
+-- NetRexx/Java programs don't have a special mechanism to seek to a specified line number
+-- the simple solution is to iterate through file but we can use mark and skip on a
+-- buffered reader to home in on the required record.
+method readLine(inFileName, lineNr) public static signals IOException, FileNotFoundException
+
+  K1 = 1024
+  K4 = K1 * 4
+  avgLL = 60
+  skip = lineNr * avgLL -- guess initial position
+  skipK = skip * 10
+  lnt = ''
+  lnr = -1
+  chskip = 0
+  rangeLocated = isFalse()
+
+  lineReader = LineNumberReader(FileReader(File(inFileName)), K4)
+
+  lineReader.mark(skipK) -- mark begining of file
+  loop until rangeLocated
+    lnt = lineReader.readLine()
+    lnr = lineReader.getLineNumber()
+    select
+      when lnt = null then do
+        lnt = 'EOF'
+        lineReader.reset()
+        skip = skip - (100 * avgLL) -- have another guess
+        end
+      when lnr > lineNr then do
+        lineReader.reset()
+        skip = skip - (100 * avgLL) -- have another guess
+        if skip < 0 then skip = avgLL
+        lineReader.mark(skipK)
+        end
+      when lnr <= lineNr & lineNr - lnr < 100 then do
+        rangeLocated = isTrue()
+        lineReader.reset()
+        skip = 0
+        end
+      otherwise do
+        lineReader.reset()
+        skip = skip + (50 * avgLL) -- have another guess
+        if skip < 0 then skip = avgLL
+        lineReader.mark(skipK)
+        end
+      end
+    say skip.right(6) chskip.right(6) lnr.right(6) lnt
+    chskip = lineReader.skip(skip)
+    end
+
+  notFound   = isTrue
+  lineTxt    = ''
+  loop label reading forever
+    line = lineReader.readLine()
+    select
+      when lineReader.getLineNumber() = lineNr then do
+        lineTxt  = line
+        notFound = isFalse
+        leave reading -- terminate I/O loop
+        end
+      when line = null then do
+        leave reading -- terminate I/O loop
+        end
+      otherwise nop
+      end
+    finally
+      lineReader.close()
+    end reading
+
+  if notFound then signal RuntimeException('File' inFileName 'does not contain line' lineNr.right(5))
+
+  return lineTxt
+
+-- =============================================================================
+method isTrue() public static returns boolean
+  return 1 == 1
+-- =============================================================================
+method isFalse() public static returns boolean
+  return \(1 == 1)
+

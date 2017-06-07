@@ -1,0 +1,452 @@
+/* NetRexx */
+options replace format comments java crossref symbols
+
+numeric digits 20
+
+runSample(arg)
+return
+
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/*
+  +  Kelvin               Celsius        Fahrenheit      Rankine             Delisle        Newton            Réaumur        Rømer
+  K  T                    T-273.15       T*9/5-459.67    T*9/5               (373.15-T)*3/2 (T-273.15)*33/100 (T-273.15)*4/5 (T-273.15)*21/40+7.5
+  C  T+273.15             T              T*9/5+32        (T+273.15)*9/5      (100-T)*3/2    T*33/100          T*4/5          T*21/40+7.5
+  F  (T+459.67)*5/9       (T-32)*5/9     T               T+459.67            (212-T)*5/6    (T-32)*11/60      (T-32)*4/9     (T-32)*7/24+7.5
+  R  T*5/9                (T-491.67)*5/9 T-459.67        T                   (671.67-T)*5/6 (T-491.67)*11/60  (T-491.67)*4/9 (T-491.67)*7/24+7.5
+  De 373.15-T*2/3         100-T*2/3      212-T*6/5       671.67-T*6/5        T              33-T*11/50        80-T*8/15      60-T*7/20
+  N  T*100/33+273.15      T*100/33       T*60/11+32      T*60/11+491.67      (33-T)*50/11   T                 T*80/33        T*35/22+7.5
+  Ré T*5/4+273.15         T*5/4          T*9/4+32        T*9/4+491.67        (80-T)*15/8    T*33/80           T              T*21/32+7.5
+  Rø (T-7.5)*40/21+273.15 (T-7.5)*40/21  (T-7.5)*24/7+32 (T-7.5)*24/7+491.67 (60-T)*20/7    (T-7.5)*22/35     (T-7.5)*32/21  T
+ */
+method temperatureConversion(scaleFrom, scaleTo, T) public static
+
+  parse 'KELVIN CELSIUS FAHRENHEIT RANKINE DELISLE NEWTON REAUMUR ROEMER' -
+         KELVIN CELSIUS FAHRENHEIT RANKINE DELISLE NEWTON REAUMUR ROEMER .
+  scaleFrom = scaleFrom.upper()
+  scaleTo   = scaleTo.upper()
+  select label sF case scaleFrom
+    when KELVIN then do
+      select case scaleTo
+        when KELVIN     then val = T
+        when CELSIUS    then val = T - 273.15
+        when FAHRENHEIT then val = T * 9 / 5 - 459.67
+        when RANKINE    then val = T * 9 / 5
+        when DELISLE    then val = (373.15 - T) * 3 / 2
+        when NEWTON     then val = (T - 273.15) * 33 / 100
+        when REAUMUR    then val = (T - 273.15) * 4 / 5
+        when ROEMER     then val = (T - 273.15) * 21 / 40 + 7.5
+        otherwise       signal IllegalArgumentException(scaleFrom',' scaleTo',' T)
+        end
+      end
+    when CELSIUS then do
+      select case scaleTo
+        when KELVIN     then val = T + 273.15
+        when CELSIUS    then val = T
+        when FAHRENHEIT then val = T * 9 / 5 + 32
+        when RANKINE    then val = (T + 273.15) * 9 / 5
+        when DELISLE    then val = (100 - T) * 3 / 2
+        when NEWTON     then val = T * 33 / 100
+        when REAUMUR    then val = T * 4 / 5
+        when ROEMER     then val = T * 21 / 40 + 7.5
+        otherwise       signal IllegalArgumentException(scaleFrom',' scaleTo',' T)
+        end
+      end
+    when FAHRENHEIT then do
+      select case scaleTo
+        when KELVIN     then val = (T + 459.67) * 5 / 9
+        when CELSIUS    then val = (T - 32) * 5 / 9
+        when FAHRENHEIT then val = T
+        when RANKINE    then val = T + 459.67
+        when DELISLE    then val = (212 - T) * 5 / 6
+        when NEWTON     then val = (T - 32) * 11 / 60
+        when REAUMUR    then val = (T - 32) * 4 / 9
+        when ROEMER     then val = (T - 32) * 7 / 24 + 7.5
+        otherwise       signal IllegalArgumentException(scaleFrom',' scaleTo',' T)
+        end
+      end
+    when RANKINE then do
+      select case scaleTo
+        when KELVIN     then val = T * 5 / 9
+        when CELSIUS    then val = (T - 491.67) * 5 / 9
+        when FAHRENHEIT then val = T - 459.67
+        when RANKINE    then val = T
+        when DELISLE    then val = (671.67 - T) * 5 / 6
+        when NEWTON     then val = (T - 491.67) * 11 / 60
+        when REAUMUR    then val = (T - 491.67) * 4 / 9
+        when ROEMER     then val = (T - 491.67) * 7 / 24 + 7.5
+        otherwise       signal IllegalArgumentException(scaleFrom',' scaleTo',' T)
+        end
+      end
+    when DELISLE then do
+      select case scaleTo
+        when KELVIN     then val = 373.15 - T * 2 / 3
+        when CELSIUS    then val = 100 - T * 2 / 3
+        when FAHRENHEIT then val = 212 - T * 6 / 5
+        when RANKINE    then val = 671.67 - T * 6 / 5
+        when DELISLE    then val = T
+        when NEWTON     then val = 33 - T * 11 / 50
+        when REAUMUR    then val = 80 - T * 8 / 15
+        when ROEMER     then val = 60 - T * 7 / 20
+        otherwise       signal IllegalArgumentException(scaleFrom',' scaleTo',' T)
+        end
+      end
+    when NEWTON then do
+      select case scaleTo
+        when KELVIN     then val = T * 100 / 33 + 273.15
+        when CELSIUS    then val = T * 100 / 33
+        when FAHRENHEIT then val = T * 60 / 11 + 32
+        when RANKINE    then val = T * 60 / 11 + 491.67
+        when DELISLE    then val = (33 - T) * 50 / 11
+        when NEWTON     then val = T
+        when REAUMUR    then val = T * 80 / 33
+        when ROEMER     then val = T * 35 / 22 + 7.5
+        otherwise       signal IllegalArgumentException(scaleFrom',' scaleTo',' T)
+        end
+      end
+    when REAUMUR then do
+      select case scaleTo
+        when KELVIN     then val = T * 5 / 4 + 273.15
+        when CELSIUS    then val = T * 5 / 4
+        when FAHRENHEIT then val = T * 9 / 4 + 32
+        when RANKINE    then val = T * 9 / 4 + 491.67
+        when DELISLE    then val = (80 - T) * 15 / 8
+        when NEWTON     then val = T * 33 / 80
+        when REAUMUR    then val = T
+        when ROEMER     then val = T * 21 / 32 + 7.5
+        otherwise       signal IllegalArgumentException(scaleFrom',' scaleTo',' T)
+        end
+      end
+    when ROEMER then do
+      select case scaleTo
+        when KELVIN     then val = (T - 7.5) * 40 / 21 + 273.15
+        when CELSIUS    then val = (T - 7.5) * 40 / 21
+        when FAHRENHEIT then val = (T - 7.5) * 24 / 7 + 32
+        when RANKINE    then val = (T - 7.5) * 24 / 7 + 491.67
+        when DELISLE    then val = (60 - T) * 20 / 7
+        when NEWTON     then val = (T - 7.5) * 22 / 35
+        when REAUMUR    then val = (T - 7.5) * 32 / 21
+        when ROEMER     then val = T
+        otherwise       signal IllegalArgumentException(scaleFrom',' scaleTo',' T)
+        end
+      end
+    otherwise
+      signal IllegalArgumentException(scaleFrom',' scaleTo',' T)
+    end sF
+
+  return val
+
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-- Kelvin
+method K2K(T) public static
+  return temperatureConversion('KELVIN', 'KELVIN',     T) /*T*/
+
+method K2C(T) public static
+  return temperatureConversion('KELVIN', 'CELSIUS',    T) /*T - 273.15*/
+
+method K2F(T) public static
+  return temperatureConversion('KELVIN', 'FAHRENHEIT', T) /*T * 9 / 5 - 459.67*/
+
+method K2R(T) public static
+  return temperatureConversion('KELVIN', 'RANKINE',    T) /*T * 9 / 5*/
+
+method K2De(T) public static
+  return temperatureConversion('KELVIN', 'DELISLE',    T) /*(373.15 - T) * 3 / 2*/
+
+method K2N(T) public static
+  return temperatureConversion('KELVIN', 'NEWTON',     T) /*(T - 273.15) * 33 / 100*/
+
+method K2Re(T) public static
+  return temperatureConversion('KELVIN', 'REAUMUR',    T) /*(T - 273.15) * 4 / 5*/
+
+method K2Ro(T) public static
+  return temperatureConversion('KELVIN', 'ROEMER',     T) /*(T - 273.15) * 21 / 40 + 7.5*/
+
+-- Celsius
+method C2C(T) public static
+  return temperatureConversion('CELSIUS', 'CELSIUS',    T) /*T*/
+
+method C2K(T) public static
+  return temperatureConversion('CELSIUS', 'KELVIN',     T) /*T + 273.15*/
+
+method C2F(T) public static
+  return temperatureConversion('CELSIUS', 'FAHRENHEIT', T) /*T * 9 / 5 + 32*/
+
+method C2R(T) public static
+  return temperatureConversion('CELSIUS', 'RANKINE',    T) /*(T + 273.15) * 9 / 5*/
+
+method C2De(T) public static
+  return temperatureConversion('CELSIUS', 'DELISLE',    T) /*(100 - T) * 3 / 2*/
+
+method C2N(T) public static
+  return temperatureConversion('CELSIUS', 'NEWTON',     T) /*T * 33 / 100*/
+
+method C2Re(T) public static
+  return temperatureConversion('CELSIUS', 'REAUMUR',    T) /*T * 4 / 5*/
+
+method C2Ro(T) public static
+  return temperatureConversion('CELSIUS', 'ROEMER',     T) /*T * 21 / 40 + 7.5*/
+
+-- Fahrenheit
+method F2F(T) public static
+  return temperatureConversion('FAHRENHEIT', 'FAHRENHEIT',  T) /*T*/
+
+method F2K(T) public static
+  return temperatureConversion('FAHRENHEIT', 'KELVIN',      T) /*(T + 459.67) * 5 / 9*/
+
+method F2C(T) public static
+  return temperatureConversion('FAHRENHEIT', 'CELSIUS',     T) /*(T - 32) * 5 / 9*/
+
+method F2R(T) public static
+  return temperatureConversion('FAHRENHEIT', 'RANKINE',     T) /*T + 459.67*/
+
+method F2De(T) public static
+  return temperatureConversion('FAHRENHEIT', 'DELISLE',     T) /*(212 - T) * 5 / 6*/
+
+method F2N(T) public static
+  return temperatureConversion('FAHRENHEIT', 'NEWTON',      T) /*(T - 32) * 11 / 60*/
+
+method F2Re(T) public static
+  return temperatureConversion('FAHRENHEIT', 'REAUMUR',     T) /*(T - 32) * 4 / 9*/
+
+method F2Ro(T) public static
+  return temperatureConversion('FAHRENHEIT', 'ROEMER',      T) /*(T - 32) * 7 / 24 + 7.5*/
+
+-- Rankine
+method R2R(T) public static
+  return temperatureConversion('RANKINE', 'RANKINE',    T) /*T*/
+
+method R2K(T) public static
+  return temperatureConversion('RANKINE', 'KELVIN',     T) /*T * 5 / 9*/
+
+method R2C(T) public static
+  return temperatureConversion('RANKINE', 'CELSIUS',    T) /*(T - 491.67) * 5 / 9*/
+
+method R2F(T) public static
+  return temperatureConversion('RANKINE', 'FAHRENHEIT', T) /*T - 459.67*/
+
+method R2De(T) public static
+  return temperatureConversion('RANKINE', 'DELISLE',    T) /*(671.67 - T) * 5 / 6*/
+
+method R2N(T) public static
+  return temperatureConversion('RANKINE', 'NEWTON',     T) /*(T - 491.67) * 11 / 60*/
+
+method R2Re(T) public static
+  return temperatureConversion('RANKINE', 'REAUMUR',    T) /*(T - 491.67) * 4 / 9*/
+
+method R2Ro(T) public static
+  return temperatureConversion('RANKINE', 'ROEMER',     T) /*(T - 491.67) * 7 / 24 + 7.5*/
+
+-- Delisle
+method De2De(T) public static
+  return temperatureConversion('DELISLE', 'DELISLE',    T) /*T*/
+
+method De2K(T) public static
+  return temperatureConversion('DELISLE', 'KELVIN',     T) /*373.15 - T * 2 / 3*/
+
+method De2C(T) public static
+  return temperatureConversion('DELISLE', 'CELSIUS',    T) /*100 - T * 2 / 3*/
+
+method De2F(T) public static
+  return temperatureConversion('DELISLE', 'FAHRENHEIT', T) /*212 - T * 6 / 5*/
+
+method De2R(T) public static
+  return temperatureConversion('DELISLE', 'RANKINE',    T) /*671.67 - T * 6 / 5*/
+
+method De2N(T) public static
+  return temperatureConversion('DELISLE', 'NEWTON',     T) /*33 - T * 11 / 50*/
+
+method De2Re(T) public static
+  return temperatureConversion('DELISLE', 'REAUMUR',    T) /*80 - T * 8 / 15*/
+
+method De2Ro(T) public static
+  return temperatureConversion('DELISLE', 'ROEMER',     T) /*60 - T * 7 / 20*/
+
+-- Newton
+method N2N(T) public static
+  return temperatureConversion('NEWTON', 'NEWTON',     T) /*T*/
+
+method N2K(T) public static
+  return temperatureConversion('NEWTON', 'KELVIN',     T) /*T * 100 / 33 + 273.15*/
+
+method N2C(T) public static
+  return temperatureConversion('NEWTON', 'CELSIUS',    T) /*T * 100 / 33*/
+
+method N2F(T) public static
+  return temperatureConversion('NEWTON', 'FAHRENHEIT', T) /*T * 60 / 11 + 32*/
+
+method N2R(T) public static
+  return temperatureConversion('NEWTON', 'RANKINE',    T) /*T * 60 / 11 + 491.67*/
+
+method N2De(T) public static
+  return temperatureConversion('NEWTON', 'DELISLE',    T) /*(33 - T) * 50 / 11*/
+
+method N2Re(T) public static
+  return temperatureConversion('NEWTON', 'REAUMUR',    T) /*T * 80 / 33*/
+
+method N2Ro(T) public static
+  return temperatureConversion('NEWTON', 'ROEMER',     T) /*T * 35 / 22 + 7.5*/
+
+-- Réaumur
+method Re2Re(T) public static
+  return temperatureConversion('REAUMUR', 'REAUMUR',    T) /*T*/
+
+method Re2K(T) public static
+  return temperatureConversion('REAUMUR', 'KELVIN',     T) /*T * 5 / 4 + 273.15*/
+
+method Re2C(T) public static
+  return temperatureConversion('REAUMUR', 'CELSIUS',    T) /*T * 5 / 4*/
+
+method Re2F(T) public static
+  return temperatureConversion('REAUMUR', 'FAHRENHEIT', T) /*T * 9 / 4 + 32*/
+
+method Re2R(T) public static
+  return temperatureConversion('REAUMUR', 'RANKINE',    T) /*T * 9 / 4 + 491.67*/
+
+method Re2De(T) public static
+  return temperatureConversion('REAUMUR', 'DELISLE',    T) /*(80 - T) * 15 / 8*/
+
+method Re2N(T) public static
+  return temperatureConversion('REAUMUR', 'NEWTON',     T) /*T * 33 / 80*/
+
+method Re2Ro(T) public static
+  return temperatureConversion('REAUMUR', 'ROEMER',     T) /*T * 21 / 32 + 7.5*/
+
+-- Rømer
+method Ro2Ro(T) public static
+  return temperatureConversion('ROEMER', 'ROEMER',     T) /*T*/
+
+method Ro2K(T) public static
+  return temperatureConversion('ROEMER', 'KELVIN',     T) /*(T - 7.5) * 40 / 21 + 273.15*/
+
+method Ro2C(T) public static
+  return temperatureConversion('ROEMER', 'CELSIUS',    T) /*(T - 7.5) * 40 / 21*/
+
+method Ro2F(T) public static
+  return temperatureConversion('ROEMER', 'FAHRENHEIT', T) /*(T - 7.5) * 24 / 7 + 32*/
+
+method Ro2R(T) public static
+  return temperatureConversion('ROEMER', 'RANKINE',    T) /*(T - 7.5) * 24 / 7 + 491.67*/
+
+method Ro2De(T) public static
+  return temperatureConversion('ROEMER', 'DELISLE',    T) /*(60 - T) * 20 / 7*/
+
+method Ro2N(T) public static
+  return temperatureConversion('ROEMER', 'NEWTON',     T) /*(T - 7.5) * 22 / 35*/
+
+method Ro2Re(T) public static
+  return temperatureConversion('ROEMER', 'REAUMUR',    T) /*(T - 7.5) * 32 / 21*/
+
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+method runSample(arg) public static
+
+  tlist = [ -
+  /* C....... F....... K....... R....... De...... N....... Ré...... Rø......*/ -
+    ' 5500.00  9932.00  5773.15 10391.67 -8100.00  1815.00  4400.00  2895.00', -
+    '  300.00   572.00   573.15  1031.67  -300.00    99.00   240.00   165.00', -
+    '  200.00   392.00   473.15   851.67  -150.00    66.00   160.00   112.50', -
+    '  100.00   212.00   373.15   671.67     0.00    33.00    80.00    60.00', -
+    '   37.00    98.60   310.15   558.27    94.50    12.21    29.60    26.93', -
+    '    0.00    32.00   273.15   491.67   150.00     0.00     0.00     7.50', -
+    ' -100.00  -148.00   173.15   311.67   300.00   -33.00   -80.00   -45.00', -
+    ' -200.00  -328.00    73.15   131.67   450.00   -66.00  -160.00   -97.50', -
+    ' -252.15  -421.87    21.00    37.80   528.23   -83.21  -201.72  -124.88', -
+    ' -273.15  -459.67     0.00     0.00   559.73   -90.14  -218.52  -135.90'  -
+    ]
+  
+  loop temp over tlist
+    parse temp ttC ttF ttK ttR ttDe ttN ttRe ttRo .
+    say '   C....... F....... K....... R....... De...... N....... Ré...... Rø......'
+    say 'C ' -
+        C2C(ttC).format(5, 2) -
+        C2F(ttC).format(5, 2) -
+        C2K(ttC).format(5, 2) -
+        C2R(ttC).format(5, 2) -
+        C2De(ttC).format(5, 2) -
+        C2N(ttC).format(5, 2) -
+        C2Re(ttC).format(5, 2) -
+        C2Ro(ttC).format(5, 2)
+  
+    say 'F ' -
+        F2C(ttF).format(5, 2) -
+        F2F(ttF).format(5, 2) -
+        F2K(ttF).format(5, 2) -
+        F2R(ttF).format(5, 2) -
+        F2De(ttF).format(5, 2) -
+        F2N(ttF).format(5, 2) -
+        F2Re(ttF).format(5, 2) -
+        F2Ro(ttF).format(5, 2)
+  
+    say 'K ' -
+        K2C(ttK).format(5, 2) -
+        K2F(ttK).format(5, 2) -
+        K2K(ttK).format(5, 2) -
+        K2R(ttK).format(5, 2) -
+        K2De(ttK).format(5, 2) -
+        K2N(ttK).format(5, 2) -
+        K2Re(ttK).format(5, 2) -
+        K2Ro(ttK).format(5, 2)
+  
+    say 'R ' -
+        R2C(ttR).format(5, 2) -
+        R2F(ttR).format(5, 2) -
+        R2K(ttR).format(5, 2) -
+        R2R(ttR).format(5, 2) -
+        R2De(ttR).format(5, 2) -
+        R2N(ttR).format(5, 2) -
+        R2Re(ttR).format(5, 2) -
+        R2Ro(ttR).format(5, 2)
+  
+    say 'De' -
+        De2C(ttDe).format(5, 2) -
+        De2F(ttDe).format(5, 2) -
+        De2K(ttDe).format(5, 2) -
+        De2R(ttDe).format(5, 2) -
+        De2De(ttDe).format(5, 2) -
+        De2N(ttDe).format(5, 2) -
+        De2Re(ttDe).format(5, 2) -
+        De2Ro(ttDe).format(5, 2)
+  
+    say 'N ' -
+        N2C(ttN).format(5, 2) -
+        N2F(ttN).format(5, 2) -
+        N2K(ttN).format(5, 2) -
+        N2R(ttN).format(5, 2) -
+        N2De(ttN).format(5, 2) -
+        N2N(ttN).format(5, 2) -
+        N2Re(ttN).format(5, 2) -
+        N2Ro(ttN).format(5, 2)
+  
+    say 'Ré' -
+        Re2C(ttRe).format(5, 2) -
+        Re2F(ttRe).format(5, 2) -
+        Re2K(ttRe).format(5, 2) -
+        Re2R(ttRe).format(5, 2) -
+        Re2De(ttRe).format(5, 2) -
+        Re2N(ttRe).format(5, 2) -
+        Re2Re(ttRe).format(5, 2) -
+        Re2Ro(ttRe).format(5, 2)
+  
+    say 'Rø' -
+        Ro2C(ttRo).format(5, 2) -
+        Ro2F(ttRo).format(5, 2) -
+        Ro2K(ttRo).format(5, 2) -
+        Ro2R(ttRo).format(5, 2) -
+        Ro2De(ttRo).format(5, 2) -
+        Ro2N(ttRo).format(5, 2) -
+        Ro2Re(ttRo).format(5, 2) -
+        Ro2Ro(ttRo).format(5, 2)
+    say
+    end temp
+  
+  do
+    say temperatureConversion('Klatch', 'celcius', 100)
+  catch ex1 = IllegalArgumentException
+    ex1.printStackTrace()
+  end
+  do
+    say temperatureConversion('fahrenheit', 'Klatch', 100)
+  catch ex1 = IllegalArgumentException
+    ex1.printStackTrace()
+  end
+  return
+

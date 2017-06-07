@@ -1,0 +1,40 @@
+--- Variables for class RCCaesar ---
+caps     boolean a 36 46
+caps     boolean a 52 54
+caps     boolean a 56
+caps     boolean v 78= 79= 81
+cipher   Rexx    v 48= 50
+dc       Rexx    v 15= 18 23= 26
+ec       Rexx    v 14= 15 17 22= 23 25
+idx      int     a 36 38 38 42
+idx      int     a 52 54
+idx      int     a 56 58
+idx      int     a 60 62
+idx      int     a 64 66
+idx      int     a 68 70
+idx      int     a 72 74
+idx      int     a 76 81
+idx      int     a 83 85
+in       Rexx    v 11= 14 16 22 24
+input    Rexx    a 32 34
+input    Rexx    a 36 46 46= 48
+input    Rexx    a 52 54
+input    Rexx    a 56 58
+input    Rexx    a 60 62
+input    Rexx    a 64 66
+input    Rexx    a 68 70
+input    Rexx    a 72 74
+input    Rexx    a 76 81
+input    Rexx    a 83 85
+itab     Rexx    v 41= 42 43 48 48
+k_       Rexx    v 12= 13 14 15
+keys     Rexx[]  v 8= 12 13 14 15
+m_       Rexx    v 10= 11
+messages Rexx[]  v 4= 10 11
+opt      Rexx    a 68 70
+opt      Rexx    a 72 74
+opt      Rexx    a 76 78
+otab     Rexx    v 44= 48 48
+shift    Rexx    v 42= 43
+tl       Rexx    v 43= 44
+tr       Rexx    v 43= 44

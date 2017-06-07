@@ -1,0 +1,10 @@
+--- Variables for class RCharacterCodes ---
+arg  Rexx a 4= 4
+arg  Rexx a 8
+cc   Rexx v 16= 17 18 21
+cd   Rexx v 17= 19 21
+ci   Rexx v 15= 16 21
+cx   Rexx v 18= 20 21
+dc   Rexx v 19= 21
+samp Rexx v 10= 12 15 16
+xc   Rexx v 20= 21

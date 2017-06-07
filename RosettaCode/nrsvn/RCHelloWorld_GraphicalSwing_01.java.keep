@@ -1,0 +1,20 @@
+/* Generated from 'RCHelloWorld_GraphicalSwing_01.nrx' 12 Jul 2011 20:51:40 [v3.00] */
+/* Options: Binary Comments Crossref Decimal Format Java Logo Replace Symbols Trace2 Verbose3 */
+
+/* NetRexx */
+
+
+
+
+
+public class RCHelloWorld_GraphicalSwing_01{
+ private static final java.lang.String $0="RCHelloWorld_GraphicalSwing_01.nrx";
+ 
+ public static void main(java.lang.String $0s[]){
+  java.lang.String msgText;
+  msgText="Goodbye, World!";
+  javax.swing.JOptionPane.showMessageDialog((java.awt.Component)null,(java.lang.Object)msgText);
+  return;}
+ 
+ private RCHelloWorld_GraphicalSwing_01(){return;}
+ }

@@ -1,0 +1,27 @@
+/* NetRexx */
+options replace format comments java crossref symbols nobinary
+
+numeric digits 100
+
+nums = [0x200000, 0x1fffff, 0x2000000000, 0x1fffffffff, 2097153, 2097150, 17x8000000000000000, 17xffffffffffffffff]
+
+loop num over nums
+  octets = getOctets(num)
+  renum  = octets.space(0).x2d()
+  if num == renum then vv = 'true'
+                  else vv = 'false'
+  say num.right(24) num.d2x().right(30) octets.right(30) renum.right(24) vv
+  end num
+
+return
+
+method getOctets(num) public static
+  hex = num.d2x()
+
+  octets = ''
+  loop p_ = hex.length to 1 by -2
+    octets = hex.substr(p_ - 1, 2, 0) octets
+    end p_
+
+  return octets
+

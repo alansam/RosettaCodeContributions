@@ -1,0 +1,10 @@
+--- Variables for class RFileIO01 ---
+arg         Rexx        a 6= 6
+fileOctets  byte[]      v 20= 21
+infile      Path        v 18= 20
+infileName  Rexx        v 6= 8 8 8= 11
+infileName  Rexx        a 15 18
+ioex        IOException v 23= 24
+outfile     Path        v 19= 21
+outfileName Rexx        v 6= 9 9 9= 11
+outfileName Rexx        a 15 19

@@ -1,0 +1,11 @@
+--- Variables for class RCFactorial ---
+ex      Exception v 15= 16
+fact    Rexx      v 28= 30= 33
+fact    Rexx      v 37= 39 39= 42
+fact    Rexx      v 47= 49= 51
+fmethod Rexx      a 21= 27
+i_      Rexx      v 38= 39
+n_      long      v 10= 12 12 13 13
+n_      long      a 21 23 24 28 30
+n_      long      a 35 38
+n_      long      a 44 46 47 47

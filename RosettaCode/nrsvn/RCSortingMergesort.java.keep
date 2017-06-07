@@ -1,0 +1,127 @@
+/* Generated from 'RCSortingMergesort.nrx' 21 Sep 2011 23:56:54 [v3.00] */
+/* Options: Binary Comments Crossref Decimal Format Java Logo Replace Symbols Trace2 Verbose3 */
+
+/* NetRexx */
+
+
+
+
+
+public class RCSortingMergesort{
+ private static final java.lang.String $0="RCSortingMergesort.nrx";
+ 
+ public static void main(java.lang.String $0s[]){
+  java.lang.String placesList[];
+  java.lang.String lists[][];
+  int ln=0;
+  java.lang.String cl[]=null;
+  int ct=0;
+  placesList=new java.lang.String[]{"UK  London","US  New York","US  Boston","US  Washington","UK  Washington","US  Birmingham","UK  Birmingham","UK  Boston"};
+  
+  
+  
+  
+  lists=new java.lang.String[][]{placesList,mergeSort((java.lang.String[])(java.util.Arrays.copyOf((java.lang.Object[])placesList,placesList.length)))};
+  
+  
+  
+  
+  {int $1=lists.length-1;ln=0;ln:for(;ln<=$1;ln++){
+   cl=lists[ln];
+   {int $2=cl.length-1;ct=0;ct:for(;ct<=$2;ct++){
+    netrexx.lang.RexxIO.Say(cl[ct]);
+    }
+   }/*ct*/
+   netrexx.lang.RexxIO.Say("");
+   }
+  }/*ln*/
+  
+  return;
+  }
+
+ 
+ public static final java.lang.String[] mergeSort(java.lang.String m[]){
+  java.lang.String rl[];
+  java.util.List al;
+  
+  rl=new java.lang.String[m.length];
+  al=(java.util.List)(mergeSort(java.util.Arrays.asList((java.lang.Object[])m)));
+  al.toArray((java.lang.Object[])rl);
+  
+  return rl;
+  }
+
+ 
+ public static final java.util.ArrayList mergeSort(java.util.List m){
+  java.util.ArrayList result;
+  java.util.ArrayList left;
+  java.util.ArrayList right;
+  int middle=0;
+  int x_=0;
+  
+  result=new java.util.ArrayList(m.size());
+  left=new java.util.ArrayList();
+  right=new java.util.ArrayList();
+  if ((m.size())>1) 
+   {
+    middle=(m.size())/2;
+    {int $3=middle-1;x_=0;x_:for(;x_<=$3;x_++){
+     left.add(m.get(x_));
+     }
+    }/*x_*/
+    {int $4=(m.size())-1;x_=middle;x_:for(;x_<=$4;x_++){
+     right.add(m.get(x_));
+     }
+    }/*x_*/
+    left=mergeSort((java.util.List)left);
+    right=mergeSort((java.util.List)right);
+    if ((((java.lang.Comparable)(left.get((left.size())-1))).compareTo((java.lang.Object)((java.lang.Comparable)(right.get(0)))))<=0) 
+     {
+      left.addAll((java.util.Collection)right);
+      result.addAll((java.util.Collection)m);
+     }
+    else 
+     {
+      result=merge((java.util.List)left,(java.util.List)right);
+     }
+   }
+  else 
+   {
+    result.addAll((java.util.Collection)m);
+   }
+  
+  return result;
+  }
+
+ 
+ public static final java.util.ArrayList merge(java.util.List left,java.util.List right){
+  java.util.ArrayList result;
+  
+  result=new java.util.ArrayList();
+  {mx:for(;;){if(!(((left.size())>0)&((right.size())>0)))break;
+   if ((((java.lang.Comparable)(left.get(0))).compareTo((java.lang.Object)((java.lang.Comparable)(right.get(0)))))<=0) 
+    {
+     result.add(left.get(0));
+     left.remove(0);
+    }
+   else 
+    {
+     result.add(right.get(0));
+     right.remove(0);
+    }
+   }
+  }/*mx*/
+  if ((left.size())>0) 
+   {
+    result.addAll((java.util.Collection)left);
+   }
+  if ((right.size())>0) 
+   {
+    result.addAll((java.util.Collection)right);
+   }
+  
+  return result;
+  }
+ 
+ private RCSortingMergesort(){return;}
+ }

@@ -1,0 +1,9 @@
+--- Variables for class RSemordnilap ---
+fid  Rexx           v 7= 8 28
+have Rexx           v 10= 18 21 23=
+ifi  File           v 8= 9
+ifr  BufferedReader v 9= 13 26
+line String         v 13= 14 15
+pi   Rexx           v 11= 19 19= 20 28
+r    Rexx           v 17= 18 21
+w    Rexx           v 15= 16 17 21 23 23

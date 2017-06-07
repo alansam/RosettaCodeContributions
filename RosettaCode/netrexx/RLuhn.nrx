@@ -1,0 +1,94 @@
+/* NetRexx */
+
+options replace format comments java crossref savelog symbols binary
+
+/**
+ * The Luhn test is used by some credit card companies to distinguish valid credit card numbers from what
+ * could be a random selection of digits.
+ * <p>
+ * Those companies using credit card numbers that can be validated by the Luhn test have numbers
+ * that pass the following test:
+ * <ol>
+ * <li>Reverse the order of the digits in the number.</li>
+ * <li>Take the first, third, ... and every other odd digit in the reversed digits and sum them to form the partial sum s1</li>
+ * <li>Taking the second, fourth ... and every other even digit in the reversed digits:
+ * <ol>
+ * <li>Multiply each digit by two and sum the digits if the answer is greater than nine to form partial sums for the even digits</li>
+ * <li>Sum the partial sums of the even digits to form s2</li>
+ * </ol>
+ * <li>If s1 + s2 ends in zero then the original number is in the form of a valid credit card number as verified by the Luhn test.</li>
+ * </ol>
+ * <p>
+ * For example, if the trial number is 49927398716:
+ * </p>
+ * <pre>
+ * Reverse the digits:
+ *   61789372994
+ * Sum the odd digits:
+ *   6 + 7 + 9 + 7 + 9 + 4 = 42 = s1
+ * The even digits:
+ *     1,  8,  3,  2,  9
+ *  Two times each even digit:
+ *     2, 16,  6,  4, 18
+ *  Sum the digits of each multiplication:
+ *     2,  7,  6,  4,  9
+ *  Sum the last:
+ *     2 + 7 + 6 + 4 + 9 = 28 = s2
+ *
+ * s1 + s2 = 70 which ends in zero which means that 49927398716 passes the Luhn test
+ * </pre>
+ * <p>
+ * The task is to write a function/method/procedure/subroutine that will validate a number with the Luhn test, and use
+ * it to validate the following numbers:
+ * </p>
+ * <p style="padding-left: 50px;">
+ * 49927398716
+ * <br />
+ * 49927398717
+ * <br />
+ * 1234567812345678
+ * <br />
+ * 1234567812345670
+ * </p>
+ * <p>
+ * Cf. <a href="http://rosettacode.org/wiki/SEDOLs">SEDOL</a>
+ * </p>
+ *
+ * @author Alan Sampson
+ * @version 1.0
+ * @see <a href="http://rosettacode.org/wiki/Luhn_test_of_credit_card_numbers">rosettacode.org/wiki/Luhn_test_of_credit_card_numbers</a>
+ */
+
+class RLuhn
+ 
+  method main(args=String[]) static
+    cc	  = Rexx(0)
+    cc[1] = '49927398716'
+    cc[2] = '49927398717'
+    cc[3] = '1234567812345678'
+    cc[4] = '1234567812345670'
+ 
+    loop k_ = 1 while cc[k_] <> 0
+      r_ = checksum(cc[k_])
+      if r_ == 0 then
+        say cc[k_].right(20) 'passed'
+      else
+        say cc[k_].right(20) 'failed'
+      end k_
+
+    return
+ 
+  -- Luhn algorithm checksum for credit card numbers
+  method checksum(t_) static
+    if t_.length() // 2 then t_ = '0't_  --pad # on left with 0
+    t_ = t_.reverse()
+    s_ = 0
+
+    loop j_ = 1 to t_.length() - 1 by 2
+      q_ = 2 * t_.substr(j_ + 1, 1)
+      if q_ > 9 then q_ = q_.left(1) + q_.right(1)
+      s_ = s_ + t_.substr(j_, 1) + q_
+      end j_
+
+    return s_ // 10 \== 0
+

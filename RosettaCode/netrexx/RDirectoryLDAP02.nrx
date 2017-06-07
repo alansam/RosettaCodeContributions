@@ -1,0 +1,62 @@
+/* NetRexx */
+options replace format comments java crossref symbols binary
+
+/*
+ * CLASSPATH additions
+ *
+ * /Users/alansampson/apache/directory/apache-ldap-api-1.0.0-M12-bin/lib/commons-collections-3.2.1.jar
+ * /Users/alansampson/apache/directory/apache-ldap-api-1.0.0-M12-bin/lib/commons-io-2.3.jar
+ * /Users/alansampson/apache/directory/apache-ldap-api-1.0.0-M12-bin/lib/commons-lang-2.6.jar
+ * /Users/alansampson/apache/directory/apache-ldap-api-1.0.0-M12-bin/lib/commons-pool-1.6.jar
+ * /Users/alansampson/apache/directory/apache-ldap-api-1.0.0-M12-bin/lib/dom4j-1.6.1.jar
+ * /Users/alansampson/apache/directory/apache-ldap-api-1.0.0-M12-bin/lib/antlr-2.7.7.jar
+ * /Users/alansampson/apache/directory/apache-ldap-api-1.0.0-M12-bin/lib/log4j-1.2.16.jar
+ * /Users/alansampson/apache/directory/apache-ldap-api-1.0.0-M12-bin/lib/mina-core-2.0.4.jar
+ * /Users/alansampson/apache/directory/apache-ldap-api-1.0.0-M12-bin/lib/shared-all-1.0.0-M12.jar
+ * /Users/alansampson/apache/directory/apache-ldap-api-1.0.0-M12-bin/lib/slf4j-api-1.6.4.jar
+ * /Users/alansampson/apache/directory/apache-ldap-api-1.0.0-M12-bin/lib/slf4j-log4j12-1.6.4.jar
+ * /Users/alansampson/apache/directory/apache-ldap-api-1.0.0-M12-bin/lib/xml-apis-2.0.2.jar
+ * /Users/alansampson/apache/directory/apache-ldap-api-1.0.0-M12-bin/lib/xpp3-1.1.4c.jar
+ */
+
+import org.apache.directory.ldap.client.api.LdapConnection
+import org.apache.directory.ldap.client.api.LdapNetworkConnection
+import org.apache.directory.shared.ldap.model.exception.LdapException
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
+
+class RDirectoryLDAP02 public
+
+  properties constant
+    log_ = LoggerFactory.getLogger(RDirectoryLDAP02.class)
+
+  properties private static
+    connection = LdapConnection null
+
+  method main(args = String[]) public static
+    ldapHostName = String "localhost" --"allendale.local"
+    ldapPort = int 10389
+
+    if log_.isInfoEnabled() then log_.info("LDAP Connection to" ldapHostName "on port" ldapPort)
+    connection = LdapNetworkConnection(ldapHostName, ldapPort)
+
+    do
+      if log_.isTraceEnabled() then log_.trace("LDAP bind")
+      connection.bind()
+
+      if log_.isTraceEnabled() then log_.trace("LDAP unbind")
+      connection.unBind()
+    catch lex = LdapException
+      log_.error("LDAP Error", Throwable lex)
+    catch iox = IOException
+      log_.error("I/O Error", Throwable iox)
+    finally
+      do
+      if connection \= null then connection.close()
+      catch iox = IOException
+        log_.error("I/O Error on connection.close()", Throwable iox)
+      end
+    end
+
+    return
+

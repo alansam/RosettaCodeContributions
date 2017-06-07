@@ -1,0 +1,4 @@
+--- Variables for class RCTestAFunction ---
+args       String[] a 30
+secs       Rexx     v 34= 41
+testResult Result   v 32= 34 36 38 39 40

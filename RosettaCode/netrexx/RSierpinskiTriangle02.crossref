@@ -1,0 +1,19 @@
+--- Variables for class RSierpinskiTriangle02 ---
+arg                                Rexx   a 6= 6
+arg                                Rexx   a 10 11
+BLACK_UPPOINTING_SMALL_TRIANGLE    Rexx   v 18= 24
+BLACK_UPPOINTING_TRIANGLE          Rexx   v 15= 23
+filler                             Rexx   v 28= 29
+filler                             Rexx   a 33= 39
+j                                  Rexx   v 34= 36 37 40
+k                                  Rexx   v 37= 40 40
+ordr                               Rexx   v 11= 12 12= 29
+ordr                               Rexx   a 33 34 36
+p                                  Rexx   v 35= 38 40 40=
+uBlocks                            Rexx[] v 22= 28
+UPPOINTING_TRIANGLE_LEFT_BLACK     Rexx   v 20= 25
+UPPOINTING_TRIANGLE_RIGHT_BLACK    Rexx   v 21= 25
+WHITE_UPPOINTING_SMALL_TRIANGLE    Rexx   v 17= 24
+WHITE_UPPOINTING_TRIANGLE          Rexx   v 16= 23
+WHITE_UPPOINTING_TRIANGLE_WITH_DOT Rexx   v 19= 25
+z                                  Rexx   v 36= 38 38= 39 39= 42

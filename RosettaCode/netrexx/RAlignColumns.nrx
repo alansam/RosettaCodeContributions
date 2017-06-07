@@ -1,0 +1,69 @@
+/* NetRexx */
+options replace format comments java crossref symbols nobinary
+
+class RAlignColumns public
+
+  properties constant
+    isTrue  = boolean (1 == 1)
+    isFalse = boolean (1 == 0)
+    FNAME_ = 'data/aligncolums.txt'
+
+  properties private
+    indataName = String ''
+    indataScanner = Scanner null
+    indataLine = Rexx
+
+  -- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  method RAlignColumns(fnam = FNAME_) public
+    indataName = fnam
+    return
+
+  -- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  method getColumnMetadata() public
+    metadata = 0
+    gstate = 1
+    dlm = '$'
+    loop lCt = 1 while (gstate = getLine()) = 1
+      say lCt.right(5)':' indataLine
+      loop col = 1 while indataLine \= ''
+        parse indataLine colVal (dlm) indataLine
+        metadata[col] = metadata[col] + 1
+        metadata[col] = metadata.max(colVal.length())
+        end col
+      end lCt
+    indataScanner.close()
+    indataScanner = null
+    return metadata 
+    
+  -- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  method getLine() public signals FileNotFoundException
+    gstate = -1
+    if indataScanner = null then do
+      indataFile = File(indataName)
+      indataScanner = Scanner(indataFile)
+      end
+
+    if indataScanner.hasNext() then do
+      indataLine = indataScanner.nextLine()
+      gstate = 1
+      end
+    else do
+      gstate = 0      
+      end
+    return gstate
+
+  -- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  method runSample(arg) private static
+    parse arg fnam .
+    if fnam = '' then fnam = FNAME_
+    lcl = RAlignColumns(fnam)
+    colMetadata = lcl.getColumnMetadata()
+
+    return
+
+  -- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  method main(args = String[]) public static
+    arg = Rexx(args)
+    runSample(arg)
+    return
+

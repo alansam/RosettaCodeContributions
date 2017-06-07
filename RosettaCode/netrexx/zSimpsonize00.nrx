@@ -1,0 +1,40 @@
+/* NetRexx */
+options replace format comments java crossref symbols nobinary
+
+numeric digits 20
+
+parse arg a_ b_ n_
+if a_ = '' | a_ = '.' then a_ = 2
+if b_ = '' | b_ = '.' then b_ = 6
+if n_ = '' | n_ = '.' then n_ = 2
+
+say simpson1(a_, b_, n_)
+return
+
+/*
+ * h := (b - a) / n
+ * sum1 := f(a + h/2)
+ * sum2 := 0
+ *
+ * loop on i from 1 to (n - 1)
+ *     sum1 := sum1 + f(a + h * i + h/2)
+ *     sum2 := sum2 + f(a + h * i)
+ * 
+ * answer := (h / 6) * (f(a) + f(b) + 4*sum1 + 2*sum2)
+ */
+method simpson1(a_, b_, n_) public static returns Rexx
+  area = 0
+  h_ = (b_ - a_) / n_
+  sum1 = f(a_ + h_ / 2)
+  sum2 = 0
+
+  loop i_ = 1 to n_ - 1
+    sum1 = sum1 + f(a_ + h_ * i_ + h_ / 2)
+    sum2 = sum2 + f(a_ + h_ * i_)
+    end i_
+  area = (h_ / 6) * (f(a_) + f(b_) + 4 * sum1 + 2 * sum2)
+  return area
+
+method f(n) public static returns Rexx
+  return n
+

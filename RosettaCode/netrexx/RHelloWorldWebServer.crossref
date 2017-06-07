@@ -1,0 +1,9 @@
+--- Variables for class RHelloWorldWebServer ---
+args      String[]     a 42
+greeting1 String       c 22= 34
+greeting2 String       c 23= 47
+isFalse   boolean      c 21= 40
+isTrue    boolean      c 20= 47
+listener  ServerSocket v 43= 46
+sock      Socket       v 46= 47 48
+terminate boolean      s 40= 45

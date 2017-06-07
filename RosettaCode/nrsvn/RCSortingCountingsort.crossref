@@ -1,0 +1,22 @@
+--- Variables for class RCSortingCountingsort ---
+amax    int    v 43= 45 46= 49
+amax    int    a 51= 53 61
+amin    int    v 33= 35 36= 39
+amin    int    a 51= 53 56 56 61 62 65 65
+array   int[]  a 31 34 35 36
+array   int[]  a 41 44 45 46
+array   int[]  a 51 51 51 54 55 63= 69
+cl      int[]  v 21= 23 24
+count   int[]  v 53= 56 56= 62 65 65=
+ct      int    v 23= 24
+i_      int    v 61= 62 63 65 65
+icounts int[]  v 6= 12 14 14 16
+lists   int[,] v 15= 20 21
+ln      int    v 20= 21
+nr      int    v 54= 55
+numbr   int    v 55= 56 56
+rep     Rexx   v 22= 24 24= 26
+scounts int[]  v 12= 14 17
+x_      int    v 34= 35 36
+x_      int    v 44= 45 46
+z_      int    v 59= 63 64 64=

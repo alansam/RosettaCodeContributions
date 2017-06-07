@@ -1,0 +1,13 @@
+--- Variables for class RCSortingStoogesort ---
+cl    int[]  v 11= 13 14
+ct    int    v 13= 14
+i_    int    a 21= 23 24 25 28 29 30 31 32
+iList int[]  v 4= 5 5 9
+j_    int    a 21= 23 25 26 28 29 30 31 32
+L_    int[]  a 21 21 23 23 24 25 25= 26= 30 30= 31 31= 32 32= 35
+lists int[,] v 9= 10 11
+ln    int    v 10= 11
+Lt    int    v 24= 26
+rpt   Rexx   v 12= 14 14= 16
+sList int[]  v 5= 7 7= 9
+t_    int    v 29= 30 31 32

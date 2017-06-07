@@ -1,0 +1,49 @@
+/* NetRexx */
+options replace format comments java crossref symbols nobinary
+
+runSample(arg)
+return
+
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+method avgMTD(times) public static
+  day = 24 * 60 * 60 -- 86400 == seconds in a day
+  c_ = Math.PI / (day / 2) /* Math.atan2(0.0, -1.0) */
+  x = double 0.0
+  y = double 0.0
+
+  loop w_ = 1 to times.words
+    timex = times.word(w_)
+    alpha = time2angle(timex)
+    x = x + Math.sin(Math.toRadians(alpha))               -- accumulate sines
+    y = y + Math.cos(Math.toRadians(alpha))               -- accumulate cosines
+    end w_
+  p_ = Math.atan2(x, y) / c_              -- compute average angle
+  if p_ < 0 then p_ = p_ + day            -- avoid negative value
+  hh = (p_ % 3600).right(2, 0)
+  p_ = p_ // 3600
+  mm = (p_ % 60).right(2, 0)
+  p_ = p_ // 60
+  ss = (p_ % 1).right(2, 0)
+  
+  return hh':'mm':'ss
+
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+method time2angle(arg) public static returns double
+  day = 24 * 60 * 60 -- 86400 == seconds in a day
+
+  parse arg hh ':' mm ':' ss
+  sec = (hh * 60 + mm) * 60 + ss
+  if sec > (day / 2) then sec = sec - day
+  angle = 360 * sec / day
+
+  say arg angle.format(null, 6, 9)
+  return angle
+
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+method runSample(arg) private static
+  if arg = '' then arg = '23:00:17 23:40:20 00:12:45 00:17:19'
+  avgTime = avgMTD(arg)
+  say 'Average time of day of:' arg.space(1, ',').changestr(',', ', ') '=' avgTime
+  say 
+  return
+

@@ -1,0 +1,42 @@
+/* NetRexx */
+options replace format comments java crossref symbols nobinary
+
+runSample(arg)
+return
+
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+method runSample(arg) private static
+  pairs = 'Ball Bell RED BLUE Red RED 00100 100'
+  loop while pairs.words() > 0
+    parse pairs tl tr pairs
+    tx = tl
+    tu = tl.upper
+    tv = tl.lower
+    say tl tr tx tu tv
+    say '-'.left(80, '-')
+    if tl =   tr then say tl 'and' tr 'are lexically equal'
+    if tl \=  tr then say tl 'and' tr 'are not lexically equal'
+    if tl ==  tr then say tl 'and' tr 'are identical'
+    if tl \== tr then say tl 'and' tr 'are not identical'
+    say
+
+    if tl =   tx then say tl 'and' tx 'are lexically equal'
+    if tl \=  tx then say tl 'and' tx 'are not lexically equal'
+    if tl ==  tx then say tl 'and' tx 'are identical'
+    if tl \== tx then say tl 'and' tx 'are not identical'
+    say
+
+    if tl =   tu then say tl 'and' tu 'are lexically equal'
+    if tl \=  tu then say tl 'and' tu 'are not lexically equal'
+    if tl ==  tu then say tl 'and' tu 'are identical'
+    if tl \== tu then say tl 'and' tu 'are not identical'
+    say
+
+    if tl =   tv then say tl 'and' tv 'are lexically equal'
+    if tl \=  tv then say tl 'and' tv 'are not lexically equal'
+    if tl ==  tv then say tl 'and' tv 'are identical'
+    if tl \== tv then say tl 'and' tv 'are not identical'
+    say
+    end
+  return
+

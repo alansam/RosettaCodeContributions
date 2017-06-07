@@ -1,0 +1,37 @@
+/* NetRexx */
+options replace format comments java crossref symbols nobinary
+
+runSample(arg)
+return
+
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+method stripControls(sstring) private static
+  controls = '\x00'.sequence('\x1f')
+  extended = '\x7f'.sequence('\xff')
+  asciichr = '\x20'.sequence('\x7e')
+  sstring = asciichr
+  loop rx over [controls, extended, asciichr]
+    say rx.length.right(3)': <seq>\-'
+    loop ix = 1 to rx.length
+      say rx.substr(ix, 1).c2x'\-'
+      end ix
+      say '</seq>'
+    end rx
+  say asciichr.length.right(3)': <seq>'asciichr'</seq>'
+  say extended.length.right(3)': <seq>'extended'</seq>'
+  return sstring
+
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+method runSample(arg) private static
+  sss = ''
+  sss = stripControls(sss)
+  sss = '\x20\x80\u20ac\xdb\x7e'
+  say sss.length.right(3)': <seq>'sss'</seq>'
+  sss = '\xf0'.sequence('\xff')
+  say sss.length.right(3)': <seq>'sss'</seq>'
+  
+  loop ll = 0x20 to 0xff by 0x10
+    say ll.d2x'-'(ll + 0x0f).d2x':' (ll.d2c).sequence((ll + 0x0f).d2c)
+    end ll
+  return
+

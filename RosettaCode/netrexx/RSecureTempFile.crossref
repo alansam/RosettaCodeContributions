@@ -1,0 +1,12 @@
+--- Variables for class RSecureTempFile ---
+arg       Rexx        a 4= 4
+arg       Rexx        a 17
+ex        IOException v 28= 29
+ff        File        v 12= 13 14
+fFile     File        v 24= 25
+fName     String      v 25= 26
+fStartDir File        v 10= 11= 12
+prefix    String      a 8 12
+startDir  String      a 8= 10 10
+suffix    String      a 8= 12
+tempFiles File[]      v 19= 24

@@ -1,0 +1,17 @@
+/* NetRexx */
+
+options replace format comments java crossref savelog symbols binary
+
+/**
+ * <h3>Empty program</h3>
+ * <p>
+ * In this task, the goal is to create the simplest possible program that is still considered "correct."
+ * </p>
+ *
+ * @author alansampson : <a href="mailto%3A%22Alan%20Sampson%22%20%3Calansamps%40gmail%2Ecom%3E">&quot;Alan Sampson&quot; &lt;alansamps@gmail.com&gt;</a>
+ * @version 1.0
+ * @see <a href="http://rosettacode.org/wiki/Empty_program">http://rosettacode.org/wiki/Empty_program</a>
+ */
+
+method main(args = String[]) static
+

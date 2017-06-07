@@ -1,0 +1,49 @@
+/* NetRexx */
+
+options replace format comments java crossref savelog symbols binary
+
+/**
+ * <strong>A+B</strong> - in programming contests, classic problem, which is given so contestants can
+ * gain familiarity with online judging system being used.
+ * <p>
+ * A+B is one of few problems on contests, which traditionally lacks fabula.
+ *
+ * <h4>Problem statement</h4>
+ * <p>
+ * Given 2 integer numbers, A and B. One needs to find their sum.
+ * </p>
+ * <dl>
+ * <dt>Input data</dt>
+ * <dd>Two integer numbers are written in the input stream, separated by space.
+ * <br />
+ * <code>(-1000 <= A, B <= +1000)</code>
+ * </dd>
+ * <dt>Output data</dt>
+ * <dd>The required output is one integer: the sum of A and B.</dd>
+ * </dl>
+ * <h5>Example:</h5>
+ * <table>
+ * <thead>
+ * <tr>
+ * <th>Input</th><th>Output</th>
+ * </tr>
+ * </thead>
+ * <tbody>
+ * <tr>
+ * <td>2 2</td><td>4</td>
+ * </tr>
+ * <tr>
+ * <td>3 2</td><td>5</td>
+ * </tr>
+ * </tbody>
+ * </table>
+ *
+ *
+ * @author Alan Sampson
+ * @version 1.0
+ * @see <a href="http://rosettacode.org/wiki/A%2BB">rosettacode.org/wiki/A%2BB</a>
+ */
+
+parse ask a b .
+say a '+' b '=' a + b
+

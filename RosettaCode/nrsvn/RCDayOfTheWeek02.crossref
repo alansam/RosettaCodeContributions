@@ -1,0 +1,74 @@
+--- Variables for class RCDayOfTheWeek02 ---
+alg           Rexx     v 13= 16 18
+algorithmName Rexx[]   v 11= 13 16
+C             double   v 123= 127 127
+cal           Calendar v 47 55= 56
+century       int      v 178= 181
+D             int      a 190 191 191 191
+d             Rexx     v 77= 78= 80
+d             int      v 97= 98= 100
+d             int      a 103 109 111= 112= 114
+d             int      a 135 140 140= 144 144= 147
+d             int      v 161= 181
+Day           int      a 43 55
+Day           int      a 64 75
+Day           int      a 83 91
+Day           int      a 117 122
+Day           int      a 155 161
+dayIndex      int      v 19= 20= 21= 22= 23= 24= 25= 28
+DayNum        Rexx     v 75= 77 78
+days          Rexx     v 4= 8
+dow           int      v 163 182= 184 185
+dowfg         double   v 164 181= 182
+fmonth        int      v 165 175= 176 176= 181
+h             int      v 56= 58 59
+h             int      v 95= 97 98
+h             int      v 109= 111 112
+h             int      v 129= 130= 132
+h             int      v 147= 149 150
+iso           Rexx     a 43= 58
+iso           Rexx     a 64= 77
+iso           Rexx     a 83= 97
+iso           Rexx     a 103= 111
+iso           Rexx     a 117= 129
+iso           Rexx     a 135= 149
+iso           Rexx     a 155= 184
+jmNumber      int[]    v 48= 54
+k             double   v 122= 127
+lastdigits    int      v 179= 181
+leap          int      v 166 169= 171= 173= 175
+m             int      v 92= 95
+m             int      a 103 108 109
+m             double   v 125= 127
+m             int      a 135 139 147
+m             int      v 160= 175 175 175 175
+mon           int      v 54= 55
+Month         int      a 43 54
+Month         int      a 64 68 68 69 69= 73 73
+Month         int      a 83 87 88 88= 92
+Month         int      a 117 121 125
+Month         int      a 155 160
+MonthFactor   Rexx     v 73= 75
+N             int      a 190 191
+q             int      v 91= 95
+r_            Rexx     v 35= 36 36 37 37
+sd            Rexx     v 14= 15 16 29 29
+searchday     Rexx     v 7= 8= 9= 14 15= 16= 28 29 29= 35 36 36= 37 37
+t             int[]    v 107= 109
+W             int      v 127= 129 130
+W             int      v 149= 150= 152
+W             int      v 184= 185= 187
+w             int      v 58= 59= 61
+y             int      a 135 140 141 141= 144 147 147 147
+y             int      v 159= 168 168 170 178 179
+Y             double   v 124= 127 127
+y             int      a 103 108 108= 109 109 109 109
+Y             int      v 93= 95 95 95 95
+Year          int      a 43 55
+Year          int      a 64 70 70= 74 74 74 74
+Year          int      a 83 89 89= 93
+Year          int      a 117 121 121= 123 124
+Year          int      a 155 159
+year          Rexx     v 17= 19 20 21 22 23 24 25 29
+YearFactor    Rexx     v 74= 75
+yearRanges    int[]    v 5= 17 17 34 34

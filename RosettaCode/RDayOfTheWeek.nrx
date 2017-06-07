@@ -1,0 +1,46 @@
+/* NetRexx */
+
+options replace format comments java crossref savelog symbols nobinary
+
+days = 'Monday Tuesday Wednesday Thursday Friday Saturday Sunday'
+yearRanges = [int 2008, 2121]
+
+loop year = yearRanges[0] to yearRanges[1]
+  dayIndex = getDaynumZellersCongruence(year, 12, 25)
+  if dayIndex = 7 then
+    say year':' days.word(dayIndex)
+  end year
+
+return
+
+method getDaynumZellersCongruence(Year = int, Month = int, Day = int) public static returns int
+
+  -- +--------------------------------------------------------------------------
+  -- +  January and February are treated as month 13 and 14,
+  -- +  respecively, from the year before.
+  -- +--------------------------------------------------------------------------
+--  MonthIndex = Month          -- Save month number
+--  YearIndex  = Year           -- Save year number
+  if Month = 1 | Month = 2 then do
+    Month = Month + 12
+    Year  = Year - 1
+    end
+
+  -- +--------------------------------------------------------------------------
+  -- +  The formula f(D)=(D+(2M+3(M+1)/5))+Y+Y/4-Y/100+Y/400) mod 7 is applied.
+  -- +  Where:
+  -- +   D:  Day of month
+  -- +   M:  Month (3 to 14 - March to Feb.)
+  -- +   Y:  Year
+  -- +   All divisions are assumed integer.
+  -- +
+  -- +   f(D) results in an integer in the range 0-6
+  -- +   where 0 represents Monday etc.
+  -- +--------------------------------------------------------------------------
+  MonthFactor = 2 * Month + 3 * (Month + 1) % 5
+  YearFactor  = Year + Year % 4 - Year % 100 + Year % 400
+  DayNum      = (Day + MonthFactor + YearFactor) // 7
+  DayNum      = DayNum + 1 /* Increment to allow indexing from 1 */
+
+  return DayNum
+

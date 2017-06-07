@@ -1,0 +1,13 @@
+--- Variables for class RContinuedFractions02 ---
+a      Rexx     s 22= 34= 34= 38= 38= 42= 42= 52 55
+args   String[] a 25
+b      Rexx     s 23= 35= 39= 39= 43= 52
+form   Rexx     a 31 33 37 41
+form   Rexx     a 48 51 54
+n      Rexx     a 31 34 38 38 39 39 42 43
+n      Rexx     a 48 50
+napier Rexx     s 20= 27 37
+ni     Rexx     v 50= 51
+pi     Rexx     s 21= 28 41
+Sqrt2  Rexx     s 19= 26 33
+temp   Rexx     v 49= 52 52= 55

@@ -1,0 +1,23 @@
+/* NetRexx */
+options replace format comments java crossref symbols nobinary
+
+numeric digits 200
+
+parse arg nStart nEnd .
+
+if nStart = '' then nStart = 1
+if nEnd   = '' then nEnd   = 1000
+
+sum = 0
+loop x = nStart to nEnd
+  sum = sum + S(x)
+  end x
+
+say 'Sum of S(x) from' nStart 'to' nEnd 'is' sum
+
+return
+
+-- =============================================================================
+method S(x) public static
+  return 1 / x ** 2
+

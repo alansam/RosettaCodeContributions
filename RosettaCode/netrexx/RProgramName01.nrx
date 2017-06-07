@@ -1,0 +1,24 @@
+/* NetRexx */
+options replace format comments java crossref symbols binary
+
+class RProgramName01
+
+  method RProgramName01
+    parse source pgmName
+    say 1 pgmName
+    return
+
+  method getSource() private
+    parse source pgmName
+    say 2 pgmName
+    return
+
+  method main(args = String[]) constant
+    parse source pgmName
+    say 0 pgmName
+
+    lcl = RProgramName01()
+    lcl.getSource
+
+    return
+

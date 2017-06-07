@@ -1,0 +1,13 @@
+--- Variables for class RCSingleton00 ---
+_id       Rexx                   p 7= 32
+_instance RCSingleton00.Instance p 8 11= 21 23 25 27 32 32
+args      String[]               a 14
+HT        Rexx                   v 16= 20 20 22 22 24 24 26 26 28 28
+mn1       RCSingleton00          v 17= 20 21 22 23 24 25 26 27 28
+mn2       RCSingleton00          v 18= 20 22 24 26 28
+rs        Rexx                   v 32= 33
+
+--- Variables for class RCSingleton00.Instance ---
+_id       Rexx                   p 43= 55
+_instance RCSingleton00.Instance s 39 49 50= 52
+_refCount int                    s 40= 58 58= 62 63 63= 67

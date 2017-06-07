@@ -1,0 +1,5 @@
+--- Variables for class RCSortIntArray ---
+ia     int[] v 4 5= 7 8 9
+in     int[] a 12 16 17
+ix     int   v 16= 17
+sorted Rexx  v 14= 17 17= 20

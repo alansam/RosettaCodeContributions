@@ -1,0 +1,48 @@
+/* NetRexx */
+
+options replace format comments java crossref savelog symbols binary
+
+import junit.framework.TestCase
+import RPalindrome
+
+class RTestAFunction public final extends TestCase
+
+method setUp public
+  return
+
+method tearDown public
+  return
+
+method testIsPal public signals AssertionError
+
+  assertTrue(RPalindrome.isPal(Rexx 'abcba'))
+  assertTrue(RPalindrome.isPal(Rexx 'aa'))
+  assertTrue(RPalindrome.isPal(Rexx 'a'))
+  assertTrue(RPalindrome.isPal(Rexx ''))
+  assertFalse(RPalindrome.isPal(Rexx 'ab'))
+  assertFalse(RPalindrome.isPal(Rexx 'abcdba'))
+
+  --assertTrue(RPalindrome.isPal(Rexx 'ab'))
+  --assertFalse(RPalindrome.isPal(Rexx 'aa'))
+
+  return
+
+method except signals RuntimeException
+  signal RuntimeException()
+
+method main(args = String[]) public constant
+
+  testResult = org.junit.runner.JUnitCore.runClasses([RTestAFunction.class])
+
+  millisecs = Rexx testResult.getRunTime
+  secs = millisecs / 1000.0
+
+  if testResult.wasSuccessful then say 'Tests successful'
+                              else say 'Tests failed'
+  say '  failure count:' testResult.getFailureCount
+  say '   ignore count:' testResult.getIgnoreCount
+  say '      run count:' testResult.getRunCount
+  say '       run time:' secs.format(null, 3)
+
+  return
+

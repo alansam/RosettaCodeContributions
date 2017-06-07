@@ -1,0 +1,84 @@
+/* NetRexx */
+options replace format comments java crossref symbols nobinary
+import java.util.List
+import java.util.concurrent.CountDownLatch
+import java.util.concurrent.CopyOnWriteArrayList
+
+-- =============================================================================
+class RSortingSleepsort00
+  properties constant
+    dflt  = '-6 3 1 4 5 2 3 -7 1 6 001 3 -9 2 5 -009 -8 4 6 1 9 8 7 6 5 -7 3 4 5 2 0 -2 -1 -5 -4 -3 -0 000 0'
+  properties indirect
+    startLatch = CountDownLatch
+    doneLatch  = CountDownLatch
+    floor      = 0
+    sorted     = List
+  -- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  method main(args = String[]) public static
+    arg = Rexx(args)
+    if arg = '' then arg = dflt
+    iHarry = list2array(arg)
+    say array2list(iHarry)
+    oHarry = (RSortingSleepsort00()).sleepSort(iHarry)
+    say array2list(oHarry)
+    return
+  -- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  method sleepSort(iHarry = Rexx[]) private returns Rexx[]
+    oHarry = Rexx[iHarry.length]
+    loop mn over iHarry
+      setFloor(getFloor().min(mn)) -- save smallest -ve number so we can use it as a scale
+      end mn
+    setStartLatch(CountDownLatch(1)) -- used to put all threads on hold until we're ready to start
+    setDoneLatch(CountDownLatch(iHarry.length)) -- used to indicate all work is done
+    loop nn over iHarry
+      Thread(SortThread(nn)).start() -- loop through input and create a thread for each element
+      end nn
+    getStartLatch().countDown() -- cry 'Havoc', and let slip the dogs of war.
+    do
+      getDoneLatch().await() -- wait for worker threads to complete
+    catch ix = InterruptedException
+      ix.printStackTrace()
+    end
+    loop sn = 0 to getSorted().size() - 1
+      oHarry[sn] = Rexx getSorted().get(sn) -- collect results
+      end sn
+    return oHarry
+  -- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  method list2array(lst) private static returns Rexx[]
+    harry = Rexx[lst.words()]
+    loop ix = 0 while lst \= ''
+      parse lst nm lst
+      harry[ix] = nm
+      end ix
+    return harry
+  -- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  method array2list(arry = Rexx[]) private static returns Rexx
+    lst = ''
+    loop nn over arry
+      lst = lst nn
+      end nn
+    return lst.strip()
+
+-- =============================================================================
+class RSortingSleepsort00.SortThread dependent implements Runnable
+  properties indirect
+    num
+  -- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  method SortThread(nm)
+    setNum(nm)
+    return
+  -- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  method run() public
+    if parent.getSorted() = null then parent.setSorted(CopyOnWriteArrayList())
+    do
+      parent.getStartLatch().await() -- wait until all threads are constructed
+      wait = getNum() + parent.getFloor().abs() -- shifted by value of smallest -ve (allows -ve values to be sorted)
+      wait = wait * 250 -- scale up; milliseconds are not granular enough
+      Thread.sleep(wait) -- wait for this number's turn to run
+      parent.getSorted().add(num) -- stow the number in the results List
+      parent.getDoneLatch().countDown() -- this one's done; decrement the latch
+    catch ie = InterruptedException
+      ie.printStackTrace()
+    end
+    return
+

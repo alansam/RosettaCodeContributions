@@ -1,0 +1,32 @@
+/* NetRexx */
+
+options replace format comments java crossref savelog symbols nobinary
+
+class RTowersOfHanoi public
+
+properties private
+  moves
+
+method RTowersOfHanoi() public
+  moves = 0
+  return
+
+method move(nrDisks, colFrom, colTo, colVia) public binary
+  if nrDisks = 1 then do
+    moves = moves + 1
+    say 'Move number:' moves.right(4) ': Move disk from column' colFrom 'to column' colTo
+    end
+  else do
+    move(nrDisks - 1, colFrom, colVia, colTo)
+    move(1, colFrom, colTo, colVia)
+    move(nrDisks - 1, colVia, colTo, colFrom)
+    end
+
+  return
+
+method main(args = String[]) public static
+  lcl = RTowersOfHanoi()
+  lcl.move(4, 1, 2, 3)
+
+  return
+

@@ -1,0 +1,65 @@
+/* Generated from 'RCPangram01.nrx' 13 Jul 2011 22:52:32 [v3.00] */
+/* Options: Comments Crossref Decimal Format Java Logo Replace Symbols Trace2 Verbose3 */
+
+/* NetRexx */
+
+
+
+public class RCPangram01{
+ private static final netrexx.lang.Rexx $01=new netrexx.lang.Rexx('\000');
+ private static final netrexx.lang.Rexx $02=new netrexx.lang.Rexx(0);
+ private static final netrexx.lang.Rexx $03=new netrexx.lang.Rexx(']');
+ private static final netrexx.lang.Rexx $04=new netrexx.lang.Rexx(1);
+ private static final java.lang.String $0="RCPangram01.nrx";
+ 
+ public static void main(java.lang.String $0s[]){
+  netrexx.lang.Rexx A2Z;
+  netrexx.lang.Rexx pangrams;
+  netrexx.lang.Rexx p_=null;
+  netrexx.lang.Rexx pangram=null;
+  netrexx.lang.Rexx q_=null;
+  A2Z=netrexx.lang.Rexx.toRexx("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
+  
+  pangrams=create_samples();
+  
+  {netrexx.lang.Rexx $1=pangrams.getnode(new netrexx.lang.Rexx((byte)0)).leaf;p_=new netrexx.lang.Rexx((byte)1);p_:for(;p_.OpLtEq(null,$1);p_=p_.OpAdd(null,new netrexx.lang.Rexx(1))){
+   pangram=pangrams.getnode(p_).leaf;
+   q_=A2Z.verify(pangram.upper()); // <= it all happens in this statement!
+   netrexx.lang.RexxIO.Say((pangram.left(new netrexx.lang.Rexx((byte)64))).OpCc(null,$01));
+   if (q_.OpEqS(null,$02)) 
+    netrexx.lang.RexxIO.Say(" [OK, a pangram]");
+   else 
+    netrexx.lang.RexxIO.Say((netrexx.lang.Rexx.toRexx(" [Not a pangram.  Missing:").OpCcblank(null,A2Z.substr(q_,new netrexx.lang.Rexx((byte)1)))).OpCc(null,$03));
+   }
+  }/*p_*/
+  return;}
+
+ 
+ public static netrexx.lang.Rexx create_samples(){
+  netrexx.lang.Rexx pangrams;
+  netrexx.lang.Rexx x_;
+  
+  pangrams=netrexx.lang.Rexx.toRexx("");
+  
+  x_=new netrexx.lang.Rexx((byte)0);
+  x_=x_.OpAdd(null,$04);
+  pangrams.getnode(new netrexx.lang.Rexx((byte)0)).leaf=x_;
+  pangrams.getnode(x_).leaf=netrexx.lang.Rexx.toRexx("The quick brown fox jumps over a lazy dog."); // best/shortest pangram
+  x_=x_.OpAdd(null,$04);
+  pangrams.getnode(new netrexx.lang.Rexx((byte)0)).leaf=x_;
+  pangrams.getnode(x_).leaf=netrexx.lang.Rexx.toRexx("The quick brown fox jumps over the lazy dog."); // not as short but at least it's still a pangram
+  x_=x_.OpAdd(null,$04);
+  pangrams.getnode(new netrexx.lang.Rexx((byte)0)).leaf=x_;
+  pangrams.getnode(x_).leaf=netrexx.lang.Rexx.toRexx("The quick brown fox jumped over the lazy dog."); // common misquote; not a pangram
+  x_=x_.OpAdd(null,$04);
+  pangrams.getnode(new netrexx.lang.Rexx((byte)0)).leaf=x_;
+  pangrams.getnode(x_).leaf=netrexx.lang.Rexx.toRexx("The quick onyx goblin jumps over the lazy dwarf.");
+  x_=x_.OpAdd(null,$04);
+  pangrams.getnode(new netrexx.lang.Rexx((byte)0)).leaf=x_;
+  pangrams.getnode(x_).leaf=netrexx.lang.Rexx.toRexx("Bored? Craving a pub quiz fix? Why, just come to the Royal Oak!"); // (Used to advertise a pub quiz in Bowness-on-Windermere)
+  
+  return pangrams;
+  }
+ 
+ private RCPangram01(){return;}
+ }

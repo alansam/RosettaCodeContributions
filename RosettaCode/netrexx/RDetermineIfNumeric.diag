@@ -1,0 +1,403 @@
+NetRexx portable processor, version NetRexx 3.01, build 40-20120823-0156
+Copyright (c) RexxLA, 2011,2012.  All rights reserved.
+Parts Copyright (c) IBM Corporation, 1995,2008.
+# lib: alt-rt.jar
+# lib: charsets.jar
+# lib: deploy.jar
+# lib: htmlconverter.jar
+# lib: javaws.jar
+# lib: jce.jar
+# lib: jfr.jar
+# lib: jfxrt.jar
+# lib: JObjC.jar
+# lib: jsse.jar
+# lib: management-agent.jar
+# lib: plugin.jar
+# lib: resources.jar
+# lib: rt.jar
+# ext: dnsns.jar
+# ext: localedata.jar
+# ext: sunec.jar
+# ext: sunjce_provider.jar
+# ext: sunpkcs11.jar
+# ext: zipfs.jar
+# Classpathseg /Users/developer/usr/local/NetRexx/lib/NetRexxC.jar
+# Classpathseg /Library/Java/JavaVirtualMachines/jdk1.7.0_09.jdk/Contents/Home/lib/tools.jar
+# Classpathseg .
+# Classpathseg /Users/alansampson/usr/local/NetRexx-3.01/runlib/NetRexxR.jar
+# Classpathseg /System/Library/Frameworks/BSF4ooRexx.framework//Versions/A/Classes/bsf-v400-20090910.jar
+# Classpathseg /System/Library/Frameworks/BSF4ooRexx.framework//Versions/A/Classes/bsf-rexx-engine.jar
+# Classpathseg /Library/Java/JavaVirtualMachines/jdk1.7.0_09.jdk/Contents/Home/jre/lib/alt-rt.jar
+# Classpathseg /Library/Java/JavaVirtualMachines/jdk1.7.0_09.jdk/Contents/Home/jre/lib/charsets.jar
+# Classpathseg /Library/Java/JavaVirtualMachines/jdk1.7.0_09.jdk/Contents/Home/jre/lib/deploy.jar
+# Classpathseg /Library/Java/JavaVirtualMachines/jdk1.7.0_09.jdk/Contents/Home/jre/lib/htmlconverter.jar
+# Classpathseg /Library/Java/JavaVirtualMachines/jdk1.7.0_09.jdk/Contents/Home/jre/lib/javaws.jar
+# Classpathseg /Library/Java/JavaVirtualMachines/jdk1.7.0_09.jdk/Contents/Home/jre/lib/jce.jar
+# Classpathseg /Library/Java/JavaVirtualMachines/jdk1.7.0_09.jdk/Contents/Home/jre/lib/jfr.jar
+# Classpathseg /Library/Java/JavaVirtualMachines/jdk1.7.0_09.jdk/Contents/Home/jre/lib/jfxrt.jar
+# Classpathseg /Library/Java/JavaVirtualMachines/jdk1.7.0_09.jdk/Contents/Home/jre/lib/JObjC.jar
+# Classpathseg /Library/Java/JavaVirtualMachines/jdk1.7.0_09.jdk/Contents/Home/jre/lib/jsse.jar
+# Classpathseg /Library/Java/JavaVirtualMachines/jdk1.7.0_09.jdk/Contents/Home/jre/lib/management-agent.jar
+# Classpathseg /Library/Java/JavaVirtualMachines/jdk1.7.0_09.jdk/Contents/Home/jre/lib/plugin.jar
+# Classpathseg /Library/Java/JavaVirtualMachines/jdk1.7.0_09.jdk/Contents/Home/jre/lib/resources.jar
+# Classpathseg /Library/Java/JavaVirtualMachines/jdk1.7.0_09.jdk/Contents/Home/jre/lib/rt.jar
+# Classpathseg /Library/Java/JavaVirtualMachines/jdk1.7.0_09.jdk/Contents/Home/jre/lib/ext/dnsns.jar
+# Classpathseg /Library/Java/JavaVirtualMachines/jdk1.7.0_09.jdk/Contents/Home/jre/lib/ext/localedata.jar
+# Classpathseg /Library/Java/JavaVirtualMachines/jdk1.7.0_09.jdk/Contents/Home/jre/lib/ext/sunec.jar
+# Classpathseg /Library/Java/JavaVirtualMachines/jdk1.7.0_09.jdk/Contents/Home/jre/lib/ext/sunjce_provider.jar
+# Classpathseg /Library/Java/JavaVirtualMachines/jdk1.7.0_09.jdk/Contents/Home/jre/lib/ext/sunpkcs11.jar
+# Classpathseg /Library/Java/JavaVirtualMachines/jdk1.7.0_09.jdk/Contents/Home/jre/lib/ext/zipfs.jar
+# Import: * [1 1 1]
+# ImportFind:  : *
+# ZIPFIND '/Users/developer/usr/local/NetRexx/lib/NetRexxC.jar' loop start:  1
+# ZIPFIND loop end with [17] after 5ms
+# ZIPFIND '/Library/Java/JavaVirtualMachines/jdk1.7.0_09.jdk/Contents/Home/lib/tools.jar' loop start:  1
+# ZIPFIND loop end with [0] after 80ms
+# PACKDIRFIND '.' loop start
+# PACKDIRFIND loop end after 8ms
+# ZIPFIND '/Users/alansampson/usr/local/NetRexx-3.01/runlib/NetRexxR.jar' loop start:  1
+# ZIPFIND loop end with [17] after 1ms
+# ZIPFIND '/System/Library/Frameworks/BSF4ooRexx.framework/Versions/A/Classes/bsf-v400-20090910.jar' loop start:  1
+# ZIPFIND loop end with [0] after 10ms
+# ZIPFIND '/System/Library/Frameworks/BSF4ooRexx.framework/Versions/A/Classes/bsf-rexx-engine.jar' loop start:  1
+# ZIPFIND loop end with [0] after 1ms
+# ZIPFIND '/Library/Java/JavaVirtualMachines/jdk1.7.0_09.jdk/Contents/Home/jre/lib/alt-rt.jar' loop start:  1
+# ZIPFIND loop end with [46] after 3ms
+# ZIPFIND '/Library/Java/JavaVirtualMachines/jdk1.7.0_09.jdk/Contents/Home/jre/lib/charsets.jar' loop start:  1
+# ZIPFIND loop end with [0] after 4ms
+# ZIPFIND '/Library/Java/JavaVirtualMachines/jdk1.7.0_09.jdk/Contents/Home/jre/lib/deploy.jar' loop start:  1
+# ZIPFIND loop end with [0] after 8ms
+# ZIPFIND '/Library/Java/JavaVirtualMachines/jdk1.7.0_09.jdk/Contents/Home/jre/lib/htmlconverter.jar' loop start:  1
+# ZIPFIND loop end with [0] after 0ms
+# ZIPFIND '/Library/Java/JavaVirtualMachines/jdk1.7.0_09.jdk/Contents/Home/jre/lib/javaws.jar' loop start:  1
+# ZIPFIND loop end with [0] after 4ms
+# ZIPFIND '/Library/Java/JavaVirtualMachines/jdk1.7.0_09.jdk/Contents/Home/jre/lib/jce.jar' loop start:  1
+# ZIPFIND loop end with [0] after 0ms
+# ZIPFIND '/Library/Java/JavaVirtualMachines/jdk1.7.0_09.jdk/Contents/Home/jre/lib/jfr.jar' loop start:  1
+# ZIPFIND loop end with [0] after 2ms
+# ZIPFIND '/Library/Java/JavaVirtualMachines/jdk1.7.0_09.jdk/Contents/Home/jre/lib/jfxrt.jar' loop start:  1
+# ZIPFIND loop end with [0] after 39ms
+# ZIPFIND '/Library/Java/JavaVirtualMachines/jdk1.7.0_09.jdk/Contents/Home/jre/lib/JObjC.jar' loop start:  1
+# ZIPFIND loop end with [0] after 3ms
+# ZIPFIND '/Library/Java/JavaVirtualMachines/jdk1.7.0_09.jdk/Contents/Home/jre/lib/jsse.jar' loop start:  1
+# ZIPFIND loop end with [0] after 0ms
+# ZIPFIND '/Library/Java/JavaVirtualMachines/jdk1.7.0_09.jdk/Contents/Home/jre/lib/management-agent.jar' loop start:  1
+# ZIPFIND loop end with [0] after 0ms
+# ZIPFIND '/Library/Java/JavaVirtualMachines/jdk1.7.0_09.jdk/Contents/Home/jre/lib/plugin.jar' loop start:  1
+# ZIPFIND loop end with [0] after 2ms
+# ZIPFIND '/Library/Java/JavaVirtualMachines/jdk1.7.0_09.jdk/Contents/Home/jre/lib/resources.jar' loop start:  1
+# ZIPFIND loop end with [0] after 1ms
+# ZIPFIND '/Library/Java/JavaVirtualMachines/jdk1.7.0_09.jdk/Contents/Home/jre/lib/rt.jar' loop start:  1
+# ZIPFIND loop end with [2008] after 242ms
+# ZIPFIND '/Library/Java/JavaVirtualMachines/jdk1.7.0_09.jdk/Contents/Home/jre/lib/ext/dnsns.jar' loop start:  1
+# ZIPFIND loop end with [0] after 0ms
+# ZIPFIND '/Library/Java/JavaVirtualMachines/jdk1.7.0_09.jdk/Contents/Home/jre/lib/ext/localedata.jar' loop start:  1
+# ZIPFIND loop end with [0] after 0ms
+# ZIPFIND '/Library/Java/JavaVirtualMachines/jdk1.7.0_09.jdk/Contents/Home/jre/lib/ext/sunec.jar' loop start:  1
+# ZIPFIND loop end with [0] after 0ms
+# ZIPFIND '/Library/Java/JavaVirtualMachines/jdk1.7.0_09.jdk/Contents/Home/jre/lib/ext/sunjce_provider.jar' loop start:  1
+# ZIPFIND loop end with [0] after 0ms
+# ZIPFIND '/Library/Java/JavaVirtualMachines/jdk1.7.0_09.jdk/Contents/Home/jre/lib/ext/sunpkcs11.jar' loop start:  1
+# ZIPFIND loop end with [0] after 0ms
+# ZIPFIND '/Library/Java/JavaVirtualMachines/jdk1.7.0_09.jdk/Contents/Home/jre/lib/ext/zipfs.jar' loop start:  1
+# ZIPFIND loop end with [0] after 0ms
+# Imported 2088 after 417ms
+# 2052 classes in classpool table [load=64.7%]
+# 1582 packages
+# Reading RDetermineIfNumeric.nrx...
+# --- pass 0 --- RDetermineIfNumeric.nrx
+# Import:  [1 0 0]
+# ImportFind:  : [null]
+# ZIPFIND '/Users/developer/usr/local/NetRexx/lib/NetRexxC.jar' loop start:  0
+# ZIPFIND loop end with [0] after 0ms
+# ZIPFIND '/Library/Java/JavaVirtualMachines/jdk1.7.0_09.jdk/Contents/Home/lib/tools.jar' loop start:  0
+# ZIPFIND loop end with [0] after 10ms
+# DIRFIND: . "." '' '[all]'
+# DIRFIND loop end with [309] after 45ms
+# ZIPFIND '/Users/alansampson/usr/local/NetRexx-3.01/runlib/NetRexxR.jar' loop start:  0
+# ZIPFIND loop end with [0] after 0ms
+# ZIPFIND '/System/Library/Frameworks/BSF4ooRexx.framework/Versions/A/Classes/bsf-v400-20090910.jar' loop start:  0
+# ZIPFIND loop end with [0] after 2ms
+# ZIPFIND '/System/Library/Frameworks/BSF4ooRexx.framework/Versions/A/Classes/bsf-rexx-engine.jar' loop start:  0
+# ZIPFIND loop end with [0] after 0ms
+# ZIPFIND '/Library/Java/JavaVirtualMachines/jdk1.7.0_09.jdk/Contents/Home/jre/lib/alt-rt.jar' loop start:  0
+# ZIPFIND loop end with [0] after 0ms
+# ZIPFIND '/Library/Java/JavaVirtualMachines/jdk1.7.0_09.jdk/Contents/Home/jre/lib/charsets.jar' loop start:  0
+# ZIPFIND loop end with [0] after 1ms
+# ZIPFIND '/Library/Java/JavaVirtualMachines/jdk1.7.0_09.jdk/Contents/Home/jre/lib/deploy.jar' loop start:  0
+# ZIPFIND loop end with [0] after 2ms
+# ZIPFIND '/Library/Java/JavaVirtualMachines/jdk1.7.0_09.jdk/Contents/Home/jre/lib/htmlconverter.jar' loop start:  0
+# ZIPFIND loop end with [1] after 0ms
+# ZIPFIND '/Library/Java/JavaVirtualMachines/jdk1.7.0_09.jdk/Contents/Home/jre/lib/javaws.jar' loop start:  0
+# ZIPFIND loop end with [0] after 1ms
+# ZIPFIND '/Library/Java/JavaVirtualMachines/jdk1.7.0_09.jdk/Contents/Home/jre/lib/jce.jar' loop start:  0
+# ZIPFIND loop end with [0] after 0ms
+# ZIPFIND '/Library/Java/JavaVirtualMachines/jdk1.7.0_09.jdk/Contents/Home/jre/lib/jfr.jar' loop start:  0
+# ZIPFIND loop end with [0] after 1ms
+# ZIPFIND '/Library/Java/JavaVirtualMachines/jdk1.7.0_09.jdk/Contents/Home/jre/lib/jfxrt.jar' loop start:  0
+# ZIPFIND loop end with [0] after 20ms
+# ZIPFIND '/Library/Java/JavaVirtualMachines/jdk1.7.0_09.jdk/Contents/Home/jre/lib/JObjC.jar' loop start:  0
+# ZIPFIND loop end with [0] after 5ms
+# ZIPFIND '/Library/Java/JavaVirtualMachines/jdk1.7.0_09.jdk/Contents/Home/jre/lib/jsse.jar' loop start:  0
+# ZIPFIND loop end with [0] after 0ms
+# ZIPFIND '/Library/Java/JavaVirtualMachines/jdk1.7.0_09.jdk/Contents/Home/jre/lib/management-agent.jar' loop start:  0
+# ZIPFIND loop end with [0] after 0ms
+# ZIPFIND '/Library/Java/JavaVirtualMachines/jdk1.7.0_09.jdk/Contents/Home/jre/lib/plugin.jar' loop start:  0
+# ZIPFIND loop end with [0] after 2ms
+# ZIPFIND '/Library/Java/JavaVirtualMachines/jdk1.7.0_09.jdk/Contents/Home/jre/lib/resources.jar' loop start:  0
+# ZIPFIND loop end with [0] after 0ms
+# ZIPFIND '/Library/Java/JavaVirtualMachines/jdk1.7.0_09.jdk/Contents/Home/jre/lib/rt.jar' loop start:  0
+# ZIPFIND loop end with [6] after 112ms
+# ZIPFIND '/Library/Java/JavaVirtualMachines/jdk1.7.0_09.jdk/Contents/Home/jre/lib/ext/dnsns.jar' loop start:  0
+# ZIPFIND loop end with [0] after 0ms
+# ZIPFIND '/Library/Java/JavaVirtualMachines/jdk1.7.0_09.jdk/Contents/Home/jre/lib/ext/localedata.jar' loop start:  0
+# ZIPFIND loop end with [0] after 0ms
+# ZIPFIND '/Library/Java/JavaVirtualMachines/jdk1.7.0_09.jdk/Contents/Home/jre/lib/ext/sunec.jar' loop start:  0
+# ZIPFIND loop end with [0] after 0ms
+# ZIPFIND '/Library/Java/JavaVirtualMachines/jdk1.7.0_09.jdk/Contents/Home/jre/lib/ext/sunjce_provider.jar' loop start:  0
+# ZIPFIND loop end with [0] after 0ms
+# ZIPFIND '/Library/Java/JavaVirtualMachines/jdk1.7.0_09.jdk/Contents/Home/jre/lib/ext/sunpkcs11.jar' loop start:  0
+# ZIPFIND loop end with [0] after 1ms
+# ZIPFIND '/Library/Java/JavaVirtualMachines/jdk1.7.0_09.jdk/Contents/Home/jre/lib/ext/zipfs.jar' loop start:  0
+# ZIPFIND loop end with [0] after 0ms
+# Imported 316 after 271ms
+# Loadclass java.lang.Object
+# ... from zipfile /Library/Java/JavaVirtualMachines/jdk1.7.0_09.jdk/Contents/Home/jre/lib/rt.jar
+# registerlocalclass '' 'RDetermineIfNumeric'
+# unfound class: 'RDetermineIfNumeric' 1
+# Read RDetermineIfNumeric.nrx.
+# --- pass 0+ --- RDetermineIfNumeric.nrx
+# --- pass 1 --- RDetermineIfNumeric.nrx
+# Numeric cons  org.netrexx.process.NrNumeric@5eb536e6
+# Numeric pass1 org.netrexx.process.NrNumeric@5eb536e6
+# --- method isNumeric [line 17]
+# FF: 1100 looking for 'boolean' in 'RDetermineIfNumeric'... 1
+# Loadclass netrexx.lang.Rexx
+# ... from zipfile /Users/developer/usr/local/NetRexx/lib/NetRexxC.jar
+# NewVar: [1 netrexx.lang.Rexx: testString]
+# FF: 0100 looking for 'isNumeric(netrexx.lang.Rexx)' in 'java.lang.Object'... 1
+# FF: 1100 looking for 'isNumeric(netrexx.lang.Rexx)' in 'RDetermineIfNumeric'... 1
+# --- method getTestData [line 21]
+# FF: 0100 looking for 'getTestData' in 'java.lang.Object'... 1
+# FF: 1100 looking for 'getTestData' in 'RDetermineIfNumeric'... 1
+# FF: 1100 looking for 'Object' in 'java.lang.Object'... 1
+# method: Object() returns java.lang.Object found in java.lang.Object [0]
+# --- pass 1+ --- RDetermineIfNumeric.nrx
+Program RDetermineIfNumeric.nrx
+# --- pass 2 --- RDetermineIfNumeric.nrx
+#      --- /* Generated from 'RDetermineIfNumeric.nrx' 10 Jan 2013 13:04:58 [v3.01] */
+#      --- /* Options: Comments Crossref Decimal Diag Format Java Logo Replace Symbols Trace2 Verbose3 */
+#      --- []
+#      --- [null]
+#      --- public class RDetermineIfNumeric{
+# Numeric pass2 org.netrexx.process.NrNumeric@5eb536e6
+# term: byte '20' [java.lang.Integer 20] 4
+# convertcode: netrexx.lang.Rexx <126< byte
+#      ---  private static final netrexx.lang.RexxSet $1=new netrexx.lang.RexxSet();
+#      ---  static{$1.setDigits($01);}
+# NewVar: [1 netrexx.lang.Rexx: arg]
+#      ---  [null]
+#      ---  public static void main
+#      ---  (java.lang.String $0s[])
+#      ---  {
+# FF: 0100 looking for 'getTestData' in 'RDetermineIfNumeric'... 1
+# method: getTestData() returns netrexx.lang.Rexx[] found in RDetermineIfNumeric [0]
+# NewVar: [2 netrexx.lang.Rexx: n_]
+#      ---   []
+#      ---   {
+#      ---   netrexx.lang.Rexx[] $5=getTestData();int $4=0;netrexx.lang.Rexx[] $3=new netrexx.lang.Rexx[$5.length];synchronized($5){for(;;){if($4==$3.length)break;$3[$4]=$5[$5.length-1-$4];$4++;}}
+#      ---   for(;;){
+#      ---   []
+#      ---   if(--$4<0)break;n_=(netrexx.lang.Rexx)$3[$4];
+# RefVar: [2 netrexx.lang.Rexx: n_]
+# term: netrexx.lang.Rexx 'n_' [? [null]] 4
+# FF: 0100 looking for 'isNumeric(netrexx.lang.Rexx)' in 'RDetermineIfNumeric'... 1
+# method: isNumeric(netrexx.lang.Rexx) returns boolean found in RDetermineIfNumeric [0]
+# term: boolean 'isNumeric(n_)' [? [null]] 5
+#      ---    if (isNumeric(n_))
+# FF: 1100 looking for 'then' in 'RDetermineIfNumeric'... 1
+# term: java.lang.String '"numeric"' [java.lang.String numeric] 2
+# convertcode: netrexx.lang.Rexx <137< java.lang.String
+# NewVar: [2 netrexx.lang.Rexx: msg]
+#      ---     msg=netrexx.lang.Rexx.toRexx("numeric");
+# FF: 1100 looking for 'else' in 'RDetermineIfNumeric'... 1
+#      ---    else
+# term: java.lang.String '"not numeric"' [java.lang.String not numeric] 2
+# Loadclass java.lang.String
+# ... from zipfile /Library/Java/JavaVirtualMachines/jdk1.7.0_09.jdk/Contents/Home/jre/lib/rt.jar
+# OldVar: [2 netrexx.lang.Rexx: msg] java.lang.String to netrexx.lang.Rexx
+# convertcode: netrexx.lang.Rexx <137< java.lang.String
+#      ---     msg=netrexx.lang.Rexx.toRexx("not numeric");
+# term: char ''\"'' [netrexx.lang.Rexx "] 3
+# RefVar: [2 netrexx.lang.Rexx: n_]
+# term: netrexx.lang.Rexx 'n_' [? [null]] 4
+# convertcode: netrexx.lang.Rexx <114< char
+# term: char ''\"'' [netrexx.lang.Rexx "] 5
+# convertcode: netrexx.lang.Rexx <114< char
+# term: byte '25' [java.lang.Integer 25] 10
+# FF: 0100 looking for 'right(byte)' in 'netrexx.lang.Rexx'... 1
+# method: right(netrexx.lang.Rexx) returns netrexx.lang.Rexx found in netrexx.lang.Rexx [20]
+# +excep: netrexx.lang.NotCharacterException,netrexx.lang.BadArgumentException
+# convertcode: netrexx.lang.Rexx <126< byte
+# term: netrexx.lang.Rexx '(($02.OpCc($1,n_)).OpCc($1,$02)).right(new netrexx.lang.Rexx((byte)25))' [? [null]] 11
+# 3 add exceptions: netrexx.lang.NotCharacterException,netrexx.lang.BadArgumentException
+# Loadclass netrexx.lang.NotCharacterException
+# ... from zipfile /Users/developer/usr/local/NetRexx/lib/NetRexxC.jar
+# Loadclass java.lang.RuntimeException
+# ... from zipfile /Library/Java/JavaVirtualMachines/jdk1.7.0_09.jdk/Contents/Home/jre/lib/rt.jar
+# Loadclass java.lang.Exception
+# ... from zipfile /Library/Java/JavaVirtualMachines/jdk1.7.0_09.jdk/Contents/Home/jre/lib/rt.jar
+# Loadclass java.lang.Throwable
+# ... from zipfile /Library/Java/JavaVirtualMachines/jdk1.7.0_09.jdk/Contents/Home/jre/lib/rt.jar
+# Loadclass netrexx.lang.BadArgumentException
+# ... from zipfile /Users/developer/usr/local/NetRexx/lib/NetRexxC.jar
+# term: char '':'' [netrexx.lang.Rexx :] 12
+# convertcode: netrexx.lang.Rexx <114< char
+# RefVar: [2 netrexx.lang.Rexx: msg]
+# term: netrexx.lang.Rexx 'msg' [netrexx.lang.Rexx not numeric] 14
+#      ---    netrexx.lang.RexxIO.Say((((($02.OpCc($1,n_)).OpCc($1,$02)).right(new netrexx.lang.Rexx((byte)25))).OpCc($1,$03)).OpCcblank($1,msg));
+#      ---    }
+#      ---   }/*n_*/
+# FF: 1100 looking for 'return' in 'RDetermineIfNumeric'... 1
+#      ---   return;
+#      ---   }
+    function isNumeric(Rexx)
+# RePoolVar: [testString] 0
+#      ---  [null]
+#      ---  public static boolean isNumeric
+#      ---  (netrexx.lang.Rexx testString)
+#      ---  {
+# RefVar: [1 netrexx.lang.Rexx: testString]
+# term: char ''N'' [netrexx.lang.Rexx N] 6
+# FF: 0100 looking for 'datatype(char)' in 'netrexx.lang.Rexx'... 1
+# method: datatype(netrexx.lang.Rexx) returns netrexx.lang.Rexx found in netrexx.lang.Rexx [15]
+# +excep: netrexx.lang.BadArgumentException
+# convertcode: netrexx.lang.Rexx <114< char
+# term: netrexx.lang.Rexx 'testString.datatype(new netrexx.lang.Rexx('N'))' [? [null]] 7
+# 2 add exceptions: netrexx.lang.BadArgumentException
+# convertcode: boolean <128< netrexx.lang.Rexx
+#      ---   return (testString.datatype(new netrexx.lang.Rexx('N'))).toboolean();
+#      ---   }
+    function getTestData
+#      ---  [null]
+#      ---  private static netrexx.lang.Rexx[] getTestData
+#      ---  ()
+#      ---  {
+# FF: 1100 looking for 'Rexx' in 'RDetermineIfNumeric'... 1
+# term: netrexx.lang.Rexx 'netrexx.lang.Rexx' [? [null]] 3
+# term: java.lang.String '" one and a half"' [java.lang.String  one and a half] 5
+# convertcode: netrexx.lang.Rexx <137< java.lang.String
+# cast netrexx.lang.Rexx.toRexx(" one and a half") from netrexx.lang.Rexx to netrexx.lang.Rexx
+# term: byte '1' [java.lang.Integer 1] 7
+# convertcode: netrexx.lang.Rexx <126< byte
+# term: float '1.5F' [java.lang.Double 1.5] 9
+# convertcode: netrexx.lang.Rexx <126< float
+# term: float '1.5e+27F' [java.lang.Double 1.5E27] 11
+# convertcode: netrexx.lang.Rexx <126< float
+# term: java.lang.String '"   1 "' [java.lang.String    1 ] 13
+# convertcode: netrexx.lang.Rexx <137< java.lang.String
+# term: java.lang.String '"  1.5 "' [java.lang.String   1.5 ] 15
+# convertcode: netrexx.lang.Rexx <137< java.lang.String
+# term: java.lang.String '"  1.5e+27 "' [java.lang.String   1.5e+27 ] 17
+# convertcode: netrexx.lang.Rexx <137< java.lang.String
+# term: java.lang.String '"-one and a half"' [java.lang.String -one and a half] 19
+# convertcode: netrexx.lang.Rexx <137< java.lang.String
+# term: byte '1' [java.lang.Integer 1] 22
+# convertcode: netrexx.lang.Rexx <126< byte
+# term: float '1.5F' [java.lang.Double 1.5] 25
+# convertcode: netrexx.lang.Rexx <126< float
+# term: float '1.5e-27F' [java.lang.Double 1.5E-27] 28
+# convertcode: netrexx.lang.Rexx <126< float
+# term: java.lang.String '" - 1 "' [java.lang.String  - 1 ] 30
+# convertcode: netrexx.lang.Rexx <137< java.lang.String
+# term: java.lang.String '"- 1.5 "' [java.lang.String - 1.5 ] 32
+# convertcode: netrexx.lang.Rexx <137< java.lang.String
+# term: java.lang.String '"- 1.5e-27 "' [java.lang.String - 1.5e-27 ] 34
+# convertcode: netrexx.lang.Rexx <137< java.lang.String
+# term: java.lang.String '"+one and a half"' [java.lang.String +one and a half] 36
+# convertcode: netrexx.lang.Rexx <137< java.lang.String
+# term: byte '1' [java.lang.Integer 1] 39
+# convertcode: netrexx.lang.Rexx <126< byte
+# term: float '1.5F' [java.lang.Double 1.5] 42
+# convertcode: netrexx.lang.Rexx <126< float
+# term: float '1.5e+27F' [java.lang.Double 1.5E27] 45
+# convertcode: netrexx.lang.Rexx <126< float
+# term: java.lang.String '" + 1 "' [java.lang.String  + 1 ] 47
+# convertcode: netrexx.lang.Rexx <137< java.lang.String
+# term: java.lang.String '"+ 1.5 "' [java.lang.String + 1.5 ] 49
+# convertcode: netrexx.lang.Rexx <137< java.lang.String
+# term: java.lang.String '"+ 1.5e+27 "' [java.lang.String + 1.5e+27 ] 51
+# convertcode: netrexx.lang.Rexx <137< java.lang.String
+# term: java.lang.String '"Math Constants"' [java.lang.String Math Constants] 53
+# convertcode: netrexx.lang.Rexx <137< java.lang.String
+# FF: 0100 looking for 'Math' in 'RDetermineIfNumeric'... 1
+# Loadclass java.lang.Math
+# ... from zipfile /Library/Java/JavaVirtualMachines/jdk1.7.0_09.jdk/Contents/Home/jre/lib/rt.jar
+# FF: 0110 looking for 'PI' in 'java.lang.Math'... 1
+# prop: PI [type double] found in java.lang.Math [0 1 515]
+# term: double 'java.lang.Math.PI' [java.lang.Double 3.141592653589793] 57
+# convertcode: netrexx.lang.Rexx <126< double
+# FF: 0100 looking for 'Math' in 'RDetermineIfNumeric'... 1
+# FF: 0110 looking for 'E' in 'java.lang.Math'... 1
+# prop: E [type double] found in java.lang.Math [0 1 515]
+# term: double 'java.lang.Math.E' [java.lang.Double 2.7182799211104123] 61
+# convertcode: netrexx.lang.Rexx <126< double
+# FF: 0100 looking for 'Math' in 'RDetermineIfNumeric'... 1
+# FF: 0110 looking for 'PI' in 'java.lang.Math'... 1
+# prop: PI [type double] found in java.lang.Math [0 1 515]
+# term: double 'java.lang.Math.PI' [java.lang.Double 3.141592653589793] 66
+# convertcode: netrexx.lang.Rexx <126< double
+# FF: 0100 looking for 'Math' in 'RDetermineIfNumeric'... 1
+# FF: 0110 looking for 'E' in 'java.lang.Math'... 1
+# prop: E [type double] found in java.lang.Math [0 1 515]
+# term: double 'java.lang.Math.E' [java.lang.Double 2.7182799211104123] 71
+# convertcode: netrexx.lang.Rexx <126< double
+# FF: 0100 looking for 'Math' in 'RDetermineIfNumeric'... 1
+# FF: 0110 looking for 'PI' in 'java.lang.Math'... 1
+# prop: PI [type double] found in java.lang.Math [0 1 515]
+# term: double 'java.lang.Math.PI' [java.lang.Double 3.141592653589793] 76
+# convertcode: netrexx.lang.Rexx <126< double
+# FF: 0100 looking for 'Math' in 'RDetermineIfNumeric'... 1
+# FF: 0110 looking for 'E' in 'java.lang.Math'... 1
+# prop: E [type double] found in java.lang.Math [0 1 515]
+# term: double 'java.lang.Math.E' [java.lang.Double 2.7182799211104123] 81
+# convertcode: netrexx.lang.Rexx <126< double
+# term: java.lang.String '"Numeric Constants"' [java.lang.String Numeric Constants] 83
+# convertcode: netrexx.lang.Rexx <137< java.lang.String
+# FF: 0100 looking for 'Double' in 'RDetermineIfNumeric'... 1
+# Loadclass java.lang.Double
+# ... from zipfile /Library/Java/JavaVirtualMachines/jdk1.7.0_09.jdk/Contents/Home/jre/lib/rt.jar
+# Loadclass java.lang.Number
+# ... from zipfile /Library/Java/JavaVirtualMachines/jdk1.7.0_09.jdk/Contents/Home/jre/lib/rt.jar
+# FF: 0110 looking for 'NaN' in 'java.lang.Double'... 1
+# prop: NaN [type double] found in java.lang.Double [0 1 515]
+# term: double 'java.lang.Double.NaN' [java.lang.Double NaN] 87
+# convertcode: netrexx.lang.Rexx <126< double
+# FF: 0100 looking for 'Double' in 'RDetermineIfNumeric'... 1
+# FF: 0110 looking for 'POSITIVE_INFINITY' in 'java.lang.Double'... 1
+# prop: POSITIVE_INFINITY [type double] found in java.lang.Double [0 1 515]
+# term: double 'java.lang.Double.POSITIVE_INFINITY' [java.lang.Double Infinity] 91
+# convertcode: netrexx.lang.Rexx <126< double
+# FF: 0100 looking for 'Double' in 'RDetermineIfNumeric'... 1
+# FF: 0110 looking for 'NEGATIVE_INFINITY' in 'java.lang.Double'... 1
+# prop: NEGATIVE_INFINITY [type double] found in java.lang.Double [0 1 515]
+# term: double 'java.lang.Double.NEGATIVE_INFINITY' [java.lang.Double -Infinity] 95
+# convertcode: netrexx.lang.Rexx <126< double
+# term: netrexx.lang.Rexx[] 'new netrexx.lang.Rexx[]{netrexx.lang.Rexx.toRexx(" one and a half"),new netrexx.lang.Rexx((byte)1),new netrexx.lang.Rexx("1.5"),new netrexx.lang.Rexx("1.5e+27"),netrexx.lang.Rexx.toRexx("   1 "),netrexx.lang.Rexx.toRexx("  1.5 "),netrexx.lang.Rexx.toRexx("  1.5e+27 "),netrexx.lang.Rexx.toRexx("-one and a half"),$04.OpMinus($1),$05.OpMinus($1),$06.OpMinus($1),netrexx.lang.Rexx.toRexx(" - 1 "),netrexx.lang.Rexx.toRexx("- 1.5 "),netrexx.lang.Rexx.toRexx("- 1.5e-27 "),netrexx.lang.Rexx.toRexx("+one and a half"),$04.OpPlus($1),$05.OpPlus($1),$07.OpPlus($1),netrexx.lang.Rexx.toRexx(" + 1 "),netrexx.lang.Rexx.toRexx("+ 1.5 "),netrexx.lang.Rexx.toRexx("+ 1.5e+27 "),netrexx.lang.Rexx.toRexx("Math Constants"),new netrexx.lang.Rexx(java.lang.Math.PI),new netrexx.lang.Rexx(java.lang.Math.E),new netrexx.lang.Rexx(java.lang.Math.PI).OpMinus($1),new netrexx.lang.Rexx(java.lang.Math.E).OpMinus($1),new netrexx.lang.Rexx(java.lang.Math.PI).OpPlus($1),new netrexx.lang.Rexx(java.lang.Math.E).OpPlus($1),netrexx.lang.Rexx.toRexx("Numeric Constants"),new netrexx.lang.Rexx(java.lang.Double.NaN),new netrexx.lang.Rexx(java.lang.Double.POSITIVE_INFINITY),new netrexx.lang.Rexx(java.lang.Double.NEGATIVE_INFINITY)}' [? [null]] 96
+# NewVar: [2 netrexx.lang.Rexx[]: testData]
+#      ---   testData=new netrexx.lang.Rexx[]{netrexx.lang.Rexx.toRexx(" one and a half"),new netrexx.lang.Rexx((byte)1),new netrexx.lang.Rexx("1.5"),new netrexx.lang.Rexx("1.5e+27"),netrexx.lang.Rexx.toRexx("   1 "),netrexx.lang.Rexx.toRexx("  1.5 "),netrexx.lang.Rexx.toRexx("  1.5e+27 "),netrexx.lang.Rexx.toRexx("-one and a half"),$04.OpMinus($1),$05.OpMinus($1),$06.OpMinus($1),netrexx.lang.Rexx.toRexx(" - 1 "),netrexx.lang.Rexx.toRexx("- 1.5 "),netrexx.lang.Rexx.toRexx("- 1.5e-27 "),netrexx.lang.Rexx.toRexx("+one and a half"),$04.OpPlus($1),$05.OpPlus($1),$07.OpPlus($1),netrexx.lang.Rexx.toRexx(" + 1 "),netrexx.lang.Rexx.toRexx("+ 1.5 "),netrexx.lang.Rexx.toRexx("+ 1.5e+27 "),netrexx.lang.Rexx.toRexx("Math Constants"),new netrexx.lang.Rexx(java.lang.Math.PI),new netrexx.lang.Rexx(java.lang.Math.E),new netrexx.lang.Rexx(java.lang.Math.PI).OpMinus($1),new netrexx.lang.Rexx(java.lang.Math.E).OpMinus($1),new netrexx.lang.Rexx(java.lang.Math.PI).OpPlus($1),new netrexx.lang.Rexx(java.lang.Math.E).OpPlus($1),netrexx.lang.Rexx.toRexx("Numeric Constants"),new netrexx.lang.Rexx(java.lang.Double.NaN),new netrexx.lang.Rexx(java.lang.Double.POSITIVE_INFINITY),new netrexx.lang.Rexx(java.lang.Double.NEGATIVE_INFINITY)};
+# RefVar: [2 netrexx.lang.Rexx[]: testData]
+# term: netrexx.lang.Rexx[] 'testData' [? [null]] 2
+#      ---   return testData;
+#      ---   }
+# FF: 1100 looking for 'Object' in 'java.lang.Object'... 1
+# method: Object() returns java.lang.Object found in java.lang.Object [0]
+#      ---  []
+#      ---  private RDetermineIfNumeric(){return;}
+#      ---  }
+# closefiles
+# Compiling: -nowarn -classpath /Users/developer/usr/local/NetRexx/lib/NetRexxC.jar:/Library/Java/JavaVirtualMachines/jdk1.7.0_09.jdk/Contents/Home/lib/tools.jar:.:/Users/alansampson/usr/local/NetRexx-3.01/runlib/NetRexxR.jar:/System/Library/Frameworks/BSF4ooRexx.framework//Versions/A/Classes/bsf-v400-20090910.jar:/System/Library/Frameworks/BSF4ooRexx.framework//Versions/A/Classes/bsf-rexx-engine.jar:/Library/Java/JavaVirtualMachines/jdk1.7.0_09.jdk/Contents/Home/jre/lib/alt-rt.jar:/Library/Java/JavaVirtualMachines/jdk1.7.0_09.jdk/Contents/Home/jre/lib/charsets.jar:/Library/Java/JavaVirtualMachines/jdk1.7.0_09.jdk/Contents/Home/jre/lib/deploy.jar:/Library/Java/JavaVirtualMachines/jdk1.7.0_09.jdk/Contents/Home/jre/lib/htmlconverter.jar:/Library/Java/JavaVirtualMachines/jdk1.7.0_09.jdk/Contents/Home/jre/lib/javaws.jar:/Library/Java/JavaVirtualMachines/jdk1.7.0_09.jdk/Contents/Home/jre/lib/jce.jar:/Library/Java/JavaVirtualMachines/jdk1.7.0_09.jdk/Contents/Home/jre/lib/jfr.jar:/Library/Java/JavaVirtualMachines/jdk1.7.0_09.jdk/Contents/Home/jre/lib/jfxrt.jar:/Library/Java/JavaVirtualMachines/jdk1.7.0_09.jdk/Contents/Home/jre/lib/JObjC.jar:/Library/Java/JavaVirtualMachines/jdk1.7.0_09.jdk/Contents/Home/jre/lib/jsse.jar:/Library/Java/JavaVirtualMachines/jdk1.7.0_09.jdk/Contents/Home/jre/lib/management-agent.jar:/Library/Java/JavaVirtualMachines/jdk1.7.0_09.jdk/Contents/Home/jre/lib/plugin.jar:/Library/Java/JavaVirtualMachines/jdk1.7.0_09.jdk/Contents/Home/jre/lib/resources.jar:/Library/Java/JavaVirtualMachines/jdk1.7.0_09.jdk/Contents/Home/jre/lib/rt.jar:/Library/Java/JavaVirtualMachines/jdk1.7.0_09.jdk/Contents/Home/jre/lib/ext/dnsns.jar:/Library/Java/JavaVirtualMachines/jdk1.7.0_09.jdk/Contents/Home/jre/lib/ext/localedata.jar:/Library/Java/JavaVirtualMachines/jdk1.7.0_09.jdk/Contents/Home/jre/lib/ext/sunec.jar:/Library/Java/JavaVirtualMachines/jdk1.7.0_09.jdk/Contents/Home/jre/lib/ext/sunjce_provider.jar:/Library/Java/JavaVirtualMachines/jdk1.7.0_09.jdk/Contents/Home/jre/lib/ext/sunpkcs11.jar:/Library/Java/JavaVirtualMachines/jdk1.7.0_09.jdk/Contents/Home/jre/lib/ext/zipfs.jar -g /Users/alansampson/projects/RosettaCode/netrexx/RDetermineIfNumeric.java
+# compiling RDetermineIfNumeric.nrx using javac
+# Compiled: ok=1
+# closeinput
+Compilation of 'RDetermineIfNumeric.nrx' successful

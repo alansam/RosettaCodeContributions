@@ -1,0 +1,31 @@
+/* Generated from 'RCDNSQuery.nrx' 15 Dec 2011 12:51:01 [v3.01] */
+/* Options: Comments Crossref Decimal Format Java Logo Replace Symbols Trace2 Verbose3 */
+
+/* NetRexx */
+
+
+
+public class RCDNSQuery{
+ private static final netrexx.lang.Rexx $01=netrexx.lang.Rexx.toRexx("IPv4 :");
+ private static final netrexx.lang.Rexx $02=netrexx.lang.Rexx.toRexx("IPv6 :");
+ private static final java.lang.String $0="RCDNSQuery.nrx";
+ 
+ public static void main(java.lang.String $0s[]) throws java.net.UnknownHostException{
+  java.net.InetAddress ir=null;
+  java.net.InetAddress addresses[];
+  addresses=java.net.InetAddress.getAllByName("www.kame.net");
+  {int $3=0;java.lang.Object[] $2=new java.lang.Object[addresses.length];synchronized(addresses){for(;;){if($3==$2.length)break;$2[$3]=addresses[addresses.length-1-$3];$3++;}}ir:for(;;){if(--$3<0)break;ir=(java.net.InetAddress)((java.lang.Object)$2[$3]);
+   if ((ir instanceof java.net.Inet4Address)) 
+    {
+     netrexx.lang.RexxIO.Say($01.OpCcblank(null,netrexx.lang.Rexx.toRexx(ir.getHostAddress())));
+    }
+   if ((ir instanceof java.net.Inet6Address)) 
+    {
+     netrexx.lang.RexxIO.Say($02.OpCcblank(null,netrexx.lang.Rexx.toRexx(ir.getHostAddress())));
+    }
+   }
+  }/*ir*/
+  return;}
+ 
+ private RCDNSQuery(){return;}
+ }

@@ -1,0 +1,26 @@
+--- Variables for class RSortingPancakesort00 ---
+a_       Rexx           v 15= 15 16 16
+arg      Rexx           a 6= 6
+arg      Rexx           a 44 49
+clist    java.util.List v 55= 56 57
+clist    ArrayList      v 83= 85 88
+debug    boolean        a 10= 19 20
+debug    boolean        a 26= 29 38
+debug    Rexx           v 49= 50 50= 51= 57
+i_       Rexx           v 13= 13 15 18 20
+i_       Rexx           v 34= 34 35
+i_       Rexx           v 65= 66 66= 66 66 67 67= 67 67 68 68= 68 68 69 69= 69 69 70 70= 70 70 71 71= 71 71 72 72= 72 72 73 73= 73 73 74 74= 74 74 75 75= 75 75 76 76= 76 76 77 77= 77 77 78 78= 78 78
+il       Rexx           v 54= 55
+isFalse  boolean        v 47= 51
+isTrue   boolean        v 46= 47 50
+lists    Rexx           v 53= 54 55
+lists    Rexx           v 64= 66= 66= 67= 67= 68= 68= 69= 69= 70= 70= 71= 71= 72= 72= 73= 73= 74= 74= 75= 75= 76= 76= 77= 77= 78= 78= 79
+maxPos   Rexx           v 14= 16 16= 18 19 19
+offset   Rexx           a 26 27 30 32 39
+pl       Rexx           v 28= 31 31= 32 39
+plx      Rexx           v 30= 31 31
+tlist    java.util.List a 10 12 13 16 16 19 20 23
+tlist    java.util.List a 26 32 35 39 41
+w_       Rexx           v 84= 85
+wordlist Rexx           a 81 84 85
+z_       Rexx           v 27= 34 35 36 36=

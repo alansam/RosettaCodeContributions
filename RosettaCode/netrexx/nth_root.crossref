@@ -1,0 +1,17 @@
+--- Variables for class nth_root ---
+_       Rexx     v 67= 68 68 70 76= 77 77 79
+args    String[] a 5 6 11 12 13 13
+ax      Rexx     v 53= 54 67
+d       Rexx     v 56= 61 61 61= 62 62= 63 73
+digs    String   v 13= 16 16 16= 17 20 21
+digs    Rexx     a 23 51
+dm      Rexx     v 52= 62 62 73
+g       Rexx     v 54= 67 67 68 69 70= 76
+old     Rexx     v 64= 68 69=
+oldDigs Rexx     v 51= 52 78
+oldR    Rexx     v 28= 77
+r       Rexx     a 23 27 27= 28 29 37 37= 39 49 50 54 54 67 67
+Rm1     Rexx     v 50= 67 67
+root    String   v 12= 15 15= 19 21
+x       String   v 11= 18 21
+x       Rexx     a 23 39 49 49 53 76

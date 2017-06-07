@@ -1,0 +1,16 @@
+--- Variables for class RCharacterMatch ---
+j_          Rexx    v 34= 35 36 37 39 40 41 51= 55 58
+k_          Rexx    v 53= 56 56= 58 58
+lipsum      Rexx    v 24= 26= 26= 27= 27 27= 34 35 36 37 39 40 41
+many        Rexx    v 44= 46= 46= 47= 47= 48= 48= 51 55 58
+o_          Rexx    v 52= 54 55 55= 56
+srch        Rexx    v 29= 30= 31= 32= 35 36 37 39 40 41 41 49= 55 58
+ss          Rexx    a 61 65
+state       boolean a 61 62
+testFailure Rexx    a 61 63
+testSuccess Rexx    a 61 62
+ts          Rexx    a 61 64
+x1          Rexx    v 35= 39
+x2          Rexx    v 36= 40 40
+x3          Rexx    v 37= 41
+x_          Rexx    v 25= 26 26= 26 26 27 27= 27 27 45= 46 46= 46 46 47 47= 47 47 48 48= 48 48

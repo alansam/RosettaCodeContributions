@@ -1,0 +1,5 @@
+--- Variables for class RStringStrip ---
+c_       Rexx v 11= 12
+chs      Rexx a 9 11 12
+haystack Rexx a 9 13 13= 16
+needle   Rexx v 12= 13

@@ -1,0 +1,32 @@
+/* NetRexx */
+
+options replace format comments java crossref savelog symbols binary
+
+import javax.net.ssl.HttpsURLConnection
+import java.util.Scanner
+import java.net.URL
+
+/**
+ * Print a URL's content (source code) to the console. There is a separate task for
+ * <a href="http://rosettacode.org/wiki/HTTPS_Request">HTTPS Requests</a>.
+ *
+ * @author Alan Sampson
+ * @version 1.0
+ * @see <a href="http://rosettacode.org/wiki/HTTP">rosettacode.org/wiki/HTTP</a>
+ */
+
+do
+  rosettaUrl = "http://www.rosettacode.org"
+
+  url = URL(rosettaUrl)
+  cnx = HttpsURLConnection(url.openConnection)
+  sc = Scanner(cnx.getInputStream)
+  loop while sc.hasNext
+    say sc.nextLine
+  end
+catch ex = Exception
+  ex.printStackTrace
+end
+
+return
+

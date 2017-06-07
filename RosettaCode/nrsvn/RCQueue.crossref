@@ -1,0 +1,6 @@
+--- Variables for class RCQueue ---
+a      Rexx       v 8= 10 13= 14
+line   Rexx       v 19= 20
+mqueue ArrayDeque v 4= 6 9 10 11 14 15 16 18 19 22
+mqueue Deque      a 26 28 32
+q_     Rexx       v 18= 20

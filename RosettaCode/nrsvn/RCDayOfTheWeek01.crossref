@@ -1,0 +1,6 @@
+--- Variables for class RCDayOfTheWeek01 ---
+cal        Calendar v 6 9= 10
+dayIndex   int      v 10= 11
+searchday  Rexx     v 5= 11 11= 15 15= 16
+year       Rexx     v 8= 9 11
+yearRanges int[]    v 4= 8 8 14 14

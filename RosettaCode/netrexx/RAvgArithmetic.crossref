@@ -1,0 +1,15 @@
+--- Variables for class RAvgArithmetic ---
+dex     DivideException  v 28= 30
+FALSE_  boolean          v 21= 22
+mean    Rexx             v 14= 16
+n_      Rexx             v 10 12
+rng     Random           v 42= 46 46 46 46 46 46 47 47 47 47 47 47 47
+seed    Rexx             v 41= 42 46 46 46 46 46 46
+sum     Rexx             v 9= 12 12= 14
+tracing boolean          v 22= 30 33
+TRUE_   boolean          v 20= 21
+v_      Rexx             v 24= 25 27
+vectors Vector[]         v 23= 24 25 27
+vectors Vector[]         v 43= 51
+vv      Vector           a 8 11 14
+xex     RuntimeException v 31= 33

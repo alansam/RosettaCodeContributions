@@ -1,0 +1,34 @@
+/* NetRexx */
+options replace format comments java crossref symbols nobinary
+
+runSample(arg)
+return
+
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+method amb(wordLists = Rexx[]) public static
+  anAmb = ''
+  loop w_ = 0 to wordLists.length - 1
+    wordList = wordLists[w_]
+    say wordList
+    loop while wordList \= ''
+      parse wordList wx wordList
+      say wx.right(1) wordList
+      end
+    end w_
+
+  return anAmb
+
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+method runSample(arg) private static
+
+  wordLists = [ -
+    'the that a',           -
+    'frog elephant thing',  -
+    'walked treaded grows', -
+    'slowly quickly'        -
+    ]
+
+  say amb(wordLists)
+
+  return
+

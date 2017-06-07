@@ -1,0 +1,75 @@
+/* NetRexx */
+
+options replace format comments java crossref savelog symbols
+
+import java.text.MessageFormat
+import java.text.FieldPosition
+
+/**
+ * <h3>String interpolation (included)</h3>
+ *
+ * <p>
+ * Given a string and defined variables or values,
+ * <a href="http://en.wikipedia.org/wiki/String_literal#Variable_interpolation">string interpolation</a>
+ * is the replacement of defined character sequences in the string by values or variable values
+ * </p>
+ * <p>
+ * For example, given an original string of <code>"Mary had a X lamb."</code>, a value of <code>"big"</code>,
+ * and if the language replaces X in its interpolation routine, then the result of its interpolation would
+ * be the string <code>"Mary had a big lamb"</code>.
+ * </p>
+ * <p>
+ * (Languages usually include an infrequently used character or sequence of characters to indicate what is
+ * to be replaced such as <code>"%"</code>, or <code>"#"</code> rather than <code>"X"</code>).
+ * </p>
+ * <p>
+ * The task is to:
+ * </p>
+ * <ol>
+ * <li>
+ * Use your languages inbuilt string interpolation abilities to interpolate a string missing the text
+ * <code>"little"</code> which is held in a variable, to produce the output string 
+ * <code>"Mary had a little lamb"</code>.
+ * </li>
+ * <li>
+ * If possible, give links to further documentation on your languages string interpolation features.
+ * </li>
+ * </ol>
+ * <p>
+ * Note: The task is not to create a string interpolation routine, but to show a language's built-in capability.
+ * </p>
+ *
+ * @author Alan Sampson
+ * @version 1.0
+ * @see <a href="http://rosettacode.org/wiki/String_interpolation_(included)">rosettacode.org/wiki/String_interpolation_(included)</a>
+ */
+
+useBif()
+useMessageFormat()
+
+return
+
+method useBif public static
+
+  st = "Mary had a %1$ lamb."
+  si = 'little'
+
+  say st.changestr('%1$', si)
+
+  return
+
+method useMessageFormat public static
+
+  result = StringBuffer('')
+
+  args = Object [                       -
+    Object Integer(7),                  -
+    Object Date(),                      -
+    Object 'a disturbance in the Force' -
+  ]
+  msgfmt = MessageFormat('At {1, time} on {1, date}, there was {2} on planet {0, number, integer}.')
+  result = msgfmt.format(args, result, FieldPosition(0))
+  say result
+
+  return
+

@@ -1,0 +1,7 @@
+/* NetRexx */
+options replace format comments java crossref symbols nobinary
+
+say 'Source: ' source
+say 'Program:' System.getProperty('sun.java.command')
+return
+

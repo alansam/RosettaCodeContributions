@@ -1,0 +1,10 @@
+Output of running [ps, -f, -U, developer] is:
+  UID   PID  PPID   C STIME   TTY           TIME CMD
+  502 74079     1   0  8:13PM ??         0:00.02 /sbin/launchd
+  502 74081 74079   0  8:13PM ??         0:00.05 /usr/local/MacGPG2/bin/gpg-agent --launchd --write-env-file
+  502 74084 74079   0  8:13PM ??         0:00.01 /usr/sbin/distnoted agent
+  502 74359 74079   0  8:27PM ??         0:00.17 /System/Library/Frameworks/CoreServices.framework/Frameworks/Metadata.framework/Versions/A/Support/mdworker -s mdworker -c MDSImporterWorker -m com.apple.mdworker.pool.0
+  502 74047 74045   0  8:13PM ttys000    0:00.06 bash
+  502 74369 74047   0  8:28PM ttys000    0:00.19 /usr/bin/java -cp .:.. RFork
+  502 74370 74047   0  8:28PM ttys000    0:00.00 tee data/RForkJ.log
+    0 74371 74369   0  8:28PM ttys000    0:00.00 ps -f -U developer

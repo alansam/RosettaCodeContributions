@@ -1,0 +1,61 @@
+/* NetRexx */
+options replace format comments java crossref symbols nobinary
+
+numeric digits 20
+
+class RKaprekar01 public
+
+properties constant
+  isTrue  = boolean (1 == 1)
+  isFalse = boolean (1 \== 1)
+
+method main(args = String[]) public static
+
+  limit = 10000
+  t1 = System.nanoTime()
+  kaprekar(limit)
+  t2 = System.nanoTime()
+  t0 = t2 - t1
+  ts = t0 / 1000000000
+  say 'Elapsed time for' limit 'iterations:' ts's'
+
+  say '-'.copies(80)
+  limit = 1000000
+  t1 = System.nanoTime()
+  kaprekar(limit, isTrue)
+  t2 = System.nanoTime()
+  t0 = t2 - t1
+  ts = t0 / 1000000000
+  say 'Elapsed time for' limit 'iterations:' ts's'
+  say
+
+  return
+
+method kaprekar(limit, listAll = isTrue) public static
+
+  kCount = 0
+  loop kn = 1 to limit
+    kSq = kn * kn
+    loop splt = 1 to kSq.length()
+      parse kSq kl +(splt) kr .
+      if kr = 0 then leave splt
+      if kr = '' then kr = 0
+      kNum = ''
+      if kl + kr = kn then do
+        kNum = kn
+        kCount = kCount + 1
+        if listAll then do
+          ll = limit.length() + 1
+          lx = (limit * limit).length()
+          say kNum.right(ll) ':' kSq.right(lx) '('kl.right(lx) '+' kr.right(lx) '=' (kl + kr).right(lx)')'
+          end
+        end
+      if kNum \= '' then leave splt
+      end splt
+    end kn
+
+  say
+  say kCount.right(10) 'Kaprekar numbers <' limit
+
+  return
+

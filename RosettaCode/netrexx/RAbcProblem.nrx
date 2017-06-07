@@ -1,0 +1,120 @@
+/* NetRexx */
+options replace format comments java crossref symbols nobinary
+
+/*
+ * 10.01.2014 Walter Pachl  counts the number of possible ways
+ * 12.01.2014 corrected date and output
+ */
+parse arg showv .
+show = (showv <> '')
+blocks = 'BO XK DQ CP NA GT RE TG QD FS JW HU VI AN OB ER FS LY PC ZM'
+list   = '$ A baRk bOOk trEat coMMon squaD conFuse'
+list   = list.upper
+
+blk = ''
+loop i = 1 to blocks.words()
+  --blkn[i] = blocks.word(i)'-'i
+  blk[i]  = blocks.word(i)
+  end
+
+w = ''
+wlen = 0
+loop i = 1 to list.words()
+  w[i] = list.word(i)
+  wlen = wlen.max(w[i].length())
+  end
+
+--trace results
+loop wi = 0 to list.words()
+  wrd  = w[wi]
+  ways = 0
+  poss = 0
+  lw = wrd.length()
+  cannot = 0
+  loop i = 1 to lw                         /* loop over the characters   */
+    c = wrd.substr(i, 1)                 /* the current character      */
+    loop j = 1 to blocks.words()            /* loop over blocks           */
+      blk = blocks.word(j)
+      if c.pos(blk) > 0 then do  /* block can be used in this position */
+        z = poss[i, 0] + 1
+        poss[i, z] = j
+        poss[i, 0] = z            /* number of possible blocks for pos i */
+        end
+      end
+
+    if poss[i, 0] = 0 then do
+      cannot = 1
+      Leave i
+      end
+    end
+ 
+  if cannot = 0 then do                  /* no prohibitive character   */
+    s = 0
+    loop j = 1 to poss[1, 0]          /* build possible strings for char 1 */
+      z = s[1, 0] + 1
+      s[1, z] = poss[1, j]
+      s[1, 0] = z
+      end j
+    loop i = 2 to lw          /* build possible strings for chars 1 to i */
+      ii = i - 1
+      loop j = 1 to poss[i, 0]
+        loop k = 1 to s[ii, 0]
+          z = s[i, 0] + 1
+          s[i, z] = s[ii, k] poss[i, j]
+          s[i, 0] = z
+          end
+        end
+      end
+    way = ''
+
+    loop p = 1 to s[lw, 0]            /* loop through all possible strings */
+      v = valid(s[lw, p])                  /* test if the string is valid*/
+      if v then do                     /* it is                      */
+        ways = ways + 1                    /* increment number of ways   */
+        way[ways] = ''                 /* and store the string's blocks */
+        loop ii = 1 to lw
+          z = s[lw, p].word(ii)
+          way[ways] = way[ways] blk[z]
+          end
+        end
+      end
+    end
+
+/*---------------------------------------------------------------------
+* now show the result
+*--------------------------------------------------------------------*/
+  ol = ("'"wrd"'").left(wlen + 2)
+  select
+    when ways = 0 then
+      ol = ol 'cannot be spelt'
+    when ways = 1 then
+      ol = ol 'can be spelt'
+    otherwise
+      ol = ol 'can be spelt in' ways 'ways'
+    end
+    
+  Say ol'.'
+  if show then do
+    loop wj = 1 to ways
+      Say ' '.copies(10) way[wj]
+      end
+    end
+  end
+
+return
+ 
+method valid(list) private static
+/*---------------------------------------------------------------------
+* Check if the same block is used more than once -> 0
+* Else: the combination is valid
+*--------------------------------------------------------------------*/
+  --Parse Arg list
+  used = 0
+  loop i = 1 to list.words()
+    w  = list.word(i)
+    if used[w] then return 0
+    used[w] = 1
+    end
+
+  return 1
+

@@ -1,0 +1,25 @@
+/* NetRexx */
+
+options replace format comments java crossref savelog symbols
+
+/**
+ * Show how to iterate over the key-value pairs of an associative array, and print each pair out.
+ * Also show how to iterate just over the keys, or the values, if there is a separate way to do that in your language.
+ *
+ * @author Alan Sampson
+ * @version 1.0
+ * @see <a href="http://rosettacode.org/wiki/Associative_arrays/Iteration">rosettacode.org/wiki/Associative_arrays/Iteration</a>
+ */
+
+surname = 'Unknown' -- default value
+surname['Fred'] = 'Bloggs'
+surname['Davy'] = 'Jones'
+
+try = 'Fred'
+say surname[try] surname['Bert']
+
+-- extract the keys
+loop fn over surname
+  say fn.right(10) ':' surname[fn]
+  end fn
+

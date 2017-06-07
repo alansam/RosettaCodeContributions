@@ -1,0 +1,23 @@
+--- Variables for class RCSortingHeapsort ---
+a          String[]       a 26 26 29 30
+a          java.util.List a 35 35 37 37= 41 42 42 43 44 44= 48
+a          java.util.List a 50 55 55= 59
+a          java.util.List a 61 68 68 72 72 73 74 74 75 83
+al         java.util.List v 30= 31
+child      int            v 66= 67 68 68 69 69= 72 74 75 76
+cl         String[]       v 17= 18 19
+count      int            a 26= 30
+count      int            a 35= 37 39
+count      int            a 50 52 55
+ct         int            v 18= 19
+iend       int            v 39= 40 42 43 44 45 45=
+iend       int            a 61 65 67
+istart     int            a 61 63
+lists      String[,]      v 11= 16 17
+ln         int            v 16= 17
+placesList String[]       v 6= 12 13 13
+rl         String[]       v 29= 31 33
+root       int            v 63= 65 66 72 73 74 76=
+start      int            v 52= 54 55 56 56=
+swap       Object         v 41= 43
+swap       Object         v 73= 75

@@ -1,0 +1,8 @@
+--- Variables for class RFactorsOfAnInteger03 ---
+f_      Rexx      v 28= 29
+factors Rexx      v 18= 19= 20= 23= 24= 28
+fl      ArrayList v 27= 29 31 32
+j_      Rexx      v 9= 10 10
+n_      Rexx      a 17 20 21 22 24
+num     Rexx      v 4= 7= 8 9
+x_      Rexx      v 21= 22 23 24

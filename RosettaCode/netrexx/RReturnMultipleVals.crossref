@@ -1,0 +1,36 @@
+--- Variables for class RReturnMultipleVals ---
+arg      Rexx                     v 18= 19
+args     String[]                 a 17 18
+K_1024   Rexx                     c 10= 20
+K_lipsum Rexx                     c 9= 21
+L        Rexx                     c 7= 33 48 63 87
+lcl      RReturnMultipleVals      v 23= 25 31 36 41 46
+nv_      Rexx                     v 19= 20 20= 25 31 36 41 46
+nv_      Rexx                     a 56 57
+nv_      Rexx                     a 61 63
+nv_      Rexx                     a 70 71
+nv_      Rexx                     a 77 79
+nv_      Rexx                     a 85 87
+R        Rexx                     c 8= 33 48 64 88
+rset     RReturnMultipleVals.Pair v 71= 72
+rset     ArrayList                v 78= 79 80 81
+rset     HashMap                  v 86= 87 88 89
+rval     Rexx                     v 62= 63= 64= 65
+rvl      java.util.List           v 41= 43 43
+rvm      Map                      v 46= 48 48
+rvp      RReturnMultipleVals.Pair v 36= 38 38
+rvr      Rexx                     v 25= 26 31= 33 33
+sv_      Rexx                     v 19= 21 21= 25 31 36 41 46
+sv_      Rexx                     a 56 57
+sv_      Rexx                     a 61 64
+sv_      Rexx                     a 70 71
+sv_      Rexx                     a 77 80
+sv_      Rexx                     a 85 88
+val1     Rexx                     v 26= 28
+val2     Rexx                     v 26= 28
+
+--- Variables for class RReturnMultipleVals.Pair ---
+leftVal  Rexx p 95
+nv_      Rexx a 99= 100
+rightVal Rexx p 96
+sv_      Rexx a 99= 101

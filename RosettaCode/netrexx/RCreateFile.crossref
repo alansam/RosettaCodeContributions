@@ -1,0 +1,7 @@
+--- Variables for class RCreateFile ---
+dc    boolean     v 17= 18
+dName Rexx        v 5= 5= 5= 5= 15 16 17 18 19
+fc    boolean     v 10= 11
+fName Rexx        v 4= 4= 4= 4= 8 9 10 11 12
+i_    Rexx        v 8= 9 10 11 12 15= 16 17 18 19
+iox   IOException v 21= 22

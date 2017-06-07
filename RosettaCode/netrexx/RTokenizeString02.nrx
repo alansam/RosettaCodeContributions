@@ -1,0 +1,9 @@
+/* NetRexx */
+options replace format comments java crossref symbols binary
+
+inStringArray = String('Hello,How,Are,You,Today').split(',')
+loop aWord over inStringArray
+  say Rexx(aWord).strip()'.\-'
+  end aWord
+say
+

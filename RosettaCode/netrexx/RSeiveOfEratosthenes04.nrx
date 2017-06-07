@@ -1,0 +1,38 @@
+/*REXX program generates primes via sieve of Eratosthenes algorithm.
+* 21.07.2012 Walter Pachl derived from above Rexx version
+*                       avoid symbols @ and # (not supported by ooRexx)
+*                       avoid negations (think positive)
+**********************************************************************/
+options replace format comments java crossref symbols nobinary
+
+numeric digits 20
+parse arg highest .
+if highest = '' then highest = 200                            /*define highest number to use.  */
+beginProc = System.nanoTime()
+  is_prime = 1                       /*assume all numbers are prime.  */
+  w = highest.length()                 /*width of the biggest number,   */
+                                    /*  it's used for aligned output.*/
+  Loop j = 3 To highest By 2 -           /*strike multiples of odd ints.  */
+               While j * j <= highest   /* up to sqrt(highest)           */
+      If is_prime[j] Then Do
+        Loop jm = j * 3 To highest By j + j /*start with next odd mult. of J */
+          is_prime[jm] = 0             /*mark odd mult. of J not prime. */
+          End
+        End
+    End
+  np = 0                              /*number of primes shown         */
+  np = tell(2, w, np)
+  Loop n = 3 To highest By 2            /*list all the primes found.     */ /* Observe that this is a second optomization; skipping even numbers */
+    If is_prime[n] Then Do
+      np = tell(n, w, np)
+      End
+    End
+endProc = System.nanoTime()
+duration = endProc - beginProc
+say 'Processing time:' (duration / 1000000000).format(null, 6)'s'
+  Exit
+method tell(prime, w, np) private static
+      np = np + 1
+      Say '           prime number' np.right(w) " --> " prime.right(w)
+      Return np
+ 

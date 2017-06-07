@@ -1,0 +1,18 @@
+/* NetRexx */
+options replace format comments java crossref symbols nobinary
+
+numL = 0
+numR = 0
+loop label running forever
+  say 'Provide two integers [or anything else to stop]:'
+  parse ask numL numR .
+  if \numL.datatype('w') | \numR.datatype('w') then leave running
+  say '  sum of' numL 'and' numR':              ' numL + numR
+  say '  difference of' numL 'and' numR':       ' numL - numR
+  say '  product of' numL 'and' numR':          ' numL * numR  -- rounds towards zero
+  say '  quotient of' numL 'and' numR':         ' numL % numR  -- sign taken from left hand operand
+  say '  remainder of' numL 'divided by' numR': ' numL // numR
+  end running
+
+return
+

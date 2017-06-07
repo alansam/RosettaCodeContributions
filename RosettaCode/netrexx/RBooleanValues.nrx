@@ -1,0 +1,33 @@
+/* NetRexx */
+
+options replace format comments java crossref savelog symbols nobinary
+
+/**
+ * <h3>Boolean values<//h3>
+ * <p>
+ * Show how to represent the boolean states "true" and "false" in a language.
+ * If other objects represent "true" or "false" in conditionals, note it.
+ * (See also: <a href="http://rosettacode.org/wiki/Logical_operations">Logical operations</a>)
+ * </p>
+ *
+ * @author Alan Sampson
+ * @version 1.0
+ * @see <a href="http://rosettacode.org/wiki/Boolean_values">http://rosettacode.org/wiki/Boolean_values</a>
+ */
+
+bval = [1, 0, 5, 'a', 1 == 1, 1 \= 1, isTrue, isFalse]
+
+loop b_ = 0 for bval.length
+  select case bval[b_]
+    when isTrue  then say bval[b_] 'is true'
+    when isFalse then say bval[b_] 'is false'
+    otherwise         say bval[b_] 'is not boolean'
+    end
+  end b_
+
+method isTrue public static returns boolean
+  return (1 == 1)
+
+method isFalse public static returns boolean
+  return \isTrue
+

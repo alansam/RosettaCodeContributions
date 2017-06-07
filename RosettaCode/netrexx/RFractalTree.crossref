@@ -1,0 +1,12 @@
+--- Variables for class RFractalTree ---
+angle   double   a 20 22 23 25 26
+args    String[] a 35
+depth   int      a 20 21 22 23 25 26
+g       Graphics a 20 24 25 26
+g       Graphics a 30 31 32
+isFalse boolean  c 11= 16
+isTrue  boolean  c 10= 11 36
+x1      int      a 20 22 24
+x2      int      v 22= 24 25 26
+y1      int      a 20 23 24
+y2      int      v 23= 24 25 26

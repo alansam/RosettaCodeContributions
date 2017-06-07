@@ -1,0 +1,7 @@
+NetRexx portable processor 3.03 NetRexx '3.03', build 61-20140611-2330
+Copyright (c) RexxLA, 2011,2014.   All rights reserved.
+Parts Copyright (c) IBM Corporation, 1995,2008.
+Program RShortCircuitEval01.nrx
+    function a
+    function b
+Compilation of 'RShortCircuitEval01.nrx' successful

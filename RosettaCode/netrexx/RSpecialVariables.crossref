@@ -1,0 +1,4 @@
+--- Variables for class RSpecialVariables ---
+args String[] a 31
+x    String   v 8= 10
+y    String   v 9= 11

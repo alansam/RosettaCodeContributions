@@ -1,0 +1,8 @@
+--- Variables for class R100d01 ---
+d_    int    v 15= 16 19
+doors Rexx   v 7= 11 11= 16
+False Rexx   v 5= 7
+i_    int    v 9= 11
+j_    int    v 10= 11 11 11
+state String v 16= 17= 19
+True  Rexx   v 4= 5

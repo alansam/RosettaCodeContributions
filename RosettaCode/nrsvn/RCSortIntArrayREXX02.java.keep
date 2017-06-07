@@ -1,0 +1,91 @@
+/* Generated from 'RCSortIntArrayREXX02.nrx' 12 Jul 2011 20:51:40 [v3.00] */
+/* Options: Comments Crossref Decimal Format Java Logo Replace Symbols Trace2 Verbose3 */
+
+/* NetRexx */
+
+
+/*REXX program to sort an interesting integer list.*/
+
+
+public class RCSortIntArrayREXX02{
+ private static final netrexx.lang.Rexx $01=netrexx.lang.Rexx.toRexx("  as is=");
+ private static final netrexx.lang.Rexx $02=netrexx.lang.Rexx.toRexx(" sorted=");
+ private static final netrexx.lang.Rexx $03=new netrexx.lang.Rexx(1);
+ private static final netrexx.lang.Rexx $04=new netrexx.lang.Rexx(2);
+ private static final java.lang.String $0="RCSortIntArrayREXX02.nrx";
+ 
+ public static void main(java.lang.String $0s[]){
+  netrexx.lang.Rexx bell;
+  netrexx.lang.Rexx bern;
+  netrexx.lang.Rexx perrin;
+  netrexx.lang.Rexx list;
+  netrexx.lang.Rexx size;
+  netrexx.lang.Rexx a;
+  netrexx.lang.Rexx j=null;
+  netrexx.lang.Rexx bList;
+  bell=netrexx.lang.Rexx.toRexx("1 1 2 5 15 52 203 877 4140 21147 115975");/*some Bell numbers.*/
+  bern=netrexx.lang.Rexx.toRexx("1 -1 1 0 -1 0 1 0 -1 0 5 0 -691 0 7 0 -3617");/*some Bernoulli num*/
+  perrin=netrexx.lang.Rexx.toRexx("3 0 2 3 2 5 5 7 10 12 17 22 29 39 51 68 90");/*some Perrin nums. */
+  list=(bell.OpCcblank(null,bern)).OpCcblank(null,perrin);/*combine the three.*/
+  
+  size=list.words();
+  
+  a=new netrexx.lang.Rexx((byte)0);
+  {int $1=size.OpPlus(null).toint();j=new netrexx.lang.Rexx((byte)1);j:for(;$1>0;$1--,j=j.OpAdd(null,new netrexx.lang.Rexx(1))){
+   a.getnode(j).leaf=list.word(j);
+   }
+  }/*j*/
+  
+  netrexx.lang.RexxIO.Say($01.OpCc(null,list));
+  a.getnode(new netrexx.lang.Rexx((byte)0)).leaf=size;
+  esort(a,size);
+  bList=netrexx.lang.Rexx.toRexx("");
+  
+  {int $2=size.OpPlus(null).toint();j=new netrexx.lang.Rexx((byte)1);j:for(;$2>0;$2--,j=j.OpAdd(null,new netrexx.lang.Rexx(1))){
+   bList=bList.OpCcblank(null,a.getnode(j).leaf);
+   }
+  }/*j*/
+  
+  bList=bList.strip();
+  netrexx.lang.RexxIO.Say($02.OpCc(null,bList));
+  
+  return;
+  }
+
+ /*----------------------------------ESORT subroutine--------------------*/
+ 
+ public static void esort(netrexx.lang.Rexx a,netrexx.lang.Rexx size){
+  netrexx.lang.Rexx h;
+  netrexx.lang.Rexx i=null;
+  netrexx.lang.Rexx j=null;
+  netrexx.lang.Rexx k=null;
+  netrexx.lang.Rexx t=null;
+  //esort: procedure expose a.;
+  
+  h=a.getnode(new netrexx.lang.Rexx((byte)0)).leaf;
+  
+  {for(;;){if(!h.OpGt(null,$03))break;
+   h=h.OpDivI(null,$04);
+   {int $3=(a.getnode(new netrexx.lang.Rexx((byte)0)).leaf).OpSub(null,h).OpPlus(null).toint();i=new netrexx.lang.Rexx((byte)1);i:for(;$3>0;$3--,i=i.OpAdd(null,new netrexx.lang.Rexx(1))){
+    j=i;
+    k=h.OpAdd(null,i);
+    {$4:for(;;){if(!(a.getnode(k).leaf).OpLt(null,a.getnode(j).leaf))break;
+     t=a.getnode(j).leaf;
+     a.getnode(j).leaf=a.getnode(k).leaf;
+     a.getnode(k).leaf=t;
+     if (h.OpGtEq(null,j)) 
+      break $4;
+     j=j.OpSub(null,h);
+     k=k.OpSub(null,h);
+     }
+    }
+    }
+   }/*i*/
+   }
+  }
+  
+  return;
+  }
+ 
+ private RCSortIntArrayREXX02(){return;}
+ }

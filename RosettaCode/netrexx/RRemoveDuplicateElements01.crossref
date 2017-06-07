@@ -1,0 +1,17 @@
+--- Variables for class RRemoveDuplicateElements01 ---
+a1          Rexx[] v 6= 11
+a2          Rexx[] v 7= 12
+a3          Rexx[] v 8= 13
+ix          Rexx   v 15= 16 17 17
+ix          Rexx   v 30= 31 31
+k_          Rexx   v 33= 34
+list        Rexx   a 25 29 30
+lists       Rexx   v 10= 11= 11= 12= 12= 13= 13= 15 16 17
+newlist     Rexx   v 27= 34 34= 37
+nodups      Rexx   v 28= 31 31= 33
+nodups_list Rexx   v 16= 18
+r_          Rexx   v 43= 44
+ra          Rexx[] a 40 43
+w_          Rexx   v 29= 30
+wordlist    Rexx   v 42= 44 44= 47
+x           Rexx   v 9= 11 11= 11 11 12 12= 12 12 13 13= 13 13

@@ -1,0 +1,9 @@
+--- Variables for class RRandomNumberGen_Device ---
+args             String[]                a 26
+ex               IOException             v 33= 34
+lcl              RRandomNumberGen_Device v 28= 30
+randomBytes      byte[]                  v 13= 14 14 15
+randomDevIStream InputStream             p 10
+randomDevName    String                  c 8= 18
+randomNum        BigInteger              v 15= 16
+randomNum        BigInteger              v 30= 31 31

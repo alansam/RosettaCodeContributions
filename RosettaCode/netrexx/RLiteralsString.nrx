@@ -1,0 +1,35 @@
+/* NetRexx */
+options replace format comments java crossref symbols nobinary
+
+say "In NetRexx, literal strings can be contained within single quotes [']" -
+    'or in double quotes ["].'
+say 'This flexibility removes much of the need for escaping quote characters (although they can be):'
+say '  Inside single quoted literals: " results in ".'
+say "  Inside double quoted literals: ' results in '."
+say
+say 'Inside a string literal, quotes can be "escaped" by either doubling the quote\-' -
+    "or using a backslash (reverse solidus, '\\'):"
+say "  Inside double quoted literals:" '""' "results in "", \\\" results in \" and \\\' results in \'."
+say '  Inside single quoted literals:' "''" 'results in '', \\\" results in \" and \\\' results in \'.'
+say
+say 'Verbatim strings are not supported.'
+say
+say 'Variable expansion is not supported.'
+say
+say '"Hear documents" are not supported'
+say
+say "Escaped null characters ('\\-', '\\0', '\\x00' or '\\u0000')" -
+    "inside literal strings translate to '\-', '\0', '\x00' or '\u0000'"
+say 'but at the end of a "SAY" statement they are used to indicate continuation:'
+say "  say ' part 1,\\-'"
+say "  say ' part 2,\\0'"
+say "  say ' part 3,\\x00'"
+say "  say ' part 4,\\u0000'"
+say "  say ' part 5.'"
+say 'results in:'
+say ' part 1,\-'
+say ' part 2,\0'
+say ' part 3,\x00'
+say ' part 4,\u0000'
+say ' part 5.'
+say

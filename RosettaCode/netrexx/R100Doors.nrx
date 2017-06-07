@@ -1,0 +1,120 @@
+/* NetRexx */
+
+options replace format comments java crossref savelog symbols binary
+
+/**
+ * Problem: You have 100 doors in a row that are all initially closed. You make 100
+ * <a href="http://rosettacode.org/wiki/Rosetta_Code:Multiple_passes">passes</a> by the doors.
+ * The first time through, you visit every door and toggle the door (if the door is closed, you open it;
+ * if it is open, you close it). The second time you only visit every 2nd door (door #2, #4, #6, ...).
+ * The third time, every 3rd door (door #3, #6, #9, ...), etc, until you only visit the 100th door.
+ * <p>
+ * Question: What state are the doors in after the last pass? Which are open, which are closed? [1]
+ * </p>
+ * <p>
+ * Alternate: As noted in this page's <a href="http://rosettacode.org/wiki/Talk:100_doors">discussion page</a>,
+ * the only doors that remain open are whose numbers are perfect squares of integers.
+ * Opening only those doors is an <a href="http://rosettacode.org/wiki/Rosetta_Code:Optimization">optimization</a>
+ * that may also be expressed.
+ * </p>
+ *
+ * @author Alan Sampson
+ * @version 1.0
+ * @see <a href="http://rosettacode.org/wiki/100_doors">rosettacode.org/wiki/100_doors</a>
+ */
+
+class R100Doors public
+
+  properties public constant
+    True  = Rexx(1 == 1)
+    False = Rexx(\True)
+
+  /**
+   * Driver
+   *
+   * @param args
+   */
+  method main(args = String[]) public static
+
+    dlm = '-'.left(80, '-')
+
+    say dlm
+    unoptimized
+    say
+
+    say dlm
+    optimization01
+    say
+
+    say dlm
+    optimization02
+    say
+
+    return
+
+  /**
+   * Unoptimized
+   */
+  method unoptimized() public static
+
+    doors = False
+
+    loop pass = 1 to 100
+      loop i_ = 1 to 100
+        if 0 = (i_ // pass) then do
+          doors[i_] = \doors[i_]
+          end
+        end i_
+      end pass
+
+    loop d_ = 1 to 100
+      if doors[d_] then do
+        state = 'open'
+        end
+      else do
+        state = 'closed'
+        end
+
+      say 'Door Nr.' Rexx(d_).right(4) 'is' state
+      end d_
+
+    return
+
+  /**
+   * Optimization 1
+   */
+  method optimization01() public static
+
+    doors = boolean[100]
+
+    loop pass = 0 to 9
+      doors[(pass + 1) * (pass + 1) - 1] = True;
+      end pass
+
+    loop i_ = 0 to 99
+      if doors[i_] then do
+        state = 'open'
+        end
+      else do
+        state = 'closed'
+        end
+      say 'Door Nr.' Rexx(i_ + 1).right(4) 'is' state
+      end i_
+
+    return
+
+  /**
+   * Optimization 2
+   */
+  method optimization02() public static
+
+    resultstring = ''
+
+    loop i_ = 1 to 10
+      resultstring = resultstring || 'Door Nr.' Rexx(i_ * i_).right(4) 'is open\n'
+      end i_
+
+    say resultstring
+
+    return
+

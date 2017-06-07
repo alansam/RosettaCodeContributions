@@ -1,0 +1,14 @@
+--- Variables for class RReadEntireFile ---
+arg          Rexx                  a 4= 4
+ex           IOException           v 36= 37
+exFNF        FileNotFoundException v 29= 30
+exIO         IOException           v 31= 32
+fileContents Rexx                  v 7= 8
+inBytes      int                   v 18= 24 25 26=
+inFile       File                  v 21= 22
+inFileIS     BufferedInputStream   v 22= 26 35
+inFileName   Rexx                  v 4= 6 6 6= 7
+inFileName   Rexx                  a 13 21
+ioBuffer     byte[]                v 17= 25 26
+slurped      Rexx                  v 15= 41= 43
+slurpStr     StringBuilder         v 16= 25 41

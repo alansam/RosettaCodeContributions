@@ -1,0 +1,4 @@
+--- Variables for class RCSpecialVariables ---
+args String[] a 30
+x    String   v 7= 9
+y    String   v 8= 10

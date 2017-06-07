@@ -1,0 +1,126 @@
+/* NetRexx */
+options replace format comments java crossref symbols nobinary
+
+l1 = java.util.List
+l1 = ArrayList(Arrays.asList([Rexx 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]))
+
+say '>>' qs_select_tail(l1, 0, l1.size() - 1, 0) '|' l1
+say '<>' qs_select(l1, 0, l1.size() - 1, 0) '|' l1
+say '>>' qs_select_tail(l1, 0, l1.size() - 1, 1) '|' l1
+say '<>' qs_select(l1, 0, l1.size() - 1, 1) '|' l1
+say '>>' qs_select_tail(l1, 0, l1.size() - 1, 2) '|' l1
+say '<>' qs_select(l1, 0, l1.size() - 1, 2) '|' l1
+
+return
+
+/*
+ * function partition(list, left, right, pivotIndex)
+ *      pivotValue := list[pivotIndex]
+ *      swap list[pivotIndex] and list[right]  // Move pivot to end
+ *      storeIndex := left
+ *      for i from left to right-1 
+ *          if list[i] <= pivotValue
+ *              swap list[storeIndex] and list[i]
+ *              increment storeIndex
+ *      swap list[right] and list[storeIndex]  // Move pivot to its final place
+ *      return storeIndex
+ */
+method qs_partition(llist = java.util.List, iLeft, iRight, pivotIndex) public static returns Rexx
+  pivotValue = Rexx llist.get(pivotIndex)
+  save = llist.get(iLeft)
+  llist.set(iLeft, llist.get(pivotIndex))
+  llist.set(pivotIndex, save)
+  storeIndex = iLeft
+  loop i_ = iLeft to iRight - 1
+    if (Rexx llist.get(i_)) <= pivotValue then do
+      swap(llist, i_, storeIndex)
+      storeIndex = storeIndex + 1
+      end
+    end i_
+  swap(llist, iRight, storeIndex)
+  
+  return storeIndex
+
+/*
+ *  function select(list, left, right, k)
+ *     if left = right // If the list contains only one element
+ *         return list[left]  // Return that element
+ *     // select pivotIndex between left and right
+ *     pivotNewIndex := partition(list, left, right, pivotIndex)
+ *     pivotDist := pivotNewIndex - left + 1 
+ *     // The pivot is in its final sorted position, 
+ *     // so pivotDist reflects its 1-based position if list were sorted
+ *     if pivotDist = k 
+ *         return list[pivotNewIndex]
+ *     else if k < pivotDist 
+ *         return select(list, left, pivotNewIndex - 1, k)
+ *     else
+ *         return select(list, pivotNewIndex + 1, right, k - pivotDist)
+ */
+method qs_select_tail(llist = java.util.List, iLeft = 0, iRight = llist.size() - 1, k_ = 0) public static returns Rexx
+  ix = Rexx
+  if iLeft = iRight then do
+    ix = Rexx llist.get(iLeft)
+    end
+  else do
+    pivotIndex = (iRight - iLeft + 1) % 2
+    pivotNewIndex = qs_partition(llist, iLeft, iRight, pivotIndex)
+    pivotDist = pivotNewIndex - iLeft --+ 1
+    if pivotDist = k_ then do
+      ix = Rexx llist.get(pivotNewIndex)
+      end
+    else if k_ < pivotDist then do
+      ix = qs_select_tail(llist, iLeft, pivotNewIndex - 1, k_)
+      end
+    else do
+      ix = qs_select_tail(llist, pivotNewIndex + 1, iRight, k_ - pivotDist)
+      end
+    end
+  return ix
+
+/*
+ * function select(list, left, right, k)
+ *      loop
+ *          // select pivotIndex between left and right
+ *          pivotNewIndex := partition(list, left, right, pivotIndex)
+ *          pivotDist := pivotNewIndex - left + 1
+ *          if pivotDist = k
+ *              return list[pivotNewIndex]
+ *          else if k < pivotDist
+ *              right := pivotNewIndex - 1
+ *          else
+ *              k := k - pivotDist
+ *              left := pivotNewIndex + 1
+ */
+method qs_select(llist = java.util.List, iLeft = 0, iRight = llist.size() - 1, k_ = 0) public static returns Rexx
+  --trace var llist iLeft iRight k_ pivotIndex pivotNewIndex pivotDist
+  ix = Rexx
+  iLeft = iLeft + 0
+  iRight = iRight + 0
+  pivotIndex = (iRight - iLeft + 1) % 2
+  loop label selection forever
+    pivotNewIndex = qs_partition(llist, iLeft, iRight, pivotIndex)
+    say llist
+    pivotDist = pivotNewIndex - iLeft --+ 1
+    if pivotDist = k_ then do
+      ix = Rexx llist.get(pivotNewIndex)
+      leave selection
+      end
+    else if k_ < pivotDist then do
+      iRight = pivotNewIndex - 1
+      end
+    else do
+      k_ = k_ - pivotDist
+      iLeft = pivotNewIndex + 1
+      end
+    end selection
+
+  return ix
+
+
+method swap(llist = java.util.List, iLeft, iRight) private static returns java.util.List
+  save = llist.get(iLeft)
+  llist.set(iLeft, llist.get(iRight))
+  llist.set(iRight, save)
+  return llist
+

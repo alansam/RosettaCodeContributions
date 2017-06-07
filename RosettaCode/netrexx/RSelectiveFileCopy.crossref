@@ -1,0 +1,15 @@
+--- Variables for class RSelectiveFileCopy ---
+a          Rexx           v 18= 20
+arg        Rexx           a 5= 5
+c          Rexx           v 18= 19
+cc         Rexx           v 19= 20
+data_IN    String         v 17= 18
+data_OUT   Rexx           v 20= 21
+dd_IN      File           v 10= 12
+dd_OUT     File           v 11= 13
+ddname_IN  Rexx           v 5= 7 7= 10
+ddname_OUT Rexx           v 5= 8 8= 11
+ex         IOException    v 24= 25 30= 31
+scanner_IN Scanner        v 12= 16 17 28 28
+writer_OUT BufferedWriter v 13= 21 22 29 29
+x          Rexx           v 15= 20

@@ -1,0 +1,23 @@
+--- Variables for class RSeiveOfEratosthenes01_Wheel02 ---
+arg         Rexx      a 6= 6
+beginProc   long      v 16= 20
+endProc     long      v 18= 20
+ex          Exception v 22= 23
+hi          int       a 52 56
+hiWatermark Rexx      v 6= 8 8 8= 11 13 17 19 21
+hiWatermark Rexx      a 28 30
+hn          int       a 37 44 44 45
+ix          int       v 41 44= 44 44 45 45 45 45
+jx          int       v 42 45= 46
+lo          int       a 52 55 57
+loWatermark Rexx      v 6= 7 7 7= 11 13 19 21
+loWatermark Rexx      a 28 30
+p_          int       v 56= 57 58 59
+primes      Vector    v 19= 21
+primes      Vector    a 28 31 32
+primes      Vector    v 54= 55 59 62
+runTime     long      v 20= 21
+runTime     Rexx      a 28 33
+seive       Rexx      v 17= 19
+seive       Rexx      a 52 58
+sv          Rexx      v 39= 40= 45 46= 50

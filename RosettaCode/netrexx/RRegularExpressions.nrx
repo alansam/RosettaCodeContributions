@@ -1,0 +1,191 @@
+/* NetRexx */
+options replace format comments java crossref symbols nobinary
+
+import java.util.regex.
+
+st1 = 'Fee, fie, foe, fum, I smell the blood of an Englishman'
+st2 = '\nFee\n'
+rx1 = 'f.e.*?'
+
+rx1ef = '(?imx)'rx1 -- use embedded flag expression == Pattern.CASE_INSENSITIVE | Pattern.MULTILINE | Pattern.COMMENTS
+
+-- using String's matches & replaceAll
+mcm = (String st1).matches(rx1ef)
+stx = Rexx
+stx = (String st1).replaceAll(rx1ef, 'foo')
+say 'String "'st1'"' 'matches pattern "'rx1ef'"?:' Boolean(mcm)
+say 'String "'st1'" was changed to "'stx'" via pattern "'rx1ef'"'
+say
+
+-- using java.util.regex classes
+pt1 = Pattern.compile(rx1, bitor([Rexx Pattern.CASE_INSENSITIVE, Pattern.MULTILINE, Pattern.COMMENTS]))
+loop ms over [st1, st2]
+  mc1 = pt1.matcher(ms)
+  mcm = mc1.matches()
+  say 'String "'ms'"' 'matches pattern "'pt1.toString()'"?:' Boolean(mcm)
+  if mcm then do
+    mc1 = pt1.matcher(ms)
+    loop while mc1.find()
+      say '  Found the text "'mc1.group()'" starting index:' mc1.start() 'ending index:' mc1.end()
+      end
+    end
+  mc1 = pt1.matcher(ms)
+  sx = Rexx
+  sx = mc1.replaceAll('foo')
+  say 'Input string:  "'ms'"'
+  say 'Result string: "'sx'"'
+  say '  regex pattern: "'rx1'"'
+  say
+  end ms
+say
+
+TRUE_  = (1 == 1)
+FALSE_ = \TRUE_
+DEBUG  = FALSE_
+--DEBUG  = TRUE_
+if DEBUG then do
+  cheesy()
+  codeGeeksTut()
+  funWithBitMasks()
+  end
+
+return
+
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+method bitor(lst = Rexx[]) public static binary
+  mask = lst[0]
+  if lst.length > 1 then loop ll = 1 to lst.length - 1 -- start at 2nd element
+    mask = long mask | long lst[ll]
+    end ll
+  return mask
+method bitor(lft, rgt) public static binary
+  return bitor([lft, rgt])
+
+method bitxor(lst = Rexx[]) public static binary
+  mask = lst[0]
+  if lst.length > 1 then loop ll = 1 to lst.length - 1 -- start at 2nd element
+    mask = long mask && long lst[ll]
+    end ll
+  return mask
+method bitxor(lft, rgt) public static binary
+  return bitxor([lft, rgt])
+
+method bitand(lst = Rexx[]) public static binary
+  mask = lst[0]
+  if lst.length > 1 then loop ll = 1 to lst.length - 1 -- start at 2nd element
+    mask = long mask & long lst[ll]
+    end ll
+  return mask
+method bitand(lft, rgt) public static binary
+  return bitand([lft, rgt])
+
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+method cheesy() private static
+  -- using String's matches & replaceAll
+  st1 = 'This is a string'
+  if st1.toString().matches('.*ing') then do
+    say '"'st1'" ends with "ing"'
+    end
+
+  st2 = 'Originally this is the original string'
+  st3 = Rexx st2.toString().replaceAll('[Oo]riginal', 'modified')
+  say 'Original:' st2
+  say 'Modified:' st3
+  return
+
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-- see: http://www.javacodegeeks.com/2012/11/java-regular-expression-tutorial-with-examples.html
+method codeGeeksTut() private static
+  say '\n\n'
+  pattern_ = Pattern.compile('.xx.')
+  matcher_ = pattern_.matcher('MxxY')
+  say 'Input String matches regex -' Boolean(matcher_.matches()).toString()
+  do
+    -- bad regular expression
+    pattern_ = Pattern.compile('*xx*')
+  catch ex = PatternSyntaxException
+    ex.printStackTrace()
+  end
+  say
+  stx = 'bbb'
+  say 'Using String matches() method: ' Boolean((String stx).matches('.bb')).toString()
+  say 'Using Pattern matches() method:' Boolean(Pattern.matches('.bb', stx)).toString()
+
+  -- Capturing groups and Backreferences can be confusing, so let’s understand this with an example.
+  say
+  --say Boolean(Pattern.matches('(\\w\\d)\\1', 'a2a2')) --true
+  --say Boolean(Pattern.matches('(\\w\\d)\\1', 'a2b2')) --false
+  --say Boolean(Pattern.matches('(AB)(B\\d)\\2\\1', 'ABB2B2AB')) --true
+  --say Boolean(Pattern.matches('(AB)(B\\d)\\2\\1', 'ABB2B3AB')) --false
+  brp = ['(\\w\\d)\\1', '(AB)(B\\d)\\2\\1']
+  RX = 'RX'
+  brs = ''
+  brs[0] = 4
+  brs[1] = 'a2a2';     brs[1, RX] = brp[0]
+  brs[2] = 'a2b2';     brs[2, RX] = brp[0]
+  brs[3] = 'ABB2B2AB'; brs[3, RX] = brp[1]
+  brs[4] = 'ABB2B3AB'; brs[4, RX] = brp[1]
+  loop ix = 1 to brs[0]
+    say 'String: "'brs[ix]'" Pattern: "'brs[ix, RX]'" Match:' Boolean(Pattern.matches(brs[ix, RX], brs[ix]))
+    end ix
+  say
+
+  -- using pattern with flags
+  pattern_ = Pattern.compile('ab', Pattern.CASE_INSENSITIVE)
+  matcher_ = pattern_.matcher('ABcabdAb')
+  -- using Matcher find(), group(), start() and end() methods
+  loop while matcher_.find()
+    say 'Found the text "'matcher_.group()'" starting at index' matcher_.start() 'and ending at index' matcher_.end()
+    end
+
+  -- using Pattern split() method
+  pattern_ = Pattern.compile('\\W')
+  words_ = pattern_.split('one@two#three:four$five')
+  loop s_ over words_
+    say 'Split using Pattern.split():' s_
+    end
+
+  -- using Matcher.replaceFirst() and replaceAll() methods
+  pattern_ = Pattern.compile('1*2')
+  matcher_ = pattern_.matcher('11234512678')
+  say 'Using replaceAll:  ' matcher_.replaceAll('_')
+  say 'Using replaceFirst:' matcher_.replaceFirst('_')
+
+  return
+
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+method funWithBitMasks() private static
+  say '\n\n'
+  mf = [ Rexx                                              -
+    Pattern.CANON_EQ,     Pattern.CASE_INSENSITIVE,        -
+    Pattern.COMMENTS,     Pattern.DOTALL,                  -
+    Pattern.LITERAL,      Pattern.MULTILINE,               -
+    Pattern.UNICODE_CASE, Pattern.UNICODE_CHARACTER_CLASS, -
+    Pattern.UNIX_LINES                                     -
+    ]
+  mv = 0
+  loop mm over mf
+    mv = mv + mm
+    end mm
+  say mv.right(16) mv.d2x.x2b.right(16, 0)
+  loop mm over mf
+    say mm.right(16) mm.d2x.x2b.right(16, 0)
+    end mm
+  say
+  say bitor(mf).right(16)  bitor(mf).d2x.x2b.right(16, 0)
+  say bitxor(mf).right(16) bitxor(mf).d2x.x2b.right(16, 0)
+  say bitand(mf).right(16) bitand(mf).d2x.x2b.right(16, 0)
+  say
+  b1 = (Rexx Pattern.CASE_INSENSITIVE)
+  b2 = (Rexx Pattern.MULTILINE)
+  b3 = (Rexx Pattern.COMMENTS)
+  say b1.d2x.x2b.right(16, 0) '| ' b2.d2x.x2b.right(16, 0) '| ' b3.d2x.x2b.right(16, 0) '=' bitor([b1, b2, b3]).d2x.x2b.right(16, 0)
+  say b1.d2x.x2b.right(16, 0) '&&' b2.d2x.x2b.right(16, 0) '&&' b3.d2x.x2b.right(16, 0) '=' bitxor([b1, b2, b3]).d2x.x2b.right(16, 0)
+  say b1.d2x.x2b.right(16, 0) '& ' b2.d2x.x2b.right(16, 0) '& ' b3.d2x.x2b.right(16, 0) '=' bitand([b1, b2, b3]).d2x.x2b.right(16, 0)
+  b1 = 12b10000001
+  b2 = 12b10000011
+  say b1.d2x.x2b.right(16, 0) '| ' b2.d2x.x2b.right(16, 0) '=' bitor(b1, b2).d2x.x2b.right(16, 0)
+  say b1.d2x.x2b.right(16, 0) '&&' b2.d2x.x2b.right(16, 0) '=' bitxor(b1, b2).d2x.x2b.right(16, 0)
+  say b1.d2x.x2b.right(16, 0) '& ' b2.d2x.x2b.right(16, 0) '=' bitand(b1, b2).d2x.x2b.right(16, 0)
+  return
+

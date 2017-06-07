@@ -1,0 +1,13 @@
+--- Variables for class RCQueueUsage ---
+args           String[]                  a 5
+ex             IndexOutOfBoundsException v 9= 10
+kew            RCQueueImpl               v 6= 8 22 25 26 32 33
+l_             Rexx                      v 34= 35
+md             Rexx                      v 33= 34 35
+melancholyDane Rexx                      v 14= 15= 16= 17= 18= 19= 21 22 32
+p_             Rexx                      v 21= 22
+popped         Rexx                      v 26= 27
+
+--- Variables for class RCQueueImpl ---
+qqq   Deque p 44 47= 51 55 56 59
+stuff Rexx  a 50 51

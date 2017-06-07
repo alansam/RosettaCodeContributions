@@ -1,0 +1,44 @@
+/* NetRexx */
+options replace format comments java crossref symbols nobinary
+
+parse version ver
+parse source src
+
+say ver
+say src
+
+arry = ['k1', 'k2', 'k3']
+
+stem = 's1'
+stem[1] = 's1'
+stem[2] = 's2'
+stem[3] = 's3'
+
+irry = [int 3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5, 9]
+
+list = java.util.List
+list = ArrayList()
+list.add('l1')
+list.add('l2')
+list.add('l3')
+
+loop lmnt over arry
+  say lmnt '\-'
+  end lmnt
+say
+
+loop lmnt over stem
+  say stem[lmnt] '\-'
+  end lmnt
+say
+
+loop lmnt over irry
+  say lmnt '\-'
+  end lmnt
+say
+
+loop lmnt over list
+  say lmnt '\-'
+  end lmnt
+say
+

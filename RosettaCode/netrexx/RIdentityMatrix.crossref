@@ -1,0 +1,7 @@
+--- Variables for class RIdentityMatrix ---
+arg Rexx   a 8= 8
+i   int    v 11= 14 14 15
+j   int    v 13= 14 14 15
+m   int[,] v 10= 14= 15
+n   Rexx   v 8= 9 11 13
+ol  String v 12= 15 15= 17

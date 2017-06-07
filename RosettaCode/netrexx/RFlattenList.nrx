@@ -1,0 +1,13 @@
+/* NetRexx */
+options replace format comments java crossref savelog symbols nobinary
+
+-- A real cheat.  The list in this case is just a string so string manip. functions can be used
+list = '[[1], 2, [[3,4], 5], [[[]]], [[[6]]], 7, 8, []]'
+list = '['list.changestr('[', '').changestr(']', '').changestr(',', ' ').space(1, ',')']'
+say list
+
+re = [ Object [Rexx 1], Rexx 2, [Object [Rexx 3, Rexx 4], Rexx 5], [Object [Object [Object null]]], [Object [Object [Rexx 6]]], Rexx 7, Rexx 8, Object [Object null] ]
+say Arrays.asList(re)
+
+return;
+

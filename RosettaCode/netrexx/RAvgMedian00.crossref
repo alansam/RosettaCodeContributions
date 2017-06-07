@@ -1,0 +1,15 @@
+--- Variables for class RAvgMedian00 ---
+args    String[]       a 50
+cvector ArrayList      v 8= 9 10 10 10 10
+kVal    Rexx           v 10= 11
+lvector java.util.List a 7 8
+lvector java.util.List a 18 19 20
+mVal    Rexx           v 19= 20 21
+rvector Rexx[]         a 14 15
+rvector Rexx[]         a 24 25
+
+--- Variables for class RAvgMedian00.RexxComparator ---
+i  Rexx   v 59= 62 63
+i1 Object a 58 59
+i2 Object a 58 60
+j  Rexx   v 60= 62 63

@@ -1,0 +1,17 @@
+/* NetRexx */
+
+options replace format comments java crossref savelog symbols binary
+
+/**
+ * Display the current date in the formats of "2007-11-10" and "Sunday, November 10, 2007".
+ *
+ * @author Alan Sampson
+ * @version 1.0
+ * @see <a href="http://rosettacode.org/wiki/Date_format">rosettacode.org/wiki/Date_format</a>
+ */
+
+import java.text.SimpleDateFormat
+
+say SimpleDateFormat("yyyy-MM-dd").format(Date())
+say SimpleDateFormat("EEEE, MMMM dd, yyyy").format(Date())
+

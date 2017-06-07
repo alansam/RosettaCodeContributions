@@ -1,0 +1,80 @@
+/* Generated from 'RCSortingShellsort.nrx' 20 Sep 2011 11:00:22 [v3.00] */
+/* Options: Binary Comments Crossref Decimal Format Java Logo Replace Symbols Trace2 Verbose3 */
+
+/* NetRexx */
+
+
+
+public class RCSortingShellsort{
+ private static final java.lang.String $0="RCSortingShellsort.nrx";
+ 
+ public static void main(java.lang.String $0s[]){
+  java.lang.String placesList[];
+  java.lang.String sortedList[];
+  java.lang.String lists[][];
+  int ln=0;
+  java.lang.String cl[]=null;
+  int ct=0;
+  placesList=new java.lang.String[]{"UK  London","US  New York","US  Boston","US  Washington","UK  Washington","US  Birmingham","UK  Birmingham","UK  Boston"};
+  
+  
+  
+  sortedList=shellSort((java.lang.String[])(java.util.Arrays.copyOf((java.lang.Object[])placesList,placesList.length)));
+  
+  lists=new java.lang.String[][]{placesList,sortedList};
+  {int $1=lists.length-1;ln=0;ln:for(;ln<=$1;ln++){
+   cl=lists[ln];
+   {int $2=cl.length-1;ct=0;ct:for(;ct<=$2;ct++){
+    netrexx.lang.RexxIO.Say(cl[ct]);
+    }
+   }/*ct*/
+   netrexx.lang.RexxIO.Say("");
+   }
+  }/*ln*/
+  
+  return;
+  }
+
+ 
+ public static final java.lang.String[] shellSort(java.lang.String a[]){
+  int n;
+  int inc;
+  int i_=0;
+  java.lang.String temp=null;
+  int j_=0;
+  
+  n=a.length;
+  inc=(int)(java.lang.Math.round((double)((float)n)/2.0F));
+  {inc:for(;;){if(!(inc>0))break;
+   {int $3=n-1;i_=inc;i_:for(;i_<=$3;i_++){
+    temp=a[i_];
+    j_=i_;
+    {j_:for(;;){if(!(j_>=inc))break;
+     if ((!(((a[j_-inc].compareTo(temp))>0)))) 
+      break j_;
+     a[j_]=a[j_-inc];
+     j_=j_-inc;
+     }
+    }/*j_*/
+    a[j_]=temp;
+    }
+   }/*i_*/
+   inc=(int)(java.lang.Math.round((double)((float)inc)/2.2F));
+   }
+  }/*inc*/
+  
+  return a;
+  }
+
+ 
+ public static final boolean isTrue(){
+  return 1==1;
+  }
+
+ 
+ public static final boolean isFalse(){
+  return (!(isTrue()));
+  }
+ 
+ private RCSortingShellsort(){return;}
+ }

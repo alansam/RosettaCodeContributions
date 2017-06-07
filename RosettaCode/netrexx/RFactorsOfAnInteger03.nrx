@@ -1,0 +1,33 @@
+/* NetRexx */
+options replace format comments java crossref symbols nobinary
+
+num = 0
+loop label running forever
+  say 'Provide an integer [or anything else to stop]:'
+  parse ask num .
+  if \num.datatype('w') then leave running
+  Loop j_ = 1 to num
+    say '   n = ' j_.right(6) "   divisors = " factor(j_)
+    End j_
+  end running
+
+return
+
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+method factor(n_) public static
+  factors = ''
+  factors[1] = 1
+  factors[n_] = 1
+  loop x_ = 1 to Math.sqrt(n_) + 1
+    if n_ // x_ = 0 then do
+      factors[x_]      = 1
+      factors[n_ % x_] = 1
+      end
+    end x_
+  fl = ArrayList()
+  loop f_ over factors
+    fl.add(String f_)
+    end f_
+  Collections.sort(fl)
+  return fl.toString
+

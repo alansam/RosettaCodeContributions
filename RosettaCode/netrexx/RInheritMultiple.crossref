@@ -1,0 +1,12 @@
+--- Variables for class RInheritMultiple ---
+args   String[]                     a 5
+iPhone RInheritMultiple_CameraPhone v 6= 7 9 9 11 13 13 15 16
+that   Object                       a 18 19
+
+--- Variables for class RInheritMultiple_Camera ---
+shutter String c 23=
+
+--- Variables for class RInheritMultiple_MobilePhone ---
+ringTone String c 29=
+
+--- No variables in class RInheritMultiple_CameraPhone ---

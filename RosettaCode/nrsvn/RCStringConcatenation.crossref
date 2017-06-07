@@ -1,0 +1,8 @@
+--- Variables for class RCStringConcatenation ---
+s1  Rexx v 5= 7 8 9 10 11 13
+s2  Rexx v 6= 7 8 14
+s3  Rexx v 7= 15
+s4  Rexx v 8= 16
+s5  Rexx v 9= 17
+s6  Rexx v 10= 18
+s7  Rexx v 11= 19

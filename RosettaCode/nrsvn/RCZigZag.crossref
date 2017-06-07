@@ -1,0 +1,8 @@
+--- Variables for class RCZigZag ---
+col    int    v 11= 15 16 17 18 18= 26 26= 27 28 28= 35= 36
+j_     int    v 14= 15
+L      Rexx   v 32= 36
+msize  Rexx   a 8 14 14 17 24 32 32 33 35
+row    int    v 10= 15 16 19 19= 20 21 21= 24 25 25= 33= 36
+rowOut String v 34= 36 36= 38
+ziggy  Rexx   v 13= 15= 36

@@ -1,0 +1,17 @@
+--- Variables for class RMD4 ---
+algorithm    String        v 20= 21 24 24 26 27
+algorithm    Rexx          a 32= 34 34= 44
+b_           int           v 48= 49
+bb           Rexx          v 49= 50 51
+digestBytes  byte[]        v 39 46= 48 49
+digestSum    Rexx          v 21= 24 26
+digestSum    Rexx          v 40= 50 50= 51 51= 57
+encoding     Rexx          a 32= 35 35= 43
+ex           Exception     v 53= 54
+lowercase    boolean       a 32= 50
+md           MessageDigest v 44= 45 46
+message      String        v 37= 43
+messageBytes byte[]        v 38 43= 45
+messageText  Rexx          a 18 21 23
+messageText  Rexx          a 32 37
+verifyCheck  Rexx          a 18 25 26

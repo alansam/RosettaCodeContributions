@@ -1,0 +1,36 @@
+/* NetRexx */
+
+options replace format comments java crossref savelog symbols
+
+/**
+ * <h3>Substring</h3>
+ *
+ * <p>
+ * In this task display a substring:
+ * </p>
+ * <ul>
+ * <li>starting from <code>n</code> characters in and of <code>m</code> length;</li>
+ * <li>starting from <code>n</code> characters in, up to the end of the string;</li>
+ * <li>whole string minus last character;</li>
+ * <li>starting from a known character within the string and of <code>m</code> length;</li>
+ * <li>starting from a known substring within the string and of <code>m</code> length.</li>
+ * </ul>
+ *
+ * @author Alan Sampson
+ * @version 1.0
+ * @see <a href="http://rosettacode.org/wiki/Substring">http://rosettacode.org/wiki/Substring</a> 
+ */
+
+s = 'abcdefghijk'
+n = 4
+m = 3
+
+say s
+say s.substr(n, m)
+say s.substr(n)
+say s.substr(1, s.length - 1)
+say s.substr(s.pos('def'), m) 
+say s.substr(s.pos('g'), m)
+
+return
+

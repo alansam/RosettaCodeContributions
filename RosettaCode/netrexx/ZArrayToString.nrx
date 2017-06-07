@@ -1,0 +1,9 @@
+/* NetRexx */
+options replace format comments java crossref symbols nobinary
+
+cymru =  [ 'Ogof Ffynnon Ddu', 'Ogof Draenen', 'Malham Tarn Pot', 'Greygill Hole' ]
+
+say Arrays.asList(cymru)
+
+return;
+

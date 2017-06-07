@@ -1,0 +1,35 @@
+/*REXX program to show how to support math functions for complex numbers*/
+ 
+x='(5,3i)'
+y='(.5,6j)'
+ 
+sum  = Cadd(x,y);    say '      addition:   ' x " + " y ' = ' sum
+dif  = Csub(x,y);    say '    subtration:   ' x " + " y ' = ' dif
+prod = Cmul(x,y);    say 'multiplication:   ' x " * " y ' = ' prod
+quot = Cdiv(x,y);    say '      division:   ' x " ÷ " y ' = ' quot
+inv  = Cinv(x);      say '       inverse:   ' x "             = " inv
+cnjX = Ccnj(x);      say '  conjugate of:   ' x "             = " cnjX
+negX = Cneg(x);      say '   negation of:   ' x "             = " negX
+exit
+/*─────────────────────────────────────one─liners───────────────────────*/
+Ccnj: procedure;arg a ',' b,c ',' d;call Cg;r1=a;r2=-b;return Cr()
+Cadd: procedure;arg a ',' b,c ',' d;call Cg;r1=a+c;r2=b+d;return Cr()
+Csub: procedure;arg a ',' b,c ',' d;call Cg;r1=a-c;r2=b-d;return Cr()
+Cmul: procedure;arg a ',' b,c ',' d;call Cg;r1=a*c-b*d; r2=b*c+a*d;return Cr()
+Cdiv: procedure;arg a ',' b,c ',' d;call Cg;_=c*c+d*d;r1=(a*c+b*d)/_;r2=(b*c-a*d)/_;return Cr()
+Cg:   a=Cdej(a); b=Cdej(b); c=Cdej(c); d=Cdej(d); return
+Cr:   _='['r1; if r2\=0 then _=_','r2"j"; return _']'
+Cdej: return word(translate(arg(1),,'{[(JI)]}') 0,1)
+Cneg: return Cmul(arg(1),-1)
+Cinv: return Cdiv(1,arg(1))
+
+/*
+output
+      addition:    (5,3i)  +  (.5,6j)  =  [5.5,9j]
+    subtration:    (5,3i)  +  (.5,6j)  =  [4.5,-3j]
+multiplication:    (5,3i)  *  (.5,6j)  =  [-15.5,31.5j]
+      division:    (5,3i)  ÷  (.5,6j)  =  [0.565517241,-0.786206897j]
+       inverse:    (5,3i)              =  [0.147058824,-0.0882352941j]
+  conjugate of:    (5,3i)              =  [5,-3j]
+   negation of:    (5,3i)              =  [-5,-3j]
+*/

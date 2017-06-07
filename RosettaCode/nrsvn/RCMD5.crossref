@@ -1,0 +1,11 @@
+--- Variables for class RCMD5 ---
+b_           int           v 31= 32
+bb           Rexx          v 32= 33
+digestBytes  byte[]        v 22 28= 31 32
+digestSum    String        v 30= 33 33= 37 39
+ex           Exception     v 41= 42
+md           MessageDigest v 26= 27 28
+message      String        v 20= 25 36
+messageBytes byte[]        v 21 25= 27
+messageText  Rexx          a 19 20
+verifyCheck  Rexx          a 19 38 39

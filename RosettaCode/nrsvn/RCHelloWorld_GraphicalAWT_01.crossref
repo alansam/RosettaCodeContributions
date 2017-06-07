@@ -1,0 +1,18 @@
+--- Variables for class RCHelloWorld_GraphicalAWT_01 ---
+ae          ActionEvent                  a 58 59 64
+args        String[]                     a 71
+buttonPanel Panel                        p 14
+can         boolean                      p 11
+canaction   boolean                      a 16 20
+canaction   boolean                      a 31 35
+canButton   Button                       p 13
+dim         Dimension                    v 54= 55 55
+frame       Frame                        a 16 17
+frame       Frame                        a 27 28
+mainFrame   Frame                        v 72= 73 74 75 81
+message     RCHelloWorld_GraphicalAWT_01 v 75= 76 78 80
+msg         String                       a 16 19
+msg         String                       a 27 28
+msgText     String                       c 7= 75
+ok          boolean                      p 10
+okButton    Button                       p 12

@@ -1,0 +1,13 @@
+----------------------------------------------------------------
+Wed Nov 14 09:29:25 PST 2012:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.8.1.2 - (1095077): instance a816c00e-013a-fff7-de47-0000046dd390 
+on database directory /Users/alansampson/projects/eclipse/juno/workspace/DB.DerbySamples/DB/TEAMS01  with class loader sun.misc.Launcher$AppClassLoader@79bf496b 
+Loaded from file:/Users/alansampson/apache/db/db-derby-10.8.1.2-bin/lib/derby.jar
+java.vendor=Oracle Corporation
+java.runtime.version=1.7.0_09-b05
+user.dir=/Users/alansampson/projects/zrexx/NetRexx/RosettaCode/netrexx
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''
+----------------------------------------------------------------
+Wed Nov 14 09:29:26 PST 2012:
+Shutting down instance a816c00e-013a-fff7-de47-0000046dd390 on database directory /Users/alansampson/projects/eclipse/juno/workspace/DB.DerbySamples/DB/TEAMS01 with class loader sun.misc.Launcher$AppClassLoader@79bf496b 

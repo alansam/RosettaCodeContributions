@@ -1,0 +1,160 @@
+/* Generated from 'RCSortingQuicksort.nrx' 27 Sep 2011 11:19:04 [v3.00] */
+/* Options: Binary Comments Crossref Decimal Format Java Logo Replace Symbols Trace2 Verbose3 */
+
+/* NetRexx */
+
+
+
+
+
+public class RCSortingQuicksort{
+ private static final java.lang.String $0="RCSortingQuicksort.nrx";
+ 
+ public static void main(java.lang.String $0s[]){
+  java.lang.String placesList[];
+  java.lang.String lists[][];
+  int ln=0;
+  java.lang.String cl[]=null;
+  int ct=0;
+  placesList=new java.lang.String[]{"UK  London","US  New York","US  Boston","US  Washington","UK  Washington","US  Birmingham","UK  Birmingham","UK  Boston"};
+  
+  
+  
+  lists=new java.lang.String[][]{placesList,quickSortSimple((java.lang.String[])(java.util.Arrays.copyOf((java.lang.Object[])placesList,placesList.length))),quickSortInplace((java.lang.String[])(java.util.Arrays.copyOf((java.lang.Object[])placesList,placesList.length)))};
+  
+  
+  
+  
+  
+  {int $1=lists.length-1;ln=0;ln:for(;ln<=$1;ln++){
+   cl=lists[ln];
+   {int $2=cl.length-1;ct=0;ct:for(;ct<=$2;ct++){
+    netrexx.lang.RexxIO.Say(cl[ct]);
+    }
+   }/*ct*/
+   netrexx.lang.RexxIO.Say("");
+   }
+  }/*ln*/
+  
+  return;
+  }
+
+ 
+ public static final java.lang.String[] quickSortSimple(java.lang.String array[]){
+  java.lang.String rl[];
+  java.util.List al;
+  
+  rl=new java.lang.String[array.length];
+  al=(java.util.List)(quickSortSimple(java.util.Arrays.asList((java.lang.Object[])array)));
+  al.toArray((java.lang.Object[])rl);
+  
+  return rl;
+  }
+
+ 
+ public static final java.util.ArrayList quickSortSimple(java.util.List array){
+  java.util.ArrayList less=null;
+  java.util.ArrayList equal=null;
+  java.util.ArrayList greater=null;
+  java.lang.Object pivot=null;
+  int x_=0;
+  java.util.ArrayList out=null;
+  
+  if ((array.size())>1) 
+   {
+    less=new java.util.ArrayList();
+    equal=new java.util.ArrayList();
+    greater=new java.util.ArrayList();
+    
+    pivot=array.get((new java.util.Random()).nextInt((array.size())-1));
+    {int $3=(array.size())-1;x_=0;x_:for(;x_<=$3;x_++){
+     if ((((java.lang.Comparable)(array.get(x_))).compareTo((java.lang.Object)((java.lang.Comparable)pivot)))<0) 
+      less.add(array.get(x_));
+     if ((((java.lang.Comparable)(array.get(x_))).compareTo((java.lang.Object)((java.lang.Comparable)pivot)))==0) 
+      equal.add(array.get(x_));
+     if ((((java.lang.Comparable)(array.get(x_))).compareTo((java.lang.Object)((java.lang.Comparable)pivot)))>0) 
+      greater.add(array.get(x_));
+     }
+    }/*x_*/
+    less=quickSortSimple((java.util.List)less);
+    greater=quickSortSimple((java.util.List)greater);
+    out=new java.util.ArrayList(array.size());
+    out.addAll((java.util.Collection)less);
+    out.addAll((java.util.Collection)equal);
+    out.addAll((java.util.Collection)greater);
+    
+    array=(java.util.List)out;
+   }
+  
+  return (java.util.ArrayList)array;
+  }
+
+ 
+ public static final java.lang.String[] quickSortInplace(java.lang.String array[]){
+  java.lang.String rl[];
+  java.util.List al;
+  
+  rl=new java.lang.String[array.length];
+  al=(java.util.List)(quickSortInplace(java.util.Arrays.asList((java.lang.Object[])array)));
+  al.toArray((java.lang.Object[])rl);
+  
+  return rl;
+  }
+
+ 
+ public static final java.util.ArrayList quickSortInplace(java.util.List array){
+  return quickSortInplace(array,0,(array.size())-1);
+  }
+ public static final java.util.ArrayList quickSortInplace(java.util.List array,int ixL){
+  return quickSortInplace(array,ixL,(array.size())-1);
+  }
+ public static final java.util.ArrayList quickSortInplace(java.util.List array,int ixL,int ixR){
+  int ixP=0;
+  
+  if (ixL<ixR) 
+   {
+    ixP=ixL+(((ixR-ixL))/2);
+    ixP=quickSortInplacePartition(array,ixL,ixR,ixP);
+    quickSortInplace(array,ixL,ixP-1);
+    quickSortInplace(array,ixP+1,ixR);
+   }
+  
+  array=(java.util.List)(new java.util.ArrayList((java.util.Collection)array));
+  return (java.util.ArrayList)array;
+  }
+
+ 
+ public static final int quickSortInplacePartition(java.util.List array,int ixL,int ixR,int ixP){
+  java.lang.Object pivotValue;
+  java.lang.Object rValue;
+  int ixStore;
+  int i_=0;
+  java.lang.Object iValue=null;
+  java.lang.Object storeValue=null;
+  
+  pivotValue=array.get(ixP);
+  rValue=array.get(ixR);
+  array.set(ixP,rValue);
+  array.set(ixR,pivotValue);
+  ixStore=ixL;
+  {int $4=ixR-1;i_=ixL;i_:for(;i_<=$4;i_++){
+   iValue=array.get(i_);
+   if ((((java.lang.Comparable)iValue).compareTo((java.lang.Object)((java.lang.Comparable)pivotValue)))<0) 
+    {
+     storeValue=array.get(ixStore);
+     array.set(i_,storeValue);
+     array.set(ixStore,iValue);
+     ixStore++;
+    }
+   }
+  }/*i_*/
+  storeValue=array.get(ixStore);
+  rValue=array.get(ixR);
+  array.set(ixStore,rValue);
+  array.set(ixR,storeValue);
+  
+  return ixStore;
+  }
+ 
+ private RCSortingQuicksort(){return;}
+ }

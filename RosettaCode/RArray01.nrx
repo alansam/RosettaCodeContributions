@@ -1,0 +1,12 @@
+/* NetRexx */
+
+options replace format comments java crossref savelog symbols nobinary
+
+cymru = ''
+cymru['ogof1'] = 'Ogof Ffynnon Ddu'
+cymru['ogof2'] = 'Ogof Draenen'
+
+loop c_ over cymru
+  say c_ cymru[c_]
+  end c_
+

@@ -1,0 +1,12 @@
+--- Variables for class RCXMLOutputDom ---
+buffer      StringWriter v 49= 52 60
+character   Element      v 38= 39 40 41
+doc         Document     v 30= 33 34 38 41 46
+ex          Exception    v 61= 62
+i_          Rexx         v 37= 40 41
+names       String[]     v 18= 37 40
+remarks     String[]     v 22= 41
+result      StreamResult v 52= 57
+root        Element      v 33= 34 39
+source      DOMSource    v 46= 57
+transformer Transformer  v 55= 56 57

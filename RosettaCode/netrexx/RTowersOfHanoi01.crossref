@@ -1,0 +1,22 @@
+--- Variables for class RTowersOfHanoi01 ---
+a_        char     a 28 32 33
+arg       Rexx     a 4= 4
+arg       Rexx     a 8 9
+Array     String[] v 43= 44 46= 50 54= 60= 64
+array     String[] a 28 29 30 31 32 32 32= 33 33 33= 38
+ax        int      v 59= 60
+b_        char     a 28 32 33
+discs     Rexx     v 9= 10 10 10 10= 11 12
+discs     int      a 17= 19 20
+discs     int      a 41 43
+i_        int      v 29= 29 30 31 32 32 32 33 33 33
+i_        int      v 44= 44 45 58 62 62=
+j_        int      v 30= 30 31 32 32 33 33
+k_        int      v 21= 21 23 23 23
+left      int      v 49= 49 50 50
+middle    int      v 45= 46 48 49 53 58 59
+moves     Rexx     v 12= 13
+moves     int      a 17= 22 22= 25
+o_        int      v 53= 53 54 54 58= 58 59 60
+tempArray String[] v 47 48= 50= 52 52= 54 56 56= 57 57= 60
+tOH       String[] v 18 19= 21 23 23

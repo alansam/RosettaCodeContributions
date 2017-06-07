@@ -1,0 +1,17 @@
+--- Variables for class RSortingSleepsort ---
+arg        Rexx                 v 16= 17 17= 18 19
+args       String[]             a 15 16
+dflt       Rexx                 c 8= 17
+doneLatch  CountDownLatch       p 11
+floor      Rexx                 p 12=
+iArg       Rexx                 a 22 24 25 26 27
+ix         InterruptedException v 32= 33
+mn         Rexx                 v 25= 26 27
+sorted     Rexx                 p 13=
+startLatch CountDownLatch       p 10
+
+--- Variables for class RSortingSleepsort.SortThread ---
+ie        InterruptedException v 52= 53
+nm        Rexx                 a 42 43
+num       Rexx                 p 40 56
+sleepTime Rexx                 v 49= 50 50= 51

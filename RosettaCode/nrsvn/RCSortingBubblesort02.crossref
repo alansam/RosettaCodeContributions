@@ -1,0 +1,12 @@
+--- Variables for class RCSortingBubblesort02 ---
+cl         String[]  v 14= 15 16
+ct         int       v 15= 16
+hasChanged boolean   v 25 27 28= 35=
+index      int       v 30= 31 31 32 33 33 34
+item       String[]  a 23 26 31 31 32 33 33= 34= 40
+itemCount  int       v 26= 29 29= 30
+lists      String[,] v 12= 13 14
+ln         int       v 13= 14
+placesList String[]  v 4= 10 10 12
+sortedList String[]  v 10= 12
+swap       String    v 32= 34

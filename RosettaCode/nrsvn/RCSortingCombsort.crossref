@@ -1,0 +1,12 @@
+--- Variables for class RCSortingCombsort ---
+cl         String[]  v 15= 16 17
+ct         int       v 16= 17
+gap        int       v 27= 28 29 29= 30 31= 34 35 37 38
+i_         int       v 32= 34 35 35 36 37 37 38 41 41=
+input      String[]  a 24 27 34 35 35 36 37 37= 38= 45
+lists      String[,] v 13= 14 15
+ln         int       v 14= 15
+placesList String[]  v 5= 11 11 13
+sortedList String[]  v 11= 13
+swap       String    v 36= 38
+swaps      boolean   v 26= 28 33= 39=

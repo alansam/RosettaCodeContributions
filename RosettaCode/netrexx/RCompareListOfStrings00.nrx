@@ -1,0 +1,37 @@
+/* NetRexx */
+options replace format comments java crossref symbols nobinary
+
+/* REXX ---------------------------------------------------------------
+* 28.06.2014 Walter Pachl
+*--------------------------------------------------------------------*/
+  test('ABC', ['AA', 'BB', 'CC'])
+  test('AAA', ['AA', 'AA', 'AA'])
+  test('ACB', ['AA', 'CC', 'BB'])
+  Return
+ 
+method test(name, list = Rexx[]) public static
+  _true  = (1 == 1)
+  _false = \_true
+  all_equal  = _true
+  increasing = _true
+  Loop i = 0 To list.length - 2
+    i1 = i + 1
+    Select
+      When list[i1] == list[i] Then increasing = _false
+      When list[i1] << list[i] Then Do
+                                    all_equal  = _false
+                                    increasing = _false
+                                    End
+      When list[i1] >> list[i] Then all_equal  = _false
+      End
+    End
+  Select
+    When all_equal Then
+      Say 'List' name': all elements are equal'
+    When increasing Then
+      Say 'List' name': elements are in increasing order'
+    Otherwise
+      Say 'List' name': neither equal nor in increasing order'
+    End
+  Return
+

@@ -1,0 +1,13 @@
+--- Variables for class RCGreatestElementOfList ---
+dlist    double[] v 7= 11= 15
+dlist    double[] a 20 22 23 23
+dlist    Rexx[]   a 27 29 30
+dmax     double   v 21= 23 23= 25
+dmax     Rexx     v 28= 30 30= 32
+maxElmts int      v 6= 7 8 9
+n_       int      v 22= 23 23
+n_       int      v 29= 30
+nr       double   v 10= 11 12
+r_       int      v 9= 11 12
+rlist    Rexx[]   v 8= 12= 16
+rn       Random   v 5= 10

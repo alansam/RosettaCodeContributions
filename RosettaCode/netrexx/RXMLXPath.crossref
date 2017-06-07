@@ -1,0 +1,13 @@
+--- Variables for class RXMLXPath ---
+attr1    String         v 40= 48
+doc      Document       v 43= 48 52 62
+ex       Exception      v 74= 75
+expr1    String         v 37= 47 48
+expr2    String         v 38= 52 53
+expr3    String         v 39= 62 68
+i_       int            v 54= 55 63= 64
+n_       int            v 69= 70
+nameList java.util.List v 60 61= 64 69 70
+nodes    NodeList       v 52= 54 55 62= 63 64
+xmlStr   String         v 9= 43
+xpath    XPath          v 44= 48 52 62

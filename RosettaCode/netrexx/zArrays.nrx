@@ -1,0 +1,24 @@
+/* NetRexx */
+options replace format comments java crossref symbols nobinary
+
+nums = '90 47 58 29 22 32 55 5 55 73'
+arry = Rexx[nums.words() + 1] -- define a zero based array
+stem = ''                     -- initialize a Rexx indexed string
+
+loop i = 1 to nums.words()
+  arry[i] = nums.word(i)
+  stem[i] = nums.word(i)
+  end i
+say
+loop x = 0 to arry.length - 1
+  say 'arry['x']='String.valueOf(arry[x])', \-'
+  end x
+say
+say
+loop x = 1 to nums.words()
+  say 'stem['x']='stem[x]', \-'
+  end x
+say
+
+return
+

@@ -1,0 +1,22 @@
+--- Variables for class RSortingMergesort ---
+al         java.util.List v 36= 37
+cl         String[]       v 24= 25 26
+ct         int            v 25= 26
+data       String[]       v 141= 205
+data       String[]       v 209= 262
+left       ArrayList      v 66= 71 76 76= 78 78 79 83
+left       java.util.List a 92 114 115 116 117 124 125
+lists      String[,]      v 14= 23 24
+ln         int            v 23= 24
+m          String[]       a 33 35 36
+m          java.util.List a 41 65 68 69 71 73 74 80 87
+middle     int            v 69= 70 73
+placesList String[]       v 7= 15 16 16
+result     ArrayList      v 65= 80 83= 87 90
+result     ArrayList      v 113= 116 120 125 128 131
+right      ArrayList      v 67= 74 77 77= 78 79 83
+right      java.util.List a 92 114 115 120 121 127 128
+riverData  String[]       v 12= 17 18 18
+rl         String[]       v 35= 37 39
+stateData  String[]       v 13= 19 20 20
+x_         int            v 70= 71 73= 74

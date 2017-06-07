@@ -1,0 +1,16 @@
+/* NetRexx */
+options replace format comments java crossref savelog symbols /* binary */
+
+v1 = Rexx
+v2 = ''
+
+if v1 = null, v1 = '' then say "null or ''," show(v1)
+if v2 = null, v2 = '' then say "null or ''," show(v2)
+
+return
+
+method show(val = Rexx) private constant returns Rexx
+
+  if val = null then val = 'null'
+	return val
+

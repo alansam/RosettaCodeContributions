@@ -1,0 +1,6 @@
+--- Variables for class RInputLoop02 ---
+EODAD     Rexx    v 7= 12
+inLine    String  v 11= 12 14
+inScanner Scanner v 9= 10 11 16
+l_        Rexx    v 10= 13 14 18= 19 19
+lines     Rexx    v 5= 6= 13= 14= 18 19

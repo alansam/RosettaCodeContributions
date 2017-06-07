@@ -1,0 +1,403 @@
+<?xml version="1.1" encoding="iso-8859-1"?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"> 
+  <head> 
+    <title>Box the Compass</title> 
+    <meta name="author"    content="Alan Sampson - alansamps@gmail.com" /> 
+    <meta name="revised"   content="Alan Sampson - alansamps@gmail.com,2011-07-26" /> 
+    <meta name="copyright" content="Alan Sampson 2011" /> 
+    <meta name="generator" content="NetRexx" /> 
+    <meta name="keywords"  content="HTML, DHTML, XML, XHTML, CSS, JavaScript" /> 
+    <meta http-equiv="expires" content="Fri, 01 Jan 2011 00:00:01 GMT" /> 
+    <link rel="SHORTCUT ICON" href="./images/favicon.ico"/> 
+    <link rel="stylesheet" type="text/css" href="./css/default.css" /> 
+		<script src="includes/createDate.js" type="text/javascript"></script> 
+    <script language="javascript" type="text/javascript"> 
+      //<![CDATA[ 
+      if (document.all) { 
+        document.createStyleSheet("./css/default.css"); 
+      } 
+      //]]> 
+    </script> 
+ 
+    <style type="text/css"> 
+      /*<![CDATA[*/ 
+      body { 
+        font-family:   "Geneva", "Verdana", "Helvetica Neue", "Helvetica", "DejaVu Sans", "Tahoma", "Trebuchet MS", "Arial", "FreeSans", sans-serif; 
+        margin-top:    3.0em; 
+        margin-bottom: 2.0em; 
+        margin-left:   5.0em; 
+        margin-right:  3.0em; 
+        padding:       0.2em; 
+      } 
+ 
+      table.ct0 { 
+        border-collapse: collapse; 
+        border-width:    0.1em; 
+        padding:         0.2em; 
+        font-family:     "Monaco", "Menlo", "Lucida Console", "DejaVu Sans Mono", "Andale Mono", "Courier New", "Courier", "FreeMono", monospace; 
+        font-size:       smaller; 
+        color:           green; 
+      } 
+ 
+      .body { 
+        font-family: "Geneva", "Verdana", "Helvetica Neue", "Helvetica", "DejaVu Sans", "Tahoma", "Tebuchet MS", "Arial", "FreeSans", sans-serif; 
+      } 
+ 
+      .code { 
+        font-family: "Monaco", "Menlo", "Lucida Console", "DejaVu Sans Mono", "Andale Mono", "Courier New", "Courier", "FreeMono", monospace; 
+        font-size:   smaller; 
+        color:       green; 
+      } 
+ 
+      .print { 
+        font-family: "Georgia", "Baskerville", "Hoefler Text", "Didot", "Palatino", "Garamond", "DejaVu Serif", "Times New Roman", "Times", "FreeSerif", serif; 
+      } 
+ 
+      .fancy { 
+        font-family: "Papyrus", "Marker Felt", "Herculanum", "Capitals", "Copperplate", "Haettenschweiler", "Snap ITC", "Impact", fantasy; 
+      } 
+ 
+      .script { 
+        font-family: "Apple Chancery", "Zapfino", "Apple Casual", "Casual", "Monotype Corsiva", "Brush Script MT", "Comic Sans MS", cursive; 
+      } 
+ 
+      body.c0 { 
+        margin-top:    0.0em; 
+				margin-bottom: 0.0em; 
+				margin-left:   0.0em; 
+				margin-right:  0.0em; 
+        padding:       0.0em; 
+      } 
+ 
+      td, th { 
+				padding-top:    inherit; 
+				padding-left:   inherit; 
+				badding-bottom: inherit; 
+				padding-right:  2.0em !important; 
+			} 
+ 
+			th.thc0 { 
+				text-align: left; 
+				font-size:  120%; 
+			} 
+ 
+			th.thc1 { 
+				text-align: left; 
+			} 
+ 
+			th.thc2 { 
+				text-align: left; 
+				font-size:  85%; 
+			} 
+ 
+      td.c1 { 
+        background-color: #999999; 
+      } 
+ 
+      td.c2 { 
+        font-size: 0.6em; 
+      } 
+ 
+      td.c3 { 
+        text-align: right; 
+      } 
+ 
+      b.c3 { 
+        font-size: 1.3em; 
+      } 
+ 
+      div.c4 { 
+        margin:  2px; 
+        padding: 2px; 
+      } 
+			h3.c5 { 
+				font-style: italic; 
+			} 
+			div.c6 { 
+				margin-top:    0.0em; 
+				margin-bottom: 0.0em; 
+				margin-left:   2.0em; 
+				margin-right:  0.0em; 
+				padding:       0.0em; 
+			} 
+ 
+      #body { 
+        font-family: "Verdana", "Tahoma", "Helvetica", "Swiss", sans-serif; 
+        font-size:   smaller; 
+      } 
+ 
+      #code { 
+        font-family: "Lucida Console", "Courier New", "Courier"; 
+        font-size:   smaller; 
+        color:       green; 
+      } 
+ 
+			a { 
+				text-decoration: none; 
+				font-size:       85%; 
+			} 
+			a:link    { color: #480082; /*indigo*/ } 
+			a:visited { color: #6a5acd; /*SlateBlue*/ } 
+			a:hover   { color: #dda520; /*goldenrod*/ } 
+			a:acrive  { color: #ff0000; /*red*/ } 
+ 
+      /*]]>*/ 
+    </style> 
+  </head> 
+  <body> 
+    <h1>Box the Compass</h1> 
+<h2>Table of Compass Points</h2>
+<table class="ct0">
+<caption>Table of Compass Points</caption>
+<thead>
+<tr>
+<th>Index</th><th>Compass Point</th><th>Abbr.</th><th>Lowest &deg; </th><th> &deg; &prime; &Prime; </th><th>Middle &deg; </th><th> &deg; &prime; &Prime; </th><th>Highest &deg; </th><th> &deg; &prime; &Prime; </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td><td>North</td><td>N</td><td class="c3">354.375&deg;</td><td class="c3">354&deg;22&prime;30&Prime;</td><td class="c3">0.000&deg;</td><td class="c3">0&deg;00&prime;00&Prime;</td><td class="c3">5.508&deg;</td><td class="c3">5&deg;30&prime;29&Prime;</td>
+</tr>
+<tr>
+<td>2</td><td>North by East</td><td>NbE</td><td class="c3">5.625&deg;</td><td class="c3">5&deg;37&prime;30&Prime;</td><td class="c3">11.250&deg;</td><td class="c3">11&deg;15&prime;00&Prime;</td><td class="c3">16.758&deg;</td><td class="c3">16&deg;45&prime;29&Prime;</td>
+</tr>
+<tr>
+<td>3</td><td>North-Northeast</td><td>NNE</td><td class="c3">16.875&deg;</td><td class="c3">16&deg;52&prime;30&Prime;</td><td class="c3">22.500&deg;</td><td class="c3">22&deg;30&prime;00&Prime;</td><td class="c3">28.008&deg;</td><td class="c3">28&deg;00&prime;29&Prime;</td>
+</tr>
+<tr>
+<td>4</td><td>Northeast by North</td><td>NEbn</td><td class="c3">28.125&deg;</td><td class="c3">28&deg;07&prime;30&Prime;</td><td class="c3">33.750&deg;</td><td class="c3">33&deg;45&prime;00&Prime;</td><td class="c3">39.258&deg;</td><td class="c3">39&deg;15&prime;29&Prime;</td>
+</tr>
+<tr>
+<td>5</td><td>Northeast</td><td>NE</td><td class="c3">39.375&deg;</td><td class="c3">39&deg;22&prime;30&Prime;</td><td class="c3">45.000&deg;</td><td class="c3">45&deg;00&prime;00&Prime;</td><td class="c3">50.508&deg;</td><td class="c3">50&deg;30&prime;29&Prime;</td>
+</tr>
+<tr>
+<td>6</td><td>Northeast by East</td><td>NEbE</td><td class="c3">50.625&deg;</td><td class="c3">50&deg;37&prime;30&Prime;</td><td class="c3">56.250&deg;</td><td class="c3">56&deg;15&prime;00&Prime;</td><td class="c3">61.758&deg;</td><td class="c3">61&deg;45&prime;29&Prime;</td>
+</tr>
+<tr>
+<td>7</td><td>East-Northeast</td><td>ENE</td><td class="c3">61.875&deg;</td><td class="c3">61&deg;52&prime;30&Prime;</td><td class="c3">67.500&deg;</td><td class="c3">67&deg;30&prime;00&Prime;</td><td class="c3">73.008&deg;</td><td class="c3">73&deg;00&prime;29&Prime;</td>
+</tr>
+<tr>
+<td>8</td><td>East by North</td><td>EbN</td><td class="c3">73.125&deg;</td><td class="c3">73&deg;07&prime;30&Prime;</td><td class="c3">78.750&deg;</td><td class="c3">78&deg;45&prime;00&Prime;</td><td class="c3">84.258&deg;</td><td class="c3">84&deg;15&prime;29&Prime;</td>
+</tr>
+<tr>
+<td>9</td><td>East</td><td>E</td><td class="c3">84.375&deg;</td><td class="c3">84&deg;22&prime;30&Prime;</td><td class="c3">90.000&deg;</td><td class="c3">90&deg;00&prime;00&Prime;</td><td class="c3">95.508&deg;</td><td class="c3">95&deg;30&prime;29&Prime;</td>
+</tr>
+<tr>
+<td>10</td><td>East by South</td><td>EbS</td><td class="c3">95.625&deg;</td><td class="c3">95&deg;37&prime;30&Prime;</td><td class="c3">101.250&deg;</td><td class="c3">101&deg;15&prime;00&Prime;</td><td class="c3">106.758&deg;</td><td class="c3">106&deg;45&prime;29&Prime;</td>
+</tr>
+<tr>
+<td>11</td><td>East-Southeast</td><td>ESE</td><td class="c3">106.875&deg;</td><td class="c3">106&deg;52&prime;30&Prime;</td><td class="c3">112.500&deg;</td><td class="c3">112&deg;30&prime;00&Prime;</td><td class="c3">118.008&deg;</td><td class="c3">118&deg;00&prime;29&Prime;</td>
+</tr>
+<tr>
+<td>12</td><td>Southeast by East</td><td>SEbE</td><td class="c3">118.125&deg;</td><td class="c3">118&deg;07&prime;30&Prime;</td><td class="c3">123.750&deg;</td><td class="c3">123&deg;45&prime;00&Prime;</td><td class="c3">129.258&deg;</td><td class="c3">129&deg;15&prime;29&Prime;</td>
+</tr>
+<tr>
+<td>13</td><td>Southeast</td><td>SE</td><td class="c3">129.375&deg;</td><td class="c3">129&deg;22&prime;30&Prime;</td><td class="c3">135.000&deg;</td><td class="c3">135&deg;00&prime;00&Prime;</td><td class="c3">140.508&deg;</td><td class="c3">140&deg;30&prime;29&Prime;</td>
+</tr>
+<tr>
+<td>14</td><td>Southeast by South</td><td>SEbS</td><td class="c3">140.625&deg;</td><td class="c3">140&deg;37&prime;30&Prime;</td><td class="c3">146.250&deg;</td><td class="c3">146&deg;15&prime;00&Prime;</td><td class="c3">151.758&deg;</td><td class="c3">151&deg;45&prime;29&Prime;</td>
+</tr>
+<tr>
+<td>15</td><td>South-Southeast</td><td>SSE</td><td class="c3">151.875&deg;</td><td class="c3">151&deg;52&prime;30&Prime;</td><td class="c3">157.500&deg;</td><td class="c3">157&deg;30&prime;00&Prime;</td><td class="c3">163.008&deg;</td><td class="c3">163&deg;00&prime;29&Prime;</td>
+</tr>
+<tr>
+<td>16</td><td>South by East</td><td>SbE</td><td class="c3">163.125&deg;</td><td class="c3">163&deg;07&prime;30&Prime;</td><td class="c3">168.750&deg;</td><td class="c3">168&deg;45&prime;00&Prime;</td><td class="c3">174.258&deg;</td><td class="c3">174&deg;15&prime;29&Prime;</td>
+</tr>
+<tr>
+<td>17</td><td>South</td><td>S</td><td class="c3">174.375&deg;</td><td class="c3">174&deg;22&prime;30&Prime;</td><td class="c3">180.000&deg;</td><td class="c3">180&deg;00&prime;00&Prime;</td><td class="c3">185.508&deg;</td><td class="c3">185&deg;30&prime;29&Prime;</td>
+</tr>
+<tr>
+<td>18</td><td>South by West</td><td>SbW</td><td class="c3">185.625&deg;</td><td class="c3">185&deg;37&prime;30&Prime;</td><td class="c3">191.250&deg;</td><td class="c3">191&deg;15&prime;00&Prime;</td><td class="c3">196.758&deg;</td><td class="c3">196&deg;45&prime;29&Prime;</td>
+</tr>
+<tr>
+<td>19</td><td>South-Southwest</td><td>SSW</td><td class="c3">196.875&deg;</td><td class="c3">196&deg;52&prime;30&Prime;</td><td class="c3">202.500&deg;</td><td class="c3">202&deg;30&prime;00&Prime;</td><td class="c3">208.008&deg;</td><td class="c3">208&deg;00&prime;29&Prime;</td>
+</tr>
+<tr>
+<td>20</td><td>Southwest by South</td><td>SWbS</td><td class="c3">208.125&deg;</td><td class="c3">208&deg;07&prime;30&Prime;</td><td class="c3">213.750&deg;</td><td class="c3">213&deg;45&prime;00&Prime;</td><td class="c3">219.258&deg;</td><td class="c3">219&deg;15&prime;29&Prime;</td>
+</tr>
+<tr>
+<td>21</td><td>Southwest</td><td>SW</td><td class="c3">219.375&deg;</td><td class="c3">219&deg;22&prime;30&Prime;</td><td class="c3">225.000&deg;</td><td class="c3">225&deg;00&prime;00&Prime;</td><td class="c3">230.508&deg;</td><td class="c3">230&deg;30&prime;29&Prime;</td>
+</tr>
+<tr>
+<td>22</td><td>Southwest by West</td><td>SWbW</td><td class="c3">230.625&deg;</td><td class="c3">230&deg;37&prime;30&Prime;</td><td class="c3">236.250&deg;</td><td class="c3">236&deg;15&prime;00&Prime;</td><td class="c3">241.758&deg;</td><td class="c3">241&deg;45&prime;29&Prime;</td>
+</tr>
+<tr>
+<td>23</td><td>Southwest</td><td>WSW</td><td class="c3">241.875&deg;</td><td class="c3">241&deg;52&prime;30&Prime;</td><td class="c3">247.500&deg;</td><td class="c3">247&deg;30&prime;00&Prime;</td><td class="c3">253.008&deg;</td><td class="c3">253&deg;00&prime;29&Prime;</td>
+</tr>
+<tr>
+<td>24</td><td>West by South</td><td>WbS</td><td class="c3">253.125&deg;</td><td class="c3">253&deg;07&prime;30&Prime;</td><td class="c3">258.750&deg;</td><td class="c3">258&deg;45&prime;00&Prime;</td><td class="c3">264.258&deg;</td><td class="c3">264&deg;15&prime;29&Prime;</td>
+</tr>
+<tr>
+<td>25</td><td>West</td><td>W</td><td class="c3">264.375&deg;</td><td class="c3">264&deg;22&prime;30&Prime;</td><td class="c3">270.000&deg;</td><td class="c3">270&deg;00&prime;00&Prime;</td><td class="c3">275.508&deg;</td><td class="c3">275&deg;30&prime;29&Prime;</td>
+</tr>
+<tr>
+<td>26</td><td>West by North</td><td>WbN</td><td class="c3">275.625&deg;</td><td class="c3">275&deg;37&prime;30&Prime;</td><td class="c3">281.250&deg;</td><td class="c3">281&deg;15&prime;00&Prime;</td><td class="c3">286.758&deg;</td><td class="c3">286&deg;45&prime;29&Prime;</td>
+</tr>
+<tr>
+<td>27</td><td>West-Northwest</td><td>WNW</td><td class="c3">286.875&deg;</td><td class="c3">286&deg;52&prime;30&Prime;</td><td class="c3">292.500&deg;</td><td class="c3">292&deg;30&prime;00&Prime;</td><td class="c3">298.008&deg;</td><td class="c3">298&deg;00&prime;29&Prime;</td>
+</tr>
+<tr>
+<td>28</td><td>Northwest by West</td><td>NWbW</td><td class="c3">298.125&deg;</td><td class="c3">298&deg;07&prime;30&Prime;</td><td class="c3">303.750&deg;</td><td class="c3">303&deg;45&prime;00&Prime;</td><td class="c3">309.258&deg;</td><td class="c3">309&deg;15&prime;29&Prime;</td>
+</tr>
+<tr>
+<td>29</td><td>Northwest</td><td>NW</td><td class="c3">309.375&deg;</td><td class="c3">309&deg;22&prime;30&Prime;</td><td class="c3">315.000&deg;</td><td class="c3">315&deg;00&prime;00&Prime;</td><td class="c3">320.508&deg;</td><td class="c3">320&deg;30&prime;29&Prime;</td>
+</tr>
+<tr>
+<td>30</td><td>Northwest by North</td><td>NWbN</td><td class="c3">320.625&deg;</td><td class="c3">320&deg;37&prime;30&Prime;</td><td class="c3">326.250&deg;</td><td class="c3">326&deg;15&prime;00&Prime;</td><td class="c3">331.758&deg;</td><td class="c3">331&deg;45&prime;29&Prime;</td>
+</tr>
+<tr>
+<td>31</td><td>North-Northwest</td><td>NNW</td><td class="c3">331.875&deg;</td><td class="c3">331&deg;52&prime;30&Prime;</td><td class="c3">337.500&deg;</td><td class="c3">337&deg;30&prime;00&Prime;</td><td class="c3">343.008&deg;</td><td class="c3">343&deg;00&prime;29&Prime;</td>
+</tr>
+<tr>
+<td>32</td><td>North by West</td><td>NbW</td><td class="c3">343.125&deg;</td><td class="c3">343&deg;07&prime;30&Prime;</td><td class="c3">348.750&deg;</td><td class="c3">348&deg;45&prime;00&Prime;</td><td class="c3">354.258&deg;</td><td class="c3">354&deg;15&prime;29&Prime;</td>
+</tr>
+</tbody>
+</table>
+<h2>Verification Test Sample</h2>
+<table class="ct0">
+<caption>Verification Test Sample</caption>
+<thead>
+<tr>
+<th>Index</th><th>Compass Point</th><th>Abbr.</th><th>Heading &deg; </th><th>Heading &deg; &prime; &Prime; </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td><td>North</td><td>N</td><td class="c3">360.000&deg;</td><td class="c3">360&deg;00&prime;00&Prime;</td>
+</tr>
+<tr>
+<td>2</td><td>North by East</td><td>NbE</td><td class="c3">371.250&deg;</td><td class="c3">371&deg;15&prime;00&Prime;</td>
+</tr>
+<tr>
+<td>3</td><td>North-Northeast</td><td>NNE</td><td class="c3">382.500&deg;</td><td class="c3">382&deg;30&prime;00&Prime;</td>
+</tr>
+<tr>
+<td>1</td><td>North</td><td>N</td><td class="c3">360.000&deg;</td><td class="c3">360&deg;00&prime;00&Prime;</td>
+</tr>
+<tr>
+<td>1</td><td>North</td><td>N</td><td class="c3">5.625&deg;</td><td class="c3">5&deg;37&prime;30&Prime;</td>
+</tr>
+<tr>
+<td>2</td><td>North by East</td><td>NbE</td><td class="c3">16.870&deg;</td><td class="c3">16&deg;52&prime;12&Prime;</td>
+</tr>
+<tr>
+<td>3</td><td>North-Northeast</td><td>NNE</td><td class="c3">16.880&deg;</td><td class="c3">16&deg;52&prime;48&Prime;</td>
+</tr>
+</tbody>
+</table>
+<h2>RosettaCode &quot;Box the Compass&quot; Task Samples</h2>
+<table class="ct0">
+<caption>RosettaCode &quot;Box the Compass&quot; Task Samples</caption>
+<thead>
+<tr>
+<th>Index</th><th>Compass Point</th><th>Abbr.</th><th>Heading &deg; </th><th>Heading &deg; &prime; &Prime; </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td><td>North</td><td>N</td><td class="c3">0.000&deg;</td><td class="c3">0&deg;00&prime;00&Prime;</td>
+</tr>
+<tr>
+<td>2</td><td>North by East</td><td>NbE</td><td class="c3">16.870&deg;</td><td class="c3">16&deg;52&prime;12&Prime;</td>
+</tr>
+<tr>
+<td>3</td><td>North-Northeast</td><td>NNE</td><td class="c3">16.880&deg;</td><td class="c3">16&deg;52&prime;48&Prime;</td>
+</tr>
+<tr>
+<td>4</td><td>Northeast by North</td><td>NEbn</td><td class="c3">33.750&deg;</td><td class="c3">33&deg;45&prime;00&Prime;</td>
+</tr>
+<tr>
+<td>5</td><td>Northeast</td><td>NE</td><td class="c3">50.620&deg;</td><td class="c3">50&deg;37&prime;12&Prime;</td>
+</tr>
+<tr>
+<td>6</td><td>Northeast by East</td><td>NEbE</td><td class="c3">50.630&deg;</td><td class="c3">50&deg;37&prime;48&Prime;</td>
+</tr>
+<tr>
+<td>7</td><td>East-Northeast</td><td>ENE</td><td class="c3">67.500&deg;</td><td class="c3">67&deg;30&prime;00&Prime;</td>
+</tr>
+<tr>
+<td>8</td><td>East by North</td><td>EbN</td><td class="c3">84.370&deg;</td><td class="c3">84&deg;22&prime;12&Prime;</td>
+</tr>
+<tr>
+<td>9</td><td>East</td><td>E</td><td class="c3">84.380&deg;</td><td class="c3">84&deg;22&prime;48&Prime;</td>
+</tr>
+<tr>
+<td>10</td><td>East by South</td><td>EbS</td><td class="c3">101.250&deg;</td><td class="c3">101&deg;15&prime;00&Prime;</td>
+</tr>
+<tr>
+<td>11</td><td>East-Southeast</td><td>ESE</td><td class="c3">118.120&deg;</td><td class="c3">118&deg;07&prime;12&Prime;</td>
+</tr>
+<tr>
+<td>12</td><td>Southeast by East</td><td>SEbE</td><td class="c3">118.130&deg;</td><td class="c3">118&deg;07&prime;48&Prime;</td>
+</tr>
+<tr>
+<td>13</td><td>Southeast</td><td>SE</td><td class="c3">135.000&deg;</td><td class="c3">135&deg;00&prime;00&Prime;</td>
+</tr>
+<tr>
+<td>14</td><td>Southeast by South</td><td>SEbS</td><td class="c3">151.870&deg;</td><td class="c3">151&deg;52&prime;12&Prime;</td>
+</tr>
+<tr>
+<td>15</td><td>South-Southeast</td><td>SSE</td><td class="c3">151.880&deg;</td><td class="c3">151&deg;52&prime;48&Prime;</td>
+</tr>
+<tr>
+<td>16</td><td>South by East</td><td>SbE</td><td class="c3">168.750&deg;</td><td class="c3">168&deg;45&prime;00&Prime;</td>
+</tr>
+<tr>
+<td>17</td><td>South</td><td>S</td><td class="c3">185.620&deg;</td><td class="c3">185&deg;37&prime;12&Prime;</td>
+</tr>
+<tr>
+<td>18</td><td>South by West</td><td>SbW</td><td class="c3">185.630&deg;</td><td class="c3">185&deg;37&prime;48&Prime;</td>
+</tr>
+<tr>
+<td>19</td><td>South-Southwest</td><td>SSW</td><td class="c3">202.500&deg;</td><td class="c3">202&deg;30&prime;00&Prime;</td>
+</tr>
+<tr>
+<td>20</td><td>Southwest by South</td><td>SWbS</td><td class="c3">219.370&deg;</td><td class="c3">219&deg;22&prime;12&Prime;</td>
+</tr>
+<tr>
+<td>21</td><td>Southwest</td><td>SW</td><td class="c3">219.380&deg;</td><td class="c3">219&deg;22&prime;48&Prime;</td>
+</tr>
+<tr>
+<td>22</td><td>Southwest by West</td><td>SWbW</td><td class="c3">236.250&deg;</td><td class="c3">236&deg;15&prime;00&Prime;</td>
+</tr>
+<tr>
+<td>23</td><td>Southwest</td><td>WSW</td><td class="c3">253.120&deg;</td><td class="c3">253&deg;07&prime;12&Prime;</td>
+</tr>
+<tr>
+<td>24</td><td>West by South</td><td>WbS</td><td class="c3">253.130&deg;</td><td class="c3">253&deg;07&prime;48&Prime;</td>
+</tr>
+<tr>
+<td>25</td><td>West</td><td>W</td><td class="c3">270.000&deg;</td><td class="c3">270&deg;00&prime;00&Prime;</td>
+</tr>
+<tr>
+<td>26</td><td>West by North</td><td>WbN</td><td class="c3">286.870&deg;</td><td class="c3">286&deg;52&prime;12&Prime;</td>
+</tr>
+<tr>
+<td>27</td><td>West-Northwest</td><td>WNW</td><td class="c3">286.880&deg;</td><td class="c3">286&deg;52&prime;48&Prime;</td>
+</tr>
+<tr>
+<td>28</td><td>Northwest by West</td><td>NWbW</td><td class="c3">303.750&deg;</td><td class="c3">303&deg;45&prime;00&Prime;</td>
+</tr>
+<tr>
+<td>29</td><td>Northwest</td><td>NW</td><td class="c3">320.620&deg;</td><td class="c3">320&deg;37&prime;12&Prime;</td>
+</tr>
+<tr>
+<td>30</td><td>Northwest by North</td><td>NWbN</td><td class="c3">320.630&deg;</td><td class="c3">320&deg;37&prime;48&Prime;</td>
+</tr>
+<tr>
+<td>31</td><td>North-Northwest</td><td>NNW</td><td class="c3">337.500&deg;</td><td class="c3">337&deg;30&prime;00&Prime;</td>
+</tr>
+<tr>
+<td>32</td><td>North by West</td><td>NbW</td><td class="c3">354.370&deg;</td><td class="c3">354&deg;22&prime;12&Prime;</td>
+</tr>
+<tr>
+<td>1</td><td>North</td><td>N</td><td class="c3">354.380&deg;</td><td class="c3">354&deg;22&prime;48&Prime;</td>
+</tr>
+</tbody>
+</table>
+  </body> 
+</html> 
+
+

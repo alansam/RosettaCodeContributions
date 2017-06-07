@@ -1,0 +1,15 @@
+--- Variables for class RBrownianTree ---
+args      String[]       a 49
+b         RBrownianTree  v 50= 51 52
+g         Graphics       a 28 29
+I         BufferedImage  p 13 23= 24 24 24 29
+i_        int            v 33 34= 34
+it        Iterator       v 39= 40 41 42
+particles java.util.List p 14 25= 35 38 39
+rand      Random         s 17=
+
+--- Variables for class RBrownianTree.Particle ---
+dx int v 74= 76 76 79 82
+dy int v 75= 76 76 80 82
+x  int p 64 68= 76 76 79 79= 80 81 82
+y  int p 65 69= 76 76 80= 81 82

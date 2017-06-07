@@ -1,0 +1,54 @@
+/* NetRexx */
+options replace format comments java crossref symbols nobinary
+
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+class REnumeration public uses REnum1, REnum2
+  properties constant
+    NO  = 0
+    YES = 1
+
+  method REnumeration() public
+    return
+
+  method main(args = String[]) public static
+    -- Using constants
+    kl = [NO, YES, 3]
+    loop k_ over kl
+      select case k_
+        when NO  then say k_ 'Enum NO'
+        when YES then say k_ 'Enum YES'
+        otherwise     say k_ 'Enum unxpected'
+        end
+      end k_
+    -- Using typesafe enumeration pattern
+    --   unspecified values
+    e1l = [Enum1.TRUE, Enum1.FALSE]
+    --   explicit values
+    return
+
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+class REnum1 public
+  properties public static
+    TRUE  = Enum1()
+    FALSE = Enum1()
+
+  method Enum1() private
+    return
+
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+class REnum2 public
+  properties public static
+    NORTH = Enum2('north')
+    SOUTH = Enum2('south')
+    EAST  = Enum2('east')
+    WEST  = Enum2('west')
+  properties private
+    _val
+
+  method Enum2(val) private
+    _val = val
+    return
+
+  method toString() public returns String
+    return _val
+

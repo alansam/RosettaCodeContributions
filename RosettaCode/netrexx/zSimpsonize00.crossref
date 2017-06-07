@@ -1,0 +1,14 @@
+--- Variables for class zSimpsonize00 ---
+a_   Rexx v 6= 7 7 7= 11
+a_   Rexx a 25 27 28 32 33 35
+area Rexx v 26= 35= 36
+arg  Rexx a 6= 6
+b_   Rexx v 6= 8 8 8= 11
+b_   Rexx a 25 27 35
+h_   Rexx v 27= 28 32 32 33 35
+i_   Rexx v 31= 32 33
+n    Rexx a 38 39
+n_   Rexx v 6= 9 9 9= 11
+n_   Rexx a 25 27 31
+sum1 Rexx v 28= 32 32= 35
+sum2 Rexx v 29= 33 33= 35

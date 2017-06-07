@@ -1,0 +1,49 @@
+--- Variables for class RCVig01 ---
+alpha             Rexx   v 33= 39 41 42 43
+alpha             Rexx   v 63= 67
+antic_disposition Rexx[] v 108 110= 149 150
+b_                Rexx   v 88= 90
+C                 Rexx   v 42= 43 43= 44
+c_                Rexx   v 87= 91
+ciphertext        Rexx   a 53 55
+cleanup           Rexx   a 61 65 65= 67 69 69 69= 72
+code              Rexx   v 37= 44 44= 47
+ct                Rexx   v 76= 77 78
+D                 int    a 57 59 59 59
+df                Rexx   v 28= 29= 42
+dt                Rexx   v 78= 79
+K                 Rexx   v 41= 42
+k_                Rexx   v 40= 41
+key               Rexx   v 5= 6 8= 9 11= 12 15= 16 19= 20
+key               Rexx   a 25 36 36= 40 41
+key               Rexx   a 49 51
+key               Rexx   a 53 55
+key               Rexx   a 74 76 78
+l_                Rexx   v 38= 39 40
+l_                Rexx   v 149= 150
+line              Rexx   v 85= 90 90= 91 91= 96 96= 99
+M                 Rexx   v 39= 42
+melancholy_dane   Rexx   v 148= 150 150= 153
+meth              Rexx   a 25 28 29 30
+N                 int    a 57 59
+NL                char   v 107= 150
+o_                Rexx   v 86= 88 89 89=
+plaintext         Rexx   a 49 51
+pline             Rexx   v 97= 98
+pt                Rexx   v 4= 6 9 12 14= 16 18= 20
+pt                Rexx   a 74 76
+text              Rexx   a 25 35 35= 38 39
+text              Rexx   a 83 87 91
+w1                Rexx   v 96= 97
+w10               Rexx   v 96= 97
+w11               Rexx   v 96= 97
+w12               Rexx   v 96= 97
+w2                Rexx   v 96= 97
+w3                Rexx   v 96= 97
+w4                Rexx   v 96= 97
+w5                Rexx   v 96= 97
+w6                Rexx   v 96= 97
+W7                Rexx   v 96= 97
+w8                Rexx   v 96= 97
+w9                Rexx   v 96= 97
+x_                Rexx   v 67= 68 69

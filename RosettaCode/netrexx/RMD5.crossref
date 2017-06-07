@@ -1,0 +1,17 @@
+--- Variables for class RMD5 ---
+algorithm    String        v 22= 23 26 26 28 29
+algorithm    Rexx          a 34= 36 36= 46
+b_           int           v 50= 51
+bb           Rexx          v 51= 52 53
+digestBytes  byte[]        v 41 48= 50 51
+digestSum    Rexx          v 23= 26 28
+digestSum    Rexx          v 42= 52 52= 53 53= 59
+encoding     Rexx          a 34= 37 37= 45
+ex           Exception     v 55= 56
+lowercase    boolean       a 34= 52
+md           MessageDigest v 46= 47 48
+message      String        v 39= 45
+messageBytes byte[]        v 40 45= 47
+messageText  Rexx          a 20 23 25
+messageText  Rexx          a 34 39
+verifyCheck  Rexx          a 20 27 28

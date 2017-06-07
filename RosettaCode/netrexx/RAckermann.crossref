@@ -1,0 +1,8 @@
+--- Variables for class RAckermann ---
+ack  Rexx       v 40= 41
+ar   BigInteger v 19 21= 24= 27= 30
+args String[]   a 35
+j    int        v 37= 40 41
+k    int        v 39= 40 41
+m    BigInteger a 17 20 24 27 27
+n    BigInteger a 17 21 23 27

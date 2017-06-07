@@ -1,0 +1,24 @@
+/* NetRexx */
+options replace format comments java crossref symbols binary
+
+trace var switchWins stayWins shown choice
+switchWins = int 0
+stayWins   = int 0
+gen        = Random()
+loop for 10 --37267
+  doors = [int 0, 0, 0]
+  doors[gen.nextInt(3)] = 1 -- 0 is a goat, 1 is a car
+  choice = gen.nextInt(3)   -- pick a door, any door
+  shown = int
+  loop until doors[shown] = 1 | shown = choice
+    shown = gen.nextInt(3)  -- don't show the winner or the choice
+    end
+  stayWins = stayWins + doors[choice] -- if you won by staying, count it
+
+  -- the switched (last remaining) door is (3 - choice - shown), because 0+1+2=3
+  switchWins = switchWins + doors[3 - choice - shown]
+  end
+  say "Switching wins" switchWins "times."
+  say "Staying wins" stayWins "times."
+return
+

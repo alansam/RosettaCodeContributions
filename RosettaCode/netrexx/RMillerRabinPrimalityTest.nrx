@@ -1,0 +1,129 @@
+/* NetRexx */
+options replace format comments java crossref symbols nobinary
+import java.math.
+numeric digits 200
+
+runSample(arg)
+return
+
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+method isProbablePrime(n, k) public static returns boolean
+
+  isTrue  = (1 == 1)
+  isFalse = \isTrue
+
+  if n = 2 then return isTrue
+  if n < 2 | n // 2 = 0 then return isFalse
+
+  d = n - 1
+  s = 0
+  loop while d // 2 = 0
+    d = d % 2
+    s = s + 1
+    end
+
+  loop label L00P for k
+    a = 2 + irandom(n)
+    --x = (a ** d) // n
+    x = Rexx(BigInteger(a).modPow(BigInteger(d), BigInteger(n)).toString())
+    if x = 1 | x = n - 1 then iterate L00P
+    loop for s - 1
+      --x = (x * x) // n
+      x = Rexx(BigInteger(x).modPow(BigInteger(2), BigInteger(n)).toString())
+      if x = 1 then return isFalse
+      if x = n - 1 then iterate L00P
+      end
+    return isFalse
+    end L00P
+
+  return isTrue
+
+-- ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+method irandom(vmax) private static
+  rg = Random()
+  return Rexx(rg.nextInt(vmax) + 1)
+
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+method isProbablePrime2(n, k) public static returns boolean
+  isTrue  = (1 == 1)
+  isFalse = \isTrue
+
+  limit = 20.max(k)
+  numeric digits 2000.max(2 * limit)
+
+  isProbablePrime = isFalse
+  if n = 2 then isProbablePrime = isTrue -- the only even number that is prime
+  if n > 2 & n // 2 \= 0 then do         -- ensure n is odd
+    d = n - 1
+    s = 0
+
+    loop while d // 2 = 0
+      s = s + 1
+      d = d % 2
+      end
+
+    loop label L00P for k
+      isProbablePrime = isTrue
+      a = randomInt(2, n)
+      x = (a ** d) // n
+      if x = 1 | x = n - 1 then iterate L00P
+      loop label lel for s - 1
+        x = (x * x) // n
+        if x = 1 then do
+          isProbablePrime = isFalse
+          leave L00P
+          end
+        if x = n - 1 then do
+          iterate L00P
+          end
+        end lel
+      isProbablePrime = isFalse
+      end L00P
+    end
+  return isProbablePrime
+
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-- The Miller-Rabin primality test is part of the standard library (java.math.BigInteger)
+method isProbablePrimeBuiltIn(n, k) public static returns boolean
+  bigN = BigInteger(n.toString())
+  certainty = int k
+  isProbablePrime = bigN.isProbablePrime(certainty)
+
+  return isProbablePrime
+
+-- ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+method randomInt(vmin, vmax) private static
+  rg = Random()
+  return Rexx(rg.nextInt(vmax - vmin) + vmin)
+
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+method runSample(arg) private static
+  ranges = 0 100 0 1000
+  loop while ranges.words() > 0
+    parse ranges v1 v2 ranges
+    probablePrimes = ''
+    probablePrimesBuiltIn = ''
+    loop n = v1 to v2
+      if isProbablePrime(n, 10) then do
+        probablePrimes = probablePrimes n
+        end
+      if isProbablePrimeBuiltIn(n, 100000) then do
+        probablePrimesBuiltIn = probablePrimesBuiltIn n
+        end
+      end n
+    probablePrimes = probablePrimes.space()
+    probablePrimesBuiltIn = probablePrimesBuiltIn.space()
+
+    if probablePrimesBuiltIn == probablePrimes then
+      say 'OK!'
+    else
+      say 'Gronk!'
+
+    say 'Derived method found' probablePrimes.words() 'probable primes in the range' v1'-'v2
+    say probablePrimes.space(1, ',').changestr(',', ', ')
+    say 'Built-in method found' probablePrimesBuiltIn.words() 'probable primes in the range' v1'-'v2
+    say probablePrimesBuiltIn.space(1, ',').changestr(',', ', ')
+    say
+  end
+  return
+

@@ -1,0 +1,16 @@
+/* NetRexx */
+options replace format comments java crossref symbols nobinary
+
+numeric digits 2000
+
+nums = Arrays.asList(1, 2, 3, 4, 5)
+sum = 0
+
+loop num over nums
+  sum = sum + num * num
+  end num
+
+say 'The sum of squares of' nums 'is' sum
+
+return
+

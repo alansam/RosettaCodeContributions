@@ -1,0 +1,140 @@
+/* NetRexx */
+
+options replace format comments java crossref savelog symbols --binary
+
+/**
+ * Sort an array (or list) of integers in ascending numerical order.
+ * Use a sorting facility provided by the language/library if possible.
+ *
+ * @author Alan Sampson
+ * @version 1.0
+ * @see <a href="http://rosettacode.org/wiki/Sort_an_integer_array">http://rosettacode.org/wiki/Sort_an_integer_array</a>
+ */
+
+numeric digits 20    /*handle larger numbers.*/
+
+RCSortIntArray01
+REXXImpl01
+REXXImpl02
+
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+method RCSortIntArray01 public static
+
+  ra = Rexx[]
+  ra = [ 2, 4, 3, 1, 2, -1, 0, -2 ]
+  ia = int[ra.length]
+  loop rx = 0 for ra.length
+    ia[rx] = ra[rx]
+    end rx
+
+  text = ''
+  Arrays.sort(ia)
+  loop ix = 0 for ia.length
+    text = text || Rexx(ia[ix]).right(4)
+    end ix
+  say text
+
+  return
+
+method REXXImpl01 private static
+  /*REXX program to sort an integer array.*/
+
+  numeric digits 20    /*handle larger numbers.*/
+  a = ''
+  a[ 1]=               1
+  a[ 2]=               0
+  a[ 3]=              -1
+  a[ 4]=               0
+  a[ 5]=               5
+  a[ 6]=               0
+  a[ 7]=             -61
+  a[ 8]=               0
+  a[ 9]=            1385
+  a[10]=               0
+  a[11]=          -50521
+  a[12]=               0
+  a[13]=         2702765
+  a[14]=               0
+  a[15]=      -199360981
+  a[16]=               0
+  a[17]=     19391512145
+  a[18]=               0
+  a[19]=  -2404879675441
+  a[20]=               0
+  a[21]= 370371188237525
+
+  say a[11]
+
+  size = 21                          /*we have a list of 21 Euler numbers.*/
+  tell('un-sorted', a, size)
+  a[0] = size
+  esort(a, 1)
+  tell('   sorted', a, size)
+
+  return
+ 
+ 
+  /*----------------------------------ESORT subroutine--------------------*/
+  method esort(a, size) public static
+  --esort: procedure expose a.;
+  h = a[0]
+ 
+    loop while h > 1
+      h = h % 2
+      loop i = 1 for a[0] - h
+        j = i
+        k = h + i
+        loop while a[k] < a[j]
+          t   = a[j]
+          a[j] = a[k]
+          a[k] = t
+          if h >= j then leave
+          j = j - h
+          k = k - h
+          end
+        end i
+      end
+
+  return
+
+  /*----------------------------------TELL subroutine---------------------*/
+  method tell(arg, a, size) public static
+  --tell:
+
+  say arg.center(40, '-')
+    loop j = 1 for size
+      say arg 'array element' j.right(size.length)'='a[j].right(25)
+      end j
+    say
+
+    return
+
+method REXXImpl02 private static
+  /*REXX program to sort an interesting integer list.*/
+
+  bell = '1 1 2 5 15 52 203 877 4140 21147 115975'      /*some Bell numbers.*/
+  bern = '1 -1 1 0 -1 0 1 0 -1 0 5 0 -691 0 7 0 -3617'  /*some Bernoulli num*/
+  perrin = '3 0 2 3 2 5 5 7 10 12 17 22 29 39 51 68 90' /*some Perrin nums. */
+  list = bell bern perrin                               /*combine the three.*/
+
+  size = list.words
+
+  a = 0
+  loop j = 1 for size
+    a[j] = list.word(j)
+    end j
+
+  say '  as is='list
+  a[0] = size
+  esort(a, size)
+  bList = ''
+
+  loop j = 1 for size
+    bList=bList a[j]
+    end j
+
+  blist = bList.strip
+  say ' sorted='bList
+
+  return
+

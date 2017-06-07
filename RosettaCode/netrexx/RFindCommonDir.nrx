@@ -1,0 +1,44 @@
+/* NetRexx */
+options replace format comments java crossref symbols nobinary
+import java.nio.file.Path
+import java.nio.file.Paths
+
+runSample(arg)
+return
+
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+method commonPath(dirlist) public static
+
+  common = dirlist.word(1)
+  maxL = common.length()
+  loop dw = 2 while dw <= dirlist.words()
+    dirL = dirlist.word(dw - 1)
+    dirR = dirlist.word(dw)
+    commonL = dirL.compare(dirR)
+    if commonL = 0 then iterate dw
+    maxL = maxL.min(commonL)
+    end dw
+  common = common.left(common.lastpos(File.separatorChar, maxL))
+
+  return common
+
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+method runSample(arg) private static
+  cp1 = -
+    '/home/user1/tmp/coverage/test' -
+    '/home/user1/tmp/covert/operator' -
+    '/home/user1/tmp/coven/members' -
+    ''
+  cp2 = '/home/user1/tmp/coverage/test /hame/user1/tmp/coverage/test'
+
+  say commonPath(cp1)
+  say commonPath(cp2)
+
+  pp1 = Paths.get(String cp1.word(1), [String ''])
+  pp2 = Paths.get(String cp1.word(2), [String ''])
+  say pp1.toString()
+  say pp2.toString()
+  say pp1.resolveSibling(pp2).toString()
+
+  return
+

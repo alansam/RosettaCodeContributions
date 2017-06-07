@@ -1,0 +1,56 @@
+/* NetRexx */
+options replace format comments java crossref symbols nobinary
+
+numeric digits 200
+
+R = Random()
+nums    = ''
+nums[0] = ''
+nums[1] = '1.2 3.4 5.6 7.8 9.10 11.12'
+nums[2] = '-0.5 -0.4 -0.3 -0.2 -0.1 0.0 0.1 0.2 0.3 0.4 0.5'
+loop for 7
+  nums[3] = nums[3] getR(R, 100.0, 1000.0)
+  nums[4] = nums[4] getR(R)
+  nums[5] = nums[5] getR(R, -10.0, 0.0)
+  end
+
+nl = [nums[0], nums[1], nums[2], nums[3], nums[4], nums[5]]
+
+loop nv over nl
+  sum = SoS(nv)
+  nm  = mean(nv)
+  say 'The sum of squares of ['nv.strip'] is' sum.format(null, 6)
+  say 'The mean of ['nv.strip'] is' nm.format(null, 6)
+  end nv
+
+return
+
+-- =============================================================================
+method SoS(nums) public static
+  sum = 0
+  if nums \= '' then do
+    loop n_ = 1 to nums.words()
+      num = nums.word(n_)
+      sum = sum + num ** 2
+      end n_
+    end
+
+  return sum
+
+-- =============================================================================
+method mean(nums) public static
+  sum = 0
+  if nums \= '' then do
+    loop n_ = 1 to nums.words()
+      num = nums.word(n_)
+      sum = sum + num
+      end n_
+    sum = sum / nums.words()
+    end
+
+  return sum
+
+-- =============================================================================
+method getR(R = Random, rMin = 0.0, rMax = 1.0) inheritable static
+  return (rMin + (rMax - rMin) * Rexx(R.nextDouble())).format(null, 6)
+

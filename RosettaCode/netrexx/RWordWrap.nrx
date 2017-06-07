@@ -1,0 +1,241 @@
+/* NetRexx */
+options replace format comments java crossref symbols
+
+runSample(arg)
+return
+
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/*
+   @see http://en.wikipedia.org/wiki/Word_wrap#Minimum_length
+
+   SpaceLeft := LineWidth
+   for each Word in Text
+       if (Width(Word) + SpaceWidth) > SpaceLeft
+           insert line break before Word in Text
+           SpaceLeft := LineWidth - Width(Word)
+       else
+           SpaceLeft := SpaceLeft - (Width(Word) + SpaceWidth)
+ */
+method wordWrap(text, lineWidth = 80) public static
+  if lineWidth > 0 then do
+    NL = '\n'
+    SP = ' '
+    wrapped = ''
+    spaceWidth = SP.length()
+    spaceLeft = lineWidth
+    loop w_ = 1 to text.words()
+      nextWord = text.word(w_)
+      if (nextWord.length() + spaceWidth) > spaceLeft then do
+        wrapped = wrapped || NL || nextWord
+        spaceLeft = lineWidth - nextWord.length()
+        end
+      else do
+        wrapped = wrapped || SP || nextWord
+        spaceLeft = spaceLeft - (nextWord.length() + spaceWidth)
+        end
+      end w_
+    end
+  else do
+    wrapped = text
+    end
+  
+  return wrapped.strip() -- clean w/s from front & back
+
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+method runSample(arg) public static
+  --parse arg lineLen .
+  --if lineLen  = '' then lineLen = 80
+  --text = getText()
+  parse arg lineLen textChoice .
+  if lineLen    = '' then lineLen    = 80
+  if textChoice = '' then textChoice = 1
+  text = testData(textChoice)
+  wrappedLines = wordWrap(text, lineLen)
+  say 'Wrapping text at' lineLen 'characters'
+  say ('....+....|'.copies((lineLen + 9) % 10)).left(lineLen)
+  say wrappedLines
+  
+  return
+
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+method getText() public static
+  
+  -- ....+....|....+....|....+....|....+....|....+....|....+....|
+  speech01 = -
+    'She should have died hereafter;' -
+    'There would have been a time for such a word.' -
+    'Tomorrow, and tomorrow, and tomorrow,' -
+    'Creeps in this petty pace from day to day,' -
+    'To the last syllable of recorded time;' -
+    'And all our yesterdays have lighted fools' -
+    'The way to dusty death. Out, out, brief candle!' -
+    'Life''s but a walking shadow, a poor player' -
+    'That struts and frets his hour upon the stage' -
+    'And then is heard no more. It is a tale' -
+    'Told by an idiot, full of sound and fury' -
+    'Signifying nothing.' -
+    '' -
+    '—-Macbeth (Act 5, Scene 5, lines 17-28)' -
+    ''
+  return speech01
+
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+method testData(choice = 1) public static
+
+  -- ....+....|....+....|....+....|....+....|....+....|....+....|
+  speech01 = -
+    'She should have died hereafter;' -
+    'There would have been a time for such a word.' -
+    'Tomorrow, and tomorrow, and tomorrow,' -
+    'Creeps in this petty pace from day to day,' -
+    'To the last syllable of recorded time;' -
+    'And all our yesterdays have lighted fools' -
+    'The way to dusty death. Out, out, brief candle!' -
+    'Life''s but a walking shadow, a poor player' -
+    'That struts and frets his hour upon the stage' -
+    'And then is heard no more. It is a tale' -
+    'Told by an idiot, full of sound and fury' -
+    'Signifying nothing.' -
+    '' -
+    '—-Macbeth (Act 5, Scene 5, lines 17-28)' -
+    ''
+  -- ....+....|....+....|....+....|....+....|....+....|....+....|
+  speech02 = '' -
+    'Out, damned spot! out, I say!-One: two: why,' -
+    'then, ''tis time to do''t.-Hell is murky!-Fie, my' -
+    'lord, fie! a soldier, and afeard? What need we' -
+    'fear who knows it, when none can call our power' -
+    'to account?—Yet who would have thought the old' -
+    'man to have had so much blood in him?' -
+    '' -
+    '--Macbeth (Act 5, Scene 1, lines 35-40)' -
+    ''
+  -- ....+....|....+....|....+....|....+....|....+....|....+....|
+  speech03 = '' -
+    'To be, or not to be--that is the question:' -
+    'Whether ''tis nobler in the mind to suffer' -
+    'The slings and arrows of outrageous fortune' -
+    'Or to take arms against a sea of troubles' -
+    'And by opposing end them. To die, to sleep--' -
+    'No more--and by a sleep to say we end' -
+    'The heartache, and the thousand natural shocks' -
+    'That flesh is heir to. ''Tis a consummation' -
+    'Devoutly to be wished. To die, to sleep--' -
+    'To sleep--perchance to dream: ay, there''s the rub,' -
+    'For in that sleep of death what dreams may come' -
+    'When we have shuffled off this mortal coil,' -
+    'Must give us pause. There''s the respect' -
+    'That makes calamity of so long life.' -
+    'For who would bear the whips and scorns of time,' -
+    'Th'' oppressor''s wrong, the proud man''s contumely' -
+    'The pangs of despised love, the law''s delay,' -
+    'The insolence of office, and the spurns' -
+    'That patient merit of th'' unworthy takes,' -
+    'When he himself might his quietus make' -
+    'With a bare bodkin? Who would fardels bear,' -
+    'To grunt and sweat under a weary life,' -
+    'But that the dread of something after death,' -
+    'The undiscovered country, from whose bourn' -
+    'No traveller returns, puzzles the will,' -
+    'And makes us rather bear those ills we have' -
+    'Than fly to others that we know not of?' -
+    'Thus conscience does make cowards of us all,' -
+    'And thus the native hue of resolution' -
+    'Is sicklied o''er with the pale cast of thought,' -
+    'And enterprise of great pitch and moment' -
+    'With this regard their currents turn awry' -
+    'And lose the name of action. -- Soft you now,' -
+    'The fair Ophelia! -- Nymph, in thy orisons' -
+    'Be all my sins remembered.' -
+    '' -
+    '--Hamlet (Act 3, scene 1, lines 55–87)' -
+    ''
+
+  select case (choice)
+    when 1 then speech = speech01
+    when 2 then speech = speech02
+    when 3 then speech = speech03
+    otherwise   speech = speech01
+    end
+
+  return speech
+/*
+
+    speech00 = "" // — Macbeth (Act 4, Scene 1, lines 44-45)
+        + NL + "By the pricking of my thumbs,"
+        + NL + "Something wicked this way comes."
+        + NL + ""
+        + NL + "— Macbeth (Act 4, Scene 1, lines 44-45)"
+        ;
+    speech01 = "" // — Macbeth (Act 1, Scene 3, lines 30-31)
+        + NL + "A drum, a drum!"
+        + NL + "Macbeth doth come."
+        + NL + ""
+        + NL + "— Macbeth (Act 1, Scene 3, lines 30-31)"
+        ;
+    speech02 = "" // — Macbeth (Act 5, Scene 5, lines 17-28)
+        + NL + "She should have died hereafter;"
+        + NL + "There would have been a time for such a word."
+        + NL + "Tomorrow, and tomorrow, and tomorrow,"
+        + NL + "Creeps in this petty pace from day to day,"
+        + NL + "To the last syllable of recorded time;"
+        + NL + "And all our yesterdays have lighted fools"
+        + NL + "The way to dusty death. Out, out, brief candle!"
+        + NL + "Life's but a walking shadow, a poor player"
+        + NL + "That struts and frets his hour upon the stage"
+        + NL + "And then is heard no more. It is a tale"
+        + NL + "Told by an idiot, full of sound and fury"
+        + NL + "Signifying nothing."
+        + NL + ""
+        + NL + "— Macbeth (Act 5, Scene 5, lines 17-28)"
+         ;
+    speech03 = "" // - Macbeth (Act 5, Scene 1, lines 35-40)
+        + NL + "Out, damned spot! out, I say!-One: two: why,"
+        + NL + "then, 'tis time to do't.-Hell is murky!-Fie, my"
+        + NL + "lord, fie! a soldier, and afeard? What need we"
+        + NL + "fear who knows it, when none can call our power"
+        + NL + "to account?—Yet who would have thought the old"
+        + NL + "man to have had so much blood in him?"
+        + NL + ""
+        + NL + "- Macbeth (Act 5, Scene 1, lines 35-40)"
+        ;
+
+    String[] antic_disposition = {
+        "To be, or not to be--that is the question:",
+        "Whether 'tis nobler in the mind to suffer",
+        "The slings and arrows of outrageous fortune",
+        "Or to take arms against a sea of troubles",
+        "And by opposing end them. To die, to sleep--",
+        "No more--and by a sleep to say we end",
+        "The heartache, and the thousand natural shocks",
+        "That flesh is heir to. 'Tis a consummation",
+        "Devoutly to be wished. To die, to sleep--",
+        "To sleep--perchance to dream: ay, there's the rub,",
+        "For in that sleep of death what dreams may come",
+        "When we have shuffled off this mortal coil,",
+        "Must give us pause. There's the respect",
+        "That makes calamity of so long life.",
+        "For who would bear the whips and scorns of time,",
+        "Th' oppressor's wrong, the proud man's contumely",
+        "The pangs of despised love, the law's delay,",
+        "The insolence of office, and the spurns",
+        "That patient merit of th' unworthy takes,",
+        "When he himself might his quietus make",
+        "With a bare bodkin? Who would fardels bear,",
+        "To grunt and sweat under a weary life,",
+        "But that the dread of something after death,",
+        "The undiscovered country, from whose bourn",
+        "No traveller returns, puzzles the will,",
+        "And makes us rather bear those ills we have",
+        "Than fly to others that we know not of?",
+        "Thus conscience does make cowards of us all,",
+        "And thus the native hue of resolution",
+        "Is sicklied o'er with the pale cast of thought,",
+        "And enterprise of great pitch and moment",
+        "With this regard their currents turn awry",
+        "And lose the name of action. -- Soft you now,",
+        "The fair Ophelia! -- Nymph, in thy orisons",
+        "Be all my sins remembered.",
+      }; // Hamlet Act 3, scene 1, 55–87
+
+*/

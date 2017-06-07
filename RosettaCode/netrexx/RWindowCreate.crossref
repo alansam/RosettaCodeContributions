@@ -1,0 +1,13 @@
+--- Variables for class RWindowCreate ---
+addText  boolean   v 13= 14= 15= 16= 19
+addText  boolean   a 24= 29
+arg      Rexx      a 11= 11
+ex       Exception v 32= 33
+fenester JFrame    v 26= 27 28 29 30
+fenester JFrame    a 39 45 47
+showText Rexx      v 11= 13 14 15
+textfont Font      v 41= 43
+textlbl  JLabel    v 40= 42 43 44 45
+textStr  String    a 39= 40
+title    String    v 18= 19
+title    Rexx      a 24 26

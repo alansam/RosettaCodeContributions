@@ -1,0 +1,26 @@
+/* NetRexx */
+
+options replace format comments java crossref savelog symbols binary
+
+/**
+ * DNS is an internet service that maps domain names, like rosettacode.org, to IP addresses, like 66.220.0.231.
+ * <p>
+ * Use DNS to resolve www.kame.net to both IPv4 and IPv6 addresses. Print these addresses.
+ * </p>
+ *
+ * @author Alan Sampson
+ * @version 1.0
+ * @see <a href="http://rosettacode.org/wiki/DNS_querying">rosettacode.org/wiki/DNS_querying</a> 
+ */
+
+ir = InetAddress
+addresses = InetAddress[] InetAddress.getAllByName('www.kame.net')
+loop ir over addresses
+  if ir <= Inet4Address then do
+    say 'IPv4 :' ir.getHostAddress
+    end
+  if ir <= Inet6Address then do
+    say 'IPv6 :' ir.getHostAddress
+    end
+  end ir
+

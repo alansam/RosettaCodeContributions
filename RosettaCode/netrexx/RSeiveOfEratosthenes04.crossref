@@ -1,0 +1,15 @@
+--- Variables for class RSeiveOfEratosthenes04 ---
+arg       Rexx a 9= 9
+beginProc long v 11= 24
+duration  Rexx v 24= 32
+endProc   long v 23= 24
+highest   Rexx v 9= 10 10= 13 15 16 18 27
+is_prime  Rexx v 12= 17 19= 28
+j         Rexx v 15= 16 16 17 18 18 18
+jm        Rexx v 18= 19
+n         Rexx v 27= 28 29
+np        Rexx v 25= 26 26= 29 29=
+np        Rexx a 34 35 35= 36 37
+prime     Rexx a 34 36
+w         Rexx v 13= 26 29
+w         Rexx a 34 36 36

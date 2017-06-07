@@ -1,0 +1,110 @@
+/* NetRexx */
+options replace format comments java crossref symbols binary
+
+-- IF-THEN-ELSE
+
+logicalCondition    = Rexx (1 == 1)
+logicalCondition[1] = (1 == 1)
+logicalCondition[2] = \logicalCondition[1]
+logicalCondition[3] = \logicalCondition[1]
+
+-- simple construct
+if logicalCondition[1] then conditionWasTrue()
+                       else conditionWasFalse()
+-- multi-line is ok too
+if logicalCondition[1]
+then
+  conditionWasTrue()
+else
+  conditionWasFalse()
+
+-- using block stuctures
+if logicalCondition[1] then do
+  conditionWasTrue()
+  end
+else do
+  conditionWasFalse()
+  end
+
+-- if/else if...
+if logicalCondition[1] then do
+  conditionWasTrue()
+  end
+else if logicalCondition[2] then do
+  conditionWasTrue()
+  end
+else do
+  conditionWasFalse()
+  end
+
+-- SELECT
+-- Notes:
+--   block structures (DO-END) can be used here too
+--   OTHERWISE is optional but may result in run-time errors (netrexx.lang.NoOtherwiseException) if it isn't provided
+select
+  when logicalCondition[2] then conditionWasTrue()
+  when logicalCondition[3] then conditionWasTrue()
+  otherwise                     conditionWasFalse()
+  end
+
+do
+  select
+    when logicalCondition[2] then conditionWasTrue()
+    when logicalCondition[3] then conditionWasTrue()
+    end
+catch ex1 = NoOtherwiseException
+  ex1.printStackTrace()
+end
+
+-- SELECT-CASE
+cc = 'A'
+select case cc
+  when 'A' then say 'the case is A'
+  when 'B' then say 'the case is B'
+  otherwise     say 'selection not recognized'
+  end
+-- Functionally equivalent to:
+-- select
+--   when cc == 'A' then ...
+--   when cc == 'B' then ...
+-- ...
+
+-- SELECT has optional features (CATCH & FINALLY)
+-- and options (LABEL, PROTECT & CASE)
+-- CATCH and FINALLY are used for handling exceptions thrown from inside the select group
+-- CASE see SELECT-CASE above
+-- LABEL provides a target for any LEAVE instructions and can aid in code self-documentation
+-- PROTECT is used for program concurrency & synchonization in multi-threaded programs
+select label sl protect cc case cc
+  when 'A' then do
+    say 'the case is A'
+    if logicalCondition[2] then leave sl -- just to use the lable
+    say '...'
+    end
+  when 'B' then do
+    say 'the case is B'
+    say '...'
+    end
+  otherwise
+    say 'selection not recognized'
+    say '...'
+  catch exs = RuntimeException
+    say 'Gronk!'
+    exs.printStackTrace()
+  finally
+    say 'selection done'
+    say 'TTFN'
+  end sl
+
+return
+
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+method conditionWasTrue() public static
+  say 'True'
+  return
+
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+method conditionWasFalse() public static
+  say 'False'
+  return
+

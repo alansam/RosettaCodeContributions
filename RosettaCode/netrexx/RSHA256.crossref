@@ -1,0 +1,17 @@
+--- Variables for class RSHA256 ---
+algorithm    String        v 12= 13 16 16 18 19
+algorithm    Rexx          a 24= 26 26= 36
+b_           int           v 40= 41
+bb           Rexx          v 41= 42 43
+digestBytes  byte[]        v 31 38= 40 41
+digestSum    Rexx          v 13= 16 18
+digestSum    Rexx          v 32= 42 42= 43 43= 49
+encoding     Rexx          a 24= 27 27= 35
+ex           Exception     v 45= 46
+lowercase    boolean       a 24= 42
+md           MessageDigest v 36= 37 38
+message      String        v 29= 35
+messageBytes byte[]        v 30 35= 37
+messageText  Rexx          a 10 13 15
+messageText  Rexx          a 24 29
+verifyCheck  Rexx          a 10 17 18

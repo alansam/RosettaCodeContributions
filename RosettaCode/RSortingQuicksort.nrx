@@ -1,0 +1,365 @@
+/* NetRexx */
+
+options replace format comments java crossref savelog symbols binary
+
+import java.util.List
+
+--trace methods;nop
+
+placesList = [String -
+    "UK  London",     "US  New York",   "US  Boston",     "US  Washington" -
+  , "UK  Washington", "US  Birmingham", "UK  Birmingham", "UK  Boston"     -
+]
+--sortedList = quickSortSimple(String[] Arrays.copyOf(placesList, placesList.length))
+--sortedInplace = quickSortInplace(String[] Arrays.copyOf(placesList, placesList.length))
+riverData = riverData()
+stateData = stateData()
+lists = [ -
+    placesList -
+  , quickSortSimple(String[] Arrays.copyOf(placesList, placesList.length)) -
+  , quickSortInplace(String[] Arrays.copyOf(placesList, placesList.length)) -
+  , riverData -
+  , quickSortSimple(String[] Arrays.copyOf(riverData, riverData.length)) -
+  , quickSortInplace(String[] Arrays.copyOf(riverData, riverData.length)) -
+  , stateData -
+  , quickSortSimple(String[] Arrays.copyOf(stateData, stateData.length)) -
+  , quickSortInplace(String[] Arrays.copyOf(stateData, stateData.length)) -
+]
+
+loop ln = 0 to lists.length - 1
+  cl = lists[ln]
+  loop ct = 0 to cl.length - 1
+    say cl[ct]
+    end ct
+    say
+  end ln
+
+return
+
+method quickSortSimple(array = String[]) public constant binary returns String[]
+
+  rl = String[array.length]
+  al = List quickSortSimple(Arrays.asList(array))
+  al.toArray(rl)
+
+  return rl
+
+method quickSortSimple(array = List) public constant binary returns ArrayList
+
+  /*
+   * <pre>
+   * function quicksort(array)
+   * less, equal, greater := three empty arrays
+   * if length(array) > 1  
+   *   pivot := select any element of array
+   *   for each x in array
+   *     if x < pivot then add x to less
+   *     if x = pivot then add x to equal
+   *     if x > pivot then add x to greater
+   *   quicksort(less)
+   *   quicksort(greater)
+   *   array := concatenate(less, equal, greater)
+   * </pre>
+   */
+
+  if array.size > 1 then do
+    less    = ArrayList()
+    equal   = ArrayList()
+    greater = ArrayList()
+
+    pivot = array.get(Random().nextInt(array.size - 1))
+    loop x_ = 0 to array.size - 1
+      if (Comparable array.get(x_)).compareTo(Comparable pivot) < 0 then less.add(array.get(x_))
+      if (Comparable array.get(x_)).compareTo(Comparable pivot) = 0 then equal.add(array.get(x_))
+      if (Comparable array.get(x_)).compareTo(Comparable pivot) > 0 then greater.add(array.get(x_))
+      end x_
+    less    = quickSortSimple(less)
+    greater = quickSortSimple(greater)
+    out = ArrayList(array.size)
+    out.addAll(less)
+    out.addAll(equal)
+    out.addAll(greater)
+
+    array = out
+    end
+
+  return ArrayList array
+
+method quickSortInplace(array = String[]) public constant binary returns String[]
+
+  rl = String[array.length]
+  al = List quickSortInplace(Arrays.asList(array))
+  al.toArray(rl)
+
+  return rl
+
+method quickSortInplace(array = List, ixL = int 0, ixR = int array.size - 1) public constant binary returns ArrayList
+  /*
+  function quicksort(array, 'left', 'right')
+
+    // If the list has 2 or more items
+    if 'left' < 'right'
+  
+      // See "Choice of pivot" section below for possible choices
+      choose any 'pivotIndex' such that 'left' <= 'pivotIndex' <= 'right'
+  
+       // Get lists of bigger and smaller items and final position of pivot
+      'pivotNewIndex' := partition(array, 'left', 'right', 'pivotIndex')
+  
+      // Recursively sort elements smaller than the pivot
+       quicksort(array, 'left', 'pivotNewIndex' - 1)
+  
+      // Recursively sort elements at least as big as the pivot
+      quicksort(array, 'pivotNewIndex' + 1, 'right')
+   */
+
+  --trace var ixP ixL ixR i_ ixStore;nop
+  --trace var pivotValue lValue rValue iValue storeValue;nop
+
+  if ixL < ixR then do
+    --ixP = array.get(Random().nextInt(ixR))
+    ixP = int ixL + (ixR - ixL) % 2
+    ixP = quickSortInplacePartition(array, ixL, ixR, ixP)
+    quickSortInplace(array, ixL, ixP - 1)
+    quickSortInplace(array, ixP + 1, ixR)
+    end
+
+  array = ArrayList(array)
+  return ArrayList array
+
+method quickSortInplacePartition(array = List, ixL = int, ixR = int, ixP = int) public constant binary returns int
+
+  /*
+  // left is the index of the leftmost element of the array
+  // right is the index of the rightmost element of the array (inclusive)
+  //   number of elements in subarray = right-left+1
+  function partition(array, 'left', 'right', 'pivotIndex')
+    'pivotValue' := array['pivotIndex']
+    swap array['pivotIndex'] and array['right']  // Move pivot to end
+    'storeIndex' := 'left'
+    for 'i' from 'left' to 'right' - 1  // left <= i < right
+      if array['i'] < 'pivotValue'
+        swap array['i'] and array['storeIndex']
+        'storeIndex' := 'storeIndex' + 1
+    swap array['storeIndex'] and array['right']  // Move pivot to its final place
+    return 'storeIndex'
+   */
+
+  --trace var ixP ixL ixR i_ ixStore;nop
+  --trace var pivotValue lValue rValue iValue storeValue;nop
+
+  pivotValue = array.get(ixP)
+  --lValue     = array.get(ixL)
+  rValue     = array.get(ixR)
+  array.set(ixP, rValue)
+  array.set(ixR, pivotValue)
+  ixStore = ixL
+  loop i_ = ixL to ixR - 1
+    iValue = array.get(i_)
+    if (Comparable iValue).compareTo(Comparable pivotValue) < 0 then do
+      storeValue = array.get(ixStore)
+      array.set(i_, storeValue)
+      array.set(ixStore, iValue)
+      ixStore = ixStore + 1
+      end
+    end i_
+  storeValue = array.get(ixStore)
+  rValue     = array.get(ixR)
+  array.set(ixStore, rValue)
+  array.set(ixR, storeValue)
+
+  return ixStore
+
+method quickSortInplaceHasErrors(array = List) public constant binary returns ArrayList
+
+  /*
+   * <pre>
+   * function quicksort(array)
+   * if length(array) > 1
+   *   pivot := select any element of array
+   *   left := first index of array
+   *   right := last index of array
+   *   while left <= right
+   *     while array[left] < pivot
+   *       left := left + 1
+   *     while array[right] > pivot
+   *       right := right - 1
+   *     if left <= right
+   *       swap array[left] with array[right]
+   *       left := left + 1
+   *       right := right - 1
+   *   quicksort(array from first index to right)
+   *   quicksort(array from left to last index)
+   * </pre>
+   */
+
+  --trace var pivot left right valLeft valRight;nop
+
+  if array.size > 1 then do
+    pivot = array.get(Random().nextInt(array.size - 1))
+    left  = 0
+    right = array.size - 1
+    loop label lr while left <= right
+      valLeft = array.get(left)
+      loop label p1 while (Comparable valLeft).compareTo(Comparable pivot) < 0
+        left = left + 1
+        valLeft = array.get(left)
+        end p1
+      valRight = array.get(right)
+      loop label p2 while (Comparable valRight).compareTo(Comparable pivot) > 0
+        right = right - 1
+        valRight = array.get(right)
+        end p2
+      if left <= right then do
+        valLeft  = array.get(left)
+        valRight = array.get(right)
+        array.set(left, valRight)
+        array.set(right, valLeft)
+        left  = left + 1
+        right = right - 1
+        end
+      end lr
+    al = ArrayList(array.sublist(0, right))
+    ar = ArrayList(array.sublist(left, array.size))
+    out = ArrayList(array.size)
+    al = quickSortInplace(al)
+    ar = quickSortInplace(ar)
+    out.addAll(al)
+    out.addAll(ar)
+
+    array = out
+    end
+
+  return ArrayList array
+
+method isTrue public constant binary returns boolean
+  return 1 == 1
+
+method isFalse public constant binary returns boolean
+  return \isTrue
+
+method riverData inheritable constant binary returns String[]
+
+  data = [String -
+       "Chattahoochee River:                Alabama, Georgia" -
+    ,  "Colorado River:                     Arizona, Nevada, California, Baja California (Mexico)" -
+    ,  "St. Francis River:                  Arkansas, Missouri" -
+    ,  "Poteau River:                       Arkansas, Oklahoma" -
+    ,  "Byram River:                        Connecticut, New York" -
+    ,  "Pawcatuck River:                    Connecticut, Rhode Island" -
+    ,  "Perdido River:                      Florida, Alabama" -
+    ,  "St. Marys River:                    Florida, Georgia" -
+    ,  "Chattooga River:                    Georgia, South Carolina" -
+    ,  "Tugaloo River:                      Georgia, South Carolina" -
+    ,  "Snake River:                        Idaho, Washington, Oregon" -
+    ,  "Wabash River:                       Illinois, Indiana" -
+    ,  "Ohio River:                         Illinois, Indiana, Ohio, Kentucky, West Virginia" -
+    ,  "Des Moines River:                   Iowa, Missouri" -
+    ,  "Tennessee River:                    Kentucky, Tennessee, Mississippi, Alabama" -
+    ,  "Big Sandy River:                    Kentucky, West Virginia" -
+    ,  "Tug Fork River:                     Kentucky, West Virginia, Virginia" -
+    ,  "Monument Creek:                     Maine, New Brunswick (Canada)" -
+    ,  "St. Croix River:                    Maine, New Brunswick (Canada)" -
+    ,  "Piscataqua River:                   Maine, New Hampshire" -
+    ,  "St. Francis River:                  Maine, Quebec (Canada)" -
+    ,  "St. John River:                     Maine, Quebec (Canada)" -
+    ,  "Pocomoke River:                     Maryland, Virginia" -
+    ,  "Potomac River:                      Maryland, Virginia, city of Washington (District of Columbia), West Virginia" -
+    ,  "Montreal River:                     Michigan (upper peninsula ), Wisconsin" -
+    ,  "Detroit River:                      Michigan, Ontario (Canada)" -
+    ,  "St. Clair River:                    Michigan, Ontario (Canada)" -
+    ,  "St. Marys River:                    Michigan, Ontario (Canada)" -
+    ,  "Brule River:                        Michigan, Wisconsin" -
+    ,  "Menominee River:                    Michigan, Wisconsin" -
+    ,  "Pigeon River:                       Minnesota, Ontario (Canada)" -
+    ,  "Rainy River:                        Minnesota, Ontario (Canada)" -
+    ,  "St. Croix River:                    Minnesota, Wisconsin" -
+    ,  "St. Louis River:                    Minnesota, Wisconsin" -
+    ,  "Mississippi River:                  Minnesota, Wisconsin, Iowa, Illinois, Missouri, Kentucky, Tennesse, Arkansas, Mississippi, Louisiana" -
+    ,  "Pearl River:                        Mississippi, Louisiana" -
+    ,  "Halls Stream:                       New Hampshire, Canada" -
+    ,  "Salmon Falls River:                 New Hampshire, Maine" -
+    ,  "Connecticut River:                  New Hampshire, Vermont" -
+    ,  "Hudson River (lower part only):     New Jersey, New York" -
+    ,  "Arthur Kill:                        New Jersey, New York (tidal strait)" -
+    ,  "Kill Van Kull:                      New Jersey, New York (tidal strait)" -
+    ,  "Rio Grande:                         New Mexico, Texas, Tamaulipas (Mexico), Nuevo Leon (Mexico), Coahuila De Zaragoza (Mexico), Chihuahua (Mexico)" -
+    ,  "Niagara River:                      New York, Ontario (Canada)" -
+    ,  "St. Lawrence River:                 New York, Ontario (Canada)" -
+    ,  "Delaware River:                     New York, Pennsylvania, New Jersey, Delaware" -
+    ,  "Catawba River:                      North Carolina, South Carolina" -
+    ,  "Red River of the North:             North Dakota, Minnesota" -
+    ,  "Great Miami River (mouth only):     Ohio, Indiana" -
+    ,  "Arkansas River:                     Oklahoma, Arkansas" -
+    ,  "Palmer River:                       Rhode Island, Massachusetts" -
+    ,  "Runnins River:                      Rhode Island, Massachusetts" -
+    ,  "Savannah River:                     South Carolina, Georgia" -
+    ,  "Big Sioux River:                    South Dakota, Iowa" -
+    ,  "Bois de Sioux River:                South Dakota, Minnesota, North Dakota" -
+    ,  "Missouri River:                     South Dakota, Nebraska, Iowa, Missouri, Kansas" -
+    ,  "Sabine River:                       Texas, Louisiana" -
+    ,  "Red River (Mississippi watershed):  Texas, Oklahoma, Arkansas" -
+    ,  "Poultney River:                     Vermont, New York" -
+    ,  "Blackwater River:                   Virginia, North Carolina" -
+    ,  "Columbia River:                     Washington, Oregon" -
+  ]
+ 
+  return data
+
+method stateData inheritable constant binary returns String[]
+
+  data = [String -
+       'MAE  Maine' -
+    ,  'CAL  California' -
+    ,  'KAN  Kansas' -
+    ,  'MAS  Massachusetts' -
+    ,  'WAS  Washington' -
+    ,  'HAW  Hawaii' -
+    ,  'NCR  North Carolina' -
+    ,  'SCR  South Carolina' -
+    ,  'IDA  Idaho' -
+    ,  'NDK  North Dakota' -
+    ,  'SDK  South Dakota' -
+    ,  'NEB  Nebraska' -
+    ,  'DEL  Delaware' -
+    ,  'PEN  Pennsylvania' -
+    ,  'TEN  Tennessee' -
+    ,  'GEO  Georgia' -
+    ,  'VER  Vermont' -
+    ,  'NEV  Nevada' -
+    ,  'TEX  Texas' -
+    ,  'VGI  Virginia' -
+    ,  'OHI  Ohio' -
+    ,  'NHM  New Hampshire' -
+    ,  'RHO  Rhode Island and Providence Plantations' -
+    ,  'MIC  Michigan' -
+    ,  'MIN  Minnesota' -
+    ,  'MIS  Mississippi' -
+    ,  'WIS  Wisconsin' -
+    ,  'OKA  Oklahoma' -
+    ,  'ALA  Alabama' -
+    ,  'FLA  Florida' -
+    ,  'MLD  Maryland' -
+    ,  'ALK  Alaska' -
+    ,  'ILL  Illinois' -
+    ,  'NMX  New Mexico' -
+    ,  'IND  Indiana' -
+    ,  'MOE  Missouri' -
+    ,  'COL  Colorado' -
+    ,  'CON  Connecticut' -
+    ,  'MON  Montana' -
+    ,  'LOU  Louisiana' -
+    ,  'IOW  Iowa' -
+    ,  'ORE  Oregon' -
+    ,  'ARK  Arkansas' -
+    ,  'ARZ  Arizona' -
+    ,  'UTH  Utah' -
+    ,  'KTY  Kentucky' -
+    ,  'WVG  West Virginia' -
+    ,  'NWJ  New Jersey' -
+    ,  'NYK  New York' -
+    ,  'WYO  Wyoming' -
+  ]
+
+  return data
+

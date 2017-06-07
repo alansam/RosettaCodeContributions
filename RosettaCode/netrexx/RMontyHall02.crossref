@@ -1,0 +1,10 @@
+--- Variables for class RMontyHall02 ---
+choice     Rexx   v 14= 15 18
+doors      Rexx   v 6= 11= 13= 15 18
+doors      Rexx   v 27= 28= 29= 30= 31
+plays      Rexx   v 10=
+r          Rexx   v 12= 13
+rand       Random v 34= 35
+shown      Rexx   v 9= 15 15 16=
+stayWins   Rexx   v 8= 19 19= 24
+switchWins Rexx   v 7= 21 21= 23

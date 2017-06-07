@@ -1,0 +1,13 @@
+$ java RSeiveOfEratosthenes04 1122354
+           prime number       1  -->        2
+           prime number       2  -->        3
+           prime number       3  -->        5
+           prime number       4  -->        7
+
+. . .
+
+           prime number   87335  -->  1122281
+           prime number   87336  -->  1122283
+           prime number   87337  -->  1122287
+Processing time: 12.037916s
+

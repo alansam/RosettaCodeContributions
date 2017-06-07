@@ -1,0 +1,4 @@
+--- Variables for class RCBinaryDigits ---
+n_   Rexx   v 7= 8
+nums Rexx[] v 5= 7 8
+v_   Rexx   v 8= 9

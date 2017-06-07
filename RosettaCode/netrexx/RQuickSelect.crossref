@@ -1,0 +1,29 @@
+--- Variables for class RQuickSelect ---
+arg           Rexx a 5= 5
+arg           Rexx a 56 57
+i1            Rexx a 47 48 49 50
+i2            Rexx a 47 48 50 51
+i_            Rexx v 13= 14 15
+ileft         Rexx a 9 12 13
+ileft         Rexx a 23= 24 24= 28 28 29 30 40=
+iright        Rexx a 9 11 13 19
+iright        Rexx a 23= 25 25= 28 29 37=
+items         Rexx v 59= 66 82 82
+iv            Rexx v 65= 67 67= 69 73= 75 75= 77 81= 83 83= 85
+k_            Rexx a 23 32 36 39 39=
+k_            Rexx v 66= 67 74= 75 82= 83
+k_            Rexx v 94= 95 95
+list          Rexx a 9 10 11 11= 14 15 15= 19 19=
+list          Rexx a 23 25 29 33
+list          Rexx a 47 49 50 50= 51= 53
+list          Rexx v 92= 93= 94 95= 97
+pivotDist     Rexx v 30= 32 36 39
+pivotIndex    Rexx a 9 10 11
+pivotIndex    Rexx v 28= 29
+pivotNewIndex Rexx v 29= 30 33 37 40
+pivotValue    Rexx v 10= 14
+returnVal     Rexx v 33= 44
+samplelist    Rexx v 57= 58 58 58= 59 61 67 75 83
+samplelist    Rexx a 91 93 95
+storeIndex    Rexx v 12= 15 16 16= 19 20
+t1            Rexx v 49= 51

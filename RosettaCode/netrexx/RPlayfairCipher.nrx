@@ -1,0 +1,226 @@
+/* NetRexx */
+options replace format comments java crossref symbols nobinary
+
+runSample(arg)
+return
+
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+method cipher(km, d_, digraphs) public static
+  if d_.upper() = 'D' then d_ = -1 -- encode or decode
+  else                     d_ = +1
+  cipherText = ''
+  loop dw = 1 to digraphs.words()
+    -- process the digraphs one at a time
+    digraph = digraphs.word(dw)
+    cl = ''
+    cr = ''
+    -- get each letter from the digraph
+    parse digraph dl +1 dr
+    loop r_ = 1 to km[0] while (cl cr).words() < 4
+      -- locate the row/col of each letter in the cipher matrix
+      clx = km[r_].wordpos(dl)
+      crx = km[r_].wordpos(dr)
+      if clx > 0 then cl = r_ clx
+      if crx > 0 then cr = r_ crx
+      end r_
+
+    -- process the digraph's rows, columns or rectangles
+    select
+      when cl.word(1) = cr.word(1) then do
+        -- a row
+        ptype = 'row'
+        rx  = cl.word(1)
+        clx = cl.word(2) + d_
+        crx = cr.word(2) + d_
+        if clx > 5 then clx = 1 -- wrap
+        if crx > 5 then crx = 1
+        if clx < 1 then clx = 5
+        if crx < 1 then crx = 5
+        cy = km[rx].word(clx) || km[rx].word(crx)
+        cipherText = cipherText cy
+        end
+      when cl.word(2) = cr.word(2) then do
+        -- a column
+        ptype = 'column'
+        cx  = cl.word(2)
+        rlx = cl.word(1) + d_
+        rrx = cr.word(1) + d_
+        if rlx > 5 then rlx = 1 -- wrap
+        if rrx > 5 then rrx = 1
+        if rlx < 1 then rlx = 5
+        if rrx < 1 then rrx = 5
+        cy = km[rlx].word(cx) || km[rrx].word(cx)
+        cipherText = cipherText cy
+        end
+      otherwise do
+        -- a rectangle
+        ptype = 'rectangle'
+        r1  = cl.word(1)
+        r2  = cr.word(1)
+        cy = km[r1].word(cr.word(2)) || km[r2].word(cl.word(2))
+        cipherText = cipherText cy
+        end
+      end
+    say digraph cl',' cr '-' cy '-' ptype
+    end dw
+  return cipherText.strip()
+
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+method encipher(km, digraphs) public static
+  return cipher(km, 'E', digraphs)
+
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+method decipher(km, digraphs) public static
+  return cipher(km, 'D', digraphs)
+
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+method getDigraphs(text, IorQ, ED) private static
+  a2z = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+  if ED.upper() \= 'D' then eks = 'X'
+  else                      eks = ''
+  tp = text.upper().translate('', a2z)
+  text = text.upper().translate(' '.copies(tp.length()), tp).space(0)
+  rtext = ''
+  ll = ''
+
+  loop while text \= ''
+    parse text lc +1 text
+    if ll \= lc then rtext = rtext || lc
+    else             rtext = rtext || eks || lc
+    ll = lc
+    end
+
+  -- I == J or remove Q fixup
+  if IorQ \= 'Q' then
+    parse 'J I' IorQ sc .
+  else
+    sc = ''
+
+  rtext = rtext.changestr(IorQ, sc)
+  if rtext.length() // 2 \= 0 then rtext = rtext || eks
+  digraphs = ''
+  loop while rtext \= ''
+    parse rtext digraph +2 rtext
+    digraphs = digraphs digraph
+    end
+  return digraphs.space()
+
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+method getKey(key, IorQ) private static
+  a2z = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+  kp = (key || a2z).upper()
+  kr = ''
+  loop while kp \= ''
+    parse kp xx +1 kp
+    if \xx.datatype('u') then iterate
+    kr = kr xx
+    kp = kp.changestr(xx, '')
+    end
+
+  if IorQ = 'I' | IorQ = 'J' | IorQ = '' then
+    kr = kr.changestr('J', '')
+  else
+    kr = kr.changestr('Q', '')
+
+  return kr.space()
+
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+method getKeyMatrix(kr) private static
+  km = ''
+  loop r_ = 1 while kr \= ''
+    parse kr kp +10 kr
+    km[0]  = r_
+    km[r_] = kp
+    end r_
+  return km
+
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+method showKeyMatrix(km) private static
+  loop r_= 1 to km[0]
+    say r_.right(2) km[r_]
+    end r_
+  return
+
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+method runSample(arg) private static
+  parse arg ciph IorQ key text
+  if ciph = '' | ciph = '.' then ciph = 'E'
+  if IorQ = '' | IorQ = '.' then IorQ = 'I'
+  if key  = '' | key  = '.' then key  = 'plugh_xyzzy'
+  if text = '' | text = '.' then text = 'NetRexx; not just a programing language for kings & queens!'
+  -- Playfair example
+  -- 'Hide the gold in the tree stump!'
+  -- J.F. Kennedy's signal
+  -- ROYAL NEW ZEALAND NAVY
+  -- KX JEYU REB EZW EHEW RYTU HE YFSKRE HE GOYFIWTT TUOLKS YCA JPOBO TE IZONTX BYBW T GONE YC UZWRGD S ONSXBOU YWR HEBAAHYUSED Q
+
+  kr = getKey(key.space(0), IorQ)
+  say IorQ '-' kr',' kr.words
+  km = getKeyMatrix(kr)
+  showKeyMatrix(km)
+
+  digraphs = getDigraphs(text, IorQ, ciph)
+  if IorQ.upper = 'Q' then digraphs = digraphs.changestr('Q', 'K') -- fixup for a Q in the text
+  say text
+  say IorQ '-' digraphs',' digraphs.words
+  if ciph.upper() = 'E' then
+    say encipher(km, digraphs)
+  else 
+    say decipher(km, digraphs)
+
+  say
+  say '-'.copies(120)
+  key_pairs = [ -
+    'plugh_xyzzy | NetRexx; not just a programing language for kings & queens! | .', -
+    'Playfair example | Hide the gold in the tree stump! | .', -
+    'ROYAL NEW ZEALAND NAVY | . | KX JEYU REB EZW EHEW RYTU HE YFSKRE HE GOYFIWTT TUOLKS YCA JPOBO TE IZONTX BYBW T GONE YC UZWRGD S ONSXBOU YWR HEBAAHYUSED Q', -
+    'ROYAL NEW ZEALAND NAVY | . | KX JEYU REB EZW EHEW RYTU HE YFSKRE HE GOYFIWUU TUOLKS YCA JPOBO TE IZONTX BYBN T GONE YC UZWRGD S ONSXBOU YWR HEBAAHYUSED Q', -
+    'ROYAL NEW ZEALAND NAVY | PT BOAT ONE OWE NINE LOST IN ACION IN BLACKETT STRAIT TWO MILES SW MERESU COVE X CREW OF TWELVE X REQUEST ANY INFORMATION X | .' -
+    ]
+  loop kp over key_pairs
+    parse kp key '|' text '|' cipher
+    key    = key.strip()
+    text   = text.strip()
+    cipher = cipher.strip()
+    kr = getKey(key.space(0), 'I')
+    km = getKeyMatrix(kr)
+    showKeyMatrix(km)
+    if text \= '.' then do
+      digraphs = getDigraphs(text, 'I', 'E')
+      ct = encipher(km, digraphs)
+      digraphs = getDigraphs(ct, 'I', 'D')
+      mt = decipher(km, digraphs)
+      end
+    else do
+      digraphs = getDigraphs(cipher, 'I', 'D')
+      text = cipher
+      ct = '.'
+      mt = decipher(km, digraphs)
+      end
+    say text
+    say ct
+    say mt
+    end kp
+
+  return
+
+/*
+     1 2 3 4 5
+   + - - - - -
+ 1 | R O Y A L 
+ 2 | N E W Z D 
+ 3 | V B C F G 
+ 4 | H I K M P 
+ 5 | Q S T U X
+
+ KX JEYU REB EZW EHEW RYTU HE YFSKRE HE GOYFIWTT TUOLKS YCA JPOBO TE IZONTX BYBW T GONE YC UZWRGD S ONSXBOU YWR HEBAAHYUSED Q
+ PT BOAT ONE OWE NINE LOST IN ACTION IN BLACKESS STRAIT TWO MILES SW MERESU COCE X CREW OF TWELVE X REQUEST ANY INFORMATION X
+
+ KX JEYU REB EZW EHEW RYTU HE YFSKRE HE GOYFIWUU TUOLKS YCA JPOBO TE IZONTX BYBN T GONE YC UZWRGD S ONSXBOU YWR HEBAAHYUSED Q
+ PT BOAT ONE OWE NINE LOST IN ACTION IN BLACKETT STRAIT TWO MILES SW MERESU COVE X CREW OF TWELVE X REQUEST ANY INFORMATION X
+
+ PT BOAT ONE OWE NINE LOST IN ACION IN BLACKETT  STRAIT   TWO MILES   SW MERESU COVE X CREW OF TWELVE X REQUEST ANY INFORMATION X
+ KX IEYU REB EZW EHEW RYTU HE YFSEE HE VRLKTWSQU TUOLKS Q UEY PKODT Q TE IZONTX BYBN T GONE YC UZWRGD S ONSXBOU YWR HEBAAHYUSED Q
+ PT BOAT ONE OWE NINE LOST IN ACION IN BLACKETXT STRAIT X TWO MILES X SW MERESU COVE X CREW OF TWELVE X REQUEST ANY INFORMATION X
+ */
+

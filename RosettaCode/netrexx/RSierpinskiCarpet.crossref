@@ -1,0 +1,26 @@
+--- Variables for class RSierpinskiCarpet ---
+arg              Rexx    a 5= 5
+arg              Rexx    a 9 10
+cell             Rexx    v 57= 58= 59
+cn               Rexx    v 29= 31 35 36 36 38
+DARK_SHADE       Rexx    v 18= 20
+fchar            Rexx    v 10= 23 23 45
+filler           Rexx    v 32= 38= 45= 47
+filler           Rexx    a 51= 57
+FULL_BLOCK       Rexx    v 13= 20
+isFalse          boolean v 68= 72
+isFilled         boolean v 69= 72= 78
+isTrue           boolean v 67= 68 69
+LIGHT_SHADE      Rexx    v 16= 20
+LOWER_HALF_BLOCK Rexx    v 14= 20
+MEDIUM_SHADE     Rexx    v 17= 20
+n                Rexx    v 25= 26 26
+ordr             Rexx    v 10= 11 11 11= 47
+ordr             Rexx    a 51 54
+powr             Rexx    v 54= 55 56
+uBlocks          Rexx[]  v 19= 25 26 32 36 38
+UPPER_HALF_BLOCK Rexx    v 15= 20
+x                long    v 52 55= 57
+x                long    a 66 70 71 75 75=
+y                long    v 53 56= 57
+y                long    a 66 70 71 76 76=

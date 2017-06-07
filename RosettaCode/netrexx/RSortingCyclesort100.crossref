@@ -1,0 +1,17 @@
+--- Variables for class RSortingCyclesort100 ---
+a      Rexx v 8= 9= 10= 11= 12= 13= 15 16 18
+a      Rexx a 23 26 28 30 35 39 40= 45 48 52 53=
+a      Rexx a 59 63
+c      Rexx v 25= 26 27 28 29 33 42 43 44
+hdr    Rexx a 59 61
+i      Rexx v 62= 63 63
+j      Rexx v 29= 30
+k      Rexx v 44= 45
+n      Rexx v 14= 15 16 18
+n      Rexx a 23 25 29 44
+n      Rexx a 59 62
+p      Rexx v 27= 31 31= 33 35 36 36= 39 40 42 43= 46 46= 48 49 49= 52 53
+t      Rexx v 38= 40 51= 53
+w      Rexx v 16= 20
+writes Rexx v 24= 41 41= 54 54= 57
+x      Rexx v 26= 28= 30 35 38 39= 45 48 51 52=

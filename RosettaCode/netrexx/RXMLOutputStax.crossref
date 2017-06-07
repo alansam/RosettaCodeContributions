@@ -1,0 +1,7 @@
+--- Variables for class RXMLOutputStax ---
+buffer  StringWriter    v 21= 23 43
+ex      Exception       v 44= 45
+i_      Rexx            v 31= 33 34
+names   String[]        v 10= 31 33
+out     XMLStreamWriter v 23= 25 26 28 29 32 33 34 35 36 39 40 41
+remarks String[]        v 14= 34

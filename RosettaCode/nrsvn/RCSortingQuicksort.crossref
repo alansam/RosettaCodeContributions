@@ -1,0 +1,33 @@
+--- Variables for class RCSortingQuicksort ---
+al         java.util.List v 29= 30
+al         java.util.List v 62= 63
+array      String[]       a 26 28 29
+array      java.util.List a 34 36 41 41 42 43 43 44 44 45 45 49 54= 57
+array      String[]       a 59 61 62
+array      java.util.List a 67 67 71 72 73 76 76= 77
+array      java.util.List a 79 81 82 83 84 87 89 90 91 95 96 97 98
+cl         String[]       v 17= 18 19
+ct         int            v 18= 19
+equal      ArrayList      v 38= 44 51
+greater    ArrayList      v 39= 45 48 48= 52
+i_         int            v 86= 87 90
+iValue     Object         v 87= 88 91
+ixL        int            a 67= 69 70 70 71 72
+ixL        int            a 79 85 86
+ixP        int            v 70= 71 71= 72 73
+ixP        int            a 79 81 83
+ixR        int            a 67= 69 70 71 73
+ixR        int            a 79 82 84 86 96 98
+ixStore    int            v 85= 89 91 92 92= 95 97 100
+less       ArrayList      v 37= 43 47 47= 50
+lists      String[,]      v 10= 16 17
+ln         int            v 16= 17
+out        ArrayList      v 49= 50 51 52 54
+pivot      Object         v 41= 43 44 45
+pivotValue Object         v 81= 84 88
+placesList String[]       v 6= 11 12 12 13 13
+rl         String[]       v 28= 30 32
+rl         String[]       v 61= 63 65
+rValue     Object         v 82= 83 96= 97
+storeValue Object         v 89= 90 95= 98
+x_         int            v 42= 43 43 44 44 45 45

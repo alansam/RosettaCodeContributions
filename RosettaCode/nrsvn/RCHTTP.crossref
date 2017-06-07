@@ -1,0 +1,4 @@
+--- Variables for class RCHTTP ---
+ex         Exception v 13= 14
+rosettaUrl String    v 8= 9
+sc         Scanner   v 9= 10 11

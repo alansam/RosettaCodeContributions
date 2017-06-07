@@ -1,0 +1,27 @@
+--- Variables for class RDirectorySearchLDAP01 ---
+args         String[]       a 41
+attributes   String[]       v 65= 68
+baseDN       String         v 62= 68
+connected    boolean        v 43= 45= 46 51
+connection   LdapConnection s 39 68 95= 98 114 120
+creds        String         v 91= 98
+cursor       EntryCursor    v 61 68= 69 70
+dnStr        String         v 90= 98
+ev           Object         v 70= 72
+ex           Exception      v 78= 80
+filter       String         v 63= 68
+iox          IOException    v 102= 104
+iox          IOException    v 121= 123
+isFalse      boolean        c 36= 43 76 79 100 103 116 122
+isTrue       boolean        c 35= 60 87 111
+ksearch      int            v 69= 71 77 80
+ldapHostName String         v 88= 94 95
+ldapPort     int            v 89= 94 95
+lex          LdapException  v 75= 77
+lex          LdapException  v 99= 101
+lex          LdapException  v 115= 117
+log_         Logger         c 34= 67 67 71 71 72 72 77 80 94 94 97 97 101 104 113 113 117 123
+scope        SearchScope    v 64= 68
+state        boolean        v 60= 76= 79= 83
+state        boolean        v 87= 100= 103= 107
+state        boolean        v 111= 116= 122= 127

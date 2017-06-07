@@ -1,0 +1,67 @@
+/* NetRexx */
+
+options replace format comments java crossref savelog symbols nobinary
+
+/**
+ * <h3>Queue/Definition</h3>
+ * <p>
+ * Implement a FIFO queue. Elements are added at one side and popped from the other in the order of insertion.
+ * </p>
+ * <p>
+ * Operations:
+ * <ul>
+ * <li>push (aka enqueue) - add element</li>
+ * <li>pop (aka dequeue) - pop first element</li>
+ * <li>empty - return truth value when empty</li>
+ * </ul>
+ * <p>
+ * Errors:
+ * <ul>
+ * <li>handle the error of trying to pop from an empty queue (behavior depends on the language and platform)</li>
+ * </ul>
+ * See <a href="http://rosettacode.org/wiki/FIFO_(usage)">FIFO (usage)</a> for the built-in FIFO or queue of your
+ * language or standard library.
+ * </p>
+ * <h5>Example</h5>
+ * <p>
+ * The encoded string "http%3A%2F%2Ffoo%20bar%2F" should be reverted to the unencoded form "http://foo bar/".
+ * </p>
+ *
+ * @author alansampson : <a href="mailto%3A%22Alan%20Sampson%22%20%3Calansamps%40gmail%2Ecom%3E">&quot;Alan Sampson&quot; &lt;alansamps@gmail.com&gt;</a>
+ * @version 1.0
+ * @see <a href="http://rosettacode.org/wiki/Queue/Definition">rosettacode.org/wiki/Queue/Definition</a>
+ */
+
+mqueue = ArrayDeque()
+
+viewQueue(mqueue)
+
+a = "Fred"
+mqueue.push('')      /* Puts an empty line onto the queue */
+mqueue.push(a 2)  /* Puts "Fred 2" onto the queue */
+viewQueue(mqueue)
+
+a = "Toft"
+mqueue.add(a 2) /* Enqueues "Toft 2" */
+mqueue.add('')     /* Enqueues an empty line behind the last */
+viewQueue(mqueue)
+
+loop q_ = 1 while mqueue.size > 0
+  parse mqueue.pop.toString line
+  say q_.right(3)':' line
+  end q_
+viewQueue(mqueue)
+
+return
+
+method viewQueue(mqueue = Deque) private static
+
+   If mqueue.size = 0 then do
+    Say 'Queue is empty'
+    end
+  else do
+    Say 'There are' mqueue.size 'elements in the queue'
+    end
+
+  return
+

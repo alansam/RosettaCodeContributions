@@ -1,0 +1,22 @@
+/* Generated from 'RCLoopsInfinite.nrx' 13 Jul 2011 13:34:42 [v3.00] */
+/* Options: Comments Crossref Decimal Format Java Logo Replace Symbols Trace2 Verbose3 */
+
+/* NetRexx */
+
+
+
+public class RCLoopsInfinite{
+ private static final java.lang.String $0="RCLoopsInfinite.nrx";
+ 
+ public static void main(java.lang.String $0s[]){
+  netrexx.lang.RexxIO.Say("");
+  netrexx.lang.RexxIO.Say("Loops/Infinite");
+  
+  {spam:for(;;){
+   netrexx.lang.RexxIO.Say("SPAM");
+   }
+  }/*spam*/
+  }
+ 
+ private RCLoopsInfinite(){return;}
+ }

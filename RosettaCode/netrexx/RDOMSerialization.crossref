@@ -1,0 +1,17 @@
+--- Variables for class RDOMSerialization ---
+args     String[]                             a 13
+builder  DocumentBuilder                      v 25= 26
+domDoc   Document                             p 11 27= 28 29 32 44
+domSrc   DOMSource                            v 44= 56
+elmt1    Element                              v 28= 32 33
+elmt2    Element                              v 29= 30 33
+exPC     ParserConfigurationException         v 35= 36
+exTC     TransformerConfigurationException    v 60= 61
+exTE     TransformerException                 v 64= 65
+exTF     TransformerFactoryConfigurationError v 62= 63
+factory  DocumentBuilderFactory               v 24= 25
+impl     DOMImplementation                    v 26= 27
+lcl      RDOMSerialization                    v 15= 16 17
+sr       StreamResult                         v 54= 56
+sw       StringWriter                         v 53= 54 58
+txformer Transformer                          v 45= 46 47 48 49 50 51 56

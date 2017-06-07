@@ -1,0 +1,67 @@
+/* NetRexx */
+options replace format comments java crossref symbols nobinary
+
+import java.util.Vector
+
+numeric digits 20
+
+parse arg loWatermark hiWatermark .
+if loWatermark = '' | loWatermark = '.' then loWatermark = 1
+if hiWatermark = '' | hiWatermark = '.' then hiWatermark = 200
+
+do
+  if \loWatermark.datatype('w') | \hiWatermark.datatype('w') then -
+    signal NumberFormatException('arguments must be whole numbers')
+  if loWatermark > hiWatermark then -
+    signal IllegalArgumentException('the start value must be less than the end value')
+
+  beginProc = System.nanoTime()
+  seive = sieveOfEratosthenes_Rexx(hiWatermark)
+  endProc = System.nanoTime()
+  primes = getPrimes(seive, loWatermark, hiWatermark)
+  runTime = endProc - beginProc
+  reporter(primes, loWatermark, hiWatermark, runTime)
+catch ex = Exception
+  ex.printStackTrace
+end
+
+return
+
+method reporter(primes = Vector, loWatermark, hiWatermark, runTime) public constant
+
+  say 'List of prime numbers from' loWatermark 'to' hiWatermark 'via a "Sieve of Eratosthenes" algorithm:'
+  say '  'primes.toString()
+  say '  Count of primes:' primes.size()
+  say 'Processing time:' (runTime / 1000000000).format(null, 6)'s'
+
+  return
+
+method sieveOfEratosthenes_Rexx(hn) public static binary returns Rexx
+
+  sv = Rexx(isTrue)
+  sv[1] = isFalse -- one is not prime
+
+  loop ix = 2 while ix * ix <= hn
+    if sv[ix] then loop jx = ix * ix by ix while jx <= hn
+      sv[jx] = isFalse
+      end jx
+    end ix
+
+  return sv
+
+method getPrimes(seive, lo, hi) private constant binary returns Vector
+
+  primes = Vector()
+  loop p_ = lo to hi
+    if \seive[p_] then iterate p_
+    primes.add(p_)
+    end p_
+
+  return primes
+
+method isTrue public constant binary returns boolean
+  return 1 == 1
+
+method isFalse public constant binary returns boolean
+  return \isTrue
+

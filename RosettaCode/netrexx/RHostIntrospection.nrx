@@ -1,0 +1,25 @@
+/* NetRexx */
+
+options replace format comments java crossref savelog symbols nobinary
+
+/**
+ * <h3>Host introspection</h3>
+ * <p>
+ * Print the <a href="http://en.wikipedia.org/wiki/Word_size#Word_size_choice">word size</a>
+ * and <a href="http://en.wikipedia.org/wiki/Endianness">endianness</a> of the host machine.
+ * </p>
+ * <p>
+ * See also: <a href="http://rosettacode.org/wiki/Variable_size/Get">Variable size/Get</a>
+ * </p>
+ *
+ * @author Alan Sampson
+ * @version 1.0
+ * @see <a href="http://rosettacode.org/wiki/Host_introspection">rosettacode.org/wiki/Host_introspection</a>
+ */
+
+wordSize = System.getProperty('sun.arch.data.model')
+endian   = System.getProperty('sun.cpu.endian')
+
+say ' word size:' wordSize
+say 'endianness:' endian
+

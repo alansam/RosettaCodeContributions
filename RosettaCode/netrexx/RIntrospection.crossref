@@ -1,0 +1,7 @@
+--- Variables for class RIntrospection ---
+arg        Rexx a 4= 4
+arg        Rexx a 8 9
+bdate      Rexx v 11= 15 22
+lang       Rexx v 11= 14 21
+minVersion Rexx v 9= 10 10= 12 16 23
+ver        Rexx v 11= 12 14 21

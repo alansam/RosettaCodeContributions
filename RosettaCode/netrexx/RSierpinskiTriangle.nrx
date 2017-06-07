@@ -1,0 +1,99 @@
+/* NetRexx */
+options replace format comments java crossref symbols nobinary
+
+numeric digits 1000
+runSample(arg)
+return
+
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+method runSample(arg) public static
+  parse arg ordr fchar .
+  if ordr = '' | ordr = '.' then ordr = 4
+  -- https://en.wikipedia.org/wiki/Geometric_Shapes
+  BLACK_UPPOINTING_TRIANGLE          = '\u25b2'
+  WHITE_UPPOINTING_TRIANGLE          = '\u25b3'
+  WHITE_UPPOINTING_SMALL_TRIANGLE    = '\u25b4'
+  BLACK_UPPOINTING_SMALL_TRIANGLE    = '\u25b5'
+  WHITE_UPPOINTING_TRIANGLE_WITH_DOT = '\u25ec'
+  UPPOINTING_TRIANGLE_LEFT_BLACK     = '\u25ed'
+  UPPOINTING_TRIANGLE_RIGHT_BLACK    = '\u25ee'
+  uBlocks = [ -
+    BLACK_UPPOINTING_TRIANGLE, WHITE_UPPOINTING_TRIANGLE, -
+    WHITE_UPPOINTING_SMALL_TRIANGLE, BLACK_UPPOINTING_SMALL_TRIANGLE, -
+    WHITE_UPPOINTING_TRIANGLE_WITH_DOT, UPPOINTING_TRIANGLE_LEFT_BLACK, UPPOINTING_TRIANGLE_RIGHT_BLACK, -
+    'A', '*', '.', '^' -
+    ]
+  if fchar = '' | fchar = '.' then do
+    loop forever
+      loop n = 0 to uBlocks.length - 1
+        say (n + 1).right(3)':' uBlocks[n]
+      end
+      say 'Choose the index of the character you wish for the display from the above list [1]: \-'
+      parse ask cn
+      select
+        when cn = '' then do
+          filler = uBlocks[0]
+          leave          
+          end
+        when \cn.datatype('w') then iterate
+        when cn < 1 | cn > uBlocks.length then iterate
+        otherwise do
+          filler = uBlocks[cn - 1]
+          leave
+          end
+        end
+      end
+    end
+  else do
+    filler = fchar
+    end
+  drawSierpinskiTriangle(ordr, filler)
+  return
+
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+method drawSierpinskiTriangle(ordr, filler = Rexx '^') public static
+  n = 1 * (2 ** ordr)
+  line = ' '.copies(2 * n)
+  line = line.overlay(filler, n + 1) -- set the top point of the triangle
+  loop row = 1 to n
+    say line.strip('t')
+    u = filler
+    loop col = 2 + n - row to n + row
+      cl = line.substr(col - 1, 1)
+      cr = line.substr(col + 1, 1)
+      if cl == cr then t = ' '
+      else             t = filler
+      line = line.overlay(u, col - 1)
+      u = t
+      end col
+      j2 = n + row - 1
+      j3 = n + row
+      line = line.overlay(t, j2 + 1)
+      line = line.overlay(filler, j3 + 1)
+    end row
+  return
+
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+method drawSierpinskiTriangle2(ordr, filler = Rexx '^') public static
+  n = 1 * (2 ** ordr)
+  line = ' '.copies(2 * n)
+  line = line.overlay(filler, n + 1) -- set the top point of the triangle
+  loop i = 0 to n - 1
+    say line.strip('t')
+    u = filler
+    loop j = n - i while j < n + i + 1
+      j1 = j + 1
+      cl = line.substr(j1 - 1, 1)
+      cr = line.substr(j1 + 1, 1)
+      if cl == cr then t = ' '
+      else             t = filler
+      line = line.overlay(u, j1 - 1)
+      u = t
+      end j
+      j2 = n + i
+      j3 = n + i + 1
+      line = line.overlay(t, j2 + 1)
+      line = line.overlay(filler, j3 + 1)
+    end i
+  return
+

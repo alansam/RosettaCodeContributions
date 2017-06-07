@@ -1,0 +1,6 @@
+/* NetRexx */
+options replace java format comments
+  parse arg aaa
+  say aaa
+  return
+

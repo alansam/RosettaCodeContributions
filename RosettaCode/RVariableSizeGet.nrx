@@ -1,0 +1,42 @@
+/* NetRexx */
+
+options replace format comments java crossref savelog symbols binary
+
+/**
+ * <h3>Variable size/Get</h3>
+ * <p>
+ * Demonstrate how to get the size of a variable.
+ * </p>
+ * <p>
+ * See also: <a href="http://rosettacode.org/wiki/Host_introspection">Host introspection</a>
+ * </p>
+ *
+ * @author Alan Sampson
+ * @version 1.0
+ * @see <a href="http://rosettacode.org/wiki/Variable_size/Get">rosettacode.org/wiki/Variable_size/Get</a>
+ */
+
+b1 = boolean(isFalse)
+x1 = byte(0)
+c1 = char('0')
+s1 = short(0)
+i1 = int(0)
+l1 = long(0)
+f1 = float(0.0)
+d1 = double(0.0)
+
+say 'boolean:' b1 '-' --b1.length
+say '   byte:' x1 '-' --x1.length
+say '   char:' c1 '-' --c1.length
+say '  short:' s1 '-' --s1.length
+say '    int:' i1 '-' --i1.length
+say '   long:' l1 '-' --l1.length
+say '  float:' f1 '-' --f1.length
+say ' double:' d1 '-' --d1.length
+
+method isTrue public static returns boolean
+  return 1 == 1
+
+method isFalse public static returns boolean
+  return \isTrue
+

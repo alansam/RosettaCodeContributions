@@ -1,0 +1,42 @@
+/* NetRexx */
+
+options replace format comments java crossref savelog symbols binary
+
+/**
+ * <h3>User input/Text</h3>
+ * <p>
+ * In this task, the goal is to input a string and the integer 75000, from the text console.
+ * </p>
+ * <p>
+ * See also: <a href="http://rosettacode.org/wiki/User_input/Graphical">User input/Graphical</a>
+ * </p>
+ *
+ * @author Alan Sampson
+ * @version 1.0
+ * @see <a href="http://rosettacode.org/wiki/User_input/Text">rosettacode.org/wiki/User_input/Text</a>
+ */
+
+say 'Enter a string:'
+parse ask text
+say
+
+loop forever
+  say 'Enter the number 75000:'
+  parse ask num .
+
+  if num \= 75000 then do
+    say " You aren't good at following instructions are you?"  
+    end
+  else do
+    report(text, num)
+    leave
+    end
+  end
+
+  return
+  
+method report(text, num) public static
+  say '  You entered string:' text
+  say '          and number:' num
+  return
+

@@ -1,0 +1,48 @@
+/* NetRexx */
+options replace format comments java crossref symbols nobinary
+
+numeric digits 90
+parse arg maxV .
+if maxV = '' | maxV = '.' then maxV = 10
+
+sum = 0
+loop nr = 1 for maxV
+  sum = sum + nr ** 2
+  end nr
+rmsD = Rexx(Math.sqrt(sum / maxV))
+rmsR = sqrt(sum / maxV)
+
+say 'RMS of values from 1 to' maxV':' rmsD
+say 'RMS of values from 1 to' maxV':' rmsR
+
+return
+
+/*──────────────────────────────────SQRT subroutine─────────────────────────*/
+method sqrt(x) public static
+  if x = 0 then return 0
+  d = digits
+  numeric digits 11
+  m = 11
+  parse sqrtGuess(x, m, d) g p .
+  loop j = 0 while p > 9
+    m[j] = p
+    p = p % 2 + 1
+    end j
+  loop k = j + 5 to 0 by -1
+    if m[k] > 11 then numeric digits m[k]
+    g = 0.5 * (g + x / g)
+    end k
+  numeric digits d
+  return g / 1
+
+method sqrtGuess(x, m, d) private static
+  if x < 0 then say 'negative number' x
+  numeric form
+  p = d + d % 4 + 2
+  xVal = x.format(2 ,1, null, 0) 'E0'
+  parse xVal g'E'_ .
+  _ = 0.5'E'_
+  g = g * _ % 2
+  g = g + 0
+return g p
+

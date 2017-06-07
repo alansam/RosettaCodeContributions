@@ -1,0 +1,66 @@
+/* NetRexx */
+
+options replace format comments java crossref savelog symbols binary
+
+/**
+ * Create a function that takes a Roman numeral as its argument and returns its value as a numeric decimal integer.
+ * You don't need to validate the form of the Roman numeral.
+ * <p>
+ * Modern Roman numerals are written by expressing each decimal digit of the number to be encoded separately,
+ * starting with the leftmost digit and skipping any 0s. So 1990 is rendered "MCMXC" (1000 = M, 900 = CM, 90 = XC)
+ * and 2008 is rendered "MMVIII" (2000 = MM, 8 = VIII). The Roman numeral for 1666, "MDCLXVI", uses each letter in
+ * descending order.
+ * </p>
+ *
+ * @author Alan Sampson
+ * @version 1.0
+ * @see <a href="http://rosettacode.org/wiki/Roman_numerals/Decode">rosettacode.org/wiki/Roman_numerals/Decode</a>
+ */
+
+           /* 1449    1944    1954   1990  2008   1066  1666    1966    1999    2011 */
+years = Rexx('MCDXLIX MCMXLIV MCMLIV MCMXC MMVIII MLXVI MDCLXVI MCMLXVI MCMXCIX MMXI')
+
+loop y_ = 1 to years.words
+    Say years.word(y_).right(10) || ':' decode(years.word(y_))
+    end y_
+
+return
+
+method decode(arg) public static returns int signals IllegalArgumentException
+
+  parse arg.upper roman .
+  if roman.verify('MDCLXVI') \= 0 then signal IllegalArgumentException
+
+  -- always insert the value of the least significant numeral
+  decnum = rchar(roman.substr(roman.length, 1))
+  loop d_ = 1 to roman.length - 1
+    if rchar(roman.substr(d_, 1)) < rchar(roman.substr(d_ + 1, 1)) then do
+      -- Handle cases where numerals are not in descending order
+      --   subtract the value of the numeral
+      decnum = decnum - rchar(roman.substr(d_, 1))
+      end
+    else do
+      -- Normal case
+      --   add the value of the numeral
+      decnum = decnum + rchar(roman.substr(d_, 1))
+      end
+    end d_
+
+  return decnum
+
+method rchar(arg) public static returns int
+
+  parse arg.upper ch +1 .
+  select case ch
+    when 'M' then digit = 1000
+    when 'D' then digit =  500
+    when 'C' then digit =  100
+    when 'L' then digit =   50
+    when 'X' then digit =   10
+    when 'V' then digit =    5
+    when 'I' then digit =    1
+    otherwise     digit =    0
+    end
+
+  return digit
+

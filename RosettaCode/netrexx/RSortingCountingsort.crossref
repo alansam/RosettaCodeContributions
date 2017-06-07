@@ -1,0 +1,22 @@
+--- Variables for class RSortingCountingsort ---
+amax    int    v 44= 46 47= 50
+amax    int    a 52= 69 77
+amin    int    v 34= 36 37= 40
+amin    int    a 52= 69 72 72 77 78 81 81
+array   int[]  a 32 35 36 37
+array   int[]  a 42 45 46 47
+array   int[]  a 52 52 52 70 71 79= 85
+cl      int[]  v 22= 24 25
+count   int[]  v 69= 72 72= 78 81 81=
+ct      int    v 24= 25
+i_      int    v 77= 78 79 81 81
+icounts int[]  v 7= 13 15 15 17
+lists   int[,] v 16= 21 22
+ln      int    v 21= 22
+nr      int    v 70= 71
+numbr   int    v 71= 72 72
+rep     Rexx   v 23= 25 25= 27
+scounts int[]  v 13= 15 18
+x_      int    v 35= 36 37
+x_      int    v 45= 46 47
+z_      int    v 75= 79 80 80=

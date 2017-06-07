@@ -1,0 +1,24 @@
+/* Generated from 'RCIncrementNumericalString.nrx' 12 Sep 2011 12:07:01 [v3.00] */
+/* Options: Comments Crossref Decimal Format Java Logo Replace Symbols Trace2 Verbose3 */
+
+/* NetRexx */
+
+
+
+
+public class RCIncrementNumericalString{
+ private static final netrexx.lang.Rexx $01=new netrexx.lang.Rexx(1);
+ private static final java.lang.String $0="RCIncrementNumericalString.nrx";
+ 
+ public static void main(java.lang.String $0s[]){
+  netrexx.lang.Rexx numbers;
+  numbers=netrexx.lang.Rexx.toRexx("12345");
+  netrexx.lang.RexxIO.Say(numbers);
+  numbers=numbers.OpAdd(null,$01);
+  netrexx.lang.RexxIO.Say(numbers);
+  
+  return;
+  }
+ 
+ private RCIncrementNumericalString(){return;}
+ }

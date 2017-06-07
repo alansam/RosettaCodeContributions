@@ -1,0 +1,37 @@
+/* NetRexx */
+options replace format comments java crossref savelog symbols binary
+
+import java.math.BigInteger
+
+class RRandomNumberGen_Device
+  properties constant
+    randomDevName = '/dev/random'
+  properties indirect
+    randomDevIStream = InputStream
+  method getRandomLong() public returns BigInteger signals FileNotFoundException, IOException
+    if getRandomDevIStream() == null then initialize()
+    randomBytes = byte[8]
+    getRandomDevIStream().read(randomBytes, 0, randomBytes.length)
+    randomNum = BigInteger(randomBytes)
+    return randomNum
+  method initialize() inheritable signals FileNotFoundException
+    setRandomDevIStream(BufferedInputStream(FileInputStream(File(randomDevName))))
+    return
+  method finalize() inheritable signals IOException
+    if getRandomDevIStream() \= null then do
+      getRandomDevIStream().close()
+      setRandomDevIStream(null)
+      end
+    return    
+  method main(args = String[]) public static
+    do
+      lcl = RRandomNumberGen_Device()
+      loop for 10
+        randomNum = lcl.getRandomLong()
+        say Rexx(randomNum.longValue()).right(24) '0x'Rexx(Long.toHexString(randomNum.longValue())).right(16, 0)
+        end
+    catch ex = IOException
+      ex.printStackTrace()
+    end
+    return
+

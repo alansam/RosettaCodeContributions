@@ -1,0 +1,23 @@
+/* NetRexx program ****************************************************
+* 03.11.2012 Walter Pachl
+**********************************************************************/
+options replace format comments java crossref savelog symbols nobinary
+values = 'triangle quadrilateral pentagon hexagon heptagon octagon' -
+'nonagon decagon dodecagon'
+keys   = 'three four five six seven eight nine ten twelve'
+kcopy = keys
+ka = ''
+va = ''
+Loop i = 1 By 1 to 2 While kcopy > ''
+  Parse kcopy  k kcopy;  ka[i] = k
+  Parse values v values; va[i] = v
+  say i k v ka[i] va[i]
+  End
+say 2 k[2] v[2]
+say 1 ka[1] va[1]
+/**********************************************************************
+1 three triangle three triangle
+2 four quadrilateral four quadrilateral
+1 four quadrilateral  ???? WHY *** ???????????
+**********************************************************************/
+

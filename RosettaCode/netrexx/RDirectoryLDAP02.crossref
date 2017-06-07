@@ -1,0 +1,8 @@
+--- Variables for class RDirectoryLDAP02 ---
+args         String[]       a 36
+connection   LdapConnection s 34= 41= 45 48 55 55
+iox          IOException    v 51= 52 56= 57
+ldapHostName String         v 37= 40 41
+ldapPort     int            v 38= 40 41
+lex          LdapException  v 49= 50
+log_         Logger         c 31= 40 40 44 44 47 47 50 52 57

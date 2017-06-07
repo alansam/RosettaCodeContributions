@@ -1,0 +1,6 @@
+--- Variables for class RCStringInterp ---
+args   Object        v 26= 32
+msgfmt MessageFormat v 31= 32
+result StringBuffer  v 24= 32 32= 33
+si     Rexx          v 16= 18
+st     Rexx          v 15= 18

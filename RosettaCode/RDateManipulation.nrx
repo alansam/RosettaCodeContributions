@@ -1,0 +1,34 @@
+/* NetRexx */
+
+options replace format comments java crossref savelog symbols nobinary
+
+import java.text.SimpleDateFormat
+
+sampleDate = 'March 7 2009 7:30pm EST'
+
+formatter = SimpleDateFormat("MMMM d yyyy h:mma zzz")
+fdiso8601 = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ")
+
+parse sampleDate . . . . tzId .
+fdiso8601.setTimeZone(TimeZone.getTimeZone(tzId))
+
+gcal = GregorianCalendar()
+gcal.setTimeZone(TimeZone.getTimeZone(tzId))
+
+day = Date[2]
+day[0] = formatter.parse(sampleDate)
+day[1] = Date()
+day[1].setTime(day[0].getTime() + 12 * 60 * 60 * 1000)
+
+loop d_ = 0 to day.length - 1
+  gcal.setTime(day[d_])
+  say gcal
+  fdu = formatter.format(day[d_])
+  fdi = fdiso8601.format(day[d_])
+
+  say fdu
+  say fdi
+  end d_
+
+return
+

@@ -1,0 +1,16 @@
+--- Variables for class RCSeiveOfEratosthenes ---
+arg         Rexx      a 5= 5
+ex          Exception v 21= 22
+hi          long      a 42 45
+hiWatermark Rexx      v 5= 7 7 7= 10 12 15 16 18
+hn          long      a 27 34 35
+ix          long      v 31 34= 34 34 35 35 35 35
+jx          long      v 32 35= 35 36
+lo          long      a 42 45
+loWatermark Rexx      v 5= 6 6 6= 10 12 16 18
+p_          long      v 45= 46 47
+primes      Rexx      v 16= 19 20
+primes      Rexx      v 44= 47 47= 50
+seive       Rexx      v 15= 16
+seive       Rexx      a 42 46
+sv          Rexx      v 29= 30= 35 36= 40

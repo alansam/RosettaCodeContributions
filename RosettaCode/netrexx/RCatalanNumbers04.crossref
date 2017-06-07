@@ -1,0 +1,24 @@
+--- Variables for class RCatalanNumbers04 ---
+Arg Rexx a 40 41
+arg Rexx a 8= 8
+c1  Rexx v 44= 46= 67
+c2  Rexx a 16 20 20
+c2  Rexx v 49= 51 51= 68
+c3  Rexx a 25 28
+c3  Rexx v 54= 56 56= 59 69
+f   Rexx v 33= 35 35= 37
+f   Rexx v 60= 61 67
+hdr Rexx v 61= 65 71
+i   Rexx v 18= 19 20
+i   Rexx v 34= 35
+i   Rexx v 45= 46 46 50= 51 51 55= 56 56 66= 67 67 68 69
+im1 Rexx v 27= 28
+l   Rexx v 59= 61 62 63 67 68 69
+m   Rexx v 41= 42 42= 45 50 55 59 60 66
+n   Rexx a 12 13 13 13
+n   Rexx a 16 18 19
+n   Rexx a 25 27 28 28
+n   Rexx a 32 34
+nmi Rexx v 19= 20
+res Rexx v 17= 20 20= 22
+res Rexx v 26= 28= 29

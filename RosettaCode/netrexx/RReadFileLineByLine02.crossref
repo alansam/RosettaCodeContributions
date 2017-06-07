@@ -1,0 +1,14 @@
+--- Variables for class RReadFileLineByLine02 ---
+arg        Rexx                  a 4= 4
+ex         IOException           v 40= 41
+exFNF      FileNotFoundException v 32= 33
+exIO       IOException           v 34= 35
+fileLines  Rexx                  v 17= 27= 28= 46
+inFile     File                  v 22= 23
+inFileBR   BufferedReader        v 19= 23= 25 37 39
+inFileName Rexx                  v 4= 6 6 6= 7
+inFileName Rexx                  a 15 22
+inLine     String                v 18= 24 25= 26 28
+l_         Rexx                  v 8= 9 9
+l_         Rexx                  v 24= 27 28
+lines      Rexx                  v 7= 8 9

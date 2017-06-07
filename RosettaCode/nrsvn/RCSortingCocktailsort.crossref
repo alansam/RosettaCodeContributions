@@ -1,0 +1,12 @@
+--- Variables for class RCSortingCocktailsort ---
+A          String[]  a 23 25 30 30 31 32 32= 33= 42 42 43 44 44= 45= 51
+Alength    int       v 25= 29 41
+cl         String[]  v 14= 15 16
+ct         int       v 15= 16
+i_         int       v 29= 30 30 31 32 32 33 41= 42 42 43 44 44 45
+lists      String[,] v 12= 13 14
+ln         int       v 13= 14
+placesList String[]  v 4= 10 10 12
+sortedList String[]  v 10= 12
+swap       String    v 31= 33 43= 45
+swapped    boolean   v 26= 27 28= 34= 37 40= 46=

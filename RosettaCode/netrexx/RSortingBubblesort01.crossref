@@ -1,0 +1,17 @@
+--- Variables for class RSortingBubblesort01 ---
+al         ArrayList      v 27= 28
+cl         String[]       v 15= 16 17
+cmpi       Object         v 38= 40 41
+cmpj       Object         v 39= 40 42
+ct         int            v 16= 17
+i_         int            v 36= 37 38 42
+j_         int            v 37= 39 41
+list       String[]       a 24 26 27
+list       java.util.List a 32 34 35
+listLen    int            v 34= 36 37
+lists      String[,]      v 13= 14 15
+ln         int            v 14= 15
+placesList String[]       v 7= 11 11 13
+rl         String[]       v 26= 28 30
+rlist      ArrayList      v 35= 38 39 41 42 47
+sortedList String[]       v 11= 13

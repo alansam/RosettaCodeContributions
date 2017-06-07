@@ -1,0 +1,27 @@
+/* Generated from 'RCLoopsDownwardFor.nrx' 13 Jul 2011 13:34:42 [v3.00] */
+/* Options: Comments Crossref Decimal Format Java Logo Replace Symbols Trace2 Verbose3 */
+
+/* NetRexx */
+
+
+
+public class RCLoopsDownwardFor{
+ private static final netrexx.lang.Rexx $01=new netrexx.lang.Rexx((byte)10);
+ private static final netrexx.lang.Rexx $02=new netrexx.lang.Rexx((byte)0);
+ private static final netrexx.lang.Rexx $03=new netrexx.lang.Rexx(1);
+ private static final netrexx.lang.Rexx $04=new netrexx.lang.Rexx(0);
+ private static final java.lang.String $0="RCLoopsDownwardFor.nrx";
+ 
+ public static void main(java.lang.String $0s[]){
+  netrexx.lang.Rexx i_=null;
+  netrexx.lang.RexxIO.Say("");
+  netrexx.lang.RexxIO.Say("Loops/Downward for");
+  
+  {netrexx.lang.Rexx $1=$03.OpMinus(null);boolean $2=$1.OpGtEq(null,$04);i_=$01.OpPlus(null);i_:for(;$2?i_.OpLtEq(null,$02):i_.OpGtEq(null,$02);i_=i_.OpAdd(null,$1)){
+   netrexx.lang.RexxIO.Say(i_.right(new netrexx.lang.Rexx((byte)2)));
+   }
+  }/*i_*/
+  return;}
+ 
+ private RCLoopsDownwardFor(){return;}
+ }

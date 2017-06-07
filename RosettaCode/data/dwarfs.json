@@ -1,0 +1,39 @@
+{
+	"P1912_1" : {
+		"title"  : "Snow White and the Seven Dwarfs",
+		"year"   : 1912,
+		"medium" : "play",
+		"dwarfs" : [ "Blick", "Flick", "Glick", "Snick", "Plick", "Whick", "Quee" ]
+	},
+	"F1937_1" : {
+		"title"  : "Snow White and the Seven Dwarfs",
+		"year"   : 1937,
+		"medium" : "film",
+		"dwarfs" : [ "Grumpy", "Happy", "Sleepy", "Bashful", "Sneezy", "Dopey", "Doc" ]
+	},
+	"F1987_1" : {
+		"title"  : "Snow White",
+		"year"   : 1987,
+		"medium" : "film",
+		"dwarfs" : [ "Iddy", "Biddy", "Kiddy", "Diddy", "Fiddy", "Giddy", "Liddy" ]
+	},
+	"F1993_1" : {
+		"title"  : "Happily Ever After",
+		"year"   : 1993,
+		"medium" : "film",
+		"dwarfs" : [ "Muddy", "Sunburn", "Blossom", "Marina", "Critterina", "Moonbeam", "Thunderella" ]
+	},
+	"F2012_1" : {
+		"title"  : "Mirror, Mirror",
+		"year"   : 2012,
+		"medium" : "film",
+		"dwarfs" : [ "Grimm", "Butcher", "Wolf", "Napoleon", "Half Pint", "Grub", "Chuckles" ]
+	},
+	"F2012_2" : {
+		"title"  : "Snow White & the Huntsman",
+		"year"   : 2012,
+		"medium" : "film",
+		"dwarfs" : [ "Beith", "Quert", "Muir", "Coll", "Duir", "Gus", "Gort", "Nion" ]
+	}
+}
+

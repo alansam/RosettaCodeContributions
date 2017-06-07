@@ -1,0 +1,29 @@
+--- Variables for class RSortingStoogesort ---
+al         ArrayList      v 43= 45 47 47= 48 49
+al         java.util.List v 57= 58
+ct         int            v 22= 23 32= 33
+i_         int            a 40=
+i_         int            a 54=
+i_         int            a 62= 79 80 81 84 85 86 87 88
+icl        int[]          v 20= 22 23
+iList      int[]          v 7= 8 8 18
+iLists     int[,]         v 18= 19 20
+j_         int            a 40=
+j_         int            a 54=
+j_         int            a 62= 79 81 82 84 85 86 87 88
+L_         int[]          a 40 40 42 43 44 45
+L_         String[]       a 54 54 56 57
+L_         java.util.List a 62 62 78
+ln         int            v 19= 20 30= 31
+Lt         Object         v 80= 82
+placesList String[]       v 10= 16 16 29
+rl         int[]          v 42= 49= 52
+rl         String[]       v 56= 58 60
+rL_        ArrayList      v 78= 79 79 80 81 81 82 86 86= 87 87= 88 88= 91
+rpt        Rexx           v 21= 23 23= 25
+scl        String[]       v 31= 32 33
+sList      int[]          v 8= 15 15= 18
+sLists     String[,]      v 29= 30 31
+sortedList String[]       v 16= 29
+t_         int            v 85= 86 87 88
+x_         int            v 44= 45 48= 49 49

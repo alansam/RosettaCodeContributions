@@ -1,0 +1,21 @@
+--- Variables for class RLastFridayOfMonth ---
+arg              Rexx              a 6= 6
+arg              Rexx              a 59 61
+cal              GregorianCalendar v 12= 16 17 19 22 26 26
+day              Rexx              v 21= 22 24
+days             int[]             v 41= 42 42= 47 53
+daysToRollBack   Rexx              v 19= 21
+dd               Rexx              v 53= 54
+dlm              Rexx              v 63= 64 64 64= 67 71
+ex               Exception         v 73= 74
+mm               Rexx              v 52= 54
+mon              String            v 14= 15 24
+mth              int               v 39 46= 47 52 53
+totalDaysOfMonth int               v 16= 17 21
+wk               int               v 38 44= 47 47= 49 53
+wx               int               v 48 49= 50= 53
+year             Rexx              a 10 12 24 26
+year             Rexx              a 32 34 35 40
+year             Rexx              v 61= 62 62 62= 68 72
+yr               int               v 40= 42 42 42 44 44 44 44 51
+yy               Rexx              v 51= 54

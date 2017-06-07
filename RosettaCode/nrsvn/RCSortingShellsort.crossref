@@ -1,0 +1,13 @@
+--- Variables for class RCSortingShellsort ---
+a          String[]  a 21 23 27 30 31 31= 34= 39
+cl         String[]  v 12= 13 14
+ct         int       v 13= 14
+i_         int       v 26= 27 28
+inc        int       v 24= 25 26 29 30 31 32 36 36=
+j_         int       v 28= 29 30 31 31 32 32= 34
+lists      String[,] v 10= 11 12
+ln         int       v 11= 12
+n          int       v 23= 24 26
+placesList String[]  v 4= 8 8 10
+sortedList String[]  v 8= 10
+temp       String    v 27= 30 34

@@ -1,0 +1,28 @@
+/* Generated from 'RCAssocArrayCreate.nrx' 12 Jul 2011 20:51:40 [v3.00] */
+/* Options: Comments Crossref Decimal Format Java Logo Replace Symbols Trace2 Verbose3 */
+
+/* NetRexx */
+
+
+
+
+public class RCAssocArrayCreate{
+ private static final netrexx.lang.Rexx $01=netrexx.lang.Rexx.toRexx("\" />");
+ private static final java.lang.String $0="RCAssocArrayCreate.nrx";
+ 
+ public static void main(java.lang.String $0s[]){
+  netrexx.lang.Rexx key0;
+  netrexx.lang.Rexx key1;
+  netrexx.lang.Rexx hash;
+  key0=new netrexx.lang.Rexx('0');
+  key1=netrexx.lang.Rexx.toRexx("key0");
+  
+  hash=new netrexx.lang.Rexx('.'); // Initialize the associative array 'hash' to '.'
+  hash.getnode(key1).leaf=netrexx.lang.Rexx.toRexx("value0"); // Set a specific key/value pair
+  
+  netrexx.lang.RexxIO.Say((((netrexx.lang.Rexx.toRexx("<hash key=\"").OpCc(null,key0)).OpCc(null,netrexx.lang.Rexx.toRexx("\" value=\""))).OpCc(null,hash.getnode(key0).leaf)).OpCc(null,$01)); // Display a value for a key that wasn't set
+  netrexx.lang.RexxIO.Say((((netrexx.lang.Rexx.toRexx("<hash key=\"").OpCc(null,key1)).OpCc(null,netrexx.lang.Rexx.toRexx("\" value=\""))).OpCc(null,hash.getnode(key1).leaf)).OpCc(null,$01)); // Display a value for a key that was set
+  return;}
+ 
+ private RCAssocArrayCreate(){return;}
+ }

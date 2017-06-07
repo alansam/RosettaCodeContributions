@@ -1,0 +1,4 @@
+--- Variables for class RRepeatString ---
+rs        Rexx v 15= 17 17= 19
+sampleChr Rexx v 5= 8 8 9 9 10 10 11 11 11 12 13
+sampleStr Rexx v 4= 6 7 17

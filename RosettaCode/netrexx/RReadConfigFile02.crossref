@@ -1,0 +1,32 @@
+--- Variables for class RReadConfigFile02 ---
+arg           Rexx                  v 16= 17
+args          String[]              a 14 16
+configFile    Rexx                  v 17= 19 19 19= 20
+configFile    Rexx                  a 54 60
+configLines   Rexx                  v 60= 61 62
+e_            Rexx                  v 76= 78 79
+E_TYPE        Rexx                  c 10=
+elmt          Rexx                  v 77= 79
+ex            FileNotFoundException v 110= 111
+fileLines     Rexx                  v 100= 105= 106= 114
+inFile        File                  v 102= 103
+inFileName    Rexx                  a 98 102
+inFileScanner Scanner               v 103= 104 106 108
+isFalse       boolean               c 12=
+isTrue        boolean               c 11= 71
+l_            Rexx                  v 104= 105 106
+line          Rexx                  v 62= 63 64
+lNr           Rexx                  v 61= 62
+pc            Rexx                  v 62= 63 63
+rest          Rexx                  v 77= 80
+V_ARRAY       Rexx                  c 8= 74
+V_BOOL        Rexx                  c 9= 69
+V_SCALAR      Rexx                  c 7= 84
+varName       Rexx                  v 64= 90
+vars          Map                   v 20= 26 27
+vars          Map                   v 57 58= 90 92 95
+varVal        Rexx                  v 64= 68 73 76 77 80= 86
+varx          Rexx                  v 65= 69= 70= 71= 74= 75= 78= 79= 84= 85= 86= 90 91=
+vi            Rexx                  v 29= 30
+xval          Rexx                  v 27= 28 28 29 30
+xvar          Object                v 26= 27 28

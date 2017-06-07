@@ -1,0 +1,6 @@
+--- Variables for class RFindLimitOfRecursion ---
+ex            Error        v 16= 18
+hmMemoryUsage MemoryUsage  v 30= 33
+level         int          a 13 15 17
+mxBean        MemoryMXBean v 29= 30 31
+nmMemoryUsage MemoryUsage  v 31= 34

@@ -1,0 +1,15 @@
+/* NetRexx */
+options replace format comments java crossref savelog symbols nobinary
+trace all
+trace var cx cp
+str1 = '1223'
+str2 = '12'
+say "'"str1"'"
+say "'"str2"'"
+loop c_ = 1 to str1.length()
+  cx = str1.substr(c_, 1)
+  cp = str2.pos(cx)
+  say c_ cx cp
+  end c_
+return
+

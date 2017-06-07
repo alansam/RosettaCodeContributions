@@ -1,0 +1,16 @@
+--- Variables for class RSortingBubblesort02 ---
+al         ArrayList      v 27= 28
+cl         String[]       v 15= 16 17
+ct         int            v 16= 17
+hasChanged boolean        v 50 53 54= 61=
+index      int            v 56= 57 57 58 59 59 60
+item       String[]       a 24 26 27
+item       java.util.List a 32 51 52
+itemCount  int            v 51= 55 55= 56
+lists      String[,]      v 13= 14 15
+ln         int            v 14= 15
+placesList String[]       v 7= 11 11 13
+ritem      ArrayList      v 52= 57 57 58 59 59 60 66
+rl         String[]       v 26= 28 30
+sortedList String[]       v 11= 13
+swap       Object         v 58= 60

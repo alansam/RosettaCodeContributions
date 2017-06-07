@@ -1,0 +1,7 @@
+--- Variables for class RStackTraces ---
+args String[] a 11
+
+--- Variables for class RStackTraces.StackTracer ---
+elems StackTraceElement[] v 16= 19 20 20
+i_    Rexx                v 19= 20 20
+j_    Rexx                v 18= 20 21 21=

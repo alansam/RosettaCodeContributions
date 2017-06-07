@@ -1,0 +1,73 @@
+/* NetRexx */
+options replace format comments java crossref symbols
+
+/* REXX ---------------------------------------------------------------
+* 01.07.2014 Walter Pachl
+*--------------------------------------------------------------------*/
+Numeric Digits 1000
+runSample(arg)
+return
+
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+method c1(n) public static
+  return fact(2 * n) / (fact(n) * fact(n + 1))
+
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+method c2(n, c2) public static
+  res = 0
+  Loop i = 0 To n - 1
+    nmi = n - i - 1
+    res = res + c2[i] * c2[nmi]
+    End
+  Return res
+
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+method c3(n, c3) public static
+  res = 0
+  im1 = n - 1
+  res = 2 * (2 * n - 1) * c3[im1] / (n + 1)
+  Return res
+
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+method fact(n) public static
+  f = 1
+  Loop i = 1 To n
+    f = f * i
+    End
+  Return f
+
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+method runSample(Arg) public static
+  Parse Arg m .
+  If m = '' Then m = 20
+
+  c1 = 1
+  Loop i = 0 To m
+    c1[i] = c1(i)
+    End
+
+  c2 = 1
+  Loop i = 1 To m
+    c2[i] = c2(i, c2)
+    End
+
+  c3 = 1
+  Loop i = 1 To m
+    c3[i] = c3(i, c3)
+    End
+
+  l = (c3[m]).length
+  f = m.length
+  hdr = 'n'.right(f + 1) 'c1[n]'.right(l + 1) -
+                         'c2[n]'.right(l + 1) -
+                         'c3[n]'.right(l + 1)
+
+  Say hdr
+  Loop i = 0 To m
+    Say i.right(f + 1) c1[i].format(l + 1) -
+                       c2[i].format(l + 1) -
+                       c3[i].format(l + 1)
+    End
+  Say hdr
+  Return
+

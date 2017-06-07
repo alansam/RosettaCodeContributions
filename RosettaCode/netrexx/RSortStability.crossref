@@ -1,0 +1,14 @@
+--- Variables for class RSortStability ---
+cCompCtry Comparator v 31= 32
+cCompNm   Comparator v 15= 16
+city      Rexx       v 11= 12 20= 21 27= 28 36= 37
+cityList  String[]   v 4= 6 10 10 26 26
+cn        String[]   v 6= 10 11 12 16 20 21 26 27 28 32 36 37
+
+--- Variables for class RSortStability.CityComparator ---
+lft Object a 45 46
+rgt Object a 45 46
+
+--- Variables for class RSortStability.CountryComparator ---
+lft Object a 50 51
+rgt Object a 50 51

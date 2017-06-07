@@ -1,0 +1,115 @@
+/* NetRexx */
+options replace format comments java crossref symbols nobinary
+
+class RReadConfigFile02 public
+
+  properties constant inheritable 
+    V_SCALAR  = 'S'
+    V_ARRAY   = 'A'
+    V_BOOL    = 'B'
+    E_TYPE    = 'TYPE'
+    isTrue    = 1 == 1
+    isFalse   = 1 == 0
+
+method main(args = String[]) public static
+
+  arg = Rexx(args)
+  parse arg configFile .
+
+  if configFile = '' | configFile = '.' then configFile = './data/rosetta.conf'
+  vars = readConfigFile(configFile)
+
+--  requiredVars = 'FULLNAME FAVOURITEFRUIT OTHERFAMILY NEEDSPEELING SEEDSREMOVED'
+--  vars = verifyRequiredVars(vars, requiredVars)
+
+  say
+  loop xvar over vars.keySet()
+    xval = Rexx vars.get(xvar)
+    say (Rexx xvar).right(20)':' xval xval[0]
+    loop vi = 1 to xval[0]
+      say ' '.copies(20)':' xval[vi]
+      end vi
+    end xvar
+  say
+
+  return
+/*
+method verifyRequiredVars(vars = Map, requiredVars) public static returns Rexx
+
+  xvars = ''
+  loop w_ = 1 to requiredVars.words()
+    key = requiredVars.word(w_)
+    if vars[key] = '' then do
+      -- The required key doesn't exist so create a new entry as a  boolean and set it's value to false
+      vals = V_BOOL
+      vals[0] = 1
+      vals[1] = isFalse
+      end
+    xvars[key] = vals
+    end w_
+  newvars = vars.copyindexed(xvars)
+
+  return newvars
+*/
+method readConfigFile(configFile) public static returns Map
+
+  trace var vars varx varName
+  vars = Map
+  vars = HashMap()
+
+  configLines = scanFile(configFile)
+  loop lNr = 1 to configLines[0]
+    parse configLines[lNr].strip('b') pc +1 . 0 line
+    if pc = '#' | pc = ';' | line.length = 0 then iterate lNr
+    parse line varName varVal
+    varx = Rexx('')
+
+    select
+      when varVal.length() = 0 then do
+        varx    = V_BOOL
+        varx[0] = 1
+        varx[1] = isTrue
+        end
+      when varVal.pos(',') > 0 then do
+        varx    = V_ARRAY
+        varx[0] = 0
+        loop e_ = 1 while varVal.length() > 0
+          parse varVal elmt ',' rest
+          varx[0]  = e_
+          varx[e_] = elmt.strip()
+          varVal = rest.strip()
+          end e_
+        end
+      otherwise do
+        varx    = V_SCALAR
+        varx[0] = 1
+        varx[1] = varVal
+        end
+      end
+
+    vars.put(varName, varx)
+    varx = null
+    say (HashMap vars).toString()
+    end lNr
+
+  return vars
+
+-- Read a file and return contents as a Rexx indexed string
+method scanFile(inFileName) public static returns Rexx
+
+  fileLines = ''
+  do
+    inFile = File(inFileName)
+    inFileScanner = Scanner(inFile)
+    loop l_ = 1 while inFileScanner.hasNext()
+      fileLines[0] = l_
+      fileLines[l_] = inFileScanner.nextLine()
+      end l_
+    inFileScanner.close()
+
+  catch ex = FileNotFoundException
+    ex.printStackTrace
+  end
+
+  return fileLines
+

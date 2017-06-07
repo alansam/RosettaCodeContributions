@@ -1,0 +1,9 @@
+--- Variables for class RArb03 ---
+check      Rexx       v 21= 24 29
+n          Rexx       v 14= 22 22 26
+nanoFactor Rexx       v 9= 17
+sample     Rexx       v 22= 25 29
+t1         long       v 11= 16
+t2         long       v 15= 16
+td         Rexx       v 16= 17
+x          BigDecimal v 12= 13 13= 14

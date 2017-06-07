@@ -1,0 +1,70 @@
+/* NetRexx */
+options replace format comments java crossref symbols nobinary
+
+numeric digits 1000
+runSample(arg)
+return
+
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+method decompose(val) public static returns java.util.List
+  dc = ArrayList()
+  select
+    when val > 1 & val.datatype('w') then do
+      rv = ''
+      loop n_ = val until n_ = 1
+        parse checkFactor(2, n_, rv) n_ rv
+        if n_ = 1 then leave n_
+        parse checkFactor(3, n_, rv) n_ rv
+        if n_ = 1 then leave n_
+        loop m_ = 5 to n_ by 2 until n_ = 1
+          if m_ // 3 = 0 then iterate m_
+          parse checkFactor(m_, n_, rv) n_ rv
+          end m_
+        end n_
+      dc = ArrayList()
+      loop w_ = 1 to rv.words
+        dc.add(rv.word(w_))
+        end w_
+      end
+    when val = 0, val = 1 then do
+      dc.add(val)
+      end
+    otherwise do
+      signal IllegalArgumentException('Argument is expected to be a +ve integer.  Argument provided was' val)
+      end
+    end
+  return dc
+
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+method checkFactor(mult, n_, fac) private static
+  loop while n_ // mult = 0
+    fac = fac mult
+    n_ = n_ % mult
+    end
+  fac = fac.space
+  return n_ fac
+
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+method runSample(arg) private static
+  parse arg samples
+  if samples = '' then samples = '1:11, 89:101, 1000:1020, 10000:10040'
+  loop while samples \= ''
+    parse samples pair ',' samples
+    parse pair lv ':' rv .
+    if rv = '' | rv = '.' then rv = lv
+    rvl = rv.length
+    if rvl < 6 then rvl = 6
+    rvl = rvl + 2
+    say
+    say '-'.copies(60)
+    say lv.right(rvl) 'to' rv
+    say '-'.copies(60)
+    loop fv = lv to rv
+      dc = decompose(fv)
+      pv = ''
+      if dc.size() = 1 & (Rexx dc.get(0)) \= 1 then pv = '<prime>'
+      say fv.right(rvl) '=' dc.toString pv
+      end fv
+    end
+  return
+

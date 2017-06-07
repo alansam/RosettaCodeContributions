@@ -1,0 +1,11 @@
+--- Variables for class RSortCustomComparator ---
+args   String[] a 8
+disp   Rexx     v 16= 18 18= 20
+elmt   String   v 17= 18
+harry  String[] a 15 17
+sample String[] v 9= 10 11 12
+
+--- Variables for class RSortCustomComparator.LengthComparator ---
+cRes int    v 26 28= 29 29= 32
+lft  Object a 25 27 28 29
+rgt  Object a 25 27 28 29

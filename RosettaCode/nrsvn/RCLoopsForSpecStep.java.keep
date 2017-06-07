@@ -1,0 +1,28 @@
+/* Generated from 'RCLoopsForSpecStep.nrx' 13 Jul 2011 13:34:42 [v3.00] */
+/* Options: Comments Crossref Decimal Format Java Logo Replace Symbols Trace2 Verbose3 */
+
+/* NetRexx */
+
+
+
+public class RCLoopsForSpecStep{
+ private static final netrexx.lang.Rexx $01=new netrexx.lang.Rexx("1.4");
+ private static final netrexx.lang.Rexx $02=new netrexx.lang.Rexx("10.6");
+ private static final netrexx.lang.Rexx $03=new netrexx.lang.Rexx("1.7");
+ private static final netrexx.lang.Rexx $04=new netrexx.lang.Rexx('\000');
+ private static final java.lang.String $0="RCLoopsForSpecStep.nrx";
+ 
+ public static void main(java.lang.String $0s[]){
+  netrexx.lang.Rexx i_=null;
+  netrexx.lang.RexxIO.Say("");
+  netrexx.lang.RexxIO.Say("Loops/For with a specified step");
+  
+  {netrexx.lang.Rexx $1=$03;i_=$01.OpMinus(null).OpPlus(null);i_:for(;i_.OpLtEq(null,$02);i_=i_.OpAdd(null,$1)){
+   netrexx.lang.RexxIO.Say((i_.format(new netrexx.lang.Rexx((byte)3),new netrexx.lang.Rexx((byte)1))).OpCc(null,$04));
+   }
+  }/*i_*/
+  netrexx.lang.RexxIO.Say("");
+  return;}
+ 
+ private RCLoopsForSpecStep(){return;}
+ }

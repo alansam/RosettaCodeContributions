@@ -1,0 +1,18 @@
+--- Variables for class RCSortingMergesort ---
+al         java.util.List v 29= 30
+cl         String[]       v 17= 18 19
+ct         int            v 18= 19
+left       ArrayList      v 37= 42 47 47= 49 49 50 54
+left       java.util.List a 63 66 67 68 69 76 77
+lists      String[,]      v 11= 16 17
+ln         int            v 16= 17
+m          String[]       a 26 28 29
+m          java.util.List a 34 36 39 40 42 44 45 51 58
+middle     int            v 40= 41 44
+placesList String[]       v 6= 12 13 13
+result     ArrayList      v 36= 51 54= 58 61
+result     ArrayList      v 65= 68 72 77 80 83
+right      ArrayList      v 38= 45 48 48= 49 50 54
+right      java.util.List a 63 66 67 72 73 79 80
+rl         String[]       v 28= 30 32
+x_         int            v 41= 42 44= 45

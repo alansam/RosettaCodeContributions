@@ -1,0 +1,25 @@
+/* Generated from 'RCReverseString.nrx' 12 Sep 2011 11:55:16 [v3.00] */
+/* Options: Comments Crossref Decimal Format Java Logo Replace Symbols Trace2 Verbose3 */
+
+/* NetRexx */
+
+
+
+
+public class RCReverseString{
+ private static final java.lang.String $0="RCReverseString.nrx";
+ 
+ public static void main(java.lang.String $0s[]){
+  netrexx.lang.Rexx reverseThis;
+  netrexx.lang.Rexx sihTesrever;
+  reverseThis=netrexx.lang.Rexx.toRexx("asdf");
+  sihTesrever=reverseThis.reverse();
+  
+  netrexx.lang.RexxIO.Say(reverseThis);
+  netrexx.lang.RexxIO.Say(sihTesrever);
+  
+  return;
+  }
+ 
+ private RCReverseString(){return;}
+ }

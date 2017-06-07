@@ -1,0 +1,5 @@
+--- Variables for class RDetermineIfNumeric ---
+msg        Rexx   v 8= 9= 10
+n_         Rexx   v 6= 8 10
+testData   Rexx[] v 26= 37
+testString Rexx   a 17 18

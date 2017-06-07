@@ -1,0 +1,10 @@
+--- Variables for class RCRomanDecode ---
+arg    Rexx a 13 15
+arg    Rexx a 35 37
+ch     Rexx v 37= 38
+d_     int  v 20= 21 21 24 29
+decnum int  v 19= 24 24= 29 29= 33
+digit  int  v 39= 40= 41= 42= 43= 44= 45= 46= 49
+roman  Rexx v 15= 16 19 19 20 21 21 24 29
+y_     int  v 7= 8 8
+years  Rexx v 5= 7 8 8

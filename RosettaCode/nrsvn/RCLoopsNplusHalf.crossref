@@ -1,0 +1,5 @@
+--- Variables for class RCLoopsNplusHalf ---
+i_     Rexx v 10= 11 12
+iend   Rexx v 9= 10 12
+istart Rexx v 8= 10
+rs     Rexx v 7= 11 11= 13 13= 16

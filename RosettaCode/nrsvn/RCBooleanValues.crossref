@@ -1,0 +1,3 @@
+--- Variables for class RCBooleanValues ---
+b_   Rexx   v 6= 7 8 9 10
+bval Rexx[] v 4= 6 7 8 9 10

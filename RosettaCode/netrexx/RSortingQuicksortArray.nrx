@@ -1,0 +1,90 @@
+/* NetRexx */
+options replace format comments java crossref savelog symbols binary
+ 
+placesList = [String -
+    "UK  London",     "US  New York",   "US  Boston",     "US  Washington" -
+  , "UK  Washington", "US  Birmingham", "UK  Birmingham", "UK  Boston"     -
+]
+sortedList = quickSortSimple(String[] Arrays.copyOf(placesList, placesList.length))
+sortedInplace = quickSortSimple(String[] Arrays.copyOf(placesList, placesList.length))
+ 
+lists = [placesList, sortedList, sortedInplace]
+loop ln = 0 to lists.length - 1
+  cl = lists[ln]
+  loop ct = 0 to cl.length - 1
+    say cl[ct]
+    end ct
+    say
+  end ln
+ 
+return
+ 
+method quickSortSimple(array = String[]) public constant binary returns String[]
+ 
+  less    = ArrayList()
+  equal   = ArrayList()
+  greater = ArrayList()
+  out     = ArrayList()
+ 
+  if array.length > 1 then do
+    pivot = array[Random().nextInt(array.length - 1)]
+    loop x_ = 0 to array.length - 1
+      if array[x_].compareTo(pivot) < 0 then less.add(array[x_])
+      if array[x_].compareTo(pivot) = 0 then equal.add(array[x_])
+      if array[x_].compareTo(pivot) > 0 then greater.add(array[x_])
+      end x_
+      al = String[less.size]
+      ag = String[greater.size]
+      less.toArray(al)
+      greater.toArray(ag)
+      al = quickSortSimple(al)
+      ag = quickSortSimple(ag)
+      out.addAll(Arrays.asList(al))
+      out.addAll(equal)
+      out.addAll(Arrays.asList(ag))
+      out.toArray(array)
+    end
+ 
+  return array
+ 
+method quickSortInplace(array = String[]) public constant binary returns String[]
+ 
+  if array.length > 1 then do
+    pivot = array[Random().nextInt(array.length - 1)]
+    left  = 0
+    right = array.length - 1
+    loop label lr while left <= right
+      loop label p1 while array[left].compareTo(pivot) < 0
+        left = left + 1
+        end p1
+      loop label p2 while array[right].compareTo(pivot) > 0
+        right = right - 1
+        end p2
+      if left <= right then do
+        swap         = array[left]
+        array[left]  = array[right]
+        array[right] = swap
+        left  = left + 1
+        right = right - 1
+        end
+      end lr
+    al = String[right]
+    ar = String[array.length - left]
+    al = String[] Arrays.copyOfRange(array, 0, right)
+    ar = String[] Arrays.copyOfRange(array, left, array.length - 1)
+    al = quickSortInplace(al)
+    ar = quickSortInplace(ar)
+    out = ArrayList()
+    out.addAll(Arrays.asList(al))
+    out.addAll(Arrays.asList(ar))
+    out.toArray(array)
+    end
+ 
+  return array
+ 
+method isTrue public constant binary returns boolean
+  return 1 == 1
+ 
+method isFalse public constant binary returns boolean
+  return \isTrue
+

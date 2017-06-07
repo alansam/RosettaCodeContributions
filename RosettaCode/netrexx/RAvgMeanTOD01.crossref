@@ -1,0 +1,23 @@
+--- Variables for class RAvgMeanTOD01 ---
+alpha   double v 16= 17 18
+angle   Rexx   v 37= 39 40
+arg     Rexx   a 4= 4
+arg     Rexx   a 31 34 39
+arg     Rexx   a 43 44 44= 45 46
+avgTime Rexx   v 45= 46
+c_      Rexx   v 10= 20
+day     Rexx   v 9= 10 21
+day     Rexx   v 32= 36 36 37
+hh      Rexx   v 22= 28
+hh      Rexx   v 34= 35
+mm      Rexx   v 24= 28
+mm      Rexx   v 34= 35
+p_      Rexx   v 20= 21 21 21= 22 23 23= 24 25 25= 26
+sec     Rexx   v 35= 36 36 36= 37
+ss      Rexx   v 26= 28
+ss      Rexx   v 34= 35
+times   Rexx   a 8 14 15
+timex   Rexx   v 15= 16
+w_      Rexx   v 14= 15
+x       double v 11= 17 17= 20
+y       double v 12= 18 18= 20

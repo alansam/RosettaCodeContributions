@@ -1,0 +1,92 @@
+/* NetRexx */
+
+options replace format comments java crossref savelog symbols binary
+
+import java.util.List
+
+iList = [int 1, 4, 5, 3, -6, 3, 7, 10, -2, -5, 7, 5, 9, -3, 7]
+sList = Arrays.copyOf(iList, iList.length)
+
+placesList = [String -
+    "UK  London",     "US  New York",   "US  Boston",     "US  Washington" -
+  , "UK  Washington", "US  Birmingham", "UK  Birmingham", "UK  Boston"     -
+]
+
+sList = stoogeSort(sList)
+sortedList = stoogeSort(String[] Arrays.copyOf(placesList, placesList.length))
+
+iLists = [iList, sList]
+loop ln = 0 to iLists.length - 1
+  icl = iLists[ln]
+  rpt = Rexx('')
+  loop ct = 0 to icl.length - 1
+    rpt = rpt icl[ct]
+    end ct
+    say '['rpt.strip().changestr(' ', ',')']'
+  end ln
+
+say
+sLists = [placesList, sortedList]
+loop ln = 0 to sLists.length - 1
+  scl = sLists[ln]
+  loop ct = 0 to scl.length - 1
+    say scl[ct]
+    end ct
+    say
+  end ln
+
+return
+
+method stoogeSort(L_ = int[], i_ = 0, j_ = L_.length - 1) public static returns int[]
+
+  rl = int[L_.length]
+  al = ArrayList(L_.length)
+  loop x_ = 0 to L_.length - 1
+    al.add(Integer(L_[x_]))
+    end x_
+  al = stoogeSort(al)
+  loop x_ = 0 to al.size - 1
+    rl[x_] = (Integer al.get(x_)).intValue
+    end x_
+
+  return rl
+
+method stoogeSort(L_ = String[], i_ = 0, j_ = L_.length - 1) public static returns String[]
+
+  rl = String[L_.length]
+  al = List stoogeSort(Arrays.asList(L_))
+  al.toArray(rl)
+
+  return rl
+
+method stoogeSort(L_ = List, i_ = 0, j_ = L_.size - 1) public static returns ArrayList
+
+  /*
+   * <pre>
+   * algorithm stoogesort(array L, i = 0, j = length(L)-1)
+   *   if L[j] < L[i] then
+   *     L[i] <-> L[j]
+   *   if j - i > 1 then
+   *     t := (j - i + 1)/3
+   *     stoogesort(L, i  , j-t)
+   *     stoogesort(L, i+t, j  )
+   *     stoogesort(L, i  , j-t)
+   *   return L
+   * </pre>
+   */
+
+  rL_ = ArrayList(L_)
+  if (Comparable rL_.get(j_)).compareTo(Comparable rL_.get(i_)) < 0 then do
+    Lt = rL_.get(i_)
+    rL_.set(i_, rL_.get(j_))
+    rL_.set(j_, Lt)
+    end
+  if j_ - i_ > 1 then do
+    t_ = (j_ - i_ + 1) % 3
+    rL_ = stoogeSort(rL_, i_, j_ - t_)
+    rL_ = stoogeSort(rL_, i_ + t_, j_)
+    rL_ = stoogeSort(rL_, i_, j_ - t_)
+    end
+
+  return rL_
+

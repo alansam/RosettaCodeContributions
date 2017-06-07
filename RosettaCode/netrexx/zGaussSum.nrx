@@ -1,0 +1,23 @@
+/* NetRexx */
+options replace format comments java crossref symbols nobinary
+
+-- From Carl Friedrich Gauss: (N + 1) * N / 2
+-- See: http://mathforum.org/library/drmath/view/57919.html
+
+parse arg N .
+if N = '' | N = '.' then N = 100
+
+say sumToN(N)
+
+say
+loop N = 1 to 100
+  say N.right(5)':' sumToN(N).right(7)
+  end N
+
+return
+
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+method sumToN(N) public static
+  sum = (N + 1) * N / 2
+  return sum
+

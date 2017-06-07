@@ -1,0 +1,25 @@
+/* NetRexx */
+
+options replace format comments java crossref savelog symbols
+
+/**
+ * <h3>String case</h3>
+ *
+ * <p>
+ * Take the string "alphaBETA", and demonstrate how to convert it to UPPER-CASE and lower-case.
+ * Use the default encoding of a string literal or plain ASCII if there is no string literal in your language.
+ * Show any additional case conversion functions (e.g. swapping case, capitalizing the first letter, etc.)
+ * that may be included in the library of your language.
+ * </p>
+ *
+ * @author Alan Sampson
+ * @version 1.0
+ * @see <a href="http://rosettacode.org/wiki/String_case">rosettacode.org/wiki/String_case</a>
+ */
+
+abc = 'alphaBETA'
+
+say abc.upper
+say abc.lower
+say abc.upper(1, 1) -- capitalize 1st character
+

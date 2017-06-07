@@ -1,0 +1,54 @@
+/* NetRexx */
+options replace format comments java crossref symbols nobinary
+
+runSample(arg)
+return
+
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+method isPrime(val) public static returns boolean
+  btrue  = (1 == 1)
+  bfalse = \btrue
+  valIsPrime = boolean
+  select
+    when val <= 1 then
+      valIsPrime = bfalse
+    when val = 2, val = 3, val = 5, val = 7 then
+      valIsPrime = btrue
+    when val // 2 = 0, val // 3 = 0, val // 5 = 0, val // 7 = 0 then
+      valIsPrime = bfalse
+    otherwise do
+      valIsPrime = btrue
+      loop kv = 5 by 6 until kv ** 2 > val
+        if val // kv = 0 | val // (kv + 2) = 0 then do
+          valIsPrime = bfalse
+          leave kv
+          end
+        end kv
+      end
+    end
+
+  return valIsPrime
+
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+method runSample(arg) private static
+  parse arg samples
+  if samples = '' then samples = '0:11, 89:101, 1000:1020, 10000:10040'
+  loop while samples \= ''
+    lrv = 0
+    parse samples pair ',' samples
+    parse pair lv ':' rv .
+    if rv = '' then rv = lv
+    if lv > rv then parse (lv rv) rv lv -- left > right so swap the order
+    if \(lv.datatype('w') & rv.datatype('w')) then
+      signal IllegalArgumentException('Values must be whole numbers:' lv rv)
+    if rv = '' | rv = '.' then rv = lv
+    lrv = lrv.max(rv.strip.length)
+    loop pt = lv to rv
+      if isPrime(pt) then ip = '<prime>'
+                     else ip = RPrimeDecomposition.decompose(pt).toString
+      say pt.right(lrv)':' ip
+      end pt
+    say
+    end
+  return
+

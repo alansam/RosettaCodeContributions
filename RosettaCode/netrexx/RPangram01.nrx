@@ -1,0 +1,176 @@
+/* NetRexx */
+
+options replace format comments java crossref savelog symbols binary
+
+import java.util.List
+
+/**
+ * <h3>Pangram checker</h3>
+ * <p>
+ * Write a function or method to check a sentence to see if it is a
+ * <a href="http://en.wikipedia.org/wiki/Pangram">pangram</a> or not and show its use.
+ * </p>
+ * <p>
+ * A pangram is a sentence that contains all the letters of the English alphabet at least once,
+ * for example: <i>The quick brown fox jumps over the lazy dog</i>.
+ * </p>
+ *
+ * @author Alan Sampson
+ * @version 1.0
+ * @see <a href="http://rosettacode.org/wiki/Pangram_checker">http://rosettacode.org/wiki/Pangram_checker</a>
+ * @see <a href="http://en.wikipedia.org/wiki/List_of_pangrams">Wikipedia <i>List of pangrams</i></a>
+ */
+
+A2Z = Rexx('ABCDEFGHIJKLMNOPQRSTUVWXYZ')
+
+pangrams = create_samples
+pangrami = pangrams.listIterator
+
+loop label p_ while pangrami.hasNext
+  pangram = Rexx(pangrami.next.toString)
+  q_ = A2Z.verify(pangram.upper)
+  say pangram'\-'
+  if q_ == 0 then -
+    say ' [OK, a pangram]'
+  else -
+    say ' [Not a pangram.  Missing:' A2Z.substr(q_, 1)']'
+  end p_
+
+/**
+ * Create some sample data
+ *
+ * @return a @{link List} of pangrams
+ */
+method create_samples public static returns List
+
+  pangrams = ArrayList()
+
+  /* Perfect pangrams in English (26 letters) */
+  /* Without proper nouns or initialisms */
+  pangrams.add('Cwm fjordbank glyphs vext quiz.')     --('Carved symbols in a mountain hollow on the bank of an inlet irritated an eccentric person.')<ref>[http://www.funtrivia.com/askft/Question35564.html What is the longest sentence in English without repeating any letters?]</ref>
+  pangrams.add('Squdgy fez, blank jimp crwth vox!')   --('A short brimless felt hat barely blocks out the sound of a Celtic violin.' – created by [[Claude Shannon]])
+  pangrams.add('Jink cwm, zag veldt, fob qursh pyx.') --('Cross valley and plain to steal coins from Saudi mint.' – created by Stephen Wagner)
+  pangrams.add('Veldt jynx grimps waqf zho buck.')    --('A grasslands wryneck woodpecker climbs onto a male bovid on Muslim land held in trust.' – created by Michael Jones)<ref>Boehm, David A. et, al. [[Guinness Book of World Records]]. Bantam Books, New York, 1988. Page 198.</ref>
+  pangrams.add('Junky qoph-flags vext crwd zimb.')    --('An Abyssinian fly playing a Celtic violin was annoyed by trashy flags on which were the Hebrew letter qoph.')
+  pangrams.add('Cwm fjord veg balks nth pyx quiz.')   --('Relaxing in basins at the end of inlets terminates the endless tests from the box.')
+
+  /* With proper nouns, acronyms, abbreviations or initialisms */
+  pangrams.add('Quartz glyph job vex''d cwm finks.')      -- ('The act of carving symbols into quartz irritated ruffians from a Welsh river valley.')
+  pangrams.add('Blowzy night-frumps vex''d Jack Q.')
+  pangrams.add('Dwarf mobs quiz lynx.jpg, kvetch!')       -- ('crowd of midgets question picture of wildcat, then complain.')
+  pangrams.add('Jerk gawps foxy Qum Blvd. chintz.')       -- ('Contemptible person stares at sexy, burka-clad women parading down the main street of Qum, Iran')
+  pangrams.add('Fjord q-klutz bahs given cwm pyx.')
+  pangrams.add('Frowzy things plumb vex''d Jack Q.')
+  pangrams.add('Glum Schwartzkopf vex''d by NJ IQ.')
+  pangrams.add('J.Q. Vandz struck my big fox whelp.')
+  pangrams.add('Zing, dwarf jocks vex lymph, Qutb.')      --  ('Making a high-pitched sound, short athletes annoy their lymph glands and an Islamic saint.' – created by Peter M. Lella)
+  pangrams.add('J.Q. Schwartz flung D.V. Pike my box.')
+  pangrams.add('Jocks find quartz glyph, vex BMW.')
+  pangrams.add('Jumbling vext frowzy hacks PDQ.')         -- ('Being bounced around quickly annoyed the disheveled taxi drivers.' – all words in high school dictionary)
+  pangrams.add('Jump dogs, why vex Fritz Blank QC?')
+  pangrams.add('The glib czar junks my VW Fox PDQ.')
+  pangrams.add('T.V. quiz jock, Mr. PhD, bags few lynx.') -- (often seen as Mr. Jock, TV quiz PhD, bags few lynx.)
+  pangrams.add('New job: fix Mr. Gluck''s hazy TV, PDQ!') -- (includes 5 [[punctuation symbol]]s)
+  pangrams.add('PR flacks quiz gym: TV DJ box when?')
+  pangrams.add('Quartz jock vends BMW glyph fix.')
+  pangrams.add('Zing! Vext cwm fly jabs Kurd qoph.')
+  pangrams.add('G.B. fjords vex quick waltz nymph.')
+  pangrams.add('JFK got my VHS, PC and XLR web quiz.')
+  pangrams.add('Fjord Nymphs XV beg quick waltz.')
+
+  /*  */
+  pangrams.add('Nymphs blitz quick vex dwarf jog.')
+  pangrams.add('DJs flock by when MTV ax quiz prog.')
+  pangrams.add('Big fjords vex quick waltz nymph.')
+  pangrams.add('Bawds jog, flick quartz, vex nymph.')
+  pangrams.add('Junk MTV quiz graced by fox whelps.')
+  pangrams.add('Bawds jog, flick quartz, vex nymphs.')
+  pangrams.add('Waltz, bad nymph, for quick jigs vex!')
+  pangrams.add('Fox nymphs grab quick-jived waltz.')
+  pangrams.add('Brick quiz whangs jumpy veldt fox.')
+  pangrams.add('Glib jocks quiz nymph to vex dwarf.')
+  pangrams.add('Bright vixens jump; dozy fowl quack.')
+  pangrams.add('Vexed nymphs go for quick waltz job.')
+  pangrams.add('Quick wafting zephyrs vex bold Jim.')
+  pangrams.add('Quick zephyrs blow, vexing daft Jim.')
+  pangrams.add('Quick blowing zephyrs vex daft Jim.')
+  pangrams.add('Sphinx of black quartz, judge my vow.')
+  pangrams.add('Sex-charged fop blew my junk TV quiz')
+  pangrams.add('Jack fox bids ivy-strewn phlegm quiz')
+  pangrams.add('How quickly daft jumping zebras vex.')
+  pangrams.add('Two driven jocks help fax my big quiz.')
+  pangrams.add('"Now fax quiz Jack!" my brave ghost pled.')
+  pangrams.add('Jack, love my big wad of sphinx quartz!')
+  pangrams.add('Vamp fox held quartz duck just by wing.')
+  pangrams.add('Five quacking zephyrs jolt my wax bed.')
+  pangrams.add('The five boxing wizards jump quickly.')
+  pangrams.add('Jackdaws love my big sphinx of quartz.')
+  pangrams.add('Kvetching, flummoxed by job, W. zaps Iraq.')
+  pangrams.add('My ex pub quiz crowd gave joyful thanks.')
+  pangrams.add('Cozy sphinx waves quart jug of bad milk.')
+  pangrams.add('Waxy and quivering, jocks fumble pizza.')
+  pangrams.add('A very bad quack might jinx zippy fowls.')
+  pangrams.add('Pack my box with five dozen liquor jugs.')
+  pangrams.add('Few quips galvanized the mock jury box.')
+  pangrams.add('The jay, pig, fox, zebra, and my wolves quack!')
+  pangrams.add('Blowzy red vixens fight for a quick jump.')
+  pangrams.add('Sex prof gives back no quiz with mild joy.')
+  pangrams.add('Joaquin Phoenix was gazed by MTV for luck.')
+  pangrams.add('JCVD might pique a sleazy boxer with funk.')
+  pangrams.add('Quizzical twins proved my hijack-bug fix.')
+  pangrams.add('The quick brown fox jumps over a lazy dog.') 
+  pangrams.add('Wolf zombies quickly spot the jinxed grave.')
+  pangrams.add('Heavy boxes perform quick waltzes and jigs.')
+  pangrams.add('A quick chop jolted my big sexy frozen wives.')
+  pangrams.add('A wizard’s job is to vex chumps quickly in fog.')
+  pangrams.add('Sympathizing would fix Quaker objectives.')
+  pangrams.add('Pack my red box with five dozen quality jugs.')
+  pangrams.add('Fake bugs put in wax jonquils drive him crazy.')
+  pangrams.add('Watch "Jeopardy!", Alex Trebek''s fun TV quiz game.')
+  pangrams.add('The big plump jowls of zany Dick Nixon quiver.')
+  pangrams.add('GQ jock wears vinyl tuxedo for showbiz promo.')
+  pangrams.add('Woven silk pyjamas exchanged for blue quartz.')
+  pangrams.add('Brawny gods just flocked up to quiz and vex him.')
+  pangrams.add('Twelve ziggurats quickly jumped a finch box.')
+  pangrams.add('My faxed joke won a pager in the cable TV quiz show.')
+  pangrams.add('The quick onyx goblin jumps over the lazy dwarf.')
+  pangrams.add('The lazy major was fixing Cupid''s broken quiver.')
+  pangrams.add('Amazingly few discotheques provide jukeboxes.')
+  pangrams.add('Foxy diva Jennifer Lopez wasn’t baking my quiche.')
+  pangrams.add('Cozy lummox gives smart squid who asks for job pen.')
+  pangrams.add('By Jove, my quick study of lexicography won a prize.')
+  pangrams.add('Painful zombies quickly watch a jinxed graveyard.')
+  pangrams.add('Fax back Jim''s Gwyneth Paltrow video quiz.')
+  pangrams.add('My girl wove six dozen plaid jackets before she quit.')
+  pangrams.add('Six big devils from Japan quickly forgot how to waltz.')
+  pangrams.add('"Who am taking the ebonics quiz?", the prof jovially axed.')
+  pangrams.add('Why shouldn''t a quixotic Kazakh vampire jog barefoot?')
+  pangrams.add('Within Jack''s dark empty cave, boxes of quartz glisten.')
+  pangrams.add('Big July earthquakes confound zany experimental vow.')
+  pangrams.add('Foxy parsons quiz and cajole the lovably dim wiki-girl.')
+  pangrams.add('Cute, kind, jovial, foxy physique, amazing beauty? Wowser!')
+  pangrams.add('Have a pick: twenty six letters – no forcing a jumbled quiz!')
+  pangrams.add('A very big box sailed up then whizzed quickly from Japan.')
+  pangrams.add('Jack quietly moved up front and seized the big ball of wax.')
+  pangrams.add('Few black taxis drive up major roads on quiet hazy nights.')
+  pangrams.add('Just poets wax boldly as kings and queens march over fuzz.')
+  pangrams.add('Bored? Craving a pub quiz fix? Why, just come to the Royal Oak!')
+  pangrams.add('Grumpy wizards make toxic brew for the evil Queen and Jack.')
+  pangrams.add('Crazy Fredericka bought many very exquisite opal jewels.')
+  pangrams.add('Sixty zippers were quickly picked from the woven jute bag.')
+  pangrams.add('The job of waxing linoleum frequently peeves chintzy kids.')
+  pangrams.add('Back in June we delivered oxygen equipment of the same size.')
+  pangrams.add('Just keep examining every low bid quoted for zinc etchings.')
+  pangrams.add('How razorback-jumping frogs can level six piqued gymnasts!')
+  pangrams.add('A quick movement of the enemy will jeopardize six gunboats.')
+  pangrams.add('All questions asked by five watched experts amaze the judge.')
+  pangrams.add('The wizard quickly jinxed the gnomes before they vaporized.')
+  pangrams.add('What you write deserves better than a jiggling, shaky, inexact, or questionably fuzzy approximation of blur.')
+
+  /* most common */
+  pangrams.add('The quick brown fox jumps over a lazy dog.')    -- best/shortest pangram
+  pangrams.add('The quick brown fox jumps over the lazy dog.')  -- not as short but at least it's still a pangram
+  pangrams.add('The quick brown fox jumped over the lazy dog.') -- not a pangram
+
+  return pangrams
+

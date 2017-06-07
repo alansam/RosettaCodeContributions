@@ -1,0 +1,15 @@
+--- Variables for class RQuine01 ---
+A    Rexx   v 7= 79 80 81 82 83 94
+c_   Rexx   v 84= 87 88 91 94 97 100 103 109
+code Rexx[] v 8= 71 72 84 87 88 91= 94= 97= 100= 103= 109
+K    Rexx   v 77= 78= 79= 80= 81= 82= 83= 85 86 90 93 96 99 102
+N    Rexx   v 6= 72 74 109 111 111
+pgm  Rexx   v 69= 109 109= 111 111= 112
+post Rexx   v 88= 91 94 97 100
+pre  Rexx   v 88= 91 94 97 100
+Q    Rexx   v 4= 72 72 100
+S    Rexx   v 5= 91 97 97
+T    Rexx   v 86= 87 88 89
+t_   Rexx   v 71= 72
+txt  Rexx   v 70= 72 72= 74 74= 75 75 75= 103
+v_   Rexx   v 85= 86

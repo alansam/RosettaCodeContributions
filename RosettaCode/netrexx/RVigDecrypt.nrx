@@ -1,0 +1,156 @@
+/* NetRexx */
+options replace format comments java crossref symbols nobinary utf8
+
+/*
+  (key, decoded) = vigenere_decrypt(english_frequences(), encoded())
+  say "Key:" key
+  say "\nText:" decoded
+  return
+*/
+
+-- @see http://en.wikipedia.org/wiki/Vigen%C3%A8re_cipher#Cryptanalysis
+method vigenere_decrypt(target_freqs = java.util.List, input) public static
+  nchars = uppercase().length
+  ordA = (Rexx 'A').c2d
+  Collections.sort(target_freqs)
+
+  /*
+  def frequency(input):
+    result = [[c, 0.0] for c in uppercase]
+    loop c over input
+      result[c - ordA][1] += 1
+      end c
+    return result
+
+  def correlation(input):
+    result = 0.0
+    freq = frequency(input)
+    freq.sort(key = itemgetter(1))
+
+    loop i, f over enumerate(freq)
+      result = result + f[1] * sorted_targets[i]
+      end i, f
+    return result
+  */
+
+  -- remove non-alpha chars
+  input = input.upper()
+  cleaninput = input.translate('', input.translate('', uppercase())).space(0)
+  cleaned = ArrayList()
+  loop c = 0 to cleaninput.length - 1
+    cc = Rexx cleaninput.charAt(c)
+    cleaned.add(cc.c2d)
+    end c
+  best_len = 0
+  best_corr = -100.0
+
+  -- Assume that if there are less than 20 characters
+  -- per column, the key's too long to guess
+  say cleaned.size() cleaned.size() % 20
+  /*
+  loop i over xrange(2, cleaned.length // 20)
+    pieces = [[] for _ in xrange(i)]
+    loop j, c over enumerate(cleaned)
+      pieces[j % i].append(c)
+      end j, c
+
+    -- The correlation seems to increase for smaller
+    -- pieces/longer keys, so weigh against them a little
+    corr = -0.5 * i + sum(correlation(p) for p in pieces)
+
+    if corr > best_corr then do
+      best_len = i
+      best_corr = corr
+      end
+    end i
+  */
+
+  if best_len == 0 then
+      return ("Text is too short to analyze", "")
+
+  /*
+  pieces = [[] for _ in xrange(best_len)]
+  loop i, c over enumerate(cleaned)
+    pieces[i % best_len].append(c)
+    end i, c
+  */
+
+  /*
+  freqs = [frequency(p) for p in pieces]
+  */
+
+  key = ""
+  loop fr over freqs
+    fr.sort(key=itemgetter(1), reverse=True)
+
+    m = 0
+    max_corr = 0.0
+    loop j = 0 to nchars - 1
+      corr = 0.0
+      c = ordA + j
+      loop frc over fr
+        d = (frc[0].c2d - c + nchars) // nchars
+        corr = corr + frc[1] * target_freqs[d]
+        end frc
+
+      if corr > max_corr then do
+        m = j
+        max_corr = corr
+        end
+      end j
+
+    key = key + chr(m + ordA)
+    end fr
+
+  /*
+  r = (((c - key[i // best_len].c2d + nchars) // nchars + ordA).d2c
+       for i, c in enumerate(cleaned))
+  */
+  return (key, ""/*.join(r)*/)
+
+method encoded() public static
+  encoded = -
+    'MOMUD EKAPV TQEFM OEVHP AJMII CDCTI FGYAG JSPXY ALUYM NSMYH' -
+    'VUXJE LEPXJ FXGCM JHKDZ RYICU HYPUS PGIGM OIYHF WHTCQ KMLRD' -
+    'ITLXZ LJFVQ GHOLW CUHLO MDSOE KTALU VYLNZ RFGBX PHVGA LWQIS' -
+    'FGRPH JOOFW GUBYI LAPLA LCAFA AMKLG CETDW VOELJ IKGJB XPHVG' -
+    'ALWQC SNWBU BYHCU HKOCE XJEYK BQKVY KIIEH GRLGH XEOLW AWFOJ' -
+    'ILOVV RHPKD WIHKN ATUHN VRYAQ DIVHX FHRZV QWMWV LGSHN NLVZS' -
+    'JLAKI FHXUF XJLXM TBLQV RXXHR FZXGV LRAJI EXPRV OSMNP KEPDT' -
+    'LPRWM JAZPK LQUZA ALGZX GVLKL GJTUI ITDSU REZXJ ERXZS HMPST' -
+    'MTEOE PAPJH SMFNB YVQUZ AALGA YDNMP AQOWT UHDBV TSMUE UIMVH' -
+    'QGVRW AEFSP EMPVE PKXZY WLKJA GWALT VYYOB YIXOK IHPDS EVLEV' -
+    'RVSGB JOGYW FHKBL GLXYA MVKIS KIEHY IMAPX UOISK PVAGN MZHPW' -
+    'TTZPV XFCCD TUHJH WLAPF YULTB UXJLN SIJVV YOVDJ SOLXG TGRVO' -
+    'SFRII CTMKO JFCQF KTINQ BWVHG TENLH HOGCS PSFPV GJOKM SIFPR' -
+    'ZPAAS ATPTZ FTPPD PORRF TAXZP KALQA WMIUD BWNCT LEFKO ZQDLX' -
+    'BUXJL ASIMR PNMBF ZCYLV WAPVF QRHZV ZGZEF KBYIO OFXYE VOWGB' -
+    'BXVCB XBAWG LQKCM ICRRX MACUO IKHQU AJEGL OIJHH XPVZW JEWBA' -
+    'FWAML ZZRXJ EKAHV FASMU LVVUT TGK'
+  return encoded
+
+-- @see http://en.wikipedia.org/wiki/Letter_frequency
+method english_frequences() public static returns java.util.List
+  english_frequences = [ -
+    0.08167 /* A */, 0.01492 /* B */, -
+    0.02782 /* C */, 0.04253 /* D */, - 
+    0.12702 /* E */, 0.02228 /* F */, -
+    0.02015 /* G */, 0.06094 /* H */, -
+    0.06966 /* I */, 0.00153 /* J */, -
+    0.00772 /* K */, 0.04025 /* L */, -
+    0.02406 /* M */, 0.06749 /* M */, -
+    0.07507 /* O */, 0.01929 /* P */, -
+    0.00095 /* Q */, 0.05987 /* R */, -
+    0.06327 /* S */, 0.09056 /* T */, -
+    0.02758 /* U */, 0.00978 /* V */, -
+    0.02360 /* W */, 0.00150 /* X */, -
+    0.01974 /* Y */, 0.00074 /* Z */  -
+    ]
+  return Arrays.asList(english_frequences)
+
+method uppercase() public static
+  uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+  return uppercase
+
+main()
+

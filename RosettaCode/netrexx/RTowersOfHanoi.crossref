@@ -1,0 +1,8 @@
+--- Variables for class RTowersOfHanoi ---
+args    String[]       a 27
+colFrom Rexx           a 14 17 20 21 22
+colTo   Rexx           a 14 17 20 21 22
+colVia  Rexx           a 14 20 21 22
+lcl     RTowersOfHanoi v 28= 29
+moves   Rexx           p 8 11= 16 16= 17
+nrDisks Rexx           a 14 15 20 22

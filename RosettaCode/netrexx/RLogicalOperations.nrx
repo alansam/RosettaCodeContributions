@@ -1,0 +1,25 @@
+/* NetRexx */
+options replace format comments java crossref symbols nobinary
+
+parse arg num shift .
+if num   = '' | num   = '.' then num   = 2x01
+if shift = '' | shift = '.' then shift = 2
+
+loop shift = 0 to 32
+  sl = SLA(num, shift)
+  sr = SRA(num, shift)
+  say 'shift:' shift
+  say num.format(8, 3, 3, 6) '['num.d2x()']:' sl.format(8, 3, 3, 6) '['sl.d2x()']'
+  say num.format(8, 3, 3, 6) '['num.d2x()']:' sr.format(8, 3, 3, 6) '['sr.d2x()']'
+  end shift
+
+return
+
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+method SLA(num, shift) public static returns Rexx
+  return num * 2 ** shift
+
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+method SRA(num, shift) public static returns Rexx
+  return num % 2 ** shift
+

@@ -1,0 +1,43 @@
+/* NetRexx */
+options replace format comments java crossref symbols nobinary
+
+runSample(arg)
+return
+
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+method runSample(arg) private static
+  d = int 5
+
+  say Rexx(d).right(8) Rexx(d).d2x.x2b.right(8, 0)  
+
+  d1 = shiftleft(d, 1)
+  d2 = shiftleft(d, 2)
+  d3 = shiftleft(d, 3)
+  d4 = shiftleft(d, 4)
+  say 'left 1'.right(8) (d1).d2x.x2b.right(8, 0) (d1).d2x.right(2, 0) (d1).right(3)
+  say 'left 2'.right(8) (d2).d2x.x2b.right(8, 0) (d2).d2x.right(2, 0) (d2).right(3)
+  say 'left 3'.right(8) (d3).d2x.x2b.right(8, 0) (d3).d2x.right(2, 0) (d3).right(3)
+  say 'left 4'.right(8) (d4).d2x.x2b.right(8, 0) (d4).d2x.right(2, 0) (d4).right(3)
+
+  d = int shiftleft(d, 4)
+  say Rexx(d).right(8) Rexx(d).d2x.x2b.right(8, 0)  
+
+  d1 = shiftright(d, 1)
+  d2 = shiftright(d, 2)
+  d3 = shiftright(d, 3)
+  d4 = shiftright(d, 4)
+  say 'right 1'.right(8) (d1).d2x.x2b.right(8, 0) (d1).d2x.right(2, 0) (d1).right(3)
+  say 'right 2'.right(8) (d2).d2x.x2b.right(8, 0) (d2).d2x.right(2, 0) (d2).right(3)
+  say 'right 3'.right(8) (d3).d2x.x2b.right(8, 0) (d3).d2x.right(2, 0) (d3).right(3)
+  say 'right 4'.right(8) (d4).d2x.x2b.right(8, 0) (d4).d2x.right(2, 0) (d4).right(3)
+
+  return
+
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+method shiftleft(d, s) private static returns Rexx
+  return d * (2 ** s)
+
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+method shiftright(d, s) private static returns Rexx
+  return d % (2 ** s)
+

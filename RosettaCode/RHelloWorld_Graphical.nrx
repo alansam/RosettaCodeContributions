@@ -1,0 +1,36 @@
+/* NetRexx */
+
+options replace format comments java crossref savelog symbols binary
+
+/**
+ * In this User Output task, the goal is to display the string "Goodbye, World!" on a GUI object
+ * (alert box, plain window, text area, etc.).
+ *
+ * @author Alan Sampson
+ * @version 1.0
+ * @see <a href="http://rosettacode.org/wiki/Hello_world/Graphical">rosettacode.org/wiki/Hello_world/Graphical</a>
+ */
+
+import javax.swing.
+
+False = (1 \= 1)
+True  = \False
+
+msgText = 'Goodbye, World!'
+JOptionPane.showMessageDialog(null, msgText)
+
+window = JFrame(msgText)
+text = JTextArea()
+button = JButton(msgText)
+
+text.setText(msgText)
+
+window.setLayout(FlowLayout())
+window.add(button)
+window.add(text)
+window.pack
+window.setVisible(True)
+window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE)
+
+return
+

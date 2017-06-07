@@ -1,0 +1,94 @@
+/* NetRexx */
+options replace format comments java crossref symbols nobinary
+
+class RJumps01 public
+
+method main(args = String[]) public static
+
+  arg = Rexx(args)
+
+  parse arg arg1 arg2 otherargs
+  if arg1 = '.' then arg1 = ''
+  if arg2 = '.' then arg2 = ''
+  jumpingDO(arg1, arg2, otherargs)
+  jumpingSELECT(arg1, arg2, otherargs)
+  jumpingLOOP(arg1, arg2, otherargs)
+  do
+    say 'Signalling'
+    jumpingSIGNAL(arg1, arg2, otherargs)
+  catch ex = RJumps01.CrashBang
+    ex.printStackTrace
+  finally
+    say 'Done signalling'
+  end
+
+  return
+
+method jumpingSIGNAL(arg1, arg2, otherargs) private static signals RJumps01.CrashBang
+
+  say 'Starting'
+  if otherargs = '' then signal RJumps01.CrashBang('Gronk!')
+  say 'Success'
+  say otherargs
+
+  return
+
+method jumpingDO(arg1, arg2, otherargs) private static
+
+  do label outaHere
+    say 'Starting'
+    do label proc
+    say arg1
+    say arg2
+    if arg2 = '' then leave proc
+    if otherargs = '' then signal RJumps01.CrashBang('Gronk!')
+    say otherargs
+    end proc
+    say 'Success'
+  catch ex = RJumps01.CrashBang
+    ex.printStackTrace
+  finally
+    say
+    say 'Ending'
+  end outaHere
+
+  return
+
+method jumpingSELECT(arg1, arg2, otherargs) private static
+
+  select label outaHere
+    when arg1 \= '' then do
+      say 'Selected' arg1 arg1.length
+      if arg1.length = 1 then leave outaHere
+      say '>>>' arg1.length
+      end
+    when arg2 \= '' then do
+      say 'Selected' arg1
+      if arg2.length = 1 then leave outaHere
+      say '>>>' arg2.length
+      end
+    otherwise say 'nothing selected'
+  finally
+    say 'Done selecting'
+  end outaHere
+
+  return
+
+method jumpingLOOP(arg1, arg2, otherargs) private static
+
+  say 'Looping'
+  loop outaHere = 1 for 100
+    if outaHere > 3 & outaHere <= 5 then iterate outaHere
+    say outaHere
+    if outaHere > 6 then leave outaHere
+    finally
+      say 'Done looping'
+    end outaHere
+
+  return
+
+class RJumps01.CrashBang extends Exception
+  method CrashBang(message = String) public
+    super(message)
+    return
+

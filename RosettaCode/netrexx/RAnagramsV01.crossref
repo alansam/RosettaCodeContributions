@@ -1,0 +1,18 @@
+--- Variables for class RAnagramsV01 ---
+ana              Object         v 41= 42 43
+anagrams         Map            v 22= 31 32 34 35 39
+ani              Iterator       v 39= 40 41
+arg              Rexx           a 7 8
+arg              Rexx           v 52= 55
+args             String[]       a 50 52
+aWord            String         v 23 26= 27 28 34
+chars            char[]         v 28= 29 30
+count            Rexx           v 24= 35 35= 42
+dictFrom         String         v 12= 16= 19
+dictionaryReader BufferedReader v 20= 26 37
+durl             URL            v 11= 12 13
+ex               Exception      v 56= 57
+isr              Reader         v 9 13= 17= 20
+key              String         v 30= 31 32 34 35
+localFile        Rexx           v 8= 10 16 17
+ra               RAnagramsV01   v 54= 55

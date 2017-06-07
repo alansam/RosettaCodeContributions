@@ -1,0 +1,156 @@
+/* NetRexx */
+options replace format comments java crossref symbols nobinary
+
+import java.util.Vector
+
+numeric digits 20
+
+parse arg loWatermark hiWatermark testForPrime .
+if loWatermark  = '' | loWatermark  = '.' then loWatermark  = 1
+if hiWatermark  = '' | hiWatermark  = '.' then hiWatermark  = 200
+if testForPrime = '' | testForPrime = '.' then testForPrime = 313
+
+do
+  if \loWatermark.datatype('w') | \hiWatermark.datatype('w') then -
+    signal NumberFormatException('arguments must be whole numbers')
+  if loWatermark > hiWatermark then -
+    signal IllegalArgumentException('the start value must be less than the end value')
+
+  beginProc = System.nanoTime()
+  seiveR = sieveOfEratosthenes_Rexx(hiWatermark)
+  endProc = System.nanoTime()
+  primes = getPrimes(seiveR, loWatermark, hiWatermark)
+  runTime = endProc - beginProc
+  reporter(primes, loWatermark, hiWatermark, runTime)
+  if isPrime(testForPrime, sieveOfEratosthenes_Rexx(testForPrime)) then prime = 'prime'
+                                                                   else prime = 'not prime'
+  say testForPrime.right(20) 'is' prime
+
+  beginProc = System.nanoTime()
+  seiveB = sieveOfEratosthenes_BitSet(hiWatermark)
+  endProc = System.nanoTime()
+  primes = getPrimes(seiveB, loWatermark, hiWatermark)
+  runTime = endProc - beginProc
+  reporter(primes, loWatermark, hiWatermark, runTime)
+  if isPrime(testForPrime, sieveOfEratosthenes_BitSet(testForPrime)) then prime = 'prime'
+                                                                     else prime = 'not prime'
+  say testForPrime.right(20) 'is' prime
+
+  beginProc = System.nanoTime()
+  seiveBA = sieveOfEratosthenes_BooleanArray(hiWatermark)
+  endProc = System.nanoTime()
+  primes = getPrimes(seiveBA, loWatermark, hiWatermark)
+  runTime = endProc - beginProc
+  reporter(primes, loWatermark, hiWatermark, runTime)
+  if isPrime(testForPrime, sieveOfEratosthenes_BooleanArray(testForPrime)) then prime = 'prime'
+                                                                           else prime = 'not prime'
+  say testForPrime.right(20) 'is' prime
+catch ex = Exception
+  ex.printStackTrace
+end
+
+return
+
+method reporter(primes = Vector, loWatermark, hiWatermark, runTime) public constant
+
+  say 'List of prime numbers from' loWatermark 'to' hiWatermark 'via a "Sieve of Eratosthenes" algorithm:'
+  say '  'primes.toString()
+  say '  Count of primes:' primes.size()
+  say 'Processing time:' (runTime / 1000000000).format(null, 6)'s'
+
+  return
+
+method sieveOfEratosthenes_Rexx(hn) public static binary returns Rexx
+
+  sv = Rexx(isTrue)
+  sv[1] = isFalse -- one is not prime
+
+  loop ix = 2 while ix * ix <= hn
+    if sv[ix] then loop jx = ix * ix by ix while jx <= hn
+      sv[jx] = isFalse
+      end jx
+    end ix
+
+  return sv
+
+method sieveOfEratosthenes_BitSet(hn = int) public static binary returns BitSet
+
+  sv = BitSet(int hn + 1) -- A vector of bits where for each bit: FALSE indicates its index is a prime
+  ix = int
+  jx = int
+  sv.set(0) -- zero is not prime
+  sv.set(1) -- one is not prime
+
+  loop ix = 2 while ix * ix <= hn
+    if \sv.get(ix) then loop jx = ix * ix by ix while jx <= hn
+      sv.set(jx)
+      end jx
+    end ix
+
+  return sv
+
+method sieveOfEratosthenes_BooleanArray(hn = int) public static binary returns boolean[]
+
+  sv = boolean[hn + 1] -- An array of boolean where for each boolean: FALSE indicates its index is a prime
+  ix = int
+  jx = int
+  sv[0] = boolean isTrue -- zero is not prime
+  sv[1] = boolean isTrue -- one is not prime
+
+  loop ex = 2 * 2 to hn by 2
+    sv[ex] = isTrue
+    end ex
+
+  loop ix = 3 to hn by 2 while ix * ix <= hn
+    if \sv[ix] then loop jx = ix * 3 to hn by ix + ix
+      sv[jx] = isTrue
+      end jx
+    end ix
+
+  return sv
+
+method getPrimes(seive = Rexx, lo, hi) private constant binary returns Vector
+
+  primes = Vector()
+  loop p_ = lo to hi
+    if \seive[p_] then iterate p_
+    primes.add(p_)
+    end p_
+
+  return primes
+
+method getPrimes(seive = BitSet, lo = int, hi = int) private constant binary returns Vector
+
+  primes = Vector()
+  loop p_ = lo to hi
+    if seive.get(p_) then iterate p_
+    primes.add(Integer(p_))
+    end p_
+
+  return primes
+
+method getPrimes(seive = boolean[], lo = int, hi = int) private constant binary returns Vector
+
+  primes = Vector()
+  loop p_ = lo to hi
+    if seive[p_] then iterate p_
+    primes.add(Long(p_))
+    end p_
+
+  return primes
+
+method isPrime(num, seive = Rexx) public constant binary returns boolean
+  return seive[num]
+
+method isPrime(num, seive = BitSet) public constant binary returns boolean
+  return \seive.get(num)
+
+method isPrime(num, seive = boolean[]) public constant binary returns boolean
+  return \seive[num]
+
+method isTrue public constant binary returns boolean
+  return 1 == 1
+
+method isFalse public constant binary returns boolean
+  return \isTrue
+

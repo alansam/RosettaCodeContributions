@@ -1,0 +1,11 @@
+--- Variables for class RCPolymorphicCopy ---
+args String[]            a 10
+obj1 RCPolymorphicCopy.T v 11= 13
+obj2 RCPolymorphicCopy.S v 12= 14
+x    RCPolymorphicCopy.T a 7 8
+
+--- Variables for class RCPolymorphicCopy.T ---
+dup RCPolymorphicCopy.T        v 24 27= 32
+ex  CloneNotSupportedException v 28= 29
+
+--- No variables in class RCPolymorphicCopy.S ---

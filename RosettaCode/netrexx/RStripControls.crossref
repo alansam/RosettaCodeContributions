@@ -1,0 +1,11 @@
+--- Variables for class RStripControls ---
+arg      Rexx a 4= 4
+arg      Rexx a 25
+asciichr Rexx v 11= 12 13 20 20
+controls Rexx v 9= 13
+extended Rexx v 10= 13 21 21
+ix       Rexx v 15= 16
+ll       Rexx v 33= 34 34 34 34
+rx       Rexx v 13= 14 15 16
+sss      Rexx v 26= 27 27= 28= 29 29 30= 31 31
+sstring  Rexx a 8 12= 22

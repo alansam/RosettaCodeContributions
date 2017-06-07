@@ -1,0 +1,10 @@
+--- Variables for class RTowersOfHanoi00 ---
+arg       Rexx a 4= 4
+arg       Rexx a 8 9
+discs     Rexx v 9= 10 10 10 10= 11 12
+discs     int  a 17= 18 23 25
+moves     Rexx v 12= 13
+moves     int  a 17= 19 19= 20 23 23= 24 24= 25 25= 27
+towerFrom int  a 17= 20 23 24 25
+towerTo   int  a 17= 20 23 24 25
+towerVia  int  a 17= 23 24 25

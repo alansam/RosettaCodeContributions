@@ -1,0 +1,109 @@
+/* NetRexx */
+options replace format comments java crossref symbols nobinary
+import java.math.
+numeric digits 20                      /*use twenty digits precision.   */
+
+-- =============================================================================
+class RNumericalIntegration02
+
+  properties private static
+    test_ = 1
+
+  /*----------------------------------LEFT_RECT subroutine----------------*/
+  method left_rect(a, b, n) public static binary returns BigDecimal
+    h = (b - a) / n
+    sum = BigDecimal.ZERO
+    loop x = a by h for n
+      sum = sum.add(f(x))
+      end x
+    return sum.multiply(BigDecimal(h))
+
+  /*----------------------------------MIDPOINT_RECT subroutine------------*/
+  method midpoint_rect(a, b, n) public static binary returns BigDecimal
+    h = (b - a) / n
+    sum = BigDecimal.ZERO
+    loop x = a + h / 2 by h for n
+      sum = sum.add(f(x))
+      end x
+    return sum.multiply(BigDecimal(h))
+
+  /*----------------------------------RIGHT_RECT subroutine---------------*/
+  method right_rect(a, b, n) public static binary returns BigDecimal
+    h = (b - a) / n
+    sum = BigDecimal.ZERO
+    loop x = a + h by h for n
+      sum = sum.add(f(x))
+      end x
+    return sum.multiply(BigDecimal(h))
+
+  /*----------------------------------SIMPSON subroutine------------------*/
+  method simpson(a, b, n) public static binary returns BigDecimal
+    h = (b - a) / n
+    sum1 = f(a + h / 2)
+    sum2 = BigDecimal.ZERO
+    loop x = 1 to n - 1
+      sum1 = sum1.add(f(a + h * x + h * 0.5))
+      sum2 = sum2.add(f(a + x * h))
+      end x
+
+--  return h * (f(a) + f(b) + 4 * sum1 + 2 * sum2) / 6
+    area = (BigDecimal(h).multiply(f(a).add(f(b)).add(sum1.multiply(BigDecimal('4'))).add(sum2.multiply(BigDecimal('2'))))).divide(BigDecimal('6'), RoundingMode.HALF_EVEN)
+    return area
+
+  /*----------------------------------TRAPEZOID subroutine----------------*/
+  method trapezoid(a, b, n) public static binary returns BigDecimal
+    h = (b - a) / n
+    sum = BigDecimal.ZERO
+    loop x = a to b by h
+--    sum = sum + h * (f(x) + f(x + h)) * 0.5
+      sum = sum.add(BigDecimal(h).multiply((f(x).add(f(x + h))).multiply(BigDecimal('0.5'))))
+      end x
+    return sum
+
+  /*----------------------------------F subroutine------------------------*/
+  method f(z) private static binary returns BigDecimal
+    select case test_      
+      when 1 then zb = z ** 3
+      when 2 then zb = 1 / z
+      otherwise   zb = z
+      end
+    return BigDecimal(zb)
+
+  -- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  method runSample(arg) public static
+
+    parse arg tests .
+    if tests = '', tests < 1, tests > 4 then tests = 4
+    loop test = 1 for tests                  /*perform the test suite.        */
+      test_ = test;
+      select
+        when test == 1 then do; L = 0; H =    1; i =     100; end
+        when test == 2 then do; L = 1; H =  100; i =    1000; end
+        when test == 3 then do; L = 0; H = 5000; i = 5000000; end
+        when test == 4 then do; L = 0; H = 6000; i = 5000000; end
+        otherwise           do; L = 0; H =    1; i =     100; end
+        end
+      etime = System.nanoTime()
+      arl =     left_rect(L, H, i)
+      arm = midpoint_rect(L, H ,i)
+      arr =    right_rect(L, H, i)
+      asr =       simpson(L, H, i)
+      atz =     trapezoid(L, H, i)
+      etime = System.nanoTime() - etime
+      say
+      say ('test' test).centre(79, '-')   /*display a header for the test. */
+      say '      left_rectangular('L", "H', 'i") = " Rexx(arl.toString()).format(null, 6)
+      say '  midpoint_rectangular('L", "H', 'i") = " Rexx(arm.toString()).format(null, 6)
+      say '     right_rectangular('L", "H', 'i") = " Rexx(arr.toString()).format(null, 6)
+      say '               simpson('L", "H', 'i") = " Rexx(asr.toString()).format(null, 6)
+      say '             trapezoid('L", "H', 'i") = " Rexx(atz.toString()).format(null, 6)
+      say ' Elapsed time:' Rexx(etime * 1e-9).format(4, 6)'s'
+      end test
+    return
+
+  -- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  method main(args = String[]) public static
+    arg = Rexx(args)
+    runSample(arg)
+    return
+

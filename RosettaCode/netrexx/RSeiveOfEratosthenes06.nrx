@@ -1,0 +1,64 @@
+/* NetRexx */
+options replace format comments java crossref symbols binary
+
+import java.util.BitSet
+import java.util.Vector
+
+parse arg loWatermark hiWatermark .
+if loWatermark = '' | loWatermark = '.' then loWatermark = 1
+if hiWatermark = '' | hiWatermark = '.' then hiWatermark = 200
+
+do
+  if \loWatermark.datatype('w') | \hiWatermark.datatype('w') then -
+    signal NumberFormatException('arguments must be whole numbers')
+  if loWatermark > hiWatermark then -
+    signal IllegalArgumentException('the start value must be less than the end value')
+
+  beginProc = System.nanoTime()
+  seiveBits = sieveOfEratosthenes_BitSet(hiWatermark)
+  seiveProc = System.nanoTime()
+  primes = getPrimes(seiveBits, loWatermark, hiWatermark)
+  endProc = System.nanoTime()
+  seiveTime = seiveProc - beginProc
+  runTime = endProc - beginProc
+  say 'List of prime numbers from' loWatermark 'to' hiWatermark 'via a "Sieve of Eratosthenes" algorithm:'
+  say '  'primes.toString()
+  say '  Count of primes:' primes.size()
+  say 'Time in seive:' (Rexx seiveTime / 1000000000).format(null, 6)'s'
+  say 'Processing time:' (Rexx runTime / 1000000000).format(null, 6)'s'
+catch ex = Exception
+  ex.printStackTrace
+end
+
+return
+
+method sieveOfEratosthenes_BitSet(hn = int) public static binary returns boolean[]
+
+  sv = boolean[hn + 1] -- An array of boolean where for each boolean: FALSE indicates its index is a prime
+  ix = int
+  jx = int
+  sv[0] = boolean 1 -- zero is not prime
+  sv[1] = boolean 1 -- one is not prime
+
+  loop ex = 2 * 2 to hn by 2
+    sv[ex] = 1
+    end ex
+
+  loop ix = 3 to hn by 2 while ix * ix <= hn
+    if \sv[ix] then loop jx = ix * 3 to hn by ix + ix
+      sv[jx] = boolean 1
+      end jx
+    end ix
+
+  return sv
+
+method getPrimes(seive = boolean[], lo = int, hi = int) private constant binary returns Vector
+
+  primes = Vector()
+  loop p_ = lo to hi
+    if seive[p_] then iterate p_
+    primes.add(Long(p_))
+    end p_
+
+  return primes
+

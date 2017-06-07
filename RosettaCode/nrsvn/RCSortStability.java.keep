@@ -1,0 +1,91 @@
+/* Generated from 'RCSortStability.nrx' 16 Sep 2011 22:54:00 [v3.00] */
+/* Options: Comments Crossref Decimal Format Java Logo Replace Symbols Trace2 Verbose3 */
+
+/* NetRexx */
+
+
+
+public class RCSortStability{
+ private static final netrexx.lang.Rexx $01=new netrexx.lang.Rexx(1);
+ private static final java.lang.String $0="RCSortStability.nrx";
+
+ 
+ 
+ public static final void main(java.lang.String args[]){
+  java.lang.String cityList[];
+  java.lang.String cn[];
+  netrexx.lang.Rexx city=null;
+  java.util.Comparator cCompNm;
+  java.util.Comparator cCompCtry;
+  
+  cityList=new java.lang.String[]{"UK  London","US  New York","US  Birmingham","UK  Birmingham"};
+  
+  cn=new java.lang.String[cityList.length];
+  
+  netrexx.lang.RexxIO.Say("");
+  netrexx.lang.RexxIO.Say("Before sort:");
+  java.lang.System.arraycopy((java.lang.Object)cityList,0,(java.lang.Object)cn,0,cityList.length);
+  {netrexx.lang.Rexx $1=new netrexx.lang.Rexx(cn.length).OpSub(null,$01);city=new netrexx.lang.Rexx((byte)0);city:for(;city.OpLtEq(null,$1);city=city.OpAdd(null,new netrexx.lang.Rexx(1))){
+   netrexx.lang.RexxIO.Say(cn[city.toint()]);
+   }
+  }/*city*/
+  
+  cCompNm=(java.util.Comparator)(new RCSortStability.CityComparator());
+  java.util.Arrays.sort((java.lang.Object[])cn,cCompNm);
+  
+  netrexx.lang.RexxIO.Say("");
+  netrexx.lang.RexxIO.Say("After sort on city:");
+  {netrexx.lang.Rexx $2=new netrexx.lang.Rexx(cn.length).OpSub(null,$01);city=new netrexx.lang.Rexx((byte)0);city:for(;city.OpLtEq(null,$2);city=city.OpAdd(null,new netrexx.lang.Rexx(1))){
+   netrexx.lang.RexxIO.Say(cn[city.toint()]);
+   }
+  }/*city*/
+  
+  netrexx.lang.RexxIO.Say("");
+  netrexx.lang.RexxIO.Say("Before sort:");
+  java.lang.System.arraycopy((java.lang.Object)cityList,0,(java.lang.Object)cn,0,cityList.length);
+  {netrexx.lang.Rexx $3=new netrexx.lang.Rexx(cn.length).OpSub(null,$01);city=new netrexx.lang.Rexx((byte)0);city:for(;city.OpLtEq(null,$3);city=city.OpAdd(null,new netrexx.lang.Rexx(1))){
+   netrexx.lang.RexxIO.Say(cn[city.toint()]);
+   }
+  }/*city*/
+  
+  cCompCtry=(java.util.Comparator)(new RCSortStability.CountryComparator());
+  java.util.Arrays.sort((java.lang.Object[])cn,cCompCtry);
+  
+  netrexx.lang.RexxIO.Say("");
+  netrexx.lang.RexxIO.Say("After sort on country:");
+  {netrexx.lang.Rexx $4=new netrexx.lang.Rexx(cn.length).OpSub(null,$01);city=new netrexx.lang.Rexx((byte)0);city:for(;city.OpLtEq(null,$4);city=city.OpAdd(null,new netrexx.lang.Rexx(1))){
+   netrexx.lang.RexxIO.Say(cn[city.toint()]);
+   }
+  }/*city*/
+  netrexx.lang.RexxIO.Say("");
+  
+  return;
+  }
+ 
+ private RCSortStability(){return;}
+
+ 
+ static class CityComparator implements java.util.Comparator{
+  private final transient java.lang.String $0="RCSortStability.nrx";
+
+ 
+  
+  public int compare(java.lang.Object lft,java.lang.Object rgt){
+   return ((java.lang.String)lft).substring(4).compareTo(((java.lang.String)rgt).substring(4));
+   }
+  
+  public CityComparator(){return;}
+  }
+
+ 
+ static class CountryComparator implements java.util.Comparator{
+  private final transient java.lang.String $0="RCSortStability.nrx";
+
+ 
+  
+  public int compare(java.lang.Object lft,java.lang.Object rgt){
+   return ((java.lang.String)lft).substring(0,2).compareTo(((java.lang.String)rgt).substring(0,2));
+   }
+  
+  public CountryComparator(){return;}
+ }}

@@ -1,0 +1,4 @@
+--- Variables for class RCLoopsForEach ---
+days  Rexx[]         v 7= 8
+daysi Iterator       v 9= 11 12
+daysl java.util.List v 8= 9

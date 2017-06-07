@@ -1,0 +1,4 @@
+--- Variables for class RCountInOctal01 ---
+arg   Rexx       a 7= 7
+k_    BigInteger v 9 10= 13 14 14=
+radix Rexx       v 7= 8 8= 13

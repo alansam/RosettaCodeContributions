@@ -1,0 +1,80 @@
+--- Variables for class RDayOfTheWeek02 ---
+alg           Rexx     v 29= 32 34
+algorithmName Rexx[]   v 27= 29 32
+C             double   v 198= 209 209
+cal           Calendar v 75 83= 84
+century       int      v 261= 264
+D             int      a 273 274 274 274
+d             Rexx     v 120= 121= 123
+d             int      v 152= 153= 155
+d             int      a 158 171 173= 174= 176
+d             int      a 221 224 224= 228 228= 231
+d             int      v 244= 264
+dateRanges    int[,]   v 16= 19 20
+Day           int      a 70 83
+Day           int      a 92 118
+Day           int      a 126 142
+Day           int      a 179 197
+Day           int      a 239 244
+day           int      v 20= 35 36 37 38 39 40 41
+dayIndex      int      v 35= 36= 37= 38= 39= 40= 41= 44
+DayNum        Rexx     v 118= 120 121
+days          Rexx     v 10= 24
+dow           int      v 246 265= 267 268
+dowfg         double   v 247 264= 265
+fmonth        int      v 248 258= 259 259= 264
+h             int      v 84= 86 87
+h             int      v 150= 152 153
+h             int      v 171= 173 174
+h             int      v 211= 212= 214
+h             int      v 231= 233 234
+iso           Rexx     a 70= 86
+iso           Rexx     a 92= 120
+iso           Rexx     a 126= 152
+iso           Rexx     a 158= 173
+iso           Rexx     a 179= 211
+iso           Rexx     a 221= 233
+iso           Rexx     a 239= 267
+jmNumber      int[]    v 76= 82
+k             double   v 197= 209
+lastdigits    int      v 262= 264
+leap          int      v 249 252= 254= 256= 258
+m             int      v 143= 150
+m             int      a 158 169 171
+m             double   v 200= 209
+m             int      a 221 223 231
+m             int      v 243= 258 258 258 258
+message       Rexx     v 21= 50
+messageTexts  Rexx[]   v 12= 21
+mon           int      v 82= 83
+Month         int      a 70 82
+Month         int      a 92 100 100 101 101= 116 116
+Month         int      a 126 128 129 129= 143
+Month         int      a 179 196 200
+Month         int      a 239 243
+month         int      v 19= 35 36 37 38 39 40 41
+MonthFactor   Rexx     v 116= 118
+N             int      a 273 274
+q             int      v 142= 150
+r_            Rexx     v 51= 52 52 53 53
+s_            Rexx     v 18= 19 20 21
+sd            Rexx     v 30= 31 32 45 45
+searchday     Rexx     v 23= 24= 25= 30 31= 32= 44 45 45= 51 52 52= 53 53
+t             int[]    v 168= 171
+W             int      v 209= 211 212
+W             int      v 233= 234= 236
+W             int      v 267= 268= 270
+w             int      v 86= 87= 89
+y             int      a 221 224 225 225= 228 231 231 231
+y             int      v 242= 251 251 253 261 262
+Y             double   v 199= 209 209
+y             int      a 158 169 169= 171 171 171 171
+Y             int      v 146= 150 150 150 150
+Year          int      a 70 83
+Year          int      a 92 102 102= 117 117 117 117
+Year          int      a 126 130 130= 146
+Year          int      a 179 196 196= 198 199
+Year          int      a 239 242
+year          Rexx     v 33= 35 36 37 38 39 40 41 45
+YearFactor    Rexx     v 117= 118
+yearRanges    int[]    v 11= 13 13 14 14 33 33

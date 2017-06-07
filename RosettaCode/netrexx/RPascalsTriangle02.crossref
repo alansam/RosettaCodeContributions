@@ -1,0 +1,15 @@
+--- Variables for class RPascalsTriangle02 ---
+arg   Rexx a 6= 6
+col   Rexx v 19= 20
+fac   Rexx v 37= 39 39= 41
+line  Rexx v 18= 22 22= 24
+lines Rexx v 13= 24= 28 30
+ml    Rexx v 28= 30
+mx    Rexx v 14= 17 22
+n     Rexx a 36 38
+n1    Rexx v 17= 18 21 21= 22
+n2    Rexx v 20= 21 21
+n_    Rexx v 38= 39
+row   Rexx v 16= 19 21 24 29= 30
+rows  Rexx v 6= 7 7= 8
+rows  Rexx a 12= 14 14 14 14 16 28 29

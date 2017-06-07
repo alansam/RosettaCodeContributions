@@ -1,0 +1,46 @@
+/* NetRexx */
+options replace format comments java crossref symbols binary
+
+import java.math.BigInteger
+
+/**
+ * @author alansamps@gmail.com
+ * @version 1.0
+ */
+class RAckermann
+
+/**
+ * @param m
+ * @param n
+ * @return
+ */
+method ackermann(m = BigInteger, n = BigInteger) public static returns BigInteger
+
+  ar = BigInteger
+  if m.equals(BigInteger.ZERO) then do
+    ar = n.add(BigInteger.ONE)
+    end
+  else if n.equals(BigInteger.ZERO) then do
+    ar = ackermann(m.subtract(BigInteger.ONE), BigInteger.ONE)
+    end
+  else do
+    ar = ackermann(m.subtract(BigInteger.ONE), ackermann(m, n.subtract(BigInteger.ONE)))
+    end
+
+  return ar
+
+/**
+ * @param args
+ */
+method main(args = String[]) public static
+
+  loop j = 0 to 4
+    say
+    loop k = 0 to 10
+      ack = Rexx(ackermann(BigInteger(j), BigInteger(k)).toString)
+      say 'ackermann('j','k') =' ack.right(5)
+      end k
+    end j
+
+  return
+

@@ -1,0 +1,14 @@
+--- Variables for class RFibonacci ---
+a   Rexx v 65= 69 70=
+arg Rexx a 44= 44
+arg Rexx a 60 61
+b   Rexx v 66= 69 70 71=
+j   Rexx v 68=
+k   Rexx v 51= 52 54 55
+n   Rexx v 61= 62 74
+na  Rexx v 62= 64 64 68 74
+q   Rexx v 52= 53 54
+s   Rexx v 69= 71 74 75
+w   Rexx v 53= 55 55
+x   Rexx v 44= 45 46= 47 50 51
+y   Rexx v 44= 47= 50 50= 51

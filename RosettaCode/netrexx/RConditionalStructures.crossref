@@ -1,0 +1,5 @@
+--- Variables for class RConditionalStructures ---
+cc               String               v 60= 61 78 78
+ex1              NoOtherwiseException v 55= 56
+exs              RuntimeException     v 91= 93
+logicalCondition Rexx                 v 6= 7= 8 8= 9 9= 12 15 22 30 33 45 46 52 53 81

@@ -1,0 +1,69 @@
+/* NetRexx */
+options replace format comments java crossref symbols nobinary
+
+/*REXX program finds words with the largest set of anagrams (same size).*/
+_n_ = 0                                   /*number of anagrams for word X. */
+_a_ = ''                                  /*          anagrams for word X. */
+parse arg ifid .
+if ifid = '' then ifid = 'unixdict.txt' /*input file identifier.         */
+----ifid = 'unixdict.txt'                  /*input file identifier.         */
+----ifid = 'testdict.txt'
+ifi = File(ifid)
+ifr = BufferedReader(FileReader(ifi))
+--loop j_ = 1 while lines(ifid)
+--  l_[j_] = linein(ifid)
+--  end j_
+l_ = ''
+loop j_ = 1 by 1
+  line = ifr.readLine
+  if line = null then leave j_
+    l_[j_] = line
+  end j_
+
+awords = j_ - 1                              /*number of words in dictionary. */
+say '-'.copies(20) awords 'words in the dictionary file:' ifid
+ 
+  loop j_ = 1 for awords                     /*process the words in dictionary*/
+    x_ = l_[j_]
+    Lx = x_.length
+    if Lx < 3 then iterate  /*onezys & twozys can't win*/
+
+    notHas = 1
+    loop i_ = 1 for Lx                 /*build fast way to compare chars*/
+      w_ = x_.substr(i_, 1);
+      notHas[w_] = 0  /*indicate this char is in word X*/
+      end i_
+
+    loop k_ = 1 for awords                   /*plow through the other words.  */
+      if l_[k_].length \== Lx then iterate   /*Y length isn't right, skip it. */
+      y_ = l_[k_]
+      loop m_ = Lx by -1 for Lx        /*see if all Y chars are in X.   */
+        w_ = y_.substr(m_, 1)             /*(backwards is faster.)         */
+        if notHas[w_] then iterate k_  /*if doesn't have it, skip word. */
+        end m_
+
+      XX = x_                               /*make a throwaway copy of  X.   */
+      loop p_ = 1 for Lx                 /*discount dup chars not in  X.  */
+        w_ = XX.pos(y_.substr(p_, 1))       /*find position of the char in X.*/
+        if w_ == 0 then iterate k_        /*Not there?  Must be a duplicate*/
+        loval = 0x00
+        XX = loval.overlay(XX, w_)         /*replace the char with  '00'x.  */
+        end p_
+
+      if k_ == j_ then iterate               /*skip doing anagram on itself.  */
+      _n_[j_] = _n_[j_] + 1
+      _a_[j_] = _a_[j_] y_              /*bump counter, add --> anagrams.*/
+      end k_  /*k_*/
+    end j_    /*j_*/
+ 
+  mA = _n_[j_]
+  loop j_ = 2 to awords
+    mA = mA.max(_n_[j_])
+    end j_     /*find maximum "anagrams". */
+
+ loop k_ = 1 for awords
+   if _n_[k_] == mA & _a_[k_].word(1) > l_[k_] then do
+     say l_[k_] _a_[k_]
+     end
+   end k_
+

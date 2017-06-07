@@ -1,0 +1,16 @@
+--- Variables for class RAvgSimpleMoving ---
+args        String[]         a 46
+args        String[]         a 61 62
+avg         Rexx             v 38= 41= 43
+exMsg       Rexx             c 14= 18 19
+ma          RAvgSimpleMoving v 50= 52 53
+num         Rexx             a 26 27 28
+period      Rexx             p 10 21= 29
+period_     Rexx             a 17 18 19 21
+rmv         Rexx             v 30= 31
+sum         Rexx             p 11 22= 27 27= 31 31= 41
+testData    Rexx[]           v 47= 51
+window      java.util.Queue  p 9 20= 28 29 30 37 41
+windowSizes Rexx[]           v 48= 49
+windSize    Rexx             v 49= 50
+xVal        Rexx             v 51= 52 53

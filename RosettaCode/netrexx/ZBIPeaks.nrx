@@ -1,0 +1,45 @@
+/* NetRexx */
+options replace format comments java crossref symbols nobinary
+
+runSample(arg)
+return
+
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+method getPeaks(arg) public static
+  peaks   = ''
+  _NAME   = 'NAME'
+  _STATE  = 'STATE'
+  _HEIGHT = 'HEIGHT'
+  parse arg BIPeaksFileName .
+  do
+    BIPeaksScanner = Scanner(File(BIPeaksFileName))
+    loop lineNr = 1 while BIPeaksScanner.hasNextLine()
+      peak = BIPeaksScanner.nextLine()
+      if peak = '' then iterate lineNr
+      parse peak '|' . '[[' name ']]' . '||' state '||' height 'm' .
+      peaks[0] = lineNr
+      peaks[lineNr, _NAME]   = name.strip()
+      peaks[lineNr, _STATE]  = state.strip()
+      peaks[lineNr, _HEIGHT] = height + 0
+      end lineNr
+    BIPeaksScanner.close()
+  catch ex = FileNotFoundException
+    ex.printStackTrace()
+  end
+  return peaks
+
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+method runSample(arg) public static
+  BIPeaksFileName = 'ZBIPeaks.txt'
+  _NAME   = 'NAME'
+  _STATE  = 'STATE'
+  _HEIGHT = 'HEIGHT'
+  peaklist = getPeaks(BIPeaksFileName)
+  loop peak = 1 to peaklist[0]
+    name   = peaklist[peak, _NAME]
+    state  = peaklist[peak, _STATE]
+    height = peaklist[peak, _HEIGHT]
+    say peak.right(6)':' name ':' state ':' height ':' (height * 1000.0 / 25.4 / 12).format(null, 0)
+    end peak
+  return
+

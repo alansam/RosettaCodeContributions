@@ -1,0 +1,29 @@
+/* NetRexx */
+options replace format comments java crossref symbols binary
+
+sample(arg)
+return
+
+-- ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+method sample(arg) public static
+/*
+ * Pseudocode
+ * coefficients := [-19, 7, -4, 6] # list coefficients of all x^0..x^n in order
+ * x := 3
+ * accumulator := 0
+ * for i in length(coefficients) downto 1 do
+ *     # Assumes 1-based indexing for arrays
+ *     accumulator := ( accumulator * x ) + coefficients[i]
+ * done
+ * # accumulator now has the answer
+ */
+
+coefficients = [ -19, 7, -4, 6 ]
+x_ = 3
+accumulator = 0
+
+loop i_ = coefficients.length - 1 to 0 by -1
+  accumulator = (accumulator * x_) + coefficients[i_]
+  end i_
+say accumulator
+return

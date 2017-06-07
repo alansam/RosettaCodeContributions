@@ -1,0 +1,11 @@
+--- Variables for class RUnicodeVarName ---
+lowerδ Rexx   v 6= 7 13 14 14= 15
+upperΔ Rexx   v 4= 5 9 10 10= 11
+δ      Rexx   v 27= 29 31
+δlower Rexx   v 7= 13 14
+Δupper Rexx   v 5= 9 10
+θ      Rexx   v 29= 30 31
+Λοωερ  Rexx   v 20= 22 22
+π      double v 28= 29 30 31
+σ      Rexx   v 30= 31
+Υππερ  Rexx   v 19= 21 21

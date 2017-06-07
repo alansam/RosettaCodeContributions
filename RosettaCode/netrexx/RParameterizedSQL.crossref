@@ -1,0 +1,141 @@
+--- Variables for class RParameterizedSQL ---
+active          Boolean                        a 188 202
+args            String[]                       a 251
+args            String[]                       a 309 312
+bday            Date                           v 274= 282
+CLASSNAME       String                         c 14=
+cnfe            ClassNotFoundException         v 59= 60
+cnfe            ClassNotFoundException         v 220= 223
+connexion       Connection                     p 11
+DBMODE_CREATE   Rexx                           c 19= 51
+DBMODE_NOCREATE Rexx                           c 20=
+DBMODE_SHUTDOWN Rexx                           c 21= 79
+DBNAME          Rexx                           c 18= 51 79
+dbState         boolean                        v 78 83= 88= 92= 97= 101
+DBURL           Rexx                           c 17= 51 79
+deleteSQL       Rexx                           v 168= 176
+dlm             Rexx                           a 321 322
+dlm             Rexx                           a 325 326 328 339
+DRIVER          Rexx                           c 16= 53
+elmt            String                         v 338= 341
+elmts           String[]                       a 317 318
+elmts           String[]                       a 321 322
+elmts           String[]                       a 325 334 338
+ex              SQLException                   v 56= 57
+ex              SQLException                   v 158= 160
+ex              SQLException                   v 180= 182
+ex              SQLException                   v 206= 208
+iae             IllegalAccessException         v 67= 68
+iae             IllegalAccessException         v 229= 231
+ie              InstantiationException         v 63= 64
+ie              InstantiationException         v 225= 227
+insertSQL       Rexx                           v 137= 146
+ix              int                            v 145= 147 147= 147 148 148= 148 149 149= 149 150 150= 150 151 151= 151 152 152= 152 153 153= 153 154 154= 154 155 155= 155
+ix              Rexx                           v 173= 177 177= 177
+ix              int                            v 196= 200 200= 200 201 201= 201 202 202= 202 203 203= 203
+ix              Rexx                           v 260= 261 268= 269 288= 289 296= 297
+jerseyNum       Integer                        a 166 177
+jerseyNum       Integer                        a 188 203
+K_AMPERSAND     Rexx                           c 29=
+K_ASTERISK      Rexx                           c 29=
+K_AT            Rexx                           c 30=
+K_BACKSLASH     Rexx                           c 27=
+K_CARET         Rexx                           c 28=
+K_COLON         Rexx                           c 24=
+K_COMMA         Rexx                           c 25= 318
+K_DASH          Rexx                           c 26=
+K_DOLLAR        Rexx                           c 30=
+K_DOT           Rexx                           c 25=
+K_DQUOTE        Rexx                           c 31= 318
+K_EMPTY         Rexx                           c 23=
+K_EQ            Rexx                           c 32=
+K_EXCLAMATION   Rexx                           c 29=
+K_GRAVE         Rexx                           c 32=
+K_GT            Rexx                           c 32=
+K_HASH          Rexx                           c 30=
+K_HT            Rexx                           c 22=
+K_LBRACE        Rexx                           c 34=
+K_LBRACKET      Rexx                           c 33=
+K_LPAREN        Rexx                           c 35=
+K_LT            Rexx                           c 32=
+K_NL            Rexx                           c 22=
+K_NUL_LC        Rexx                           c 36= 318 322
+K_NUL_UC        Rexx                           c 36=
+K_PERCENT       Rexx                           c 29=
+K_PLUS          Rexx                           c 32=
+K_QUESTION      Rexx                           c 29=
+K_QUOTE         Rexx                           c 31=
+K_RBRACE        Rexx                           c 34=
+K_RBRACKET      Rexx                           c 33=
+K_RPAREN        Rexx                           c 35=
+K_SEMICOLON     Rexx                           c 24=
+K_SLASH         Rexx                           c 27=
+K_SPACE         Rexx                           c 23=
+K_TILDE         Rexx                           c 28=
+K_UNDERSCORE    Rexx                           c 27=
+K_VBAR          Rexx                           c 26=
+name            String                         a 188 200
+nulls           Rexx                           a 325 332
+player          RParameterizedSQL.PlayersModel v 121= 122 123
+player          RParameterizedSQL.PlayersModel a 135 147 148 149 150 151 152 153 154 155
+player          Object                         v 261= 262 269= 270 289= 290 297= 298
+players         java.util.List                 v 259= 260 261 267= 268 269 287= 288 289 295= 296 297
+props           Properties                     v 47= 48 49 54
+ps              PreparedStatement              v 111 115= 116
+ps              PreparedStatement              v 146= 147 148 149 150 151 152 153 154 155 156
+ps              PreparedStatement              v 176= 177 178
+ps              PreparedStatement              v 199= 200 201 202 203 204
+qwot            Rexx                           a 321 322
+qwot            Rexx                           a 325 330 340 342
+rowCt           int                            v 142 156= 159= 163
+rowCt           int                            v 172 178= 181= 185
+rowCt           int                            v 195 204= 207= 211
+rs              ResultSet                      v 112 116= 120 122
+sb              StringBuilder                  v 337= 339 340 341 342 344 346
+score           Integer                        a 188 201
+se              SQLException                   v 85= 86 86 90 90 96
+se              SQLException                   v 126= 128
+selectSQL       Rexx                           v 106= 115
+sex             SQLException                   a 238 239 241 242 243 246 246=
+sresults        java.util.List                 v 110 118= 123 127= 132
+tda             RParameterizedSQL              v 254= 255 257 259 266 267 286 287 294 295 302
+updateSQL       Rexx                           v 190= 199
+updtPlayer      RParameterizedSQL.PlayersModel v 275= 286
+xdriver         String                         a 214 217 221 226 230
+xURL            Rexx                           v 51= 54
+xURL            Rexx                           v 79= 82
+
+--- Variables for class RParameterizedSQL.PlayersModel ---
+active       Boolean       p 373
+active_      Boolean       a 378 390
+birthdate    Date          p 370
+birthdate_   Date          a 378 387
+birthplace   String        p 369
+birthplace_  String        a 378 386
+classId      String        v 404= 406
+CLASSNAME    String        c 361= 403
+csv          String        v 445= 447
+elmts        String[]      v 433= 445
+ix           int           v 416= 417 417= 417 418 418= 418 419 419= 419 420 420= 420 421 421= 421 422 422= 422 423 423= 423 424 424= 424 425 425= 425 426 426= 426
+jerseyNum    Integer       p 365
+jerseyNum_   Integer       a 377 382
+name         String        p 366
+name_        String        a 377 383
+nationality  String        p 368
+nationality_ String        a 377 385
+nulls        Rexx          a 431 445
+player_id    Integer       p 364
+player_id_   Integer       a 377 381
+position     String        p 367
+position_    String        a 377 384
+qwot         Rexx          a 431 445
+qwot         Rexx          a 450 451
+rs           ResultSet     a 414 417 418 419 420 421 422 423 424 425 426
+sb           StringBuilder v 402= 406 407 408 409 411
+score        Integer       p 372
+score_       Integer       a 378 389
+sep          Rexx          a 431 445
+sep          Rexx          a 450 451
+status       String        p 371
+status_      String        a 378 388
+sx           Object[]      v 403= 404

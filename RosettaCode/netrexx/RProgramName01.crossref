@@ -1,0 +1,6 @@
+--- Variables for class RProgramName01 ---
+args    String[]       a 16
+lcl     RProgramName01 v 20= 21
+pgmName Rexx           v 7= 8
+pgmName Rexx           v 12= 13
+pgmName Rexx           v 17= 18

@@ -1,0 +1,16 @@
+/* NetRexx */
+options replace format comments java crossref symbols nobinary
+
+parse source ss
+parse version vv
+say ss
+say vv
+
+something = ''
+something['!I'] = 3
+something['!F'] = 3.0
+
+say something['!I'].format(null, null, null, 0)
+say something['!F'].format(null, null, null, 0)
+
+

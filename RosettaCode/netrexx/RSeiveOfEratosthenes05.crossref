@@ -1,0 +1,21 @@
+--- Variables for class RSeiveOfEratosthenes05 ---
+arg         Rexx      a 7= 7
+beginProc   long      v 17= 22 23
+endProc     long      v 21= 23
+ex          Exception v 29= 30
+hi          int       a 51 54
+hiWatermark Rexx      v 7= 9 9 9= 12 14 18 20 24
+hn          int       a 35 37 43 44
+ix          int       v 38 43= 43 43 44 44 44 44
+jx          int       v 39 44= 44 45
+lo          int       a 51 54
+loWatermark Rexx      v 7= 8 8 8= 12 14 20 24
+p_          int       v 54= 55 56
+primes      Vector    v 20= 25 26
+primes      Vector    v 53= 56 59
+runTime     long      v 23= 28
+seive       boolean[] a 51 55
+seiveBits   boolean[] v 18= 20
+seiveProc   long      v 19= 22
+seiveTime   long      v 22= 27
+sv          boolean[] v 37= 40= 41= 44 45= 49

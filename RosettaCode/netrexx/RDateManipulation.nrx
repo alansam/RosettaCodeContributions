@@ -1,0 +1,81 @@
+/* NetRexx */
+options replace format comments java crossref symbols nobinary
+
+import java.text.SimpleDateFormat
+import java.text.ParseException
+
+runSample(arg)
+say
+runSampleX(arg)
+return
+
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+method manipulateDate(sampleDate, hours = 12) private static
+  if hours = null, \hours.datatype('W') then hours = 12
+
+  dateFmt = "MMMM d yyyy h:mma zzz"
+  formatter = SimpleDateFormat(dateFmt)
+  msHours = hours * 60 * 60 * 1000 -- hours in milliseconds
+  do
+    day = formatter.parse(sampleDate)
+    day.setTime(day.getTime() + msHours)
+    formatted = formatter.format(day)
+    gcal = GregorianCalendar()
+    
+  catch px = ParseException
+    px.printStackTrace()
+  end
+  return formatted
+
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+method runSample(arg) private static
+  sampleDate = 'March 7 2009 7:30pm EST'
+  say sampleDate
+  say manipulateDate(sampleDate)
+  say manipulateDate(sampleDate, 24)
+  say manipulateDate(sampleDate, -12)
+  return
+
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+method runSampleX(arg) shared static
+
+  sampleDate = 'March 7 2009 7:30pm EST'
+  hours = 12
+  msHours = hours * 60 * 60 * 1000 -- hours in milliseconds
+  formatter = SimpleDateFormat("MMMM d yyyy h:mma zzz")
+  fdiso8601 = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ")
+
+  parse sampleDate . . . . tzId .
+  fdiso8601.setTimeZone(TimeZone.getTimeZone(tzId))
+
+  gcal = GregorianCalendar()
+  gcal.setTimeZone(TimeZone.getTimeZone(tzId))
+
+  do
+    day = Date[3]
+    day[0] = formatter.parse(sampleDate)
+    day[1] = Date()
+    day[1].setTime(day[0].getTime() + msHours)
+    day[2] = Date()
+
+    loop d_ = 0 to day.length - 1
+      gcal.setTime(day[d_])
+      --say gcal
+      fdu = formatter.format(day[d_])
+      fdi = fdiso8601.format(day[d_])
+
+      say fdu
+      say fdi
+      end d_
+  catch px = ParseException
+    px.printStackTrace()
+  end
+
+  tzs = TimeZone.getAvailableIDs()
+  loop tz = 0 to tzs.length - 1
+    zone = TimeZone.getTimeZone(tzs[tz])
+    say tz.right(5)':' Rexx(zone.getRawOffset() / 1000.0 / 60.0 / 60.0).format(5, 2) '-' zone.getID '-' zone.getDisplayName()
+    end tz
+
+  return
+

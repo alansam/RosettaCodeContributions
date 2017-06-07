@@ -1,0 +1,29 @@
+--- Variables for class RDateManipulation ---
+arg        Rexx              a 7= 7 9
+arg        Rexx              a 31
+arg        Rexx              a 40
+d_         Rexx              v 61= 62 64 65
+dateFmt    Rexx              v 16= 17
+day        Date              v 20= 21 21 22
+day        Date[]            v 55= 56= 57= 58 58 59= 61 62 64 65
+fdi        String            v 65= 68
+fdiso8601  SimpleDateFormat  v 46= 49 65
+fdu        String            v 64= 67
+formatted  String            v 22= 28
+formatter  SimpleDateFormat  v 17= 20 22
+formatter  SimpleDateFormat  v 45= 56 64
+gcal       GregorianCalendar v 23=
+gcal       GregorianCalendar v 51= 52 62
+hours      Rexx              a 13= 14 14 14= 18
+hours      Rexx              v 43= 44
+msHours    Rexx              v 18= 21
+msHours    Rexx              v 44= 58
+px         ParseException    v 25= 26
+px         ParseException    v 70= 71
+sampleDate Rexx              a 13 20
+sampleDate Rexx              v 32= 33 34 35 36
+sampleDate Rexx              v 42= 48 56
+tz         Rexx              v 75= 76 77
+tzId       Rexx              v 48= 49 52
+tzs        String[]          v 74= 75 76
+zone       TimeZone          v 76= 77 77 77

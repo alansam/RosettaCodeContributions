@@ -1,0 +1,10 @@
+--- Variables for class RCSortingBogosort ---
+alst    ArrayList      v 31= 33 36 37 38
+args    String[]       a 29
+current Comparable     v 14= 15 17
+it      Iterator       v 11= 12 13 14
+iv      Rexx           v 32= 33
+last    Comparable     v 12= 15 17=
+list    java.util.List a 6 8 11
+list    java.util.List a 22 23 24
+samples int[]          v 30= 31 32 33

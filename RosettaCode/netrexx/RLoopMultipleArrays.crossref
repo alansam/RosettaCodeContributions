@@ -1,0 +1,14 @@
+--- Variables for class RLoopMultipleArrays ---
+aa  Rexx[] v 28= 32 34
+ai  Rexx   v 53= 57 58
+arg Rexx   a 61 63 65
+ax  Rexx   v 34= 36= 49
+bb  Rexx[] v 29= 39
+bi  Rexx   v 54= 58
+bx  Rexx   v 39= 41= 49
+cc  Rexx[] v 30= 44
+ci  Rexx   v 55= 58
+cx  Rexx   v 44= 46= 49
+i_  Rexx   v 64= 65 65
+smp Rexx   v 62= 63= 64 65= 68
+x_  Rexx   v 32= 34 39 44 57= 58 58 58

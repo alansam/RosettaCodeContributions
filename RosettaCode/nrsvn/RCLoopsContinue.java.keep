@@ -1,0 +1,36 @@
+/* Generated from 'RCLoopsContinue.nrx' 13 Jul 2011 13:34:42 [v3.00] */
+/* Options: Comments Crossref Decimal Format Java Logo Replace Symbols Trace2 Verbose3 */
+
+/* NetRexx */
+
+
+
+public class RCLoopsContinue{
+ private static final netrexx.lang.Rexx $01=new netrexx.lang.Rexx((byte)10);
+ private static final netrexx.lang.Rexx $02=new netrexx.lang.Rexx(5);
+ private static final netrexx.lang.Rexx $03=new netrexx.lang.Rexx(0);
+ private static final netrexx.lang.Rexx $04=netrexx.lang.Rexx.toRexx(", ");
+ private static final java.lang.String $0="RCLoopsContinue.nrx";
+ 
+ public static void main(java.lang.String $0s[]){
+  netrexx.lang.Rexx nul;
+  netrexx.lang.Rexx i_=null;
+  netrexx.lang.RexxIO.Say("");
+  netrexx.lang.RexxIO.Say("Loops/Continue");
+  
+  nul=new netrexx.lang.Rexx('\000');
+  {i_=new netrexx.lang.Rexx((byte)1);i_:for(;i_.OpLtEq(null,$01);i_=i_.OpAdd(null,new netrexx.lang.Rexx(1))){
+   netrexx.lang.RexxIO.Say((i_.right(new netrexx.lang.Rexx((byte)2))).OpCc(null,nul));
+   if (i_.OpRem(null,$02).OpEq(null,$03)) 
+    {
+     netrexx.lang.RexxIO.Say("");
+     continue i_;
+    }
+   netrexx.lang.RexxIO.Say($04.OpCc(null,nul));
+   
+   }
+  }/*i_*/
+  return;}
+ 
+ private RCLoopsContinue(){return;}
+ }

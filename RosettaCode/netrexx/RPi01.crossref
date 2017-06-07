@@ -1,0 +1,18 @@
+--- Variables for class RPi01 ---
+arg     Rexx       a 5= 5
+arg     Rexx       a 9 10
+digitCt int        v 29= 32 32= 33
+first   boolean    v 28= 35 37=
+FOUR    BigInteger v 15= 31
+k_      BigInteger v 21= 46 47 50 50=
+l_      BigInteger v 23= 45 46 46 48 49 49=
+n_      BigInteger v 22= 31 34 39 40 40= 51=
+nn      BigInteger v 25 46= 51
+nr      BigInteger v 26 39= 42 45= 52
+places  Rexx       v 10= 11 11= 33 33
+q_      BigInteger v 18= 31 40 41 41= 45 46 47 47=
+r_      BigInteger v 19= 31 39 40 42= 45 46 52=
+SEVEN   BigInteger v 16= 46
+t_      BigInteger v 20= 31 31 39 40 46 48 48=
+THREE   BigInteger v 14= 40
+TWO     BigInteger v 13= 45 46 49

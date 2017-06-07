@@ -1,0 +1,14 @@
+--- Variables for class RCSortingGnomesort ---
+a    String[]       a 18 20 21
+a    java.util.List a 26 29
+al   java.util.List v 21= 22
+ctx  int            v 33= 34 34
+i1   ArrayList      v 6= 7 8
+i_   int            v 30= 32 33 33 35= 39 40 40 41 42 42= 43 44=
+j_   int            v 31= 35 36 36= 44 45 45=
+ra   ArrayList      v 29= 32 33 33 39 40 40 41 50
+rl   String[]       v 20= 22 24
+sAsc boolean        a 18= 21
+sAsc boolean        a 26= 28 34
+sDsc boolean        v 28= 34
+swap Object         v 39= 41

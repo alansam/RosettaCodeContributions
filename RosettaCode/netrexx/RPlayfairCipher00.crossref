@@ -1,0 +1,56 @@
+--- Variables for class RPlayfairCipher00 ---
+a2z        Rexx v 85= 88
+a2z        Rexx v 117= 118
+arg        Rexx a 15= 15
+arg        Rexx a 145 146
+ciph       Rexx v 146= 147 147 147= 156 159 161
+cipherText Rexx v 22= 50 50= 62 62= 69 69= 73
+cl         Rexx v 26= 30 34= 40 42 43 52 54 55 66 68
+clx        Rexx v 32= 34 34 43= 45 45= 47 47= 49
+cr         Rexx v 27= 30 35= 40 44 52 56 67 68
+crx        Rexx v 33= 35 35 44= 46 46= 48 48= 49
+cx         Rexx v 54= 61 61
+cy         Rexx v 49= 50 61= 62 68= 69
+d_         Rexx a 19 20 20= 21= 43 44 55 56
+digraph    Rexx v 25= 29
+digraph    Rexx v 110= 111
+digraphs   Rexx a 19 23 25
+digraphs   Rexx a 76 77
+digraphs   Rexx a 80 81
+digraphs   Rexx v 108= 111 111= 113
+digraphs   Rexx v 156= 158 158= 160 162 164
+dl         Rexx v 29= 32
+dr         Rexx v 29= 33
+dw         Rexx v 23= 25
+ED         Rexx a 84 86
+eks        Rexx v 86= 87= 96 107
+IorQ       Rexx a 84 101 102= 106
+IorQ       Rexx a 116 127 127 127
+IorQ       Rexx v 146= 148 148 148= 153 156 158
+key        Rexx a 116 118
+key        Rexx v 146= 149 149 149= 153
+km         Rexx a 19 30 32 33 49 49 61 61 68 68
+km         Rexx a 76 77
+km         Rexx a 80 81
+km         Rexx v 136= 139= 140= 142
+km         Rexx v 154= 162 164
+kp         Rexx v 118= 120 121 121= 124 124=
+kp         Rexx v 138= 140
+kr         Rexx v 119= 123 123= 128 128= 130 130= 132
+kr         Rexx a 135 137 138 138=
+kr         Rexx v 153= 154
+lc         Rexx v 94= 95 95 96 97
+ll         Rexx v 91= 95 97=
+r1         Rexx v 66= 68
+r2         Rexx v 67= 68
+r_         Rexx v 30= 32 33 34 35
+r_         Rexx v 137= 139 140
+rlx        Rexx v 55= 57 57= 59 59= 61
+rrx        Rexx v 56= 58 58= 60 60= 61
+rtext      Rexx v 90= 95 95= 96 96= 106 106= 107 107 107= 109 110 110=
+rx         Rexx v 42= 49 49
+sc         Rexx v 102= 104= 106
+text       Rexx a 84 88 89 89= 93 94 94=
+text       Rexx v 146= 150 150 150= 156 159
+tp         Rexx v 88= 89 89
+xx         Rexx v 121= 122 123 124

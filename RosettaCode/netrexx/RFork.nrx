@@ -1,0 +1,42 @@
+/* NetRexx */
+options replace format comments java crossref symbols binary
+
+runSample(arg)
+return
+
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+method runSample(arg) private static
+
+  do
+    pb = ProcessBuilder([String ''])
+    env = pb.environment()
+    currentuser = String env.get('USER')
+    command = Arrays.asList([String 'ps', '-f', '-U', currentuser])
+    pb.command(command)
+    pp = pb.start()
+    ir = BufferedReader(InputStreamReader(pp.getInputStream()))
+    line = String 'Output of running' command.toString() 'is:'
+    loop label w_ until line = null
+      say line
+      line = ir.readLine()
+      end w_
+  catch iox = IOException
+    iox.printStackTrace()
+  end
+
+  return
+
+/*
+Output of running [ps, -f, -U, nrxuser] is: 
+  UID   PID  PPID   C STIME   TTY           TIME CMD 
+  501   277     1   0 21Aug13 ??         0:32.05 /sbin/launchd
+  ...
+    0   366   291   0 21Aug13 ttys001    0:00.02 login -pfl nrxuser /bin/bash -c exec -la bash /bin/bash
+  501   368   366   0 21Aug13 ttys001    0:00.16 -bash
+  501 72276   368   0  6:28PM ttys001    0:00.23 /usr/bin/java -cp .:.. RFork
+  501 72277   368   0  6:28PM ttys001    0:00.00 tee data/RFork.log
+    0 72278 72276   0  6:28PM ttys001    0:00.00 ps -f -U nrxuser
+    0   380   291   0 21Aug13 ttys002    0:00.02 login -pfl nrxuser /bin/bash -c exec -la bash /bin/bash
+  ...
+ */
+

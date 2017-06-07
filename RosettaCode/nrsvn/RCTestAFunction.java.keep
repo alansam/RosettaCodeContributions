@@ -1,0 +1,68 @@
+/* Generated from 'RCTestAFunction.nrx' 11 Sep 2011 17:54:40 [v3.00] */
+/* Options: Binary Comments Crossref Decimal Format Java Logo Replace Symbols Trace2 Verbose3 */
+import RCPalindrome;
+import junit.framework.TestCase;
+
+/* NetRexx */
+
+
+
+
+
+
+
+public final class RCTestAFunction extends junit.framework.TestCase{
+ private static final java.lang.String $0="RCTestAFunction.nrx";
+
+ 
+ 
+ public void setUp(){
+  return;
+  }
+
+ 
+ public void tearDown(){
+  return;
+  }
+
+ 
+ public void testIsPal() throws java.lang.AssertionError{
+  
+  assertTrue((RCPalindrome.isPal(netrexx.lang.Rexx.toRexx("abcba"))).toboolean());
+  assertTrue((RCPalindrome.isPal(netrexx.lang.Rexx.toRexx("aa"))).toboolean());
+  assertTrue((RCPalindrome.isPal(netrexx.lang.Rexx.toRexx("a"))).toboolean());
+  assertTrue((RCPalindrome.isPal(netrexx.lang.Rexx.toRexx(""))).toboolean());
+  assertFalse((RCPalindrome.isPal(netrexx.lang.Rexx.toRexx("ab"))).toboolean());
+  assertFalse((RCPalindrome.isPal(netrexx.lang.Rexx.toRexx("abcdba"))).toboolean());
+  
+  return;
+  }
+
+ 
+ public void except() throws java.lang.RuntimeException{
+  throw new java.lang.RuntimeException();
+  }
+
+ 
+ public static final void main(java.lang.String args[]){
+  org.junit.runner.Result testResult;
+  netrexx.lang.Rexx secs;
+  
+  testResult=org.junit.runner.JUnitCore.runClasses(new java.lang.Class[]{RCTestAFunction.class});
+  
+  secs=new netrexx.lang.Rexx(((double)(testResult.getRunTime()))/1000.0D);
+  
+  if (testResult.wasSuccessful()) 
+   netrexx.lang.RexxIO.Say("Tests successful");
+  else 
+   netrexx.lang.RexxIO.Say("Tests failed");
+  netrexx.lang.RexxIO.Say("  failure count:"+" "+(testResult.getFailureCount()));
+  netrexx.lang.RexxIO.Say("   ignore count:"+" "+(testResult.getIgnoreCount()));
+  netrexx.lang.RexxIO.Say("      run count:"+" "+(testResult.getRunCount()));
+  netrexx.lang.RexxIO.Say(netrexx.lang.Rexx.toRexx("       run time:").OpCcblank(null,secs.format((netrexx.lang.Rexx)null,new netrexx.lang.Rexx((byte)3))));
+  
+  return;
+  }
+ 
+ public RCTestAFunction(){return;}
+ }

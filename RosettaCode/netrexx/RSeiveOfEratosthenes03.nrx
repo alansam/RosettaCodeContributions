@@ -1,0 +1,28 @@
+/*REXX program generates primes via  sieve of Eratosthenes  algorithm.  */
+options replace format comments java crossref symbols nobinary
+
+numeric digits 20
+parse arg highest .
+if highest = '' then highest = 200                            /*define highest number to use.  */
+beginProc = System.nanoTime()
+primes = 1                                   /*assume all numbers are prime.  */
+w = highest.length()                      /*width of the biggest number,   */
+                                       /*  it's used for aligned output.*/
+      loop j = 2 to highest                /*strike multiples of integers.  */
+      if j * j > highest then leave        /*only process up to  √(highest).*/
+      if \primes[j] then iterate             /*¬ prime?  It was already struck*/
+ 
+             loop m = j + j to highest by j  /*start with next multiple of J. */
+             primes[m] = 0                     /*mark multiples of J not prime. */
+             end   m
+      end          j
+endProc = System.nanoTime()
+duration = endProc - beginProc
+primeCount = 0                                    /*prime index, the # of the prime*/
+         loop n = 2 to highest             /*list all the primes found.     */
+         if \primes[n] then iterate          /*Not prime?  Then keep looking. */
+         primeCount = primeCount + 1                         /*bump the prime count ('til now)*/
+         say '           prime number'   primeCount.right(w)   " --> "   n.right(w)
+         end   n
+say 'Processing time:' (duration / 1000000000).format(null, 6)'s'
+

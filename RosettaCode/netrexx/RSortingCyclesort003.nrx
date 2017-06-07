@@ -1,0 +1,90 @@
+/* Rexx */
+options replace format comments java crossref symbols nobinary
+
+runSample(arg)
+return
+
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-- Sort an array in place and return the number of writes.
+method cycleSort(array = Rexx[]) public static
+  writes = 0
+
+  -- Loop through the array to find cycles to rotate.
+  loop cycleStart = 0 to array.length - 1 - 1
+    item = array[cycleStart]
+
+    -- Find where to put the item.
+    pos = cycleStart
+    loop i = cycleStart + 1 to array.length - 1
+      if comparison(array[i], item) < 0 then
+        pos = pos + 1
+      end i
+
+    -- If the item is already there, this is not a cycle.
+    if pos == cycleStart then
+      iterate
+
+    -- Otherwise, put the item there or right after any duplicates.
+    loop while item == array[pos]
+      pos = pos + 1
+      end
+    parse (array[pos] item) item array_pos
+    array[pos] = array_pos
+    writes = writes + 1
+
+    -- Rotate the rest of the cycle.
+    loop while pos \= cycleStart
+
+      -- Find where to put the item.
+      pos = cycleStart
+      loop i = cycleStart + 1 to array.length - 1
+        if array[i] < item then
+          pos = pos + 1
+        end i
+
+      -- Put the item there or right after any duplicates.
+      loop while item == array[pos]
+        pos = pos + 1
+        end
+      parse (array[pos] item) item array_pos
+      array[pos] = array_pos
+      writes = writes + 1
+
+      end
+
+    end cycleStart
+  return writes
+
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+method comparison(cleft, cright) public static returnd int
+  cmp = int
+  if cleft.datatype('n') & cright.datatype('n') then
+    select
+      when cleft < cright then cmp = -1
+      when cleft > cright then cmp = 1
+      otherwise                cmp = 0
+      end
+  else
+    cmp = String(cleft).compareTo(String(cright)
+  return cmp
+
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+method runSample(arg) public static
+  samples = ArrayList()
+  samples.add([1, 9, 3, 5, 8, 4, 7, 0, 6, 2])
+  samples.add([0, 1, 2, 2, 2, 2, 1, 9, 3.5, 5, 8, 4, 7, 0, 6])
+  samples.add(['Greygill\u00a0Hole', 'Ogof\u00a0Draenen', 'Ogof\u00a0Ffynnon\u00a0Ddu', 'Malham\u00a0Tarn\u00a0Pot'])
+  samples.add([-3.14 ,3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5, 8, 9, 7, 9, 3, 2, 3, 8, 4, 6, 2, 6, 4, 3, 3, 8, 3, 2, 7, 9, 5, 0, 2, 8, 8, 4])
+  samples.add(['George\u00a0Washington:\u00a0Virginia', 'John\u00a0Adams:\u00a0Massachusetts', 'Thomas\u00a0Jefferson:\u00a0Virginia', 'James\u00a0Madison:\u00a0Virginia', 'James\u00a0Monroe:\u00a0Virginia'])
+
+  list = Rexx[]
+  loop i_ = 0 to samples.size() - 1
+    list = Rexx[] samples.get(i_)
+    say 'Input list ' Arrays.asList(list)
+    writes = cycleSort(list)
+    say 'Sorted list' Arrays.asList(list)
+    say 'Total number of writes:' writes
+    say
+    end i_
+  return
+

@@ -1,0 +1,35 @@
+/* NetRexx */
+
+options replace format comments java crossref savelog symbols
+
+/**
+ * <h3>String concatenation</h3>
+ *
+ * <p>
+ * Create a string variable equal to any text value. Create another string variable whose value is the original
+ * variable concatenated with another string literal.
+ * </p>
+ * <p>
+ * To illustrate the operation, show the content of the variables.
+ * </p>
+ *
+ * @author Alan Sampson
+ * @version 1.0
+ * @see <a href="http://rosettacode.org/wiki/String_concatenation">rosettacode.org/wiki/String_concatenation</a>
+ */
+s1 = 'any text value'
+s2 = 'another string literal'
+s3 = s1    s2 -- concatenate variables with blank space (note that only one blank space is added)
+s4 = s1 || s2 -- concatenate variables with abuttal (here, no blank spaces are added)
+s5 = s1    'another string literal' -- concatenate a variable and a literal with blank space
+s6 = s1'another string literal'     -- concatenate a variable and a literal using abuttal
+s7 = s1 || 'another string literal' -- ditto
+
+say 's1:' s1 -- concatenation with blank space is employed here too
+say 's2:' s2
+say 's3:' s3
+say 's4:' s4
+say 's5:' s5
+say 's6:' s6
+say 's7:' s7
+

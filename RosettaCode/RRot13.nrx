@@ -1,0 +1,128 @@
+/* NetRexx */
+
+options replace format comments java crossref savelog symbols nobinary
+
+/**
+ * <h3>Rot-13</h3>
+ * <p>
+ * Implement a "rot-13" function (or procedure, class, subroutine, or other "callable" object as appropriate to
+ * your programming environment). Optionally wrap this function in a utility program which acts like a common
+ * <a href="http://rosettacode.org/wiki/UNIX">UNIX</a> utility, performing a line-by-line rot-13 encoding of
+ * every line of input contained in each file listed on its command line, or (if no filenames are passed thereon)
+ * acting as a filter on its "standard input."
+ * (A number of UNIX scripting languages and utilities, such as awk and sed either default to processing files
+ * in this way or have command line switches or modules to easily implement these wrapper semantics,  e.g.,
+ * <a href="http://rosettacode.org/wiki/Perl">Perl</a> and <a href="http://rosettacode.org/wiki/Python">Python</a>).
+ * </p>
+ * <p>
+ * The "rot-13" encoding is commonly known from the early days of Usenet "Netnews" as a way of obfuscating text to
+ * prevent casual reading of <a href="http://en.wikipedia.org/wiki/Spoiler_(media)">spoiler</a> or potentially
+ * offensive material. Many news reader and mail user agent programs have built-in "rot-13" encoder/decoders or
+ * have the ability to feed a message through any external utility script for performing this (or other) actions.
+ * </p>
+ * <p>
+ * The definition of the rot-13 function is to simply replace every letter of the ASCII alphabet with the letter
+ * which is "rotated" 13 characters "around" the 26 letter alphabet from its normal cardinal position (wrapping
+ * around from "z" to "a" as necessary). Thus the letters "abc" become "nop" and so on. Technically rot-13 is a
+ * "monoalphabetic substitution cipher" with a trivial "key". A proper implementation should work on upper and lower
+ * case letters, preserve case, and pass all non-alphabetic characters in the input stream through without alteration.
+ * </p>
+ *
+ * @author Alan Sampson
+ * @version 1.0
+ * @see <a href="http://rosettacode.org/wiki/Rot-13">rosettacode.org/wiki/Rot-13</a>
+ */
+
+parse arg fileNames
+
+rdr = BufferedReader
+
+do
+  if fileNames.length > 0 then do
+    loop n_ = 1 for fileNames.words
+      fileName = fileNames.word(n_)
+      rdr = BufferedReader(FileReader(File(fileName)))
+      encipher(rdr)
+      end n_
+    end
+  else do
+    rdr = BufferedReader(InputStreamReader(System.in))
+    encipher(rdr)
+    end
+catch ex = IOException
+  ex.printStackTrace
+end
+
+return
+
+method encipher(rdr = BufferedReader) public static signals IOException
+
+  loop label l_ forever
+    line = rdr.readLine
+    if line = null then leave l_
+    say rot13(line)
+    end l_
+  return
+
+
+method caesar_encipher(input = Rexx, idx = int, caps = boolean) public static signals IllegalArgumentException
+
+  return caesar(input, idx, caps)
+
+method caesar_decipher(input = Rexx, idx = int, caps = boolean) public static signals IllegalArgumentException
+
+  return caesar(input, int(26) - idx, isFalse)
+
+method caesar_encipher(input = Rexx, idx = int) public static signals IllegalArgumentException
+
+  return caesar(input, idx, isFalse)
+
+method caesar_decipher(input = Rexx, idx = int) public static signals IllegalArgumentException
+
+  return caesar(input, int(26) - idx, isFalse)
+
+method caesar_encipher(input = Rexx, idx = int, opt = Rexx) public static signals IllegalArgumentException
+
+  return caesar(input, idx, opt)
+
+method caesar_decipher(input = Rexx, idx = int, opt = Rexx) public static signals IllegalArgumentException
+
+  return caesar(input, int(26) - idx, opt)
+
+method caesar(input = Rexx, idx = int, opt = Rexx) public static signals IllegalArgumentException
+
+  if opt.upper.abbrev('U') >= 1 then caps = isTrue
+  else                               caps = isFalse
+
+  return caesar(input, idx, caps)
+
+method caesar(input = Rexx, idx = int) public static signals IllegalArgumentException
+
+  return caesar(input, idx, isFalse)
+
+method caesar(input = Rexx, idx = int, caps = boolean) public static signals IllegalArgumentException
+
+  if idx < 1 | idx > 25 then signal IllegalArgumentException()
+
+  --      12345678901234567890123456
+  itab = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+  shift = itab.length - idx
+  parse itab tl +(shift) tr
+  otab = tr || tl
+
+  if caps then input = input.upper
+
+  cipher = input.translate(itab || itab.lower, otab || otab.lower)
+
+  return cipher
+
+method rot13(input) public static signals IllegalArgumentException
+
+  return caesar(input, 13, isFalse)
+
+method isTrue public static returns boolean
+  return (1 == 1)
+
+method isFalse public static returns boolean
+  return \isTrue
+

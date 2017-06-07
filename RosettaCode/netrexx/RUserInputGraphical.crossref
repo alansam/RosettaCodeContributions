@@ -1,0 +1,4 @@
+--- Variables for class RUserInputGraphical ---
+ex      Exception v 11= 12
+unumber Rexx      v 5= 9= 15 15= 16
+ustring Rexx      v 6= 10= 16

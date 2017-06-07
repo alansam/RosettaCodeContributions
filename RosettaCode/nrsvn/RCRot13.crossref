@@ -1,0 +1,41 @@
+--- Variables for class RCRot13 ---
+arg       Rexx           a 4= 4
+caps      boolean        a 39 49
+caps      boolean        a 55 57
+caps      boolean        a 59
+caps      boolean        v 81= 82= 84
+cipher    Rexx           v 51= 53
+ex        IOException    v 20= 21
+fileName  Rexx           v 11= 12
+fileNames Rexx           v 4= 9 10 11
+idx       int            a 39 41 41 45
+idx       int            a 55 57
+idx       int            a 59 61
+idx       int            a 63 65
+idx       int            a 67 69
+idx       int            a 71 73
+idx       int            a 75 77
+idx       int            a 79 84
+idx       int            a 86 88
+input     Rexx           a 35 37
+input     Rexx           a 39 49 49= 51
+input     Rexx           a 55 57
+input     Rexx           a 59 61
+input     Rexx           a 63 65
+input     Rexx           a 67 69
+input     Rexx           a 71 73
+input     Rexx           a 75 77
+input     Rexx           a 79 84
+input     Rexx           a 86 88
+itab      Rexx           v 44= 45 46 51 51
+line      String         v 29= 30 31
+n_        Rexx           v 10= 11
+opt       Rexx           a 71 73
+opt       Rexx           a 75 77
+opt       Rexx           a 79 81
+otab      Rexx           v 47= 51 51
+rdr       BufferedReader v 6 12= 13 17= 18
+rdr       BufferedReader a 26 29
+shift     Rexx           v 45= 46
+tl        Rexx           v 46= 47
+tr        Rexx           v 46= 47

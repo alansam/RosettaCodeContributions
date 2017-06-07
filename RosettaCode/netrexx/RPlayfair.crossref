@@ -1,0 +1,80 @@
+--- Variables for class RPlayfair ---
+A2Z                  Rexx        c 10= 125 172
+arg                  Rexx        v 203= 204
+arg                  Rexx        a 208 209 210
+args                 String[]    a 202 203
+BFALSE               boolean     c 9= 39 41 47
+BTRUE                boolean     c 8= 9 37 43 45
+ciph_                Rexx        v 210= 211 211 211= 219 225= 226= 227
+ciphers              RPlayfair[] v 240= 249
+cipherText           Rexx        p 19
+cipherText_          Rexx        v 62= 94 94= 107 107= 115 115= 120
+cipherText_          Rexx        v 221= 224 227 250= 254 261
+cl                   Rexx        v 69= 73 77= 83 86 87 96 99 100 112 114 118
+clx                  Rexx        v 75= 77 77 87= 89 89= 91 91= 93
+cr                   Rexx        v 70= 73 78= 83 88 96 101 113 114 118
+crx                  Rexx        v 76= 78 78 88= 90 90= 92 92= 93
+cx                   Rexx        v 99= 106 106
+cy                   Rexx        v 93= 94 106= 107 114= 115 118
+d_                   Rexx        a 25= 29 29= 30 34 34= 48 49
+d_                   Rexx        v 59= 61= 87 88 100 101
+dbg                  Rexx        v 257= 258= 261
+dbg_                 Rexx        v 210= 213 213 213= 219 227
+digraph              Rexx        v 68= 72 118
+digraph              Rexx        v 195= 196
+digraphs             Rexx        p 20 144 145= 146
+digraphs_            Rexx        v 63= 66 68
+digraphs_            Rexx        v 193= 196 196= 198
+dl                   Rexx        v 72= 75
+dr                   Rexx        v 72= 76
+duplicationCharacter Rexx        p 21
+dw                   Rexx        v 66= 68
+e_                   Rexx        a 25= 31 31= 44
+ED                   Rexx        v 259= 260= 261
+eks                  Rexx        v 169= 170= 180
+encipher             boolean     p 14
+explain              boolean     p 15
+f_                   Rexx        a 25= 30 30= 35 35= 49 49= 50
+fillCharacter        Rexx        p 22
+IJ                   boolean     p 13
+IorQ                 Rexx        a 25= 28 28= 32 32= 36 36
+IorQ                 Rexx        v 186= 188= 190
+IorQ_                Rexx        v 210= 212 212 212= 219 227
+IQ                   Rexx        v 255= 256= 261
+key                  Rexx        p 16 139=
+key_                 Rexx        v 210= 214 214 214= 219 227
+keyMatrix            Rexx        p 17
+km                   Rexx        v 64= 73 75 76 93 93 106 106 114 114
+km                   Rexx        v 150= 154= 155= 157
+km                   Rexx        v 161= 162 163
+kp                   Rexx        v 125= 127 128 128= 131 131=
+kp                   Rexx        v 153= 155
+kr                   Rexx        v 126= 130 130= 135 135= 137 137= 139
+kr                   Rexx        v 151= 152 153 153=
+ky                   Rexx        a 25= 26 26= 51
+ky                   Rexx        a 124 125
+lc                   Rexx        v 178= 179 179 180 181
+ll                   Rexx        v 175= 179 181=
+mode                 Rexx        a 25= 27 27= 33 33= 40
+pf                   RPlayfair   v 219= 220 221 222 225 227= 228 250 251 252 255 257 259 261 261 261
+plainText            Rexx        p 18
+plainText_           Rexx        v 228= 229 230 262= 263 264
+pt                   Rexx        a 25= 53
+ptype                Rexx        v 85= 98= 111= 118
+px                   RPlayfair   v 261= 262
+r1                   Rexx        v 112= 114
+r2                   Rexx        v 113= 114
+r_                   Rexx        v 73= 75 76 77 78
+r_                   Rexx        v 152= 154 155
+r_                   Rexx        v 162= 163 163
+rlx                  Rexx        v 100= 102 102= 104 104= 106
+rrx                  Rexx        v 101= 103 103= 105 105= 106
+rtext                Rexx        v 174= 179 179= 180 180= 190 190= 191 192 192= 194 195 195=
+rtl                  Rexx        v 191= 192
+rx                   Rexx        v 86= 93 93
+sc                   Rexx        v 186= 188= 190
+text                 Rexx        v 171= 172 173 173= 177 178 178=
+text_                Rexx        v 210= 215 215 215= 219
+tp                   Rexx        v 172= 173 173
+verify_              Rexx        v 220= 223 230 251= 253 264
+xx                   Rexx        v 128= 129 130 131

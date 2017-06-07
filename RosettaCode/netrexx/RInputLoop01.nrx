@@ -1,0 +1,24 @@
+/* NetRexx */
+options replace format comments java crossref symbols nobinary
+
+-- Read from default input stream (console) until end of data or input is the string '.*'
+lines = ''
+lines[0] = 0
+lineNo = 0
+EODAD = '.*'
+
+loop label ioloop forever
+  inLine = ask
+  if inLine =  null  then leave ioloop -- stop on EOF
+  if inLine == EODAD then leave ioloop -- stop if input line is EODAD
+  lineNo = lineNo + 1
+  lines[0] = lineNo
+  lines[lineNo] = inLine
+  end ioloop
+
+loop l_ = 1 to lines[0]
+  say l_.right(4)':' lines[l_]
+  end l_
+
+return
+

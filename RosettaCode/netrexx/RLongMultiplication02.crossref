@@ -1,0 +1,31 @@
+--- Variables for class RLongMultiplication02 ---
+ai           Rexx   v 17= 18 19
+arg          Rexx   a 6= 6
+arg          Rexx   a 56
+bi           Rexx   v 16= 18 19
+builtIn      Rexx   v 69= 72 75
+calculated   Rexx   v 70= 73 75
+errors       Rexx   v 65= 76 76= 79
+i_           Rexx   v 20= 21 22 25
+lstr         Rexx   v 39= 40 41 43
+mm           Rexx   v 67= 68
+mms          Rexx[] v 57= 67
+mpa          Rexx   v 12= 17 19
+mpb          Rexx   v 13= 16 19
+multiplicand Rexx   a 10 13
+multiplicand Rexx   v 68= 69 70 71
+multiplier   Rexx   a 10 12
+multiplier   Rexx   v 68= 69 70 71
+numbr        Rexx   a 37 39 41
+numbr        Rexx   a 48 50 51
+ok           Rexx   v 64= 75 75= 78
+p_           Rexx   v 19= 20 21 23=
+r_           Rexx   v 14= 21 22= 28= 29
+result       Rexx   v 11= 29= 30 30= 31 31= 32
+result       Rexx   v 38= 41= 43= 44
+result       Rexx   v 49= 51 51= 53
+ri           Rexx   v 18= 20
+rim          Rexx   v 15= 25 25= 28
+s_           Rexx   v 21= 22 23
+z_           Rexx   v 40= 41 41
+z_           Rexx   v 50= 51

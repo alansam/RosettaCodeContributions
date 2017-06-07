@@ -1,0 +1,68 @@
+/* Generated from 'RCArbitraryPrecision_03.nrx' 12 Jul 2011 20:51:40 [v3.00] */
+/* Options: Comments Crossref Decimal Format Java Logo Replace Symbols Trace2 Verbose3 */
+
+/* NetRexx */
+
+
+
+/* precision must be set manually */
+
+
+
+
+public class RCArbitraryPrecision_03{
+ private static final netrexx.lang.Rexx $01=new netrexx.lang.Rexx((byte)10);
+ private static final netrexx.lang.Rexx $02=new netrexx.lang.Rexx(10);
+ private static final netrexx.lang.Rexx $03=new netrexx.lang.Rexx(9);
+ private static final netrexx.lang.Rexx $04=new netrexx.lang.Rexx(3);
+ private static final netrexx.lang.Rexx $05=new netrexx.lang.Rexx(2);
+ private static final netrexx.lang.Rexx $06=new netrexx.lang.Rexx(4);
+ private static final netrexx.lang.Rexx $07=new netrexx.lang.Rexx(190000);
+ private static final netrexx.lang.Rexx $08=new netrexx.lang.Rexx(5);
+ private static final netrexx.lang.Rexx $09=netrexx.lang.Rexx.toRexx("...");
+ private static final java.lang.String $0="RCArbitraryPrecision_03.nrx";
+ private static final netrexx.lang.RexxSet $1=new netrexx.lang.RexxSet();
+ static{$1.setDigits($01);}
+ 
+ public static void main(java.lang.String $0s[]){
+  netrexx.lang.Rexx nanoFactor;
+  long t1;
+  netrexx.lang.Rexx p;
+  netrexx.lang.Rexx n;
+  long t2;
+  netrexx.lang.Rexx td;
+  netrexx.lang.Rexx check;
+  netrexx.lang.Rexx sample;
+  netrexx.lang.RexxSet $2=new netrexx.lang.RexxSet($1);
+  nanoFactor=$02.OpPow($2,$03);
+  
+  t1=java.lang.System.nanoTime();
+  
+  p=$04.OpPow($2,$05);
+  p=$06.OpPow($2,p);
+  
+  $2.setDigits($07);
+  n=$08.OpPow($2,p);
+  t2=java.lang.System.nanoTime();
+  td=new netrexx.lang.Rexx(t2).OpSub($2,new netrexx.lang.Rexx(t1));
+  
+  check=netrexx.lang.Rexx.toRexx("62060698786608744707...92256259918212890625");
+  sample=((n.left(new netrexx.lang.Rexx((byte)20))).OpCc($2,$09)).OpCc($2,n.right(new netrexx.lang.Rexx((byte)20)));
+  
+  $2.setDigits($01);
+  netrexx.lang.RexxIO.Say(netrexx.lang.Rexx.toRexx("Run time in seconds:").OpCcblank($2,td.OpDiv($2,nanoFactor)));
+  netrexx.lang.RexxIO.Say("");
+  netrexx.lang.RexxIO.Say(netrexx.lang.Rexx.toRexx("Expected result:").OpCcblank($2,check));
+  netrexx.lang.RexxIO.Say(netrexx.lang.Rexx.toRexx("  Actual result:").OpCcblank($2,sample));
+  netrexx.lang.RexxIO.Say(netrexx.lang.Rexx.toRexx("         digits:").OpCcblank($2,n.length()));
+  netrexx.lang.RexxIO.Say("");
+  
+  if (check.OpEq($2,sample)) 
+   
+   netrexx.lang.RexxIO.Say("Result confirmed");
+  else 
+   netrexx.lang.RexxIO.Say("Result does not satisfy test");
+  return;}
+ 
+ private RCArbitraryPrecision_03(){return;}
+ }

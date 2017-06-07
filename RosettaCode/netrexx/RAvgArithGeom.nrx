@@ -1,0 +1,50 @@
+/* NetRexx */
+options replace format comments java crossref symbols nobinary
+
+numeric digits 30
+parse arg a_ g_ .
+if a_ = '' | a_ = '.' then a0 = 1
+                      else a0 = a_
+if g_ = '' | g_ = '.' then g0 = 1 / Math.sqrt(2)
+                      else g0 = g_
+
+say agm1(a0, g0)
+say agm2(a0, g0)
+say agm3(a0, g0)
+
+return
+
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+method agm1(a0, g0) public static returns Rexx
+  a1 = a0
+  g1 = g0
+  loop until a0 = a1
+    a1 = (a0 + g0) / 2
+    g1 = Math.sqrt(a0 * g0)
+    a0 = (a1 + g1) / 2
+    g0 = Math.sqrt(a1 * g1)
+    end
+  return a0
+
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+method agm2(a0, g0) public static returns Rexx
+  a1 = a0
+  g1 = g0
+  loop while (a1 - g1).abs() >= Math.pow(10, -14)
+    temp = (a1 + g1) / 2
+    g1 = Math.sqrt(a1 * g1)
+    a1 = temp
+    end
+  return a1 + 0
+
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+method agm3(a0 = double, g0 = double) public static binary returns Rexx
+    a1 = double a0
+    g1 = double g0
+    loop while Math.abs(a1 - g1) >= Math.pow(10, -14)
+      aTemp = double (a1 + g1) / 2.0
+      g1 = Math.sqrt(a1 * g1)
+      a1 = aTemp
+      end
+    return Rexx a1
+

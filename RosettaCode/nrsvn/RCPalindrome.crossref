@@ -1,0 +1,4 @@
+--- Variables for class RCPalindrome ---
+pal Rexx   v 13= 15
+x_  Rexx   a 18 19 19= 21 21
+y_  String v 5= 10 13

@@ -1,0 +1,11 @@
+--- Variables for class REvenOrOdd ---
+anInt Rexx    a 13 15 16 17 18 19
+anInt Rexx    a 24 25
+anInt Rexx    a 28 29
+anInt Rexx    a 32 33
+anInt Rexx    a 36 37
+eo    boolean v 15= 16= 17= 18= 19= 21
+meth  Rexx    a 13= 14
+nn    Rexx    v 6= 7 7 7 7 7
+state boolean a 40 41
+sv    Rexx    v 41= 42= 43

@@ -1,0 +1,47 @@
+/* NetRexx */
+
+options replace format comments java crossref savelog symbols nobinary
+
+parse arg n_ .
+if n_ = '' then n_ = 2000
+
+loop nn = 3 to Math.sqrt(n_) by 1
+  if isPrime(nn) then say nn.right(6) 'is prime'
+  end nn
+
+return
+
+/*-------------------------------------ISPRIME subroutine---------------*/
+method isPrime(x_) public static returns boolean
+
+  ip = boolean
+
+  -- is it a teacher's pet?
+  if '2 3 5 7'.wordpos(x_) \== 0 then do
+    ip = isTrue
+    end
+
+  -- weed out the riff-raff.
+  else if x_ < 2 | x_ // 2 == 0 | x_ // 3 == 0 then do
+    ip = isFalse
+    end
+  else do
+  -- Note:   //  is modulus.
+    loop j_ = 5 by 6 until j_ * j_ > x_   -- skips multiples of three. 
+      if x_ // j_ == 0 | x_ // (j_ + 2) == 0 then do
+        ip = isFalse  -- do a pair of divides (mod)
+        end
+      else do
+        ip = isTrue
+        end
+      end j_
+    end
+
+  return ip
+
+method isTrue public static returns boolean
+  return 1 == 1
+
+method isFalse public static returns boolean
+  return \isTrue
+

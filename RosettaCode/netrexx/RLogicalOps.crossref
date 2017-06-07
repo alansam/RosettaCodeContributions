@@ -1,0 +1,12 @@
+--- Variables for class RLogicalOps ---
+arg    Rexx       a 4= 4
+arg    Rexx       a 23
+bb     boolean    a 17 18
+bt     String     v 18= 19= 20
+FALSE_ boolean    v 25= 28 29 30 30
+lpair  boolean[]  v 33= 35 35
+lpairs boolean[,] v 26= 32 33
+lx     int        v 32= 33
+TRUE_  boolean    v 24= 25 27 27 28 29
+xL     boolean    a 8 9 9 10 10 11 11 12 12
+xR     boolean    a 8 9 9 10 10 11 11

@@ -1,0 +1,73 @@
+/* Generated from 'RCMD5.nrx' 2 Sep 2011 19:31:19 [v3.00] */
+/* Options: Binary Comments Crossref Decimal Format Java Logo Replace Symbols Trace2 Verbose3 */
+
+/* NetRexx */
+
+
+
+
+
+
+public class RCMD5{
+ private static final netrexx.lang.Rexx $01=netrexx.lang.Rexx.toRexx(" <Verify>");
+ private static final netrexx.lang.Rexx $02=netrexx.lang.Rexx.toRexx("</Verify>");
+ private static final java.lang.String $0="RCMD5.nrx";
+ 
+ public static void main(java.lang.String $0s[]){
+  MD5(netrexx.lang.Rexx.toRexx("The quick brown fox jumps over the lazy dog"),netrexx.lang.Rexx.toRexx("9e107d9d372bb6826bd81d3542a419d6"));
+  // RFC 1321 MD5 test suite:
+  MD5(netrexx.lang.Rexx.toRexx(""),netrexx.lang.Rexx.toRexx("d41d8cd98f00b204e9800998ecf8427e"));
+  MD5(new netrexx.lang.Rexx('a'),netrexx.lang.Rexx.toRexx("0cc175b9c0f1b6a831c399e269772661"));
+  MD5(netrexx.lang.Rexx.toRexx("abc"),netrexx.lang.Rexx.toRexx("900150983cd24fb0d6963f7d28e17f72"));
+  MD5(netrexx.lang.Rexx.toRexx("message digest"),netrexx.lang.Rexx.toRexx("f96b697d7cb7938d525a2f31aaf161d0"));
+  MD5(netrexx.lang.Rexx.toRexx("abcdefghijklmnopqrstuvwxyz"),netrexx.lang.Rexx.toRexx("c3fcd3d76192e4007dfb496cca67e13b"));
+  MD5(netrexx.lang.Rexx.toRexx("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"),netrexx.lang.Rexx.toRexx("d174ab98d277d9f5a5611c2c9f419d9f"));
+  MD5(netrexx.lang.Rexx.toRexx("12345678901234567890123456789012345678901234567890123456789012345678901234567890"),netrexx.lang.Rexx.toRexx("57edf4a22be3c955ac49da2e2107b67a"));
+  
+  return;
+  }
+
+ 
+ public static void MD5(netrexx.lang.Rexx messageText,netrexx.lang.Rexx verifyCheck){
+  java.lang.String message;
+  byte messageBytes[]=null;
+  byte digestBytes[]=null;
+  java.security.MessageDigest md=null;
+  java.lang.String digestSum=null;
+  int b_=0;
+  netrexx.lang.Rexx bb=null;
+  java.lang.Exception ex=null;
+  message=new java.lang.String(netrexx.lang.Rexx.tochararray(messageText));
+  
+  
+  
+  {try{
+   messageBytes=message.getBytes("UTF-8");
+   md=java.security.MessageDigest.getInstance("MD5");
+   md.update(messageBytes);
+   digestBytes=md.digest();
+   
+   digestSum="";
+   {int $1=digestBytes.length-1;b_=0;b_:for(;b_<=$1;b_++){
+    bb=(new netrexx.lang.Rexx(digestBytes[b_])).d2x(new netrexx.lang.Rexx((byte)2));
+    digestSum=netrexx.lang.Rexx.toString(netrexx.lang.Rexx.toRexx(digestSum).OpCc(null,bb.lower()));
+    }
+   }/*b_*/
+   
+   netrexx.lang.RexxIO.Say("<Message>"+message+"</Message>");
+   netrexx.lang.RexxIO.Say("    <MD5>"+digestSum+"</MD5>");
+   netrexx.lang.RexxIO.Say(($01.OpCc(null,verifyCheck)).OpCc(null,$02));
+   if (netrexx.lang.Rexx.toRexx(digestSum).OpEqS(null,verifyCheck)) 
+    netrexx.lang.RexxIO.Say("MD5 Confirmed");
+   else 
+    netrexx.lang.RexxIO.Say("MD5 Failed");
+  }
+  catch (java.lang.Exception $2){ex=$2;
+   ex.printStackTrace();
+  }}
+  
+  return;
+  }
+ 
+ private RCMD5(){return;}
+ }

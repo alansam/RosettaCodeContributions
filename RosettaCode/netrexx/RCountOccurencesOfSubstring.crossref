@@ -1,0 +1,9 @@
+--- Variables for class RCountOccurencesOfSubstring ---
+args    String[] a 9
+find    Rexx     v 11= 13= 13 14= 14 18
+findStr Rexx     a 5 6
+fnd     Rexx     v 18= 19 19
+inStr   Rexx     a 5 6
+ix      Rexx     v 12= 13 13= 13 13 13 13 14 14= 14 14 14 14 16= 17 18
+str     Rexx     v 17= 19 19
+strings Rexx     v 10= 13= 13= 13= 14= 14= 14= 16 17 18

@@ -1,0 +1,5 @@
+--- Variables for class RCGuessTheNumber ---
+guess     Rexx   v 6= 13 16= 17 18
+guessThis Rexx   v 5= 13 17
+prompt    Rexx[] v 7= 14
+promptIdx int    v 11= 14 15=

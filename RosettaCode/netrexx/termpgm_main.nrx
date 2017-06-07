@@ -1,0 +1,6 @@
+numeric digits 30
+loop i_ = 1 to 5
+  say i_.right(3)':' termpgm.term(i_)
+  end i_
+return
+

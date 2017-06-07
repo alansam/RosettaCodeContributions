@@ -1,0 +1,25 @@
+--- Variables for class RLoops ---
+args   String[]       a 102
+ct     Rexx           v 240= 243 243= 244
+days   Rexx[]         v 223= 224
+daysi  Iterator       v 225= 227 228
+daysl  java.util.List v 224= 225
+dim2   int[,]         v 280= 282 283 284= 288 290 291 292
+i1     Rexx           v 282= 283 284
+i2     Rexx           v 283= 284
+i_     Rexx           v 146= 147 148
+i_     Rexx           v 165= 166 167 167= 168
+i_     Rexx           v 180= 181
+i_     Rexx           v 193= 194
+i_     Rexx           v 209= 210
+i_     Rexx           v 262= 263 264
+iend   Rexx           v 261= 262 264
+istart Rexx           v 260= 262
+nul    Rexx           v 145= 147 152
+rn     Rexx           v 124 128= 129 130 131= 132
+rnd    Random         v 125= 128 131
+rnd    Random         v 279= 284
+rs     Rexx           v 259= 263 263= 265 265= 268
+x1     Rexx           v 288= 289 290 291 292
+x2     Rexx           v 290= 291 292
+x_     Rexx           v 309= 310 311 312 312=

@@ -1,0 +1,4 @@
+--- Variables for class PalindromeDetection ---
+pal Rexx v 10= 12
+x   Rexx a 15 16 16= 17 17
+y   Rexx v 2= 7 10

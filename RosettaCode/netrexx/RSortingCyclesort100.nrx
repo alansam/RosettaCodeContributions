@@ -1,0 +1,61 @@
+/* NetRexx */
+Options replace format comments java crossref symbols nobinary
+  a = ''
+  a[1] = 'George Washington  Virginia'
+  a[2] = 'John Adams  Massachusetts'
+  a[3] = 'Thomas Jefferson  Virginia'
+  a[4] = 'James Madison  Virginia'
+  a[5] = 'James Monroe  Virginia'
+  n = 5
+  show(a, n, 'Unsorted list: ')
+  w = sortcycle(a,n)
+  Say 'sorted'
+  show(a, n, 'Sorted list')
+  Say ' '
+  Say 'This took' w 'writes.'
+  Exit
+ 
+method sortcycle(a, n) public static
+  writes = 0
+  Loop c = 1 For n
+    x = a[c]
+    p = c
+    x = a[c]
+    Loop j = c + 1 To n
+      If a[j] < x Then
+        p = p + 1
+      End
+    If p == c Then
+      Iterate
+    Loop While x == a[p]
+      p = p + 1
+      End
+    t = x
+    x = a[p]
+    a[p] = t
+    writes = writes + 1
+    Loop While p \== c
+      p = c
+      Loop k = c + 1 To n
+        If a[k] < x Then
+          p = p + 1
+        End
+      Loop While x == a[p]
+        p = p + 1
+        End
+      t = x
+      x = a[p]
+      a[p] = t
+      writes = writes + 1
+      End
+    End
+  Return writes
+ 
+method show(a, n, hdr) public static
+  Say ' '
+  Say hdr
+  Loop i = 1 To n
+    Say i.format(2) a[i]
+    End
+  Return
+s

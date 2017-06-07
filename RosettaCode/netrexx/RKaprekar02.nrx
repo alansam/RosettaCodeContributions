@@ -1,0 +1,81 @@
+/* NetRexx */
+options replace format comments java crossref symbols nobinary
+
+numeric digits 40
+
+class RKaprekar02 public
+
+properties constant
+  isTrue  = boolean (1 == 1)
+  isFalse = boolean (1 \== 1)
+
+method main(args = String[]) public static
+
+  arg = Rexx(args)
+  parse arg maxLimit listAll .
+  select
+    when maxLimit \= '' & maxLimit.datatype('w') then maxLim = maxLimit
+    otherwise maxLim = 1000000
+  end
+  select
+    when 'TRUE'.abbrev(listAll.upper, 1)  then details = isTrue
+    when 'FALSE'.abbrev(listAll.upper, 1) then details = isFalse
+    otherwise details = isTrue
+  end
+
+  limit = 10000
+  timings(limit, details)
+  timings(limit, details, isTrue)
+
+  limit = maxLim
+  timings(limit, details)
+  timings(limit, details, isTrue)
+
+  return
+
+method timings(limit, listAll = isTrue, optimize = isFalse) public static
+
+  say '-'.copies(80)
+  t1 = System.nanoTime()
+  kaprekar(limit, listAll, optimize)
+  t2 = System.nanoTime()
+  t0 = t2 - t1
+  ts = t0 / 1000000000
+  if optimize then om = 'optimized'
+              else om = 'unoptimized'
+  say 'Elapsed time to scan' limit 'numbers ('om'):' ts's'
+  say
+
+  return
+  
+method kaprekar(limit, listAll = isTrue, optimize = isFalse) public static
+
+  kCount = 0
+  loop kn = 1 to limit
+    kSq = kn * kn
+
+    if optimize then if kSq // 9 \== kn // 9 then iterate kn -- cast out nines
+
+    loop splt = 1 to kSq.length()
+      parse kSq kl +(splt) kr .
+      if kr = 0 then leave splt
+      if kr = '' then kr = 0
+      kNum = ''
+      if kl + kr = kn then do
+        kNum = kn
+        kCount = kCount + 1
+        if listAll then do
+          ll = limit.length() + 1
+          lx = (limit * limit).length()
+          say kCount.right(5)':' kNum.right(ll) ':' kSq.right(lx) '('kl.right(lx) '+' kr.right(lx) '=' (kl + kr).right(lx)')'
+          end
+        end
+      if kNum \= '' then leave splt
+      end splt
+    end kn
+
+  say
+  say kCount.right(10) 'Kaprekar numbers <' limit
+
+  return
+

@@ -1,0 +1,58 @@
+/* NetRexx */
+options replace format comments java crossref symbols nobinary
+
+/*NetRexx program generates all permutations of  N  different objects.     */
+
+parse arg things bunch inbetweenChars names
+
+permSets(things, bunch, inbetweenChars, names)
+return
+
+/*──────────────────────────────────.PERMSET subroutine─────────────────*/
+method _permset(QQ, y) private static
+--procedure expose (list)
+--  parse arg ?
+  if QQ > y then do
+    UU = A[1]
+    loop j = 2 to y
+      UU = UU || between || A[j]
+      end j
+    say UU
+    end
+  else do q = 1 for x               /*build permutation recursively. */
+    loop k = 1 for QQ - 1
+      if A[k] == S[q] then iterate q
+      end k
+    A[QQ] = S[q]
+    _permset(QQ + 1, y)
+    end q
+  return
+
+/*──────────────────────────────────PERMSETS subroutine─────────────────*/
+method permSets(x, y, between, uSyms) private static
+  /*X things Y at a time.*/
+  A      = ''
+  S      = ''
+  sep    = ''                           /*X  can't be > length(A0abcs).  */
+  Aabc   = 'abcdefghijklmnopqrstuvwxyz'
+  AabcU  = Aabc
+  AabcU  = AabcU.upper
+  AabcS  = AabcU || Aabc
+  A0abcS = 123456789 || AabcS
+   
+  loop k = 1 for x                         /*build a list of (perm) symbols.*/
+    UU = p(uSyms.word(k)  p(A0abcS.substr(k, 1) k))   /*get|generate a symbol.*/
+    if length(UU) \== 1 then sep = '_'       /*if not 1st char, then use sep. */
+    S[k] = UU                                /*append it to the symbol list.  */
+    end k
+
+  if between == '' then between = sep       /*use the appropriate separator. */
+  list = 'S. A. between x y'
+  _permset(1, y)
+  return
+
+/*──────────────────────────────────P subroutine (Pick one)─────────────*/
+method p(arg) private static
+  parse arg AA .
+  return AA.word(1)
+

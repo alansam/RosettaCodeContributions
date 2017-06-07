@@ -1,0 +1,11 @@
+--- Variables for class RFunctionDefinition ---
+ft2yds       int   v 23= 26
+in2ft        int   v 22= 26
+in2mm        float v 24= 26
+mm2m         float v 25= 26
+multiplicand Rexx  a 39 41
+multiplier   Rexx  a 39 41
+pi           Rexx  v 20= 28 30
+product      Rexx  v 41= 42
+radiusM      Rexx  v 26= 29 30 30 30
+radiusY      int   v 21= 26 28 28 28 29

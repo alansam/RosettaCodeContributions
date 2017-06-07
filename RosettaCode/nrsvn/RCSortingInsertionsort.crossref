@@ -1,0 +1,13 @@
+--- Variables for class RCSortingInsertionsort ---
+A          String[]       a 26 28 29
+A          java.util.List a 34 36 37 40 41 41 44 47
+al         java.util.List v 29= 30
+cl         String[]       v 17= 18 19
+ct         int            v 18= 19
+i_         int            v 36= 37 38
+j_         int            v 38= 39 40 41 41 42 42= 44
+lists      String[,]      v 11= 16 17
+ln         int            v 16= 17
+placesList String[]       v 6= 12 13 13
+rl         String[]       v 28= 30 32
+value      Object         v 37= 40 44

@@ -1,0 +1,21 @@
+--- Variables for class RSingleton ---
+args String[] a 8 9
+
+--- Variables for class RSingleton.Instance ---
+_instance RSingleton.Instance s 16= 24
+_random   Random              s 18= 27
+_refCount int                 s 17= 30 30= 34 35 35= 39
+
+--- Variables for class RSingleton.Testcase ---
+_instance RSingleton.Instance  p 45 50= 52 53 56 60 61 70= 71 72 73 82 83
+args      String[]             a 64
+ex        InterruptedException v 57= 58
+ex        InterruptedException v 79= 80
+hc        int                  v 89= 92
+info      Rexx                 v 90= 93
+mn        RSingleton.Testcase  v 69= 70 71 71 72 73 73 82 83 83
+threads   Thread[]             v 65= 75
+thud      Thread               v 49= 51 54 56
+tid       long                 v 88= 91
+tr        Object               v 75= 76
+trd       Thread               v 87= 88 89 90

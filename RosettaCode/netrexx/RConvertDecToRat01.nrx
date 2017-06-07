@@ -1,0 +1,65 @@
+/* NetRexx */
+options replace format comments java crossref symbols nobinary
+
+method main(args = String[]) public static
+  Numeric Digits 10               /* use "only" 10 digs of precision */
+  test('0.9054054054'   ,'67/74')
+  test('0.5185185185'   ,'14/27')
+  test('0.75'           ,'3/4')
+  test('0.905405400'    ,' 693627417/766095958')
+  test('0.9054054054'   ,'67/74')
+  test('0.1428571428'   ,'1/7')
+  test('35.000'         ,'35')
+  test('35.001'         ,'35001/1000')
+  test('0.00000000001'  ,'?')
+  test('0.000001000001' ,'1/999999')
+
+  return
+
+method test(decNumber, fs) public static
+  fh=rat(decNumber)                  /* convert number to fraction   */
+  Say '  'decNumber fh
+  If fh<>fs Then Say '                   not='fs
+  parse fh xn . '/' xd .
+  x = xn / xd                        /* compute value of fraction    */
+  If x<>decNumber Then               /* not exactly equal to number  */
+    Say '> '||x 'is different'
+  Say ' '
+  Return
+
+method rat(in, high = '') public static
+/**********************************************************************
+* rat(number<,high) returns a fraction or an integer that is equal to
+* or approximately equal to number.
+* Nominator and denominator must not have more than high digits
+* 16.08.2012 Walter Pachl derived from Rexx Version 2
+*       Help is needed to translate the other parts of that Rexx code
+**********************************************************************/
+
+if high=='' then
+    high=10**(digits - 1)           /* maximum nominator/denominator */
+  x=in                                 /* working copy               */
+  nom=0                                /* start values nominator     */
+  den=1                                /*              denominator   */
+  tnom=1                               /*         temp nominator     */
+  tden=0                               /*         temp denominator   */
+  loop While tnom<=high & tden<=high   /* nominator... not too large */
+    n=x.trunc()                        /* take integer part of x     */
+    z=tnom;                            /* save temp nominator        */
+    tnom=n*tnom+nom;                   /* compute new temp nominator */
+    nom=z                              /* assign nominator           */
+    z=tden;                            /* save temp denominator      */
+    tden=n*tden+den                    /* compute new temp denominato*/
+    den=z                              /* assign denominator         */
+    if n=x | tnom/tden=in then do
+      if tnom>high | tden>high then    /* temp value(s) too large    */
+        Leave                          /* don't use them             */
+      nom=tnom                         /* otherwise take them as     */
+      den=tden                         /* final values               */
+      leave                            /* and end the loop           */
+      end
+    x=1/(x-n)                          /* compute x for next round   */
+    end
+  frac = nom'/'den       /* otherwise a fraction       */
+  return frac
+

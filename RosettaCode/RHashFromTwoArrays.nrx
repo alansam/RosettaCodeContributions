@@ -1,0 +1,59 @@
+/* NetRexx */
+
+options replace format comments java crossref savelog symbols nobinary utf8
+
+/**
+ * <h3>Hash from two arrays</h3>
+ * <p>
+ * Using two Arrays of equal length, create a Hash object where the elements from one array (the keys) are linked to the elements of the other (the values)
+ * </p>
+ *
+ * @author alansampson : <a href="mailto%3A%22Alan%20Sampson%22%20%3Calansamps%40gmail%2Ecom%3E">&quot;Alan Sampson&quot; &lt;alansamps@gmail.com&gt;</a>
+ * @version 1.0
+ * @see <a href="http://rosettacode.org/wiki/Hash_from_two_arrays">rosettacode.org/wiki/Hash_from_two_arrays</a>
+ */
+
+keysArray = ['one', 'two', 'three' ]
+valsArray = [1, 2, 3]
+
+hashBuiltin(keysArray, valsArray)
+hashExternal(keysArray, valsArray)
+
+return
+
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+method hashBuiltin(keys = Rexx[], vals = Rexx[]) public static
+
+  hash = ''
+  loop x_ = 0 to keys.length - 1
+    key = keys[x_]
+    val = vals[x_]
+    hash[key] = val
+    end x_
+
+
+  loop x_ over hash
+    say ('hash['x_']').right(20)":" hash[x_]
+    end x_
+
+  return
+
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+method hashExternal(keys = Rexx[], vals = Rexx[]) public static
+
+  hash = HashMap()
+  loop x_ = 0 to keys.length - 1
+    key = keys[x_]
+    val = vals[x_]
+    hash.put(key, val)
+    end x_
+
+  iter = hash.keySet.iterator
+  loop label x_ while iter.hasNext
+    k_ = iter.next
+    v_ = hash.get(k_)
+    say ('hash['k_']').right(20)":" v_
+    end x_
+
+  return
+

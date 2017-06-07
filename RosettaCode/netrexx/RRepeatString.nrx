@@ -1,0 +1,21 @@
+/* NetRexx */
+options replace format comments java crossref symbols nobinary
+
+sampleStr = 'ha'
+sampleChr = '*'
+say '   COPIES:' sampleStr.copies(5)
+say 'CHANGESTR:' '.....'.changestr('.', sampleStr)
+say '     LEFT:' sampleChr.left(5, sampleChr)
+say '    RIGHT:' sampleChr.right(5, sampleChr)
+say '   CENTRE:' sampleChr.centre(5, sampleChr)
+say '  OVERLAY:' sampleChr.overlay(sampleChr, 1, 5, sampleChr)
+say '   SUBSTR:' ''.substr(1, 5, sampleChr)
+say 'TRANSLATE:' '.....'.translate(sampleChr, '.')
+
+rs = ''
+loop for 5
+  rs = rs || sampleStr
+  end
+say '     LOOP:' rs
+return
+

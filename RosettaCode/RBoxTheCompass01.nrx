@@ -1,0 +1,263 @@
+/* NetRexx */
+options replace format comments java crossref savelog symbols nobinary utf8
+
+/**
+ * <h3>Boxing the compass</h3>
+ * <p>
+ * Avast me hearties!
+ * </p>
+ * <p>
+ * There be many a <a href="http://www.talklikeapirate.com/howto.html">land lubber</a> that knows naught of
+ * the pirate ways and gives direction by degree! They know not how to
+ * <a href="http://en.wikipedia.org/wiki/Boxing_the_compass">box the compass</a>!
+ * </p>
+ * <h4>Task description</h4>
+ * <ol>
+ * <li>
+ * Create a function that takes a heading in degrees and returns the correct 32-point compass heading.
+ * </li>
+ * <li>
+ * Use the function to print and display a table of Index, Compass point, and Degree; rather like the corresponding
+ * columns from, the first table of the <a href="http://en.wikipedia.org/wiki/Boxing_the_compass">wikipedia article</a>,
+ * but use only the following 33 headings as input:
+ * <br />
+ * <code>[0.0, 16.87, 16.88, 33.75, 50.62, 50.63, 67.5, 84.37, 84.38, 101.25, 118.12, 118.13, 135.0, 151.87, 151.88,
+ * 168.75, 185.62, 185.63, 202.5, 219.37, 219.38, 236.25, 253.12, 253.13, 270.0, 286.87, 286.88, 303.75, 320.62, 320.63,
+ * 337.5, 354.37, 354.38]</code>.
+ * (They should give the same order of points but are spread throughout the ranges of acceptance)
+ * </li>
+ * </ol>
+ * <h4>Note</h4>
+ * <ul>
+ * The headings and indices can be calculated from this pseudocode:
+ * <pre>
+ * for i in 0..32 inclusive:
+ *     heading = i * 11.25
+ *     case i %3:
+ *       if 1: heading += 5.62; break
+ *       if 2: heading -= 5.62; break
+ *     end
+ *     index = ( i mod 32) + 1
+ * </pre>
+ * <li>
+ * </li>
+ * </ul>
+ *
+ * @author alansampson : <a href="mailto%3A%22Alan%20Sampson%22%20%3Calansamps%40gmail%2Ecom%3E">&quot;Alan Sampson&quot; &lt;alansamps@gmail.com&gt;</a>
+ * @version 1.0
+ * @see <a href="http://www.fileformat.info/info/unicode/">www.fileformat.info/info/unicode/</a>
+ * @see <a href="http://en.wikipedia.org/wiki/List_of_Unicode_characters">en.wikipedia.org/wiki/List_of_Unicode_characters</a>
+ */
+class RBoxTheCompass01
+
+properties constant
+  _DEG  = '_DEG'
+  _MIN  = '_MIN'
+  _SEC  = '_SEC'
+  _FULL = '_FULL'
+
+properties private static
+  sign = ''
+
+  headings = ''
+
+  rosepoints = ''
+
+/**
+ *
+ */
+method main(args = String[]) public static
+
+  -- sign[_DEG] = '°'
+  sign[_DEG] = '\u00b0'          -- '\xc2\xb0'     --  degree sign  : &deg;   - &#xb0;   - &#176;  : U+00B0
+  sign[_MIN] = "'" -- '\u2032'   -- '\xe2\x80\xb2' --  prime        : &prime; - &#x2032; - &#8242; : U+2032
+  sign[_SEC] = '"' -- '\u2033'   -- '\xe2\x80\xb3' --  double prime : &Prime; - &#x2033; - &#8243; : U+2033
+
+  headings[0] = 0
+  make_headings()
+
+  rosepoints[0] = 0
+  rosepoints = get_points()
+
+  points = 32
+  loop h_ = 0 to points - 1
+    heading = h_ * 360 / points
+    hmin = heading - 5.62
+    hmax = heading + 5.62
+
+    if hmin < 0 then do
+      hmin = hmin + 360
+      end
+    if hmax >= 360 then do
+      hmax = hmax - 360
+      end
+
+    index = (h_ // points) + 1
+    parse get_point(index) p_abbrev p_full
+
+    say index.right(3) -
+        p_abbrev.left(4) p_full.left(20) -
+        hmin.format(5, 2)    || sign[_DEG] '('format_mins_of_arc(hmin)')' -
+        heading.format(5, 2) || sign[_DEG] '('format_mins_of_arc(heading)')' -
+        hmax.format(5, 2)    || sign[_DEG] '('format_mins_of_arc(hmax)')' -
+        ''
+    end h_
+
+  say
+
+  Q_ = 0
+  Queue = ''
+  Q_ = Q_ + 1; Queue[0] = Q_; Queue[Q_] = 360 + 0.0
+  Q_ = Q_ + 1; Queue[0] = Q_; Queue[Q_] = 360 + 11.25
+  Q_ = Q_ + 1; Queue[0] = Q_; Queue[Q_] = 360 + 22.5
+  Q_ = Q_ + 1; Queue[0] = Q_; Queue[Q_] = 360.0
+  Q_ = Q_ + 1; Queue[0] = Q_; Queue[Q_] = 16.87
+  Q_ = Q_ + 1; Queue[0] = Q_; Queue[Q_] = 16.88
+
+  loop q_ = 1 to Queue[0]
+    heading = Queue[q_]
+    index = get_index(heading)
+    parse get_point(index) p_abbrev p_full
+    say index.right(3) -
+        p_abbrev.left(4) p_full.left(20) -
+        heading.format(5,2) || sign[_DEG] '('format_mins_of_arc(heading)')' -
+        ''
+    end q_
+
+  say
+  loop h_ = 1 to headings[0]
+    heading = headings[h_]
+    index = get_index(heading)
+    parse get_point(index) p_abbrev p_full
+    say index.right(3) -
+        p_abbrev.left(4) p_full.left(20) -
+        heading.format(5,2) || sign[_DEG] '('format_mins_of_arc(heading)')' -
+        ''
+    end h_
+
+  return
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/**
+ *
+ */
+method make_headings() private static
+
+  points = 32
+  loop i_ = 0 to points
+    heading = i_ * 360 / 32
+
+    it = i_ // 3
+    select
+      when it = 1 then do
+        heading_h = heading + 5.62
+        end
+
+      when it = 2 then do
+        heading_h = heading - 5.62
+        end
+
+      otherwise do
+        heading_h = heading
+        end
+      end
+
+    ix = headings[0] + 1; headings[0] = ix; headings[ix] = heading_h
+    end i_
+
+  return
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/**
+ *
+ */
+method get_index(heading) private static
+
+  one_pt = 360 / 32
+  hn = heading // 360
+  hi = hn % one_pt
+
+  if hn > hi * one_pt + 5.62 then do
+    hi = hi + 1 -- greater than max range for this point; bump to next point
+    end
+
+  idx = hi // 32 + 1 -- add one to get index into rosepoints. stem
+
+  return idx
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/**
+ *
+ */
+method get_point(index) private static
+
+  return rosepoints[index] rosepoints[index, _FULL]
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/**
+ *
+ */
+method get_points() private static
+
+  p_ = 0
+  p_ = p_ + 1; rosepoints[0] = p_; rosepoints[p_] = 'N';    rosepoints[p_, _FULL] = 'North'
+  p_ = p_ + 1; rosepoints[0] = p_; rosepoints[p_] = 'NbE';  rosepoints[p_, _FULL] = 'North by East'
+  p_ = p_ + 1; rosepoints[0] = p_; rosepoints[p_] = 'NNE';  rosepoints[p_, _FULL] = 'North-Northeast'
+  p_ = p_ + 1; rosepoints[0] = p_; rosepoints[p_] = 'NEbn'; rosepoints[p_, _FULL] = 'Northeast by North'
+  p_ = p_ + 1; rosepoints[0] = p_; rosepoints[p_] = 'NE';   rosepoints[p_, _FULL] = 'Northeast'
+  p_ = p_ + 1; rosepoints[0] = p_; rosepoints[p_] = 'NEbE'; rosepoints[p_, _FULL] = 'Northeast by East'
+  p_ = p_ + 1; rosepoints[0] = p_; rosepoints[p_] = 'ENE';  rosepoints[p_, _FULL] = 'East-Northeast'
+  p_ = p_ + 1; rosepoints[0] = p_; rosepoints[p_] = 'EbN';  rosepoints[p_, _FULL] = 'East by North'
+  p_ = p_ + 1; rosepoints[0] = p_; rosepoints[p_] = 'E';    rosepoints[p_, _FULL] = 'East'
+  p_ = p_ + 1; rosepoints[0] = p_; rosepoints[p_] = 'EbS';  rosepoints[p_, _FULL] = 'East by South'
+  p_ = p_ + 1; rosepoints[0] = p_; rosepoints[p_] = 'ESE';  rosepoints[p_, _FULL] = 'East-Southeast'
+  p_ = p_ + 1; rosepoints[0] = p_; rosepoints[p_] = 'SEbE'; rosepoints[p_, _FULL] = 'Southeast by East'
+  p_ = p_ + 1; rosepoints[0] = p_; rosepoints[p_] = 'SE';   rosepoints[p_, _FULL] = 'Southeast'
+  p_ = p_ + 1; rosepoints[0] = p_; rosepoints[p_] = 'SEbS'; rosepoints[p_, _FULL] = 'Southeast by South'
+  p_ = p_ + 1; rosepoints[0] = p_; rosepoints[p_] = 'SSE';  rosepoints[p_, _FULL] = 'South-Southeast'
+  p_ = p_ + 1; rosepoints[0] = p_; rosepoints[p_] = 'SbE';  rosepoints[p_, _FULL] = 'South by East'
+  p_ = p_ + 1; rosepoints[0] = p_; rosepoints[p_] = 'S';    rosepoints[p_, _FULL] = 'South'
+  p_ = p_ + 1; rosepoints[0] = p_; rosepoints[p_] = 'SbW';  rosepoints[p_, _FULL] = 'South by West'
+  p_ = p_ + 1; rosepoints[0] = p_; rosepoints[p_] = 'SSW';  rosepoints[p_, _FULL] = 'South-Southwest'
+  p_ = p_ + 1; rosepoints[0] = p_; rosepoints[p_] = 'SWbS'; rosepoints[p_, _FULL] = 'Southwest by South'
+  p_ = p_ + 1; rosepoints[0] = p_; rosepoints[p_] = 'SW';   rosepoints[p_, _FULL] = 'Southwest'
+  p_ = p_ + 1; rosepoints[0] = p_; rosepoints[p_] = 'SWbW'; rosepoints[p_, _FULL] = 'Southwest by West'
+  p_ = p_ + 1; rosepoints[0] = p_; rosepoints[p_] = 'WSW';  rosepoints[p_, _FULL] = 'Southwest'
+  p_ = p_ + 1; rosepoints[0] = p_; rosepoints[p_] = 'WbS';  rosepoints[p_, _FULL] = 'West by South'
+  p_ = p_ + 1; rosepoints[0] = p_; rosepoints[p_] = 'W';    rosepoints[p_, _FULL] = 'West'
+  p_ = p_ + 1; rosepoints[0] = p_; rosepoints[p_] = 'WbN';  rosepoints[p_, _FULL] = 'West by North'
+  p_ = p_ + 1; rosepoints[0] = p_; rosepoints[p_] = 'WNW';  rosepoints[p_, _FULL] = 'West-Northwest'
+  p_ = p_ + 1; rosepoints[0] = p_; rosepoints[p_] = 'NWbW'; rosepoints[p_, _FULL] = 'Northwest by West'
+  p_ = p_ + 1; rosepoints[0] = p_; rosepoints[p_] = 'NW';   rosepoints[p_, _FULL] = 'Northwest'
+  p_ = p_ + 1; rosepoints[0] = p_; rosepoints[p_] = 'NWbN'; rosepoints[p_, _FULL] = 'Northwest by North'
+  p_ = p_ + 1; rosepoints[0] = p_; rosepoints[p_] = 'NNW';  rosepoints[p_, _FULL] = 'North-Northwest'
+  p_ = p_ + 1; rosepoints[0] = p_; rosepoints[p_] = 'NbW';  rosepoints[p_, _FULL] = 'North by West'
+
+  return rosepoints
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* http://en.wikipedia.org/wiki/Minute_of_arc                                 */
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/**
+ *
+ */
+method mins_of_arc(angle) private static
+
+  degrees = angle * 100 % 100
+  minutes = ((angle - degrees) * 60) * 100 % 100
+  seconds = ((((angle - degrees) * 60) - minutes) * 60) * 100 % 100
+
+  return degrees minutes seconds
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/**
+ *
+ */
+method format_mins_of_arc(angle) private static
+
+  parse mins_of_arc(angle) degrees minutes seconds .
+
+  formatted = degrees.right(3) || sign[_DEG] || minutes.right(2, 0) || sign[_MIN] || seconds.right(2, 0) || sign[_SEC]
+
+  return formatted
+

@@ -1,0 +1,122 @@
+/* NetRexx */
+options replace format comments java crossref symbols nobinary
+
+class RLastLetterFirst public
+  properties private
+    maxx = int
+    searchsize = int
+    currentlongest = int
+
+  properties public constant
+    pokemon_names = "audino bagon baltoy banette bidoof braviary bronzor carracosta charmeleon" -
+                    "cresselia croagunk darmanitan deino emboar emolga exeggcute gabite" -
+                    "girafarig gulpin haxorus heatmor heatran ivysaur jellicent jumpluff kangaskhan" /*-
+                    "kricketune landorus ledyba loudred lumineon lunatone machamp magnezone mamoswine" -
+                    "nosepass petilil pidgeotto pikachu pinsir poliwrath poochyena porygon2" -
+                    "porygonz registeel relicanth remoraid rufflet sableye scolipede scrafty seaking" -
+                    "sealeo silcoon simisear snivy snorlax spoink starly tirtouga trapinch treecko" -
+                    "tyrogue vigoroth vulpix wailord wartortle whismur wingull yamask"*/
+
+  method RLastLetterFirst() public
+    pokemon = makearray(pokemon_names)
+    searchsize = pokemon.size()
+    currentlongest = 0
+    say "searching" searchsize "names..."
+    longestchain = ArrayList()
+    -- run the sequence using each possible starting pokemon
+    loop i = int 0 to pokemon.size() - 1
+      -- swap the ith name to the front of our list
+      Collections.swap(pokemon, 0, i)
+      -- run the chain from here
+      this.searchChain(pokemon, longestchain, 1)
+      -- swap the name back so we have the list in original form
+      Collections.swap(pokemon, 0, i)
+    end
+    say "maximum path length:" longestchain.size()
+    say "paths of that length:" maxx
+    say "example path of that length:"
+
+    loop ni = 0 to longestchain.size() - 1
+      say "    "longestchain.get(ni)
+      end ni
+
+  return
+
+  -- recursive search routine for adding to the chain
+  method searchChain(pokemon = java.util.List, longestchain = java.util.List, currentchain = int) private
+
+    trace var peekpokemon peeklongestchain peekcurrentchain currentLongest lastchar firstchar
+    trace var
+    peekpokemon = pokemon
+    peeklongestchain = longestchain
+    peekcurrentchain = currentchain
+    -- get the last character
+    lastchar = (Rexx pokemon.get(currentchain - 1)).right(1)
+    -- now we search through all of the permutations of remaining
+    -- matches to see if we can find a longer chain
+    loop i = currentchain to searchsize - 1
+      firstchar = (Rexx pokemon.get(i)).left(1)
+      -- for every candidate name from here, recursively extend the chain.
+      if /*(Rexx pokemon.get(i)).left(1)*/ firstchar == lastchar then do
+        if currentchain == currentLongest then maxx = maxx + 1
+        -- have we now gone deeper than the current longest chain?
+        else if currentchain > currentLongest then do
+          -- chuck this result and refill with current set
+          longestchain.clear()
+          longestchain.addAll(pokemon.subList(0, currentchain))
+          maxx = 1
+          currentLongest = currentchain + 1
+        end
+        -- perform the swap again
+        Collections.swap(pokemon, currentchain, i)
+        -- run the chain from here
+        this.searchChain(pokemon, longestchain, currentchain + 1)
+        -- swap the name back so we have the list in original form
+        Collections.swap(pokemon, currentchain, i)
+      end
+    end i
+
+  return
+
+  method main(args = String[]) public static
+    -- create the searcher and run it
+    RLastLetterFirst()
+    return
+
+  method makearray(paragraph) public static returns java.util.List
+    pwords = ArrayList()
+    loop w_ = 1 to paragraph.strip().words()
+      pwords.add(paragraph.word(w_))
+      end w_
+    return pwords
+
+/*
+searching 70 names...
+maximum path length: 23
+paths of that length: 1248
+example path of that length:
+    machamp
+    petilil
+    landorus
+    scrafty
+    yamask
+    kricketune
+    emboar
+    registeel
+    loudred
+    darmanitan
+    nosepass
+    simisear
+    relicanth
+    heatmor
+    rufflet
+    trapinch
+    haxorus
+    seaking
+    girafarig
+    gabite
+    exeggcute
+    emolga
+    ivysaur
+*/
+

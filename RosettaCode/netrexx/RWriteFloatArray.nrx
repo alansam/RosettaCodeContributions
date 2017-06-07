@@ -1,0 +1,87 @@
+/* NetRexx */
+
+options replace format comments java crossref savelog symbols nobinary
+
+/**
+ * <h3>Write float arrays to a text file</h3>
+ * <p>
+ * Write two equal-sized numerical arrays 'x' and 'y' to a two-column text file named 'filename'.
+ * </p>
+ * <p>
+ * The first column of the file contains values from an 'x'-array with a given 'xprecision', the second -- values from 'y'-array with 'yprecision'.
+ * </p>
+ * <p>
+ * For example, considering:
+ * </p>
+ * <pre>
+ *   x = {1, 2, 3, 1e11};
+ *   y = {1, 1.4142135623730951, 1.7320508075688772, 316227.76601683791}; 
+ *                                                        &#x2F;&#x2A; sqrt(x) &#x2A;&#x2F;
+ *   xprecision = 3;
+ *   yprecision = 5;
+ * </pre>
+ * <p>
+ * The file is:
+ * </p>
+ * <pre>
+ *   1    1
+ *   2    1.4142
+ *   3    1.7321
+ *   1e+011   3.1623e+005
+ * </pre>
+ * <p>
+ * This task is intended as a subtask for
+ * <a href="http://rosettacode.org/wiki/Measure_relative_performance_of_sorting_algorithms_implementations">Measure relative performance of sorting algorithms implementations</a>.
+ * </p>
+ *
+ * @author alansampson : <a href="mailto%3A%22Alan%20Sampson%22%20%3Calansamps%40gmail%2Ecom%3E">&quot;Alan Sampson&quot; &lt;alansamps@gmail.com&gt;</a>
+ * @version 1.0
+ * @see <a href="http://rosettacode.org/wiki/Write_float_arrays_to_a_text_file">http://rosettacode.org/wiki/Write_float_arrays_to_a_text_file</a>
+ */
+
+-- Invent a target text file name based on this program's source file name
+parse source . . pgmName '.nrx' .
+outFile = pgmName || '.txt'
+
+do
+  formatArrays(outFile, [1, 2, 3, 1e+11], [1, 1.4142135623730951, 1.7320508075688772, 316227.76601683791])
+catch ex = Exception
+  ex.printStackTrace
+end
+
+return
+
+/**
+ *
+ * This function formats the input arrays.
+ * <p>
+ * It has defaults for the <strong><code>x</code></strong> &amp. <strong><code>y</code></strong> precision values of 3 &amp. 5
+ * </p>
+ *
+ * @param outFile
+ * @param xf
+ * @param yf
+ * @param xprecision
+ * @param yprecision
+ * @throws IllegalArgumentException
+ * @throws FileNotFoundException
+ * @throws IOException
+ *
+ */
+method formatArrays(outFile, xf = Rexx[], yf = Rexx[], xprecision = 3, yprecision = 5) -
+  public static signals IllegalArgumentException, FileNotFoundException, IOException
+
+  if xf.length > yf.length then signal IllegalArgumentException('Y array must be at least as long as X array')
+
+  fw = BufferedWriter(OutputStreamWriter(FileOutputStream(outFile)))
+
+  loop i_ = 0 to xf.length - 1
+    row = xf[i_].format(null, xprecision, null, xprecision).left(15) yf[i_].format(null, yprecision, null, yprecision)
+    say row
+    (Writer fw).write(String row)
+    fw.newLine
+    end i_
+    fw.close
+
+  return
+

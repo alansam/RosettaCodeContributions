@@ -1,0 +1,29 @@
+--- Variables for class RSortingSleepsort00 ---
+arg        Rexx                 v 18= 19 19= 20
+args       String[]             a 17 18
+arry       Rexx[]               a 55 57
+dflt       Rexx                 c 10= 19
+doneLatch  CountDownLatch       p 13
+floor      Rexx                 p 14=
+harry      Rexx[]               v 48= 51= 53
+iHarry     Rexx[]               v 20= 21 22
+iHarry     Rexx[]               a 26 27 28 32 33
+ix         InterruptedException v 39= 40
+ix         Rexx                 v 49= 51
+lst        Rexx                 a 47 48 49 50 50=
+lst        Rexx                 v 56= 58 58= 60
+mn         Rexx                 v 28= 29
+nm         Rexx                 v 50= 51
+nn         Rexx                 v 33= 34
+nn         Rexx                 v 57= 58
+oHarry     Rexx[]               v 22= 23
+oHarry     Rexx[]               v 27= 43= 45
+sn         Rexx                 v 42= 43 43
+sorted     java.util.List       p 15
+startLatch CountDownLatch       p 12
+
+--- Variables for class RSortingSleepsort00.SortThread ---
+ie   InterruptedException v 80= 81
+nm   Rexx                 a 67 68
+num  Rexx                 p 65 78
+wait Rexx                 v 75= 76 76= 77

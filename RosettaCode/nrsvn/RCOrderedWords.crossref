@@ -1,0 +1,10 @@
+--- Variables for class RCOrderedWords ---
+dword     Rexx           v 10= 11 12 13 14 21= 22
+dword     String         a 36 37 39
+dwords    ArrayList      v 7= 12 19 26 28
+ex        IOException    v 30= 31
+inrdr     BufferedReader v 8= 9 10 17
+unixdict  String         v 4= 8
+wchars    char[]         v 37= 38 39
+witerator ListIterator   v 19= 20 21 23
+wmax      int            v 6= 13 14= 22

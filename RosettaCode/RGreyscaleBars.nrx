@@ -1,0 +1,133 @@
+/* NetRexx */
+
+options replace format comments java crossref savelog symbols nobinary
+
+/**
+ * <h3>Greyscale bars/Display</h3>
+ * <p>
+ * The task is to display a series of vertical greyscale bars (contrast bars) with a sufficient number of bars
+ * to span the entire width of the display.
+ * </p>
+ * <p>
+ * For the top quarter of the display, the left hand bar should be black, and we then incrementally step though
+ * six shades of grey until we have a white bar on the right hand side of the display. (This gives a total of 8 bars)
+ * </p>
+ * <p>
+ * For the second quarter down, we start with white and step down through 14 shades of gray, getting darker
+ * until we have black on the right hand side of the display. (This gives a total of 16 bars).
+ * </p>
+ * <p>
+ * Halfway down the display, we start with black, and produce 32 bars, ending in white, and for the last
+ * quarter, we start with white and step through 62 shades of grey, before finally arriving at black in the
+ * bottom right hand corner, producing a total of 64 bars for the bottom quarter.
+ * </p>
+ *
+ * @author Alan Sampson
+ * @version 1.0
+ * @see <a href="http://rosettacode.org/wiki/Greyscale_bars/Display">rosettacode.org/wiki/Greyscale_bars/Display</a>
+ */
+
+import javax.swing.JFrame
+import java.awt.Graphics
+import java.awt.Color
+
+class RGreyscaleBars extends JFrame
+
+  properties private constant
+    DEFAULT_WIDTH  = int(640)
+    DEFAULT_HEIGHT = int(320)
+
+  properties indirect
+    width  = int
+    height = int
+    valid  = boolean
+
+  method RGreyscaleBars() public
+
+    super('Greyscale bars/Display')
+
+    setValid(isFalse)
+
+    return
+
+  method initialize() protect inheritable returns boolean
+
+    state = isValid
+    if \state then do
+      say 'Greyscale bars/Display gobberize'
+      do
+        setWidth(DEFAULT_WIDTH)
+        setHeight(DEFAULT_HEIGHT)
+        setSize(getWidth, getHeight)
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE)
+        setVisible(isTrue)
+        state = isTrue
+      catch ex = RuntimeException
+        state = isFalse
+        ex.printStackTrace
+        end
+      end
+    else do
+      say 'Greyscale bars/Display already gobberized'
+      end
+
+    setValid(state)
+
+    return state
+
+  method paint(g_ = Graphics) public
+
+    amValid = isValid
+    say "gobberized?" amValid
+    if amValid then do
+      say "painting"
+      run       = int(0)
+      colcomp   = int(0)
+      colwidth  = int
+      colheight = int
+      xstart    = int
+      ystart    = int
+
+      loop colcount = 8 to 127 by 16
+        colgap    = 255 % colcount
+        colwidth  = getWidth % colcount
+        colheight = getHeight % 4
+
+        if run // 2 = 0 then do
+          colcomp = 0
+          end
+        else do
+          colcomp = 255
+          colgap  = colgap * -1
+          end
+
+        ystart = 0 + colheight * run
+        xstart = 0
+        loop i_ = 0 while i_ < colcount
+          nextColor = Color(colcomp, colcomp, colcomp)
+          g_.setColor(nextColor)
+          g_.fillRect(xstart, ystart, colwidth, colheight)
+          xstart = xstart + colwidth
+          colcomp = colcomp + colgap
+          end i_
+
+        run = run + 1
+        end colcount
+      end
+
+    return
+
+  method main(args = String[]) static
+
+    gb = RGreyscaleBars()
+    say 'initializing'
+    gb.initialize
+
+    return
+
+  method isTrue() public static returns boolean
+    return (1 == 1)
+
+  method isFalse() public static returns boolean
+    return \isTrue
+

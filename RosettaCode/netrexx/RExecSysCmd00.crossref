@@ -1,0 +1,7 @@
+--- Variables for class RExecSysCmd00 ---
+arg      Rexx        a 6= 6
+arg      Rexx        a 10 11
+command  Rexx        v 11= 12 12= 14 15
+ex       IOException v 20= 21
+jprocess Process     v 15= 16
+jscanner Scanner     v 16= 17 18

@@ -1,0 +1,18 @@
+--- Variables for class REnumeration ---
+args String[] a 13
+k_   Rexx     v 16= 17 18 19 20
+kl   Rexx[]   v 15= 16
+NO   Rexx     c 7= 15 18
+YES  Rexx     c 8= 15 19
+
+--- Variables for class REnumeration.Enum1 ---
+FALSE REnumeration.Enum1 s 33=
+TRUE  REnumeration.Enum1 s 32=
+
+--- Variables for class REnumeration.Enum2 ---
+_val  Rexx               p 46 49= 53
+EAST  REnumeration.Enum2 s 43=
+NORTH REnumeration.Enum2 s 41=
+SOUTH REnumeration.Enum2 s 42=
+val   Rexx               a 48 49
+WEST  REnumeration.Enum2 s 44=

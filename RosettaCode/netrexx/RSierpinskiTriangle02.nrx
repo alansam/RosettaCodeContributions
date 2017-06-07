@@ -1,0 +1,45 @@
+/* NetRexx */
+options replace format comments java crossref symbols nobinary
+
+numeric digits 1000
+
+runSample(arg)
+return
+
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+method runSample(arg) public static
+  parse arg ordr .
+  if ordr = '' then ordr = 4
+  -- Some unicode block characters
+  -- https://en.wikipedia.org/wiki/Geometric_Shapes
+  BLACK_UPPOINTING_TRIANGLE          = '\u25b2'
+  WHITE_UPPOINTING_TRIANGLE          = '\u25b3'
+  WHITE_UPPOINTING_SMALL_TRIANGLE    = '\u25b4'
+  BLACK_UPPOINTING_SMALL_TRIANGLE    = '\u25b5'
+  WHITE_UPPOINTING_TRIANGLE_WITH_DOT = '\u25ec'
+  UPPOINTING_TRIANGLE_LEFT_BLACK     = '\u25ed'
+  UPPOINTING_TRIANGLE_RIGHT_BLACK    = '\u25ee'
+  uBlocks = [ -
+    BLACK_UPPOINTING_TRIANGLE, WHITE_UPPOINTING_TRIANGLE, -
+    WHITE_UPPOINTING_SMALL_TRIANGLE, BLACK_UPPOINTING_SMALL_TRIANGLE, -
+    WHITE_UPPOINTING_TRIANGLE_WITH_DOT, UPPOINTING_TRIANGLE_LEFT_BLACK, UPPOINTING_TRIANGLE_RIGHT_BLACK, -
+    'A' -
+    ] -- prevent compiler warning
+  filler = uBlocks[0] -- choose a pretty one
+  drawSierpinskiTriangle(ordr, filler)
+  return
+
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+method drawSierpinskiTriangle(ordr, filler = Rexx 'A') public static
+  loop j = 0 for ordr * 4
+    p = 1
+    z = ''.left(ordr * 4 - 1 - j)        /*indent the line. */
+    loop k = 0 to j                      /*build the line with  J+1  parts*/
+      if p // 2 == 0 then z = z ' '      /*it's either a blank,  or  ...  */
+      else                z = z filler   /*it's one of them thar character*/
+      p = p * (j - k) % (k + 1)          /*calculate a handy-dandy thingy.*/
+      end k
+    say z                                /*display a line of the triangle.*/
+    end j
+  return
+

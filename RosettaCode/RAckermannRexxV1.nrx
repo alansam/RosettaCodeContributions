@@ -1,0 +1,16 @@
+/* NetRexx */
+options replace format comments java crossref symbols binary
+
+loop j = 0 to 3
+  say
+  loop k = 0 to 5
+    say 'ackermann('j','k') =' ackermann(j, k).right(5)
+    end k
+  end j
+  return
+
+method ackermann(m, n) public static
+  if m = 0 then return n + 1
+  if n = 0 then return ackermann(m - 1, 1)
+  return ackermann(m - 1, ackermann(m, n - 1))
+

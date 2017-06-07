@@ -1,0 +1,65 @@
+/* NetRexx */
+options replace format comments java crossref symbols binary
+
+runSample(arg)
+return
+
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+method runSample(arg) private static
+  parse arg discs .
+  if discs = '', \discs.datatype('w'), discs < 1 then discs = 4
+  say 'Minimum moves to solution:' 2 ** discs - 1
+  moves = move(discs)
+  say 'Solved in' moves 'moves.'
+  return
+
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+method move(discs = int 4, moves = int 0) public static
+  tOH = String[]
+  tOH = showSteps(discs)
+  say 'Towers of Hanoi for' discs 'discs; step by step!'
+  loop k_ = 0 while k_ < tOH.length
+    moves = moves + 1
+    say 'Move disc from peg' tOH[k_].charAt(0) 'to peg' tOH[k_].charAt(1) '- Move No:' Rexx(k_ + 1).right(5)
+    end k_
+  return moves
+
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+method changeString(array = String[], a_ = char, b_ = char) public static returns String[]
+  loop i_ = 0 while i_ < array.length
+    loop j_ = 0 while j_ < array[i_].length
+      select case array[i_].charAt(j_)
+        when b_ then array[i_] = array[i_].substring(0, j_) || a_ || array[i_].substring(j_ + 1)
+        when a_ then array[i_] = array[i_].substring(0, j_) || b_ || array[i_].substring(j_ + 1)
+        otherwise nop
+      end
+      end j_
+    end i_
+  return array
+
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+method showSteps(discs = int) public static returns String[]
+  --data = [String 'A', 'B', 'C']
+  Array = String[int ((2 ** discs) - 1)]
+  loop i_ = 1 while i_ <= Array.length
+    middle = (i_ - 1) % 2
+    Array[middle] = "AC"
+    tempArray = String[]
+    tempArray = String[middle]
+    loop left = 0 while left < middle
+      tempArray[left] = Array[left]
+      end left
+    tempArray = changeString(tempArray, 'C', 'B')
+    loop o_ = 0 while o_ < middle
+      Array[o_] = tempArray[o_]
+      end o_
+    tempArray = changeString(tempArray, 'B', 'A')
+    tempArray = changeString(tempArray, 'A', 'C')
+    loop o_ = middle + 1 while o_ < i_
+      ax = o_ - middle - 1
+      Array[o_] = tempArray[ax]
+      end o_
+    i_ = i_ * 2
+    end i_
+  return Array
+

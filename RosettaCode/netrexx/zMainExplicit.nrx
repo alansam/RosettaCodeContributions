@@ -1,0 +1,9 @@
+/* NetRexx */
+options replace java format comments
+
+method main(args = String[]) public static
+  arg = Rexx(args)
+  parse arg aaa
+  say aaa
+  return
+

@@ -1,0 +1,9 @@
+/* NetRexx */
+
+options replace format comments java crossref savelog symbols binary
+
+parse source . . pgmName '.nrx' .
+say pgmName
+
+return
+

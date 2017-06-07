@@ -1,0 +1,6 @@
+/* NetRexx */
+options replace format comments java crossref symbols nobinary
+
+-- sample arguments: -c "alpha beta" -h "gamma"
+say "program arguments:" arg
+

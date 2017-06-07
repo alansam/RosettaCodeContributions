@@ -1,0 +1,22 @@
+--- Variables for class RWordWrap ---
+arg          Rexx a 4= 4
+arg          Rexx a 45 49
+choice       Rexx a 83= 154
+lineLen      Rexx v 49= 50 50= 53 54 55 55
+lineWidth    Rexx a 19= 20 25 30
+nextWord     Rexx v 27= 28 29 30 33 34
+NL           Rexx v 21= 29
+SP           Rexx v 22= 24 33
+spaceLeft    Rexx v 25= 28 30= 34 34=
+spaceWidth   Rexx v 24= 28 34
+speech       Rexx v 155= 156= 157= 158= 161
+speech01     Rexx v 64= 80
+speech01     Rexx v 86= 155 158
+speech02     Rexx v 103= 156
+speech03     Rexx v 114= 157
+text         Rexx a 19 26 27 39
+text         Rexx v 52= 53
+textChoice   Rexx v 49= 51 51= 52
+w_           Rexx v 26= 27
+wrapped      Rexx v 23= 29 29= 33 33= 39= 42
+wrappedLines Rexx v 53= 56

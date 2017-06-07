@@ -1,0 +1,30 @@
+--- Variables for class RSparkline ---
+arg    Rexx   a 4= 4 7
+arg    Rexx   a 32 34
+arg    Rexx   a 60 62
+barK   Rexx   v 14= 26
+bars   Rexx   v 13= 14 27
+ispark Rexx   v 68= 71 71= 76
+iw     Rexx   v 18= 19 25= 26
+lst    Rexx   v 44= 45
+lst    Rexx   v 81= 82
+nmax   Rexx   v 16= 21 21= 23 29
+nmax   Rexx   v 88= 91
+nmin   Rexx   v 15= 16 20 20= 23 26 29
+nmin   Rexx   v 88= 91
+nval   Rexx   v 19= 20 21
+point  double v 26= 27
+range  Rexx   v 23= 26 29
+range  Rexx   v 88= 91
+rg     Random v 65= 70 71
+rspark Rexx   v 67= 70 70= 75
+si     Rexx   v 38= 38 38 39= 39 39 45= 45 45 49= 50
+si     Rexx   v 73= 73 73 74= 74 74 75= 75 75 76= 76 76 82= 82 82 86= 87
+slope  Rexx   v 24= 27 27= 29
+slope  Rexx   v 51= 53
+slope  Rexx   v 88= 90
+spark  Rexx   a 11 12 12= 15 18 19 25 26
+sparks Rexx   v 35= 36= 38 38= 38= 39 39= 39= 45 45= 45= 49 50
+sparks Rexx   v 63= 64= 73 73= 73= 74 74= 74= 75 75= 75= 76 76= 76= 82 82= 82= 86 87
+vals   Rexx   v 34= 37 42 44 44= 50= 51 52
+vals   Rexx   v 62= 66 79 81 81= 87= 88 89

@@ -1,0 +1,22 @@
+--- Variables for class RFilter ---
+arg    Rexx                v 11= 12
+arg    Rexx                a 15
+args   String[]            a 10 11
+e_     Rexx                v 43= 44 44
+filter RFilter.ArrayFilter p 8
+i_     Rexx                v 35= 36
+sd     Rexx[]              a 33 35 36
+sd     Rexx[]              v 42= 44= 46
+sd1    Rexx[]              v 16 20= 21 25 29 29= 30
+sd2    Rexx[]              v 17 25= 26
+size   Rexx                a 41 42 43 44
+
+--- Variables for class RFilter.ArrayFilter ---
+array Rexx[] a 51
+
+--- Variables for class RFilter.EvenNumberOnlyArrayFilter ---
+array Rexx[]       a 55 56
+clist ArrayList    v 56= 57 62 62
+e_    Rexx         v 59= 60 60
+li    ListIterator v 57= 58 59 60
+ry    Rexx[]       v 62= 63

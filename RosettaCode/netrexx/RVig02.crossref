@@ -1,0 +1,53 @@
+--- Variables for class RVig02 ---
+alpha             Rexx   v 67= 75 77 78 79
+alpha             Rexx   v 124= 128
+antic_disposition Rexx[] v 201 203= 273 274
+b_                Rexx   v 167= 169
+C                 Rexx   v 78= 79 79= 80
+c_                Rexx   v 166= 170
+ciphertext        Rexx   a 103 105
+cleanup           Rexx   a 122 126 126= 128 130 130 130= 133
+code              Rexx   v 71= 80 80= 83
+ct                Rexx   v 143= 144 145
+D                 int    a 107 109 109 109
+df                Rexx   v 62= 63= 78
+dt                Rexx   v 145= 146
+jabberwocky       Rexx[] v 241= 278 279
+K                 Rexx   v 77= 78
+k_                Rexx   v 76= 77
+key               Rexx   v 22= 23 25= 26 28= 29 32= 33 36= 37 40= 41
+key               Rexx   a 59 70 70= 76 77
+key               Rexx   a 92 94
+key               Rexx   a 103 105
+key               Rexx   a 141 143 145
+l_                Rexx   v 74= 75 76
+l_                Rexx   v 273= 274 278= 279
+line              Rexx   v 164= 169 169= 170 170= 175 175= 178
+looking_glass     Rexx   v 277= 279 279= 284
+M                 Rexx   v 75= 78
+melancholy_dane   Rexx   v 272= 274 274= 283 285
+meth              Rexx   a 59 62 63 64
+N                 int    a 107 109
+NL                char   v 200= 274 279
+o_                Rexx   v 165= 167 168 168=
+plaintext         Rexx   a 92 94
+pline             Rexx   v 176= 177
+pt                Rexx   v 21= 23 26 29 31= 33 35= 37 39= 41
+pt                Rexx   a 141 143
+text              Rexx   a 59 69 69= 74 75
+text              Rexx   a 162 166 170
+text              Rexx   v 283= 284= 285= 288
+w1                Rexx   v 175= 176
+w10               Rexx   v 175= 176
+w11               Rexx   v 175= 176
+w12               Rexx   v 175= 176
+w2                Rexx   v 175= 176
+w3                Rexx   v 175= 176
+w4                Rexx   v 175= 176
+w5                Rexx   v 175= 176
+w6                Rexx   v 175= 176
+W7                Rexx   v 175= 176
+w8                Rexx   v 175= 176
+w9                Rexx   v 175= 176
+what              Rexx   a 198 283 284
+x_                Rexx   v 128= 129 130

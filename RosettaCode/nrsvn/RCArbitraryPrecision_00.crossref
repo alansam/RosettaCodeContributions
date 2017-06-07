@@ -1,0 +1,9 @@
+--- Variables for class RCArbitraryPrecision_00 ---
+check      Rexx       v 20= 23 28
+n          Rexx       v 14= 21 21 25
+nanoFactor Rexx       v 9= 17
+sample     Rexx       v 21= 24 28
+t1         long       v 11= 16
+t2         long       v 15= 16
+td         Rexx       v 16= 17
+x          BigInteger v 12= 13 13= 14

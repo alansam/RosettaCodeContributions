@@ -1,0 +1,16 @@
+----------------------------------------------------------------
+Wed Jul 18 21:22:41 PDT 2012:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.8.1.2 - (1095077): instance a816c00e-0138-9d79-2eee-000004839b90 
+on database directory /Users/alansampson/projects/zrexx/NetRexx/RosettaCode/db/testdb  with class loader sun.misc.Launcher$ExtClassLoader@43be2d65 
+Loaded from file:/Users/alansampson/apache/db/db-derby-10.8.1.2-bin/lib/derby.jar
+java.vendor=Apple Inc.
+java.runtime.version=1.6.0_33-b03-424-11M3720
+user.dir=/Users/alansampson/projects/zrexx/NetRexx/RosettaCode/db
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''
+----------------------------------------------------------------
+Wed Jul 18 23:19:56 PDT 2012: Shutting down Derby engine
+----------------------------------------------------------------
+Wed Jul 18 23:19:56 PDT 2012:
+Shutting down instance a816c00e-0138-9d79-2eee-000004839b90 on database directory /Users/alansampson/projects/zrexx/NetRexx/RosettaCode/db/testdb with class loader sun.misc.Launcher$ExtClassLoader@43be2d65 
+----------------------------------------------------------------

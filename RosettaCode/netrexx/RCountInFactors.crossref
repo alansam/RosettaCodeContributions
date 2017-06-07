@@ -1,0 +1,18 @@
+--- Variables for class RCountInFactors ---
+arg   Rexx   a 4= 4
+arg   Rexx   a 36 39
+fac   Rexx   a 26 29 29= 32 32= 33
+fac   Rexx   v 50= 52 52 53
+fv    Rexx   v 49= 50 53
+lv    Rexx   v 44= 47 49
+m_    Rexx   v 17= 18 19
+msym  String v 27= 29 32
+mult  long   a 26 28 29 30
+n_    Rexx   v 12= 12 13 13= 14 15 15= 16 17 17 19 19=
+n_    long   a 26 28 30 30= 33
+pair  Rexx   v 43= 44
+pv    Rexx   v 51= 52= 53
+rv    Rexx   v 9= 11= 13 13= 15 15= 19 19= 23
+rv    Rexx   v 44= 47 49
+tests Rexx   v 39= 40 41= 42 43 43=
+val   Rexx   a 8 10 12

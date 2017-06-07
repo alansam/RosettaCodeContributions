@@ -1,0 +1,15 @@
+--- Variables for class RLargestInt ---
+arg  Rexx   a 4= 4
+arg  Rexx   a 39
+il   Rexx   a 8 12 14
+il   Rexx   v 44= 45 45
+ints Rexx[] v 40= 44
+ri   Rexx   v 9= 34 34= 36
+wa   Rexx   v 10= 12= 13 14= 18 19 20 21 26= 27= 33 34
+ww   Rexx   v 13= 14 14 33= 34
+wx   Rexx   v 18= 19 20 26
+wy   Rexx   v 19= 21 27
+xx   Rexx   v 20= 22 23 27
+xy   Rexx   v 22= 24
+yx   Rexx   v 23= 24
+yy   Rexx   v 21= 22 23 26

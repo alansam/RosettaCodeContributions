@@ -1,0 +1,249 @@
+/* NetRexx */
+
+options replace format comments java crossref savelog symbols binary
+
+import java.util.List
+
+placesList = [String -
+    "UK  London",     "US  New York",   "US  Boston",     "US  Washington" -
+  , "UK  Washington", "US  Birmingham", "UK  Birmingham", "UK  Boston"     -
+]
+--sortedList = strandSort(String[] Arrays.copyOf(placesList, placesList.length))
+
+riverData = riverData()
+stateData = stateData()
+lists = [ -
+    placesList -
+  , strandSort(String[] Arrays.copyOf(placesList, placesList.length)) -
+  , riverData -
+  , strandSort(String[] Arrays.copyOf(riverData, riverData.length)) -
+  , stateData -
+  , strandSort(String[] Arrays.copyOf(stateData, stateData.length)) -
+]
+
+loop ln = 0 to lists.length - 1
+  cl = lists[ln]
+  loop ct = 0 to cl.length - 1
+    say cl[ct]
+    end ct
+    say
+  end ln
+
+say
+i1 = ArrayList(Arrays.asList([Integer(3), Integer(1), Integer(2), Integer(4), Integer(5)]))
+i2 = ArrayList(Arrays.asList([Integer(3), Integer(3), Integer(1), Integer(2), Integer(4), Integer(5)]))
+i3 = ArrayList(Arrays.asList([Integer(3), Integer(3), Integer(1), Integer(2), Integer(4), Integer(3), Integer(5), Integer(6)]))
+
+ilists = [ -
+     i1 -
+  ,  strandSort(i1) -
+  ,  i2 -
+  ,  strandSort(i2) -
+  ,  i3 -
+  ,  strandSort(i3) -
+]
+loop ln = 0 to ilists.length - 1
+  say ilists[ln].toString
+  end ln
+
+return
+
+method strandSort(A = String[]) public constant binary returns String[]
+
+  rl = String[A.length]
+  al = List strandSort(Arrays.asList(A))
+  al.toArray(rl)
+
+  return rl
+
+method strandSort(Alst = List) public constant binary returns ArrayList
+
+  /*
+   * <pre>
+   * procedure strandSort( A : list of sortable items ) defined as:
+   *   while length( A ) > 0
+   *     clear sublist
+   *     sublist[ 0 ] := A[ 0 ]
+   *     remove A[ 0 ]
+   *     for each i in 0 to length( A ) - 1 do:
+   *       if A[ i ] > sublist[ last ] then
+   *         append A[ i ] to sublist
+   *         remove A[ i ]
+   *       end if
+   *     end for
+   *     merge sublist into results
+   *   end while
+   * return results
+   * end procedure
+   * </pre>
+   */
+
+  A = ArrayList(Alst)
+  result = ArrayList()
+  loop label A_ while A.size > 0
+    sublist = ArrayList()
+    sublist.add(A.get(0))
+    A.remove(0)
+    loop i_ = 0 while i_ < A.size - 1
+      if (Comparable A.get(i_)).compareTo(Comparable sublist.get(sublist.size - 1)) > 0 then do
+        sublist.add(A.get(i_))
+        A.remove(i_)
+        end
+      end i_
+      result = merge(result, sublist)
+    end A_
+
+  return result
+
+method merge(left = List, right = List) public constant binary returns ArrayList
+
+  result = ArrayList()
+  loop label mx while left.size > 0 & right.size > 0
+    if (Comparable left.get(0)).compareTo(Comparable right.get(0)) <= 0 then do
+      result.add(left.get(0))
+      left.remove(0)
+      end
+    else do
+      result.add(right.get(0))
+      right.remove(0)
+      end
+    end mx
+    if left.size > 0 then do
+      result.addAll(left)
+      end
+    if right.size > 0 then do
+      result.addAll(right)
+      end
+
+  return result
+
+method isTrue public constant binary returns boolean
+  return 1 == 1
+
+method isFalse public constant binary returns boolean
+  return \isTrue
+
+method riverData inheritable constant binary returns String[]
+
+  data = [String -
+       "Chattahoochee River:                Alabama, Georgia" -
+    ,  "Colorado River:                     Arizona, Nevada, California, Baja California (Mexico)" -
+    ,  "St. Francis River:                  Arkansas, Missouri" -
+    ,  "Poteau River:                       Arkansas, Oklahoma" -
+    ,  "Byram River:                        Connecticut, New York" -
+    ,  "Pawcatuck River:                    Connecticut, Rhode Island" -
+    ,  "Perdido River:                      Florida, Alabama" -
+    ,  "St. Marys River:                    Florida, Georgia" -
+    ,  "Chattooga River:                    Georgia, South Carolina" -
+    ,  "Tugaloo River:                      Georgia, South Carolina" -
+    ,  "Snake River:                        Idaho, Washington, Oregon" -
+    ,  "Wabash River:                       Illinois, Indiana" -
+    ,  "Ohio River:                         Illinois, Indiana, Ohio, Kentucky, West Virginia" -
+    ,  "Des Moines River:                   Iowa, Missouri" -
+    ,  "Tennessee River:                    Kentucky, Tennessee, Mississippi, Alabama" -
+    ,  "Big Sandy River:                    Kentucky, West Virginia" -
+    ,  "Tug Fork River:                     Kentucky, West Virginia, Virginia" -
+    ,  "Monument Creek:                     Maine, New Brunswick (Canada)" -
+    ,  "St. Croix River:                    Maine, New Brunswick (Canada)" -
+    ,  "Piscataqua River:                   Maine, New Hampshire" -
+    ,  "St. Francis River:                  Maine, Quebec (Canada)" -
+    ,  "St. John River:                     Maine, Quebec (Canada)" -
+    ,  "Pocomoke River:                     Maryland, Virginia" -
+    ,  "Potomac River:                      Maryland, Virginia, city of Washington (District of Columbia), West Virginia" -
+    ,  "Montreal River:                     Michigan (upper peninsula ), Wisconsin" -
+    ,  "Detroit River:                      Michigan, Ontario (Canada)" -
+    ,  "St. Clair River:                    Michigan, Ontario (Canada)" -
+    ,  "St. Marys River:                    Michigan, Ontario (Canada)" -
+    ,  "Brule River:                        Michigan, Wisconsin" -
+    ,  "Menominee River:                    Michigan, Wisconsin" -
+    ,  "Pigeon River:                       Minnesota, Ontario (Canada)" -
+    ,  "Rainy River:                        Minnesota, Ontario (Canada)" -
+    ,  "St. Croix River:                    Minnesota, Wisconsin" -
+    ,  "St. Louis River:                    Minnesota, Wisconsin" -
+    ,  "Mississippi River:                  Minnesota, Wisconsin, Iowa, Illinois, Missouri, Kentucky, Tennesse, Arkansas, Mississippi, Louisiana" -
+    ,  "Pearl River:                        Mississippi, Louisiana" -
+    ,  "Halls Stream:                       New Hampshire, Canada" -
+    ,  "Salmon Falls River:                 New Hampshire, Maine" -
+    ,  "Connecticut River:                  New Hampshire, Vermont" -
+    ,  "Hudson River (lower part only):     New Jersey, New York" -
+    ,  "Arthur Kill:                        New Jersey, New York (tidal strait)" -
+    ,  "Kill Van Kull:                      New Jersey, New York (tidal strait)" -
+    ,  "Rio Grande:                         New Mexico, Texas, Tamaulipas (Mexico), Nuevo Leon (Mexico), Coahuila De Zaragoza (Mexico), Chihuahua (Mexico)" -
+    ,  "Niagara River:                      New York, Ontario (Canada)" -
+    ,  "St. Lawrence River:                 New York, Ontario (Canada)" -
+    ,  "Delaware River:                     New York, Pennsylvania, New Jersey, Delaware" -
+    ,  "Catawba River:                      North Carolina, South Carolina" -
+    ,  "Red River of the North:             North Dakota, Minnesota" -
+    ,  "Great Miami River (mouth only):     Ohio, Indiana" -
+    ,  "Arkansas River:                     Oklahoma, Arkansas" -
+    ,  "Palmer River:                       Rhode Island, Massachusetts" -
+    ,  "Runnins River:                      Rhode Island, Massachusetts" -
+    ,  "Savannah River:                     South Carolina, Georgia" -
+    ,  "Big Sioux River:                    South Dakota, Iowa" -
+    ,  "Bois de Sioux River:                South Dakota, Minnesota, North Dakota" -
+    ,  "Missouri River:                     South Dakota, Nebraska, Iowa, Missouri, Kansas" -
+    ,  "Sabine River:                       Texas, Louisiana" -
+    ,  "Red River (Mississippi watershed):  Texas, Oklahoma, Arkansas" -
+    ,  "Poultney River:                     Vermont, New York" -
+    ,  "Blackwater River:                   Virginia, North Carolina" -
+    ,  "Columbia River:                     Washington, Oregon" -
+  ]
+ 
+  return data
+
+method stateData inheritable constant binary returns String[]
+
+  data = [String -
+       'MAE  Maine' -
+    ,  'CAL  California' -
+    ,  'KAN  Kansas' -
+    ,  'MAS  Massachusetts' -
+    ,  'WAS  Washington' -
+    ,  'HAW  Hawaii' -
+    ,  'NCR  North Carolina' -
+    ,  'SCR  South Carolina' -
+    ,  'IDA  Idaho' -
+    ,  'NDK  North Dakota' -
+    ,  'SDK  South Dakota' -
+    ,  'NEB  Nebraska' -
+    ,  'DEL  Delaware' -
+    ,  'PEN  Pennsylvania' -
+    ,  'TEN  Tennessee' -
+    ,  'GEO  Georgia' -
+    ,  'VER  Vermont' -
+    ,  'NEV  Nevada' -
+    ,  'TEX  Texas' -
+    ,  'VGI  Virginia' -
+    ,  'OHI  Ohio' -
+    ,  'NHM  New Hampshire' -
+    ,  'RHO  Rhode Island and Providence Plantations' -
+    ,  'MIC  Michigan' -
+    ,  'MIN  Minnesota' -
+    ,  'MIS  Mississippi' -
+    ,  'WIS  Wisconsin' -
+    ,  'OKA  Oklahoma' -
+    ,  'ALA  Alabama' -
+    ,  'FLA  Florida' -
+    ,  'MLD  Maryland' -
+    ,  'ALK  Alaska' -
+    ,  'ILL  Illinois' -
+    ,  'NMX  New Mexico' -
+    ,  'IND  Indiana' -
+    ,  'MOE  Missouri' -
+    ,  'COL  Colorado' -
+    ,  'CON  Connecticut' -
+    ,  'MON  Montana' -
+    ,  'LOU  Louisiana' -
+    ,  'IOW  Iowa' -
+    ,  'ORE  Oregon' -
+    ,  'ARK  Arkansas' -
+    ,  'ARZ  Arizona' -
+    ,  'UTH  Utah' -
+    ,  'KTY  Kentucky' -
+    ,  'WVG  West Virginia' -
+    ,  'NWJ  New Jersey' -
+    ,  'NYK  New York' -
+    ,  'WYO  Wyoming' -
+  ]
+  return data
+

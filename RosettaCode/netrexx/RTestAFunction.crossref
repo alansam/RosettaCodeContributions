@@ -1,0 +1,5 @@
+--- Variables for class RTestAFunction ---
+args       String[] a 33
+millisecs  Rexx     v 37= 38
+secs       Rexx     v 38= 45
+testResult Result   v 35= 37 40 42 43 44

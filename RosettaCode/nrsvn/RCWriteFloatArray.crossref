@@ -1,0 +1,12 @@
+--- Variables for class RCWriteFloatArray ---
+ex         Exception      v 11= 12
+fw         BufferedWriter v 26= 30 31 33
+i_         Rexx           v 28= 29 29
+outFile    Rexx           v 7= 10
+outFile    Rexx           a 21 26
+pgmName    Rexx           v 6= 7
+row        Rexx           v 29= 30
+xf         Rexx[]         a 21 24 28 29
+xprecision Rexx           a 21= 29 29
+yf         Rexx[]         a 21 24 29
+yprecision Rexx           a 21= 29 29

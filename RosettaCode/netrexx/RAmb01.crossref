@@ -1,0 +1,9 @@
+--- Variables for class RAmb01 ---
+anAmb     Rexx   v 9= 19
+arg       Rexx   a 4= 4
+arg       Rexx   a 22
+w_        Rexx   v 10= 11
+wordList  Rexx   v 11= 12 13 14 14= 15
+wordLists Rexx[] a 8 10 11
+wordLists Rexx[] v 24= 31
+wx        Rexx   v 14= 15

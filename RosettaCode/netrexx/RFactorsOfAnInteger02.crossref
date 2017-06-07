@@ -1,0 +1,6 @@
+--- Variables for class RFactorsOfAnInteger02 ---
+factors TreeSet v 33= 34 35 38 39 42
+j_      Rexx    v 9= 10 10
+n       Rexx    a 32 34 36 36 37 39
+num     Rexx    v 4= 7= 8 9
+test    Rexx    v 36= 36 37 38 39

@@ -1,0 +1,61 @@
+/* NetRexx */
+
+options replace format comments java crossref savelog symbols nobinary
+
+/**
+ * This task is about arrays. For hashes or associative arrays, please see
+ * <a href="http://rosettacode.org/wiki/Creating_an_Associative_Array">Creating an Associative Array</a>.
+ * <p>
+ * In this task, the goal is to show basic array syntax in your language. Basically, create an array,
+ * assign a value to it, and retrieve an element. (if available, show both fixed-length arrays and
+ * dynamic arrays, pushing a value into it.)
+ * </p>
+ * <p>
+ * Please discuss at Village Pump: <a href="http://rosettacode.org/wiki/Rosetta_Code:Village_Pump/Arrays">Arrays</a>.
+ * Please merge code in from obsolete tasks <a href="http://rosettacode.org/wiki/Creating_an_Array">Creating an Array</a>,
+ * <a href="http://rosettacode.org/wiki/Assigning_Values_to_an_Array">Assigning Values to an Array</a>,
+ * and <a href="http://rosettacode.org/wiki/Retrieving_an_Element_of_an_Array">Retrieving an Element of an Array</a>.
+ * </p>
+ * <h4>See also</h4>
+ * <ul>
+ * <li><a href="http://rosettacode.org/wiki/Collections">Collections</a></li>
+ * <li><a href="http://rosettacode.org/wiki/Two-dimensional_array_(runtime)">Two-dimensional array (runtime)</a></li>
+ * </ul>
+ *
+ * @author Alan Sampson
+ * @version 1.0
+ * @see <a href="http://rosettacode.org/wiki/Arrays">rosettacode.org/wiki/Arrays</a>
+ */
+
+array = int[10]
+array[0] = 42
+
+say array[0] array[3]
+say
+
+words = ['Ogof', 'Ffynnon', 'Ddu']
+
+say words[0] words[1] words[2]
+say
+
+-- Dynamic arrays can be simulated via the Java Collections package
+splk = ArrayList()
+splk.add(words[0])
+splk.add(words[1])
+splk.add(words[2])
+splk.add('Draenen')
+
+say splk.get(0) splk.get(3)
+say splk.get(0) splk.get(1) splk.get(2)
+say
+
+-- or by using NetRexx "indexed strings" (associative arrays)
+cymru = ''
+cymru[0] = 0
+cymru[0] = cymru[0] + 1; cymru[cymru[0]] = splk.get(0) splk.get(1) splk.get(2)
+cymru[0] = cymru[0] + 1; cymru[cymru[0]] = splk.get(0) splk.get(3)
+
+loop x_ = 1 to cymru[0] by 1
+  say x_':' cymru[x_]
+  end x_
+

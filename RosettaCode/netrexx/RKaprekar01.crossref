@@ -1,0 +1,20 @@
+--- Variables for class RKaprekar01 ---
+args    String[] a 12
+isFalse boolean  c 10=
+isTrue  boolean  c 9= 25 34
+kCount  Rexx     v 36= 46 46= 58
+kl      Rexx     v 40= 44 50 50
+kn      Rexx     v 37= 38 38 44 45
+kNum    Rexx     v 43= 45= 50 53
+kr      Rexx     v 40= 41 42 42= 44 50 50
+kSq     Rexx     v 38= 39 40 50
+limit   Rexx     v 14= 16 20 23= 25 29
+limit   Rexx     a 34 37 48 49 49 58
+listAll boolean  a 34= 47
+ll      Rexx     v 48= 50
+lx      Rexx     v 49= 50 50 50 50
+splt    Rexx     v 39= 40
+t0      Rexx     v 18= 19 27= 28
+t1      long     v 15= 18 24= 27
+t2      long     v 17= 18 26= 27
+ts      Rexx     v 19= 20 28= 29

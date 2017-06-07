@@ -1,0 +1,65 @@
+/* Generated from 'RCSortingBubblesort01.nrx' 19 Sep 2011 12:27:55 [v3.00] */
+/* Options: Binary Comments Crossref Decimal Format Java Logo Replace Symbols Trace2 Verbose3 */
+
+/* NetRexx */
+
+
+
+public class RCSortingBubblesort01{
+ private static final java.lang.String $0="RCSortingBubblesort01.nrx";
+ 
+ public static void main(java.lang.String $0s[]){
+  java.lang.String placesList[];
+  java.lang.String sortedList[];
+  java.lang.String lists[][];
+  int ln=0;
+  java.lang.String cl[]=null;
+  int ct=0;
+  placesList=new java.lang.String[]{"UK  London","US  New York","US  Boston","US  Washington","UK  Washington","US  Birmingham","UK  Birmingham","UK  Boston"};
+  
+  
+  
+  
+  
+  sortedList=bubbleSort((java.lang.String[])(java.util.Arrays.copyOf((java.lang.Object[])placesList,placesList.length)));
+  
+  lists=new java.lang.String[][]{placesList,sortedList};
+  {int $1=lists.length-1;ln=0;ln:for(;ln<=$1;ln++){
+   cl=lists[ln];
+   {int $2=cl.length-1;ct=0;ct:for(;ct<=$2;ct++){
+    netrexx.lang.RexxIO.Say(cl[ct]);
+    }
+   }/*ct*/
+   netrexx.lang.RexxIO.Say("");
+   }
+  }/*ln*/
+  
+  return;
+  }
+
+ 
+ public static final java.lang.String[] bubbleSort(java.lang.String list[]){
+  int listLen;
+  int i_=0;
+  int j_=0;
+  java.lang.String tmpstor=null;
+  
+  listLen=list.length;
+  {int $3=listLen-1;i_=0;i_:for(;i_<=$3;i_++){
+   {int $4=listLen-1;j_=i_+1;j_:for(;j_<=$4;j_++){
+    if ((list[i_].compareTo(list[j_]))>0) 
+     {
+      tmpstor=list[j_];
+      list[j_]=list[i_];
+      list[i_]=tmpstor;
+     }
+    }
+   }/*j_*/
+   }
+  }/*i_*/
+  
+  return list;
+  }
+ 
+ private RCSortingBubblesort01(){return;}
+ }

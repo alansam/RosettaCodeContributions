@@ -1,0 +1,11 @@
+--- Variables for class RCFunctionDefinition ---
+ft2yds       int   v 7= 10
+in2ft        int   v 6= 10
+in2mm        float v 8= 10
+mm2m         float v 9= 10
+multiplicand Rexx  a 20 22
+multiplier   Rexx  a 20 22
+pi           Rexx  v 4= 12 14
+product      Rexx  v 22= 23
+radiusM      Rexx  v 10= 13 14 14 14
+radiusY      int   v 5= 10 12 12 12 13
