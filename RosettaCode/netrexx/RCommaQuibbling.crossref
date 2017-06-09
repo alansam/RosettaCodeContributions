@@ -1,8 +1,0 @@
---- Variables for class RCommaQuibbling ---
-arg   Rexx   a 4= 4
-arg   Rexx   a 8 9
-arg   Rexx   a 17
-lc    Rexx   v 11= 12 13 13
-lists Rexx[] v 18= 22
-lst   Rexx   v 9= 10 10= 11 13 13= 14
-lst   Rexx   v 22= 23 23

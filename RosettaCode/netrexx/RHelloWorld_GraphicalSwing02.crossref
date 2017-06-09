@@ -1,5 +1,0 @@
---- Variables for class RHelloWorld_GraphicalSwing02 ---
-minSize Dimension v 20= 26
-msgText String    v 16= 18 22
-text    JTextArea v 19= 22 25
-window  JFrame    v 18= 24 25 26 27 28 29

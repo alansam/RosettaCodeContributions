@@ -1,9 +1,0 @@
---- Variables for class RAvgMedian20 ---
-args    String[]       a 50
-cvector ArrayList      v 8= 9 10 10 10 10
-kVal    Rexx           v 10= 11
-lvector java.util.List a 7 8
-lvector java.util.List a 18 19 20
-mVal    Rexx           v 19= 20 21
-rvector Rexx[]         a 14 15
-rvector Rexx[]         a 24 25

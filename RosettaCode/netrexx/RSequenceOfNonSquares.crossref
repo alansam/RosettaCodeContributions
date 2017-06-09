@@ -1,6 +1,0 @@
---- Variables for class RSequenceOfNonSquares ---
-n_     long    v 10 11= 12 13 16= 17 20
-n_     long    a 33 34 34
-nonsqr Rexx    v 7 12= 13 17= 18 19
-proof  boolean v 8= 21= 26
-sq     long    v 18= 19 19

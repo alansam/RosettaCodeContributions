@@ -1,4 +1,0 @@
---- Variables for class RTermCtrlDisplayExtendedChar ---
-arg Rexx   a 4= 4
-arg Rexx   a 8
-GBP String v 9= 10 11= 12 13= 14

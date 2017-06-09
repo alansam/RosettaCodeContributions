@@ -1,7 +1,0 @@
---- Variables for class RPickRandomElement ---
-iArray Rexx[]         v 4= 5 9 9
-iList  java.util.List v 5= 10 10
-iWords Rexx           v 6= 11 11
-v1     Rexx           v 9= 13
-v2     Object         v 10= 13
-v3     Rexx           v 11= 13

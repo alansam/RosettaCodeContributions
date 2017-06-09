@@ -1,7 +1,0 @@
---- Variables for class RPrimality01 ---
-arg Rexx    a 5= 5
-ip  boolean v 17 21= 26= 32= 35= 40
-j_  Rexx    v 30= 30 30 31 31
-n_  Rexx    v 5= 6 6= 8
-nn  Rexx    v 8= 9 9
-x_  Rexx    a 15 20 25 25 25 30 31 31

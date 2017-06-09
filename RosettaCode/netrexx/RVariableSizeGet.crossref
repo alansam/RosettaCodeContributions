@@ -1,9 +1,0 @@
---- Variables for class RVariableSizeGet ---
-b1  boolean v 19= 28
-c1  char    v 21= 30
-d1  double  v 26= 35
-f1  float   v 25= 34
-i1  int     v 23= 32
-l1  long    v 24= 33
-s1  short   v 22= 31
-x1  byte    v 20= 29

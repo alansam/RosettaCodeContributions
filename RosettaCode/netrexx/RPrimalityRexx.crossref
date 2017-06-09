@@ -1,7 +1,0 @@
---- Variables for class RPrimalityRexx ---
-arg Rexx a 7= 7
-j   Rexx v 11= 12 14 15
-j   Rexx v 28= 28 28 29 29
-n   Rexx v 7= 8 8= 11 19
-p   Rexx v 9= 13 13= 19
-x   Rexx a 23 25 26 26 26 28 29 29

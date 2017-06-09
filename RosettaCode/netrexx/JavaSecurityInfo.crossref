@@ -1,5 +1,0 @@
---- Variables for class JavaSecurityInfo ---
-key       Object         v 15= 16
-keys      Set            v 14= 15
-providers java.util.List v 6= 9
-pv        Provider       v 8 10 11 12 13 14

@@ -1,5 +1,0 @@
---- Variables for class RExceptions ---
-args String[]  a 13
-ex   Exception v 16= 17
-
---- No variables in class RExceptions.TakeException ---

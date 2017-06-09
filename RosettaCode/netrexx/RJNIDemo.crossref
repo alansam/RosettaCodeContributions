@@ -1,5 +1,0 @@
---- Variables for class RJNIDemo ---
-args        String[] a 13
-libName     String   a 21 22 23
-libraryName String   c 10=
-s           String   a 18

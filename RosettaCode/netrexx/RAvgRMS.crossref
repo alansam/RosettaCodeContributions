@@ -1,6 +1,0 @@
---- Variables for class RAvgRMS ---
-arg  Rexx   a 4= 4
-maxV Rexx   v 4= 5 5 5= 8 11 13
-nr   Rexx   v 8= 9
-rmsD double v 11= 13
-sum  Rexx   v 7= 9 9= 11

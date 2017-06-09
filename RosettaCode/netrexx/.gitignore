@@ -1,0 +1,9 @@
+# NetRexx compiler output files
+#   *.crossref files created via -crossref switch
+#   *.java files created via -keepasjava switch
+#   *.keep files created via -keep switch
+*.class
+*.crossref
+*.keep
+*.java
+

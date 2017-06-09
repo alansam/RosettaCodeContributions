@@ -1,7 +1,0 @@
---- Variables for class RRangeExtractionWP01 ---
-aaa     Rexx v 10= 11 11= 12 13 13= 18 20 23 31
-comma   Rexx v 16= 29 30=
-i       Rexx v 14= 18 19 19= 20 23 31
-inrange Rexx v 17= 22 25= 32=
-n       Rexx v 20= 21 23 24 29 31
-ol      Rexx v 15= 24 24= 29 29= 33 33= 37

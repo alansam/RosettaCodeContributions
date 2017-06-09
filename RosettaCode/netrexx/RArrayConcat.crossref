@@ -1,9 +1,0 @@
---- Variables for class RArrayConcat ---
-c_     Rexx      v 9= 10 10
-cymru  Rexx[]    v 4= 9 10 21
-dlm    Rexx      v 6= 8 15 24
-m_     Rexx      v 26= 27 27
-merge  ArrayList v 20= 21 22 25
-merged Object[]  v 25= 26 27
-y_     Rexx      v 16= 17 17
-yorks  Rexx[]    v 13= 16 17 22

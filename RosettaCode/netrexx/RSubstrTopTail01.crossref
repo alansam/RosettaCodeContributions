@@ -1,5 +1,0 @@
---- Variables for class RSubstrTopTail01 ---
-arg Rexx a 4= 4
-arg Rexx a 8 13
-l   Rexx v 15= 17 19 21 22
-z   Rexx v 13= 14 14= 15 16 18 19 22

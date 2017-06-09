@@ -1,9 +1,0 @@
---- Variables for class RExtremeFloats ---
-inf      double v 5= 7 10 13
-kinf     double v 5= 10 13
-knan     double v 6= 11 14 15 15
-knegInf  double v 4= 9 13
-knegZero double v 7= 12
-nan      double v 6= 11 14 15 15
-negInf   double v 4= 9 13
-negZero  double v 7= 12

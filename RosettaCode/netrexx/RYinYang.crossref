@@ -1,4 +1,0 @@
---- Variables for class RYinYang ---
-scale double a 28 30
-trans int    a 28 30 30
-yy    String v 29= 31

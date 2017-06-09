@@ -1,9 +1,0 @@
---- Variables for class RFloydTriangle03 ---
-arg         Rexx   a 4= 4
-col         int    v 11= 14 14= 15
-colMaxDigit Rexx   v 15= 16
-digit       int    v 9= 13 13= 16
-maxVal      Rexx   v 6= 15
-numRows     Rexx   v 4= 5 5= 6 6 7 10 15
-output      String v 12= 16 16= 18
-row         int    v 10= 13

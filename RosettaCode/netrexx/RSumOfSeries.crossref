@@ -1,7 +1,0 @@
---- Variables for class RSumOfSeries ---
-arg    Rexx a 6= 6
-nEnd   Rexx v 6= 9 9= 12 16
-nStart Rexx v 6= 8 8= 12 16
-sum    Rexx v 11= 13 13= 16
-x      Rexx v 12= 13
-x      Rexx a 21 22

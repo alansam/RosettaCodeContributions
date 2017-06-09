@@ -1,6 +1,0 @@
---- Variables for class zPosTest ---
-c_   Rexx v 9= 10 12
-cp   Rexx v 11= 12
-cx   Rexx v 10= 11 12
-str1 Rexx v 5= 7 9 10
-str2 Rexx v 6= 8 11

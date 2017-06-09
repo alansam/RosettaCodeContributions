@@ -1,7 +1,0 @@
---- Variables for class RMontyHall ---
-choice     int    v 11= 13 16 19
-doors      int[]  v 9= 10= 13 16 19
-gen        Random v 7= 10 11 14
-shown      int    v 12 13 13 14= 19
-stayWins   int    v 6= 16 16= 22
-switchWins int    v 5= 19 19= 21

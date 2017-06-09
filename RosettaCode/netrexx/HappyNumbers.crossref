@@ -1,9 +1,0 @@
---- Variables for class HappyNumbers ---
-a     Rexx v 9= 24 25=
-arg   Rexx a 2= 2
-haps  Rexx v 5= 7 13 13=
-j     Rexx v 20= 21
-limit Rexx v 2= 3 4 4 4= 7
-n     Rexx v 7= 8 14
-q     Rexx v 8= 12 20 21 26=
-sum   Rexx v 18= 21 21= 24 25 26

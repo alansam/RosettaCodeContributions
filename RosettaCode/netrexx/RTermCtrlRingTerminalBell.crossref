@@ -1,6 +1,0 @@
---- Variables for class RTermCtrlRingTerminalBell ---
-arg Rexx      a 4= 4
-arg Rexx      a 8
-BEL int       v 10= 12
-ex  Exception v 18= 19
-jtk Toolkit   v 11= 17

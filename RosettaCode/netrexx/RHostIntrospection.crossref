@@ -1,3 +1,0 @@
---- Variables for class RHostIntrospection ---
-endian   String v 21= 24
-wordSize String v 20= 23

@@ -1,7 +1,0 @@
---- Variables for class RHornersRuleForPolynomialEval00 ---
-accumulator  int   v 23= 26 26= 28
-arg          Rexx  a 4= 4
-arg          Rexx  a 8
-coefficients int[] v 21= 25 26
-i_           int   v 25= 26
-x_           int   v 22= 26

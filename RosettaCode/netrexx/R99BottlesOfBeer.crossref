@@ -1,5 +1,0 @@
---- Variables for class R99BottlesOfBeer ---
-beer      Rexx v 30= 32 33 36 38 39 41 48
-i         int  v 34= 36 38 39 43 45 46
-lastCall  Rexx v 41= 43 45 46
-removeOne Rexx v 31= 35 42 47

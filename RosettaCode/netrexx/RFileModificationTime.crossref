@@ -1,7 +1,0 @@
---- Variables for class RFileModificationTime ---
-arg      Rexx   a 4= 4
-arg      Rexx   a 8 9
-dtime    String v 13= 14 17= 19 23= 24
-fileName Rexx   v 9= 10 10= 11 14 19 24 27
-mfile    File   v 11= 12 16 17 22 23
-mtime    long   v 12= 13 22

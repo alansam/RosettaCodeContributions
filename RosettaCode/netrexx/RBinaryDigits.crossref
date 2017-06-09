@@ -1,8 +1,0 @@
---- Variables for class RBinaryDigits ---
-arg  Rexx a 4= 4
-arg  Rexx a 13 14
-bd   Rexx v 8= 10 10= 11
-list Rexx v 14= 15 15= 16 17
-n_   Rexx v 16= 17
-nr   Rexx a 7 8
-w_   Rexx v 17= 18 18

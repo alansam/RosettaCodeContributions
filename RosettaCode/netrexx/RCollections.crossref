@@ -1,4 +1,0 @@
---- Variables for class RCollections ---
-mySet  Set    v 5 6= 9 12
-myVals Rexx[] v 4= 8
-val    Rexx   v 8= 9 13

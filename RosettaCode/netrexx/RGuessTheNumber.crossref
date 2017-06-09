@@ -1,7 +1,0 @@
---- Variables for class RGuessTheNumber ---
-arg       Rexx   a 4= 4
-guess     Rexx   v 8= 15 18= 19 20
-guessThis Rexx   v 7= 15 19
-prompt    Rexx[] v 9= 16
-promptIdx int    v 13= 16 17=
-tracing   Rexx   v 4= 5

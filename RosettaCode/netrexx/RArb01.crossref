@@ -1,8 +1,0 @@
---- Variables for class RArb01 ---
-check      Rexx v 18= 21 26
-n          Rexx v 12= 19 19 23
-nanoFactor Rexx v 9= 15
-sample     Rexx v 19= 22 26
-t1         long v 11= 14
-t2         long v 13= 14
-td         Rexx v 14= 15
